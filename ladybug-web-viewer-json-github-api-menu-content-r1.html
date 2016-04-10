@@ -2,15 +2,15 @@
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>Ladybug Web Viewer JSON GiHub API Menu Content R1.html</title>
+<title>Ladybug Web Viewer JSON GitHub API Menu Content R1.html</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
 <meta name=description content='Basic slide in and slide out menu with three bar icon that adjusts for small screen size.' >
 <meta name=keywords content='CSS, HTML,JavaScript,GitHub,FOSS,3D,STEM' >
 <meta name=date content='2016-04-08' >
 </head>
 <body>
+<script src=http://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js ></script>
 <script>
-
 
 	files = [];
 
@@ -61,28 +61,20 @@
 
 			'<h2>' +
 				'<a href="" >' + document.title + '</a>' +
-				'<a href=http://jaanga.github.io/ > &#x24D8; </a>' +
+				'<a href=http://ladybug-analysis-tools.github.io/#3d-models/readme.md > &#x24D8; </a>' +
 			'</h2>' +
 			'<p id=message style=color:crimson; > <br>&nbsp; </p>' +
 
-			'<div id=info ></div>' +
+			'<p id=info ></p>' +
+			'<hr>' +
+			'<p><a href="http://ladybug-analysis-tools.github.io/ladybug-web/shadow-core/" target="_blank" >&#x1f5d7; Ladybug Web Shadow Core</a></p>' +
+			'<center><img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f41e.png?v6" >';
+
 		'';
-
-
 
 		window.addEventListener( 'hashchange', onHashChange, false );
 
 		getFileNames( urlContents );
-
-
-	}
-
-	function onHashChange(){
-
-		fileName = location.hash.length ? location.hash.slice( 1 ) : files[ 0 ];
-
-		contents.innerHTML = '<iframe src=' + urlFiles + fileName + ' id=ifr ></iframe>';
-
 
 	}
 
@@ -95,8 +87,6 @@
 
 		function callback() {
 
-//			if ( xhr.readyState != 4  ) { return; }
-
 			txt = '';
 
 			response = JSON.parse( xhr.response );
@@ -104,8 +94,6 @@
 			for ( var i = 0; i < response.tree.length; i++ ) {
 
 				file = response.tree[ i ].path;
-
-//				if ( file.indexOf( 'examples/obj' ) === -1 || file.slice( -3 ) !== '.js' ) { continue; }
 
 				if ( file.slice( -3 ) !== '.js' && file.slice( -5 ) !== '.json' ) { continue; }
 				if ( file.slice( -11 ) === 'readme.json' ) { continue; }
@@ -117,12 +105,35 @@
 
 			}
 
-			menu.innerHTML += txt;
+			info.innerHTML += txt;
 
 			onHashChange();
 
 		}
 
+	}
+
+	function onHashChange(){
+
+		fileName = location.hash.length ? location.hash.slice( 1 ) : files[ 1 ];
+
+		if ( fileName.slice( -3 ) !== '.md' ) {
+
+			contents.innerHTML = '<iframe src=' + urlFiles + fileName + ' id=ifr ></iframe>';
+
+		} else {
+
+			var converter = new showdown.Converter( { strikethrough: true, literalMidWordUnderscores: true, simplifiedAutoLink: true, tables: true });
+			var xhr = new XMLHttpRequest();
+			xhr.open( 'GET', fileName, true );
+			xhr.onload = function() {
+
+				target.innerHTML = converter.makeHtml(  xhr.responseText );
+
+			};
+			xhr.send( null );
+
+		}
 	}
 
 </script>
