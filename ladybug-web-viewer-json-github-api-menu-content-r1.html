@@ -17,8 +17,8 @@
 //	urlContents = 'https://api.github.com/repos/mrdoob/three.js/git/trees/master?recursive=1';
 	urlContents = 'https://api.github.com/repos/ladybug-analysis-tools/3d-models/git/trees/gh-pages?recursive=1';
 
-//	var urlFiles = '../../../../../ladybug-web/shadow-core/ladybug-web-shadow-core-bostock-r3.html#fn=http://mrdoob.github.io/three.js/';
-	var urlFiles = 'http://ladybug-analysis-tools.github.io/ladybug-web/shadow-core/#fn=http://ladybug-analysis-tools.github.io/3d-models/';
+	var urlFiles = '../../ladybug-web/shadow-core/ladybug-web-shadow-core-bostock-r4.html#fn=http://ladybug-analysis-tools.github.io/3d-models/';
+//	var urlFiles = 'http://ladybug-analysis-tools.github.io/ladybug-web/shadow-core/#fn=http://ladybug-analysis-tools.github.io/3d-models/';
 
 	init();
 
@@ -29,21 +29,22 @@
 		css = document.body.appendChild( document.createElement('style') );
 		css.innerHTML =
 
-			'body { font: 12pt monospace; margin: 0; }' +
+			'body { font: 12pt monospace; margin: 0; overflow: hidden}' +
 			'h2 { margin: 0; }' +
 			'a { text-decoration: none; }' +
 			'button, input[type=button] { background-color: #eee; border: 2px #eee solid; color: #888; }' +
+			'iframe { border: 0px red solid; height: 100%;; overflow: hidden; position: absolute; top: 0; width: 100%; }' +
 
 			'input[type=range] { -webkit-appearance: none; -moz-appearance: none; background-color: silver; width: 160px; }' +
 			'input[type=range]::-moz-range-thumb { background-color: #888; border-radius: 0; width: 10px; }' +
 			'input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; background-color: #888; height: 20px; width: 10px; }' +
 
 			'#bars { color: pink; cursor: pointer; font-size: 24pt; text-decoration: none; }' +
-			'iframe { border: 0px red solid; height: 100%;; overflow: hidden; position: absolute; top: 0; width: 100%; }' +
+
 			'#hamburger { left: 325px; position: absolute; top: 20px; transition: left 1s; }' +
 			'#menu { background-color: #eee; border: 1px #ccc solid; left: -324px; max-height: ' + ( window.innerHeight - 10 ) + 'px; ' +
 				'opacity: 0.95; overflow: auto; padding: 0 10px; position: absolute; top: -20px; transition: left 1s; width: 300px; }' +
-
+			'div.md { left: 0; margin: 0 auto; max-width: 900px; position: absolute: right" 0; }' +
 		'';
 
 		contents = document.body.appendChild( document.createElement( 'div' ) );
@@ -61,9 +62,15 @@
 
 			'<h2>' +
 				'<a href="" >' + document.title + '</a>' +
-				'<a href=http://ladybug-analysis-tools.github.io/3d-models/#readme.md > &#x24D8; </a>' +
+				'<a href=http://ladybug-analysis-tools.github.io/3d-models/#README.md > &#x24D8; </a>' +
 			'</h2>' +
-			'<p><a href=http://ladybug-analysis-tools.github.io/3d-models/#readme.md target="_blank">Read Me</a></p>' +
+			'<p><a href=index.html#README.md >Read Me</a></p>' +
+			'<p>' +
+				'Month &nbsp;<input type=range id=inpMonth min=0 max=11 value=5 step=1 oninput=setDate(); title="1 to 12: OK" ><output id=outMonth ></output><br>' +
+				'Day &nbsp; &nbsp;<input type=range id=inpDate min=0 max=31 step=1 value=15 oninput=setDate(); title="1 to 31: OK" ><output id=outDate ></output><br>' +
+				'Hour &nbsp; <input type=range id=inpHours min=0 max=23 step=1 value=12 oninput=setDate(); title="0 to 23: OK" ><output id=outHours ></output><br>' +
+				'Minute <input type=range id=inpMinutes min=0 max=59 step=1 value=30 oninput=setDate(); title="0 to 59: OK" ><output id=outMinutes ></output><br>' +
+			'</p>' +
 			'<p id=message style=color:crimson; > <br>&nbsp; </p>' +
 
 			'<p id=info ></p>' +
@@ -120,21 +127,45 @@
 
 		if ( fileName.slice( -3 ) !== '.md' ) {
 
-			contents.innerHTML = '<iframe src=' + urlFiles + fileName + ' id=ifr ></iframe>';
+			contents.innerHTML = '<iframe id=ifr src=' + urlFiles + fileName + ' onload=setDate(); ></iframe>';
+//setDate();
 
 		} else {
 
 			var converter = new showdown.Converter( { strikethrough: true, literalMidWordUnderscores: true, simplifiedAutoLink: true, tables: true });
+
 			var xhr = new XMLHttpRequest();
 			xhr.open( 'GET', fileName, true );
 			xhr.onload = function() {
 
-				target.innerHTML = converter.makeHtml(  xhr.responseText );
+				contents.innerHTML = '<div class=md >' + converter.makeHtml(  xhr.responseText ) + '</div>';
 
 			};
 			xhr.send( null );
 
 		}
+
+	}
+
+	function setDate() {
+
+		ifr.contentWindow.location.hash = '#mo=' + inpMonth.valueAsNumber + '#da=' + inpDate.valueAsNumber + 
+			'#hr=' + inpHours.valueAsNumber + '#mn=' + inpMinutes.valueAsNumber + '#sp=1';
+
+		outMonth.value = inpMonth.value;
+		outDate.value = inpDate.value;
+		outHours.value = inpHours.value;
+		outMinutes.value = inpMinutes.value;
+/*
+		infoSun.innerHTML =
+
+			'Sun:<br>' +
+			'- Azimuth : ' + ifr.contentWindow.pud.sunPosition.azimuth.toFixed( 2 ) + '<br>' +
+			'- Altitude: ' + ifr.contentWindow.pud.sunPosition.altitude.toFixed( 2 ) +
+*/
+
+		'';
+
 	}
 
 </script>
