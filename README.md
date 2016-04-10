@@ -19,6 +19,6 @@ Everyone: create a readme.json file and add a thumbnail for each model. We will 
 ### 2016-04-08
 
 * First commit
-* Add Urban Model in OBH
+* Add Urban Model in OBJ
 * Add Urban Model in JSON
 
