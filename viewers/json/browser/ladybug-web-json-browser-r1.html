@@ -1,0 +1,220 @@
+﻿<!doctype html>
+<html lang=en >
+<head>
+<meta charset=utf-8 >
+<title>Ladybug Web JSON Browser R1</title>
+<meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
+<meta name=description content='
+View Three.js JSON Files from a variety of sources
+Basic slide in/slide out menu with three bar icon that adjusts for small screen size.
+' >
+<meta name=keywords content='CSS, HTML,JavaScript,GitHub,FOSS,3D,STEM' >
+<meta name=date content='2016-04-11' >
+</head>
+<body>
+<script>
+
+	var repos = [
+
+		[ 'mrdoob/three.js', 'gh-pages', 'https://mrdoob.github.io/three.js/', tagThreejsJSON ],
+		[ 'ladybug-analysis-tools/3d-models', 'gh-pages', 'https://ladybug-analysis-tools.github.io/3d-models/', tagAllJSON ],
+		[ 'jaanga/3d-models', 'gh-pages', 'https://jaanga.github.io/3d-models/', tagAllJSON ],
+		[ 'nasa/NASA-3D-Resources', 'master', 'https://cdn.rawgit.com/nasa/NASA-3D-Resources/master/', tagAllJSON ],
+		[ 'tparisi/WebGLBook', 'master', 'https://cdn.rawgit.com/tparisi/WebGLBook/master/', tagParisiJSON ],
+		[ 'tparisi/Programming3DApplications', 'master', 'https://cdn.rawgit.com/tparisi/Programming3DApplications/master/', tagParisiJSON ],
+		[ 'josdirksen/essential-threejs', 'master', 'https://cdn.rawgit.com/josdirksen/essential-threejs/master/', tagDirksenJSON ],
+		[ 'josdirksen/threejs-cookbook', 'master', 'https://cdn.rawgit.com/josdirksen/threejs-cookbook/master/', tagDirksenJSON ],
+		[ 'josdirksen/learning-threejs', 'master', 'https://cdn.rawgit.com/josdirksen/learning-threejs/master/', tagDirksenJSON ],
+		[ 'va3c/va3c.github.io', 'master', 'https://va3c.github.io/va3c.github.io/', tagAllJSON ],
+	]
+
+	var githubAPI = 'https://api.github.com/repos/';
+	var parameters1 = '/git/trees/';
+	var parameters2 = '?recursive=1'
+	var engine = '../core/index.html';
+	var urlPrefixFiles = 'http://mrdoob.github.io/three.js/';
+	files = [];
+
+	init();
+
+	function init() {
+
+		var css, hamburger, menu, contents;
+
+		css = document.body.appendChild( document.createElement('style') );
+		css.innerHTML =
+
+			'body { font: 12pt monospace; margin: 0; }' +
+			'h2, h3 { margin: 0; }' +
+			'a { text-decoration: none; }' +
+			'button, input[type=button] { background-color: #eee; border: 2px #eee solid; color: #888; }' +
+
+			'iframe { border: 0px red solid; height: 100%;; overflow: hidden; position: absolute; top: 0; width: 100%; }' +
+			'input[type=range] { -webkit-appearance: none; -moz-appearance: none; background-color: silver; width: 160px; }' +
+			'input[type=range]::-moz-range-thumb { background-color: #888; border-radius: 0; width: 10px; }' +
+			'input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; background-color: #888; height: 20px; width: 10px; }' +
+
+			'#bars { color: crimson; cursor: pointer; font-size: 24pt; text-decoration: none; }' +
+			'#hamburger { left: 325px; position: absolute; top: 20px; transition: left 1s; }' +
+			'#menu { background-color: #eee; border: 1px #ccc solid; left: -324px; max-height: ' + ( window.innerHeight - 10 ) + 'px; ' +
+				'opacity: 0.95; overflow: auto; padding: 0 10px; position: absolute; top: -20px; transition: left 1s; width: 300px; }' +
+
+		'';
+
+		contents = document.body.appendChild( document.createElement( 'div' ) );
+		contents.id = 'contents';
+		contents.innerHTML = '<h1>Stuff</h1>'
+
+		hamburger = document.body.appendChild( document.createElement( 'div' ) );
+		hamburger.id = 'hamburger';
+		hamburger.innerHTML = '<div id=bars >☰</div>';
+		bars.onclick = function() { hamburger.style.left = hamburger.style.left === "0px" ? "325px" : 0; };
+
+		menu = hamburger.appendChild( document.createElement( 'div' ) );
+		menu.id = 'menu';
+		menu.innerHTML =
+
+			'<h2>' +
+				'<a href="" >' + document.title + '</a>' +
+				'<a href=http://jaanga.github.io/cookbook-threejs/viewers/ > &#x24D8; </a>' +
+			'</h2>' +
+			'<p><select id=selRepo size = 10 onchange=updateMenu(); ></select></p>' +
+			'<p id=message style=color:crimson; ></p>' +
+
+			'<div id=info ></div>' +
+			'<div id=links ></div>' +
+
+			'<hr>' +
+//			'<p><a href="http://ladybug-analysis-tools.github.io/ladybug-web/shadow-core/" target="_blank" >&#x1f5d7; Ladybug Web Shadow Core</a></p>' +
+			'<center><h1> &#x2766 </h1></center>';
+		'';
+
+		for ( var i = 0; i < repos.length; i++ ) {
+
+			selRepo.appendChild( document.createElement( 'option' ) );
+			selRepo.children[ i ].text = repos[ i ][ 0 ];
+//			selRepo.children[ i ].title = item[ i ];
+
+		}
+
+		selRepo.selectedIndex = 0;
+
+		window.addEventListener( 'hashchange', onHashChange, false );
+
+// let's go
+
+		updateMenu();
+
+//		contents.innerHTML = '<iframe id=ifr src="../index.html" ></iframe>';
+
+	}
+
+
+	function updateMenu() { 
+
+		repo = repos[ selRepo.selectedIndex ];
+
+		txt = githubAPI + repo[ 0 ] + parameters1 + repo[ 1 ] + parameters2;
+
+		getFileNames( txt, repo[ 3 ] );
+
+	};
+
+
+	function getFileNames( url, tag ) {
+
+		var xhr, response;
+		var files = [], txt = '';
+		var file, fileName, folder, folderCurrent, folderHTML;
+
+		xhr = new XMLHttpRequest( url );
+		xhr.open( 'GET', url, true );
+		xhr.onload = callback;
+		xhr.send( null );
+
+		function callback() {
+
+			response = JSON.parse( xhr.response );
+
+			for ( var i = 0; i < response.tree.length; i++ ) {
+
+				file = response.tree[ i ].path;
+
+				file = tag( file );
+
+				if ( file ) { 
+
+					fileArray = file.split( '/' );
+
+					fileName = fileArray.pop();
+					folderCurrent = fileArray.pop();
+
+					folderHTML = folderCurrent !== folder ? '<h3>' + folderCurrent + '</h3>' : '';
+					txt += folderHTML + '<div><a href=#' + file.replace( / /g, '%20' )  + ' >' + fileName+ '</a></div>';
+
+					files.push( file );
+					folder = folderCurrent;
+
+				}
+
+			}
+
+			message.innerHTML = 'Count: ' + files.length;
+
+			links.innerHTML = txt;
+
+//			onHashChange();
+
+		}
+
+	}
+
+	function tagAllJSON( file ) {
+
+		if ( file.slice( -3 ) !== '.js' && file.slice( -5 ) !== '.json' ) { return; }
+
+		return file;
+
+	}
+
+	function tagThreejsJSON( file ) {
+
+		if ( !file.includes( 'examples/obj' ) && !file.includes( 'examples/models' ) ) { return; }
+		if ( !file.endsWith( '.js' ) && !file.endsWith( '.json' ) ) { return; }
+//		if ( file.includes( 'bin' ) ) { return; }
+
+		return file;
+
+	}
+
+	function tagDirksenJSON( file ) {
+
+		if ( !file.includes( 'exported' ) && !file.includes( 'assets' ) ) { return; }
+		if ( ! file.endsWith( '.js' ) && !file.endsWith( '.json' ) ) { return; }
+		if ( file.includes( 'typeface' ) ) { return; }
+		return file;
+
+	}
+
+	function tagParisiJSON( file ) {
+
+		if ( !file.includes( 'models' ) /* && !file.includes( 'assets' ) */ ) { return; }
+		if ( ! file.endsWith( '.js' ) && !file.endsWith( '.json' ) ) { return; }
+//		if ( file.includes( 'typeface' ) ) { return; }
+		return file;
+
+	}
+
+	function onHashChange(){
+
+		fileName = location.hash.length ? location.hash.slice( 1 ) : files[ 3 ];
+
+		contents.innerHTML = '<iframe id=ifr src=' + engine + '#' + repos[ selRepo.selectedIndex ][ 2 ] + fileName + ' ></iframe>';
+
+		ic = ifr.contentWindow; // helps to debug
+
+	}
+
+</script>
+</body>
+</html>

@@ -2,11 +2,56 @@
 <html lang=en >
 <head>
 <meta charset=utf-8 >
+<title>Index Markdown Reader R3</title>
+<meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
+<meta name=description content='
+
+Top folder file wrangler
+Markdown reader template file
+
+' >
+<meta name=keywords content='AJAX,JavaScript,GitHub,FOSS,STEM' >
+<meta name=date content='2016-04-03' >
 </head>
 <body>
+<script src=http://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js ></script>
 <script>
 
-	window.location.href = './ladybug-web-viewer-json-github-api-menu-content-r1.html' + location.hash;
+	init();
+
+	function init() {
+
+		if ( location.hash ) {
+
+//			var css, fileName, converter;
+
+			fileName = location.hash.slice( 1 );
+			document.title = fileName.split( '/' ).pop() + ' ~ ' + document.title;
+
+			css = document.head.appendChild( document.createElement( 'style' ) );
+			css.innerHTML =
+
+				'body { font: 12pt monospace; left: 0; margin: 0 auto; max-width: 800px; right: 0;  }' +
+				'h2 a { text-decoration: none; }' +
+
+			'';
+
+			contents = document.body.appendChild( document.createElement( 'div' ) );
+			contents.id = 'contents';
+			converter = new showdown.Converter( { strikethrough: true, literalMidWordUnderscores: true, simplifiedAutoLink: true, tables: true });
+
+			xhr = new XMLHttpRequest();
+			xhr.open( 'get', fileName, true );
+			xhr.onload = function() { contents.innerHTML = converter.makeHtml( xhr.responseText ); };
+			xhr.send( null );
+
+		} else {
+
+			window.location.href = './index.html#index.md';
+
+		}
+
+	}
 
 </script>
 </body>
