@@ -2,7 +2,7 @@
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>Viewer OBJ GitHub API Menu Content Multi-SourceR2</title>
+<title>Ladybug Web OBJ Browser R1</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
 <meta name=description content='
 Get OBJ file names from a GitHub repository
@@ -28,7 +28,6 @@ Basic slide in and slide out menu with three bar icon that adjusts for small scr
 		[ 'josdirksen/threejs-cookbook', 'master', 'https://cdn.rawgit.com/josdirksen/threejs-cookbook/master/', tagDirksenOBJ ],
 		[ 'josdirksen/learning-threejs', 'master', 'https://cdn.rawgit.com/josdirksen/learning-threejs/master/', tagDirksenOBJ ],
 
-
 	]
 
 	var githubAPI = 'https://api.github.com/repos/';
@@ -36,9 +35,9 @@ Basic slide in and slide out menu with three bar icon that adjusts for small scr
 	var parameters2 = '?recursive=1'
 	var engine = '../core/index.html';
 
-	var urlFiles = '../viewer-obj-url-mtl/viewer-obj-url-mtl-r1.html#http://mrdoob.github.io/three.js/';
-	var urlPrefixFiles = 'http://mrdoob.github.io/three.js/';
-	files = [];
+//	var urlFiles = '../viewer-obj-url-mtl/viewer-obj-url-mtl-r1.html#http://mrdoob.github.io/three.js/';
+//	var urlPrefixFiles = 'http://mrdoob.github.io/three.js/';
+//	files = [];
 
 	init();
 
@@ -89,7 +88,9 @@ Basic slide in and slide out menu with three bar icon that adjusts for small scr
 
 			'<hr>' +
 //			'<p><a href="http://ladybug-analysis-tools.github.io/ladybug-web/shadow-core/" target="_blank" >&#x1f5d7; Ladybug Web Shadow Core</a></p>' +
-			'<center><h1> &#x2766 </h1></center>';
+			'<center>' +
+			'<h1><a href=javascript:window.scrollTo(0,0); style=text-decoration:none; > <img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f41e.png?v6" > </a></h1>' +
+			'</center>';
 
 		'';
 

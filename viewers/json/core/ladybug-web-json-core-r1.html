@@ -317,7 +317,15 @@
 
 		groundPlane.position.y = bbh.box.min.y - 1;
 
+		if ( window.self !== window.top ) {
+
+			parent.getParameters();
+
+		}
+
 	}
+
+//	function updateParameters(){ console.log( 'upP', object ); }
 
 	function onWindowResize() {
 
