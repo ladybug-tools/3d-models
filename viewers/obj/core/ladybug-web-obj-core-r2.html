@@ -1,0 +1,297 @@
+﻿<!doctype html>
+<html lang=en >
+<head>
+<meta charset=utf-8 >
+<title>Ladybug Web OBJ Core R2</title>
+<meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
+<meta name=description content='' >
+<meta name=keywords content='WebGL,Three.js,Tween.js,JavaScript,GitHub,FOSS,3D,STEM' >
+<meta name=date content='' >
+</head>
+<body>
+
+<script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/controls/OrbitControls.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
+
+<script src=http://mrdoob.github.io/three.js/examples/js/loaders/DDSLoader.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/loaders/MTLLoader.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/loaders/OBJLoader.js ></script>
+<!--
+<script src=http://rawgit.com/mrdoob/three.js/dev/build/three.min.js ></script>
+<script src=http://rawgit.com/mrdoob/three.js/dev/examples/js/controls/OrbitControls.js ></script>
+<script src=http://rawgit.com/mrdoob/three.js/dev/examples/js/libs/stats.min.js ></script>
+-->
+<script>
+
+//	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/female02/female02.obj';
+	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/female02/female02.mtl';
+
+//	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/male02/male02.obj';
+//	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/male02/male02.mtl';
+//	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/male02/male02_dds.mtl';
+
+//	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/models/campfire/campfire.obj';
+//	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/models/campfire/campfire.mtl';
+
+//	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/models/campfire/brownrock.obj';
+//	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/models/campfire/brownrock.mtl';
+
+//	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/walt/WaltHead.mtl';
+//	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/walt/WaltHead.mtl';
+
+	var fileName;
+
+	var object, groundPlane, message;
+
+	var stats, renderer, scene, camera, controls, coreLight;
+
+	init();
+	animate();
+
+	function init() {
+
+		var css, menu;
+		var geometry, material, mesh;
+
+		css = document.head.appendChild( document.createElement( 'style' ) );
+		css.innerHTML =
+
+			'body { font: 12pt monospace; margin: 0; overflow: hidden; }' +
+			'a {text-decoration: none; }' +
+			'h2 { margin: 0 }' +
+
+		'';
+
+		if ( window.self === window.top ) {
+
+			menu = document.body.appendChild( document.createElement( 'div' ) );
+			menu.style.cssText = `margin: 0 20px; position: absolute; `;
+			menu.innerHTML =
+
+				'<h2>' +
+					'<a href="" >' + document.title + '</a> ' +
+					'<a href=http://jaanga.github.io/ > &#x24D8; </a>' +
+				'</h2>' +
+				'<div id=coreMessage ></div>' +
+			'';
+
+		}
+
+		stats = new Stats();
+		stats.domElement.style.cssText = `position: absolute; right: 0; top: 0; z-index: 100; `;
+		document.body.appendChild( stats.domElement );
+
+		window.addEventListener( 'resize', onWindowResize, false );
+
+		renderer = new THREE.WebGLRenderer( {  alpha: 1, antialias: true }  );
+//		renderer.setClearColor( 0xf0f0f0 );
+//		renderer.setPixelRatio( window.devicePixelRatio );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera.position.set( 100, 100, 100 );
+
+		controls = new THREE.OrbitControls( camera, renderer.domElement );
+		controls.maxDistance = 800;
+
+		scene = new THREE.Scene();
+
+		coreLight = new THREE.DirectionalLight();
+		coreLight.position.set( -100, 100, 100 );
+		scene.add( coreLight );
+
+// helpers
+
+		geometry = new THREE.BoxGeometry( 100, 2, 100 );
+		material = new THREE.MeshPhongMaterial();
+		groundPlane = new THREE.Mesh( geometry, material );
+		groundPlane.name = 'groundPlane';
+		scene.add( groundPlane );
+
+		var gridHelper = new THREE.GridHelper( 50, 10 );
+		gridHelper.position.set( 0, 1, 0 );
+		groundPlane.add( gridHelper );
+
+		var axisHelper = new THREE.AxisHelper( 50 );
+		groundPlane.add( axisHelper );
+
+// assets
+
+		fullFilePath = location.hash.length ? location.hash.slice( 1 ) : fullFilePathDefault;
+
+		if ( fullFilePath.endsWith( '.obj' )  ){
+
+			loadOBJFileByURL( fullFilePath );
+
+		} else if ( fullFilePath.endsWith( '.mtl'  ) ) {
+
+			loadMTLFileByURL( fullFilePath );
+
+		} else {
+
+			parent.message.innerHTML = 'fileName oops: ' + fullFilePath;
+
+		}
+
+	}
+
+	function loadMTLFileByURL( file ) {
+
+		var index, filePath, fileNameOBJ, mtlLoader, loader;
+
+		index = file.lastIndexOf( '/' ) + 1;
+		filePath = file.slice( 0, index );
+		fileName = file.slice( index );
+
+		fileNameOBJ = fileName.replace( '_dds.mtl', '.obj' );
+		fileNameOBJ = fileNameOBJ.replace( '.obj.mtl', '.mtl' );
+		fileNameOBJ = fileNameOBJ.replace( '.mtl', '.obj' );
+
+		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+
+		mtlLoader = new THREE.MTLLoader();
+		mtlLoader.crossOrigin = 'Anonymous';
+		mtlLoader.setBaseUrl( filePath );
+		mtlLoader.setPath( filePath );
+		mtlLoader.load( fileName, function( materials ) {
+
+			materials.preload();
+
+			loader = new THREE.OBJLoader();
+			loader.crossOrigin = 'Anonymous';
+			loader.setMaterials( materials );
+			loader.setPath( filePath );
+
+			loader.load( fileNameOBJ, function ( object ) {
+
+				addObject( object );
+
+			}, onProgress, onError );
+
+		});
+
+	}
+
+	function loadOBJFileByURL( file ) {
+
+		fileName = file.slice( file.lastIndexOf( '/' ) + 1 );
+
+		var loader = new THREE.OBJLoader();
+		loader.crossOrigin = 'Anonymous';
+		loader.load( file, function ( object ) {
+
+			addObject( object );
+
+		}, onProgress, onError );
+
+	}
+
+
+	function onProgress( xhr ) {
+
+		if ( xhr.total ) {
+
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			setMessage( fileName + ': ' + percentComplete.toFixed() + '% or ' + xhr.loaded + ' bytes of ' + xhr.total + ' downloaded' );
+
+		} else {
+
+			setMessage( fileName + ': ' + xhr.loaded + ' bytes loaded' );
+
+		}
+
+	}
+
+	function onError ( xhr ) { setMessage( 'An error happened' ); };
+
+/*
+	function addObject( obj ) {
+
+		object = obj;
+
+		bbh = new THREE.BoundingBoxHelper( object );
+		bbh.update();
+
+//console.log( '\nbbh', bbh );
+
+		dis = bbh.position.distanceTo( bbh.scale );
+		size = object.scale.y * 80 / dis;
+
+// console.log( dis,  '\nsize', size, '\ndis' );
+
+//		object.scale.set( size, size, size );
+		object.scale.multiplyScalar( size );
+
+		scene.add( object );
+
+		object.position.sub( bbh.position.clone() );
+		bbh = new THREE.BoundingBoxHelper( object );
+		bbh.update();
+		scene.add( bbh );
+		groundPlane.position.y = bbh.box.min.y - 1;
+
+	}
+*/
+
+	function addObject( obj ) {
+
+		var bbh, distance, size;
+
+		object = obj;
+
+		bbh = new THREE.BoundingBoxHelper( object );
+		bbh.update();
+
+		distance = bbh.position.distanceTo( bbh.scale );
+		size = object.scale.y * 80 / distance;
+
+		object.scale.multiplyScalar( size );
+
+		bbh = new THREE.BoundingBoxHelper( object );
+		bbh.update();
+
+		scene.add( object );
+
+		groundPlane.position.y = bbh.box.min.y - 1;
+
+		setMessage( ': load complete' );
+
+	}
+
+	function setMessage( message ){ 
+
+		if ( window.self !== window.top && message === ': load complete' ) {
+
+			if ( parent.getCoreParameters ) { parent.getCoreParameters(); }
+
+		} else {
+
+			parent.coreMessage.innerHTML = message;
+
+		}
+
+	}
+
+	function onWindowResize() {
+
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+
+		renderer.setSize( window.innerWidth, window.innerHeight );
+
+	}
+
+	function animate() {
+
+		requestAnimationFrame( animate );
+//		controls.update();
+		stats.update();
+		renderer.render( scene, camera );
+
+	}
+
+</script>
+</body>
+</html>

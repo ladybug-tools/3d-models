@@ -2,7 +2,7 @@
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>Ladybug Web JSON Core R1</title>
+<title>Ladybug Web JSON Core R2</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
 <meta name=description content='' >
 <meta name=keywords content='WebGL,Three.js,Tween.js,JavaScript,GitHub,FOSS,3D,STEM' >
@@ -26,9 +26,9 @@
 //	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/cubecolors/cubecolors.js'
 	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/walt/WaltHead_bin.js';
 
-	var object, groundPlane;
+	var object, groundPlane, message;
 
-	var stats, renderer, scene, camera, controls;
+	var stats, renderer, scene, camera, controls, coreLight;
 
 	init();
 	animate();
@@ -55,11 +55,9 @@
 
 				'<h2>' +
 					'<a href="" >' + document.title + '</a> ' +
-					'<a href=http://jaanga.github.io/ > &#x24D8; </a>' +
+					'<a href=ladybug-analysis-tools.github.io/3d-models/ > &#x24D8; </a>' +
 				'</h2>' +
-				'<div id=info ></div>' +
-				'<div id=message ></div>' +
-
+				'<div id=coreMessage ></div>' +
 			'';
 
 		}
@@ -70,7 +68,7 @@
 
 		window.addEventListener( 'resize', onWindowResize, false );
 
-		renderer = new THREE.WebGLRenderer( {  alpha: 1, antialias: true }  );
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true }  );
 //		renderer.setClearColor( 0xf0f0f0 );
 //		renderer.setPixelRatio( window.devicePixelRatio );
 		renderer.setSize( window.innerWidth, window.innerHeight );
@@ -84,9 +82,9 @@
 
 		scene = new THREE.Scene();
 
-		var light = new THREE.DirectionalLight();
-		light.position.set( -100, 100, 100 );
-		scene.add( light );
+		coreLight = new THREE.DirectionalLight();
+		coreLight.position.set( -100, 100, 100 );
+		scene.add( coreLight );
 
 // helpers
 
@@ -121,7 +119,7 @@
 
 			if ( text.slice( 0, 1 ) !== '{' ) {
 
-				parent.message.innerHTML = fileName + ' is not json<br>';
+				message = fileName + ': is not JSON';
 
 				return;
 
@@ -201,10 +199,9 @@
 
 		}
 
-		parent.message.innerHTML = fileName + ': ' + data.metadata.type.toLowerCase() + '<br>&nbsp;';
+		setMessage( fileName + ': ' + data.metadata.type.toLowerCase() );
 
 	}
-
 
 	function loadBinaryLoaderFileByURL( fileName ) {
 
@@ -281,45 +278,56 @@
 		if ( xhr.total ) {
 
 			var percentComplete = xhr.loaded / xhr.total * 100;
-			parent.message.innerHTML = percentComplete.toFixed() + '% or ' + xhr.loaded + ' of ' + xhr.total + ' downloaded';
+			setMessage( fileName + ': ' + percentComplete.toFixed() + '% or ' + xhr.loaded + ' bytes of ' + xhr.total + ' downloaded' );
 
 		} else {
 
-			parent.message.innerHTML = xhr.loaded + ' loaded';
+			setMessage( fileName + ': ' + xhr.loaded + ' bytes loaded' );
 
 		}
 
 	}
 
-	function onError ( xhr ) { parent.message.innerHTML = 'An error happened'; };
+	function onError ( xhr ) { setMessage( 'An error happened' ); };
 
 	function addObject( obj ) {
+
+		var bbh, distance, size;
 
 		object = obj;
 
 		bbh = new THREE.BoundingBoxHelper( object );
 		bbh.update();
 
-		dis = bbh.position.distanceTo( bbh.scale );
-		size = object.scale.y * 80 / dis;
+		distance = bbh.position.distanceTo( bbh.scale );
+		size = object.scale.y * 80 / distance;
 
-// console.log( dis,  '\nsize', size, '\ndis' );
-
-//		object.scale.set( size, size, size );
 		object.scale.multiplyScalar( size );
-
-		scene.add( object );
 
 		bbh = new THREE.BoundingBoxHelper( object );
 		bbh.update();
 
-//		scene.add( bbh );
+		scene.add( object );
 
 		groundPlane.position.y = bbh.box.min.y - 1;
 
+		setMessage( ': load complete' );
+
 	}
 
-//	function updateParameters(){ console.log( 'upP', object ); }
+	function setMessage( message ){ 
+
+		if ( window.self !== window.top && message === ': load complete' ) {
+
+			if ( parent.getCoreParameters ) { parent.getCoreParameters(); }
+
+		} else {
+
+			parent.coreMessage.innerHTML = message;
+
+		}
+
+	}
 
 	function onWindowResize() {
 

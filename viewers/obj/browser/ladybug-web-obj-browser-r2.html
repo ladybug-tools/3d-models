@@ -2,7 +2,7 @@
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>Ladybug Web OBJ Browser R1</title>
+<title>Ladybug Web OBJ Browser R2</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
 <meta name=description content='
 Get OBJ file names from a GitHub repository
@@ -33,7 +33,7 @@ Basic slide in and slide out menu with three bar icon that adjusts for small scr
 	var githubAPI = 'https://api.github.com/repos/';
 	var parameters1 = '/git/trees/';
 	var parameters2 = '?recursive=1'
-	var engine = '../core/ladybug-web-obj-core-r1.html';
+	var engine = '../core/ladybug-web-obj-core-r2.html';
 
 //	var urlFiles = '../viewer-obj-url-mtl/viewer-obj-url-mtl-r1.html#http://mrdoob.github.io/three.js/';
 //	var urlPrefixFiles = 'http://mrdoob.github.io/three.js/';
@@ -82,7 +82,7 @@ Basic slide in and slide out menu with three bar icon that adjusts for small scr
 			'</h2>' +
 			'<p><a href=#readme.md >Read Me</a></p>' +
 			'<p><select id=selRepo size = 10 onchange=updateMenu(); ></select></p>' +
-			'<p id=message style=color:crimson; ></p>' +
+			'<p id=coreMessage style=color:crimson; ></p>' +
 
 			'<p id=links ></p>' +
 
@@ -155,7 +155,7 @@ Basic slide in and slide out menu with three bar icon that adjusts for small scr
 
 			}
 
-			message.innerHTML = 'Count: ' + files.length;
+			coreMessage.innerHTML = 'Count: ' + files.length;
 
 			links.innerHTML = txt;
 

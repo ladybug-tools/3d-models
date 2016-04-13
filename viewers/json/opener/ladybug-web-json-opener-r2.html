@@ -1,20 +1,21 @@
-﻿<!doctype html>
-<html lang=en >
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset=utf-8 >
-<title>Ladybug Web JSON Opener R1</title>
-<meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
-<meta name=description content='
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Ladybug Web JSON Opener R2</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+<meta name="description" content="
 View Three.js JSON Files from a variety of sources
 Basic slide in/slide out menu with three bar icon that adjusts for small screen size.
-' >
-<meta name=keywords content='CSS, HTML,JavaScript,GitHub,FOSS,3D,STEM' >
-<meta name=date content='2016-04-11' >
+">
+<meta name="keywords" content="CSS, HTML,JavaScript,GitHub,FOSS,3D,STEM">
+<meta name="date" content="2016-04-11">
 </head>
 <body>
 <script>
 
-	var core = ( location.origin === 'file://' ) ? '../core/ladybug-web-json-core-r1.html' : 'http://ladybug-analysis-tools.github.io/3d-models/viewers/json/json/core/ladybug-web-json-core-r1';
+	var core = ( location.origin === 'file://' ) ? '../core/ladybug-web-json-core-r2.html' : 'http://ladybug-analysis-tools.github.io/3d-models/viewers/json/json/core/';
 
 	var pi = Math.PI;
 	var d2r = pi / 180, r2d = 180 / pi;  // degrees / radians
@@ -31,7 +32,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 			'body { font: 12pt monospace; margin: 0; }' +
 			'h2, h3 { margin: 0; }' +
 			'a { text-decoration: none; }' +
-			'button, input[type=button] { background-color: #eee; border: 2px #eee solid; color: #888; }' +
+			'button, input[type=button] { background-color: #ccc; border: 2px #ccc solid; color: #444; }' +
 			'iframe { border: 0px red solid; height: 100%;; overflow: hidden; position: absolute; top: 0; width: 100%; }' +
 
 			'input[type=number] { text-align: right; width: 50px; }' +
@@ -48,7 +49,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		contents = document.body.appendChild( document.createElement( 'div' ) );
 		contents.id = 'contents';
-		contents.innerHTML = '<h1>Stuff</h1>'
+		contents.innerHTML = '<h1>Stuff</h1>';
 
 		hamburger = document.body.appendChild( document.createElement( 'div' ) );
 		hamburger.id = 'hamburger';
@@ -63,13 +64,12 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 				'<a href="" >' + document.title + '</a>' +
 				'<a href=http://ladybug-analysis-tools.github.io/3d-models/ > &#x24D8; </a>' +
 			'</h2>' +
-			'<p id=message style=color:crimson; onchange=console.log("msg",message); ></p>' +
+			'<p id=coreMessage style=color:crimson; onchange=console.log("msg",message); ></p>' +
 
 			'<div>URL:<br><textarea id=taURL cols=35 rows=6 placeholder="Drag and drop a URL here\nor\nsee read me for more tricks..."></textarea></div>' +
 
 
 			'<div>' +
-				'<button onclick=getParameters();doIt(); >Update</button> ' +
 				'<button onclick=saveFile(); >Save File</button>' +
 			'</div>' +
 
@@ -87,21 +87,14 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 				'z: <input id=inpPosZ type=number value=0 onchange = setParameters(); >' +
 			'</p>' +
 
-			'<p><input type=checkbox id=chkScaleProject onchange=pud.scaleProject=!pud.scaleProject;updateParameters() checked > Toggle Auto-Scale on Load</p>' +
 			'<p><input type=checkbox id=chkGround onchange=toggleGround(); checked > Toggle Ground Plane</p>' +
-
-			'<p>' + 
-				'Camera Position<br><output id=outCamPos ></output><br>' +
-				'Camera Target<br><output id=outCamTar ></output><br>' +
-			'</p>' +
-
 
 			'<div id=info ></div>' +
 			'<div id=links ></div>' +
 
 			'<hr>' +
 //			'<p><a href="http://ladybug-analysis-tools.github.io/ladybug-web/shadow-core/" target="_blank" >&#x1f5d7; Ladybug Web Shadow Core</a></p>' +
-			'<center><h1> &#x2766 </h1></center>';
+			'<center><h1> <img src=http://ladybug-analysis-tools.github.io/images/ladybug-logo.png width=32 </h1></center>';
 		'';
 
 		window.addEventListener( 'hashchange', onHashChange, false );
@@ -116,22 +109,15 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 	}
 
-	function doIt() {
-
-		ifr.src = core + '#'+ taURL.value;
-
-	}
-
 	function onHashChange(){
 
-		fileName = location.hash.length ? location.hash.slice( 1 ) : '';
+		var url = location.hash.length ? location.hash : '';
 
-		contents.innerHTML = '<iframe id=ifr src=' + core + ' scrolling="no" ></iframe>';
+		taURL.value = url.slice( 1 );
 
-		ic = ifr.contentWindow; // helps to debug
+		contents.innerHTML = '<iframe id=ifr src=' + core + url + ' scrolling="no" ></iframe>';
 
 	}
-
 
 	function onDrop( event ) {
 
@@ -141,31 +127,11 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		taURL.value = url;
 
-		ifr.src = core + '#'+ taURL.value;
-
-	}
-
-	function openFile( that ) {
-
-		var reader = new FileReader();
-		reader.onloadend = function( event ) {
-			data =  reader.result;
-//			txtarea.innerHTML = data;
-
-			info.innerHTML = 'name: ' + that.files[0].name + '<br>size: ' + that.files[0].size +
-				'<br>type: ' + that.files[0].type + '<br>modified: ' + that.files[0].lastModifiedDate;
-
-console.log( '', that.files[0] );
-
-		}
-
-		reader.readAsText( that.files[0] );
+		contents.innerHTML = '<iframe id=ifr src=' + core + '#' + url + ' scrolling="no" ></iframe>';
 
 	}
 
 	function setParameters() {
-
-		ico = ic.object;
 
 		ico.scale.x = ico.scale.y = ico.scale.z = inpScale.valueAsNumber;
 		ico.rotation.x = inpRotX.valueAsNumber * d2r;
@@ -179,40 +145,24 @@ console.log( '', that.files[0] );
 
 	}
 
-	function getParameters() {
-
-		var c = ic.camera.position;
-		var t = ic.controls.target;
-
-		outCamPos.value = c.x.toFixed() + ', ' + c.y.toFixed() + ', ' + c.z.toFixed();
-		outCamTar.value = t.x.toFixed() + ', ' + t.y.toFixed() + ', ' + t.z.toFixed();
-
-		ico = ic.object;
-
-		inpScale.value = ico.scale.x;
-		inpRotX.value = ico.rotation.x * r2d;
-		inpRotY.value = ico.rotation.y * r2d;
-		inpRotZ.value = ico.rotation.z * r2d;
-		inpPosX.value = ico.position.x;
-		inpPosY.value = ico.position.y;
-		inpPosZ.value = ico.position.z;
-
-
-//console.log( '', ico );
-
-	}
-
-	ifr.onload = function() {
+	function getCoreParameters() {
 
 		ic = ifr.contentWindow;
 
-		if ( window.self !== window.top ) {
+		if ( ic ) {
 
-			ic.controls.enableZoom = false;
+			ico = ic.object;
+			inpScale.value = ico.scale.x;
+			inpRotX.value = ico.rotation.x * r2d;
+			inpRotY.value = ico.rotation.y * r2d;
+			inpRotZ.value = ico.rotation.z * r2d;
+			inpPosX.value = ico.position.x;
+			inpPosY.value = ico.position.y;
+			inpPosZ.value = ico.position.z;
 
 		}
 
-//		taURL.value = ifr.src;
+// console.log( '', ico );
 
 	}
 
@@ -222,19 +172,19 @@ console.log( '', that.files[0] );
 
 		ic.groundPlane.visible = !chkGround.checked === true ? false : true;
 
-		updateParameters();
-
 	}
 
 	function saveFile() {
 
-		var blob;
+		var blob, a;
 
-		var blob = new Blob( [ JSON.stringify( ic.object.toJSON() ) ] );
-		var a = document.body.appendChild( document.createElement( 'a' ) );
+		blob = new Blob( [ JSON.stringify( ic.object.toJSON() ) ] );
+
+		a = document.body.appendChild( document.createElement( 'a' ) );
 		a.href = window.URL.createObjectURL( blob );
 		a.download = 'test' + '.json';
 		a.click();
+
 		delete a;
 
 	}

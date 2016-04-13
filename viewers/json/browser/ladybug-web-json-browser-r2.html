@@ -2,7 +2,7 @@
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>Ladybug Web JSON Browser R1</title>
+<title>Ladybug Web JSON Browser R2</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
 <meta name=description content='
 View Three.js JSON Files from a variety of sources
@@ -31,7 +31,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 	var githubAPI = 'https://api.github.com/repos/';
 	var parameters1 = '/git/trees/';
 	var parameters2 = '?recursive=1'
-	var engine = '../core/ladybug-web-json-core-r1.html';
+	var core = '../core/ladybug-web-json-core-r2.html';
 	var urlPrefixFiles = 'http://mrdoob.github.io/three.js/';
 	files = [];
 
@@ -79,16 +79,13 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 				'<a href=http://ladybug-analysis-tools.github.io/3d-models/ > &#x24D8; </a>' +
 			'</h2>' +
 			'<p><select id=selRepo size = 10 onchange=updateMenu(); ></select></p>' +
-			'<p id=message style=color:crimson; ></p>' +
+			'<p id=coreMessage style=color:crimson; ></p>' +
 
 			'<div id=info ></div>' +
 			'<div id=links ></div>' +
 
 			'<hr>' +
-//			'<p><a href="http://ladybug-analysis-tools.github.io/ladybug-web/shadow-core/" target="_blank" >&#x1f5d7; Ladybug Web Shadow Core</a></p>' +
-			'<center>' +
-			'<h1><a href=javascript:window.scrollTo(0,0); style=text-decoration:none; > <img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f41e.png?v6" > </a></h1>' +
-			'</center>' +
+			'<center><img src=http://ladybug-analysis-tools.github.io/images/ladybug-logo.png width=32 ></center>';
 
 		'';
 
@@ -107,8 +104,6 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 // let's go
 
 		updateMenu();
-
-//		contents.innerHTML = '<iframe id=ifr src="../index.html" ></iframe>';
 
 	}
 
@@ -162,7 +157,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 			}
 
-			message.innerHTML = 'Count: ' + files.length;
+			coreMessage.innerHTML = 'Count: ' + files.length;
 
 			links.innerHTML = txt;
 
@@ -212,7 +207,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		fileName = location.hash.length ? location.hash.slice( 1 ) : files[ 3 ];
 
-		contents.innerHTML = '<iframe id=ifr src=' + engine + '#' + repos[ selRepo.selectedIndex ][ 2 ] + fileName + ' ></iframe>';
+		contents.innerHTML = '<iframe id=ifr src=' + core + '#' + repos[ selRepo.selectedIndex ][ 2 ] + fileName + ' ></iframe>';
 
 		ic = ifr.contentWindow; // helps to debug
 
