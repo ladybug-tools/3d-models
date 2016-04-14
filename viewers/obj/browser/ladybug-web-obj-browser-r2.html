@@ -17,9 +17,8 @@ Basic slide in and slide out menu with three bar icon that adjusts for small scr
 <script>
 
 	var repos = [
-
-		[ 'mrdoob/three.js', 'gh-pages', 'https://mrdoob.github.io/three.js/', tagThreejsOBJ ],
 		[ 'ladybug-analysis-tools/3d-models', 'gh-pages', 'https://ladybug-analysis-tools.github.io/3d-models/', tagAllOBJ ],
+		[ 'mrdoob/three.js', 'gh-pages', 'https://mrdoob.github.io/three.js/', tagThreejsOBJ ],
 		[ 'jaanga/3d-models', 'gh-pages', 'https://jaanga.github.io/3d-models/', tagAllOBJ ],
 		[ 'nasa/NASA-3D-Resources', 'master', 'https://cdn.rawgit.com/nasa/NASA-3D-Resources/master/', tagAllOBJ ],
 		[ 'tparisi/WebGLBook', 'master', 'https://cdn.rawgit.com/tparisi/WebGLBook/master/', tagParisiOBJ ],
@@ -33,11 +32,7 @@ Basic slide in and slide out menu with three bar icon that adjusts for small scr
 	var githubAPI = 'https://api.github.com/repos/';
 	var parameters1 = '/git/trees/';
 	var parameters2 = '?recursive=1'
-	var engine = '../core/ladybug-web-obj-core-r2.html';
-
-//	var urlFiles = '../viewer-obj-url-mtl/viewer-obj-url-mtl-r1.html#http://mrdoob.github.io/three.js/';
-//	var urlPrefixFiles = 'http://mrdoob.github.io/three.js/';
-//	files = [];
+	var core = '../core/ladybug-web-obj-core-r2.html';
 
 	init();
 
@@ -80,17 +75,15 @@ Basic slide in and slide out menu with three bar icon that adjusts for small scr
 				'<a href="" >' + document.title + '</a>' +
 				'<a href=http://ladybug-analysis-tools.github.io/3d-models/ style=color:crimson; > &#x24D8; </a>' +
 			'</h2>' +
-			'<p><a href=#readme.md >Read Me</a></p>' +
 			'<p><select id=selRepo size = 10 onchange=updateMenu(); ></select></p>' +
 			'<p id=coreMessage style=color:crimson; ></p>' +
 
-			'<p id=links ></p>' +
+			'<textarea id=taURL cols=36 rows=3 ></textarea>' +
+			'<p id=sendToOpener >&nbsp </p>' +
+			'<div id=links ></div>' +
 
 			'<hr>' +
-//			'<p><a href="http://ladybug-analysis-tools.github.io/ladybug-web/shadow-core/" target="_blank" >&#x1f5d7; Ladybug Web Shadow Core</a></p>' +
-			'<center>' +
-			'<h1><a href=javascript:window.scrollTo(0,0); style=text-decoration:none; > <img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f41e.png?v6" > </a></h1>' +
-			'</center>';
+			'<center><img src=http://ladybug-analysis-tools.github.io/images/ladybug-logo.png width=32 ></center>';
 
 		'';
 
@@ -112,14 +105,20 @@ Basic slide in and slide out menu with three bar icon that adjusts for small scr
 
 	function updateMenu() { 
 
+		repo = repos[ selRepo.selectedIndex ];
+
+		txt = githubAPI + repo[ 0 ] + parameters1 + repo[ 1 ] + parameters2;
+
+		getFileNames( txt, repo[ 3 ] );
+
+	};
+
+
+	function getFileNames( url, tag ) {
+
 		var xhr, response;
 		var files = [], txt = '';
 		var file, fileName, folder, folderCurrent, folderHTML;
-
-		repo = repos[ selRepo.selectedIndex ];
-		tag = repo[ 3 ];
-
-		url = githubAPI + repo[ 0 ] + parameters1 + repo[ 1 ] + parameters2;
 
 		xhr = new XMLHttpRequest( url );
 		xhr.open( 'GET', url, true );
@@ -127,8 +126,6 @@ Basic slide in and slide out menu with three bar icon that adjusts for small scr
 		xhr.send( null );
 
 		function callback() {
-
-			txt = '';
 
 			response = JSON.parse( xhr.response );
 
@@ -204,30 +201,17 @@ Basic slide in and slide out menu with three bar icon that adjusts for small scr
 
 	function onHashChange(){
 
-		fileName = location.hash.length ? location.hash.slice( 1 ) : 'readme.md';
+		fileName = location.hash.length ? location.hash.slice( 1 ) : files[ 3 ];
 
-		if ( fileName.endsWith( '.md' ) ) {
+		filePath = repos[ selRepo.selectedIndex ][ 2 ] + fileName;
 
-			var converter = new showdown.Converter( { strikethrough: true, literalMidWordUnderscores: true, simplifiedAutoLink: true, tables: true });
-			var xhr = new XMLHttpRequest();
-			xhr.open( 'GET', fileName, true );
-			xhr.onload = function() {
+		taURL.value = filePath;
 
-				contents.innerHTML = '<div class=md >' + converter.makeHtml(  xhr.responseText ) + '</div>';
+		contents.innerHTML = '<iframe id=ifr src=' + core + '#' + filePath + ' ></iframe>';
 
-			};
+		sendToOpener.innerHTML = '<a href=../opener/ladybug-web-obj-opener-r2.html#' + filePath + ' >Send to Opener</a>';
 
-			xhr.send( null );
-
-		} else {
-
-			repo = repos[ selRepo.selectedIndex ];
-			txt = engine + '#' + repo[ 2 ] + fileName.replace( / /g, '%20' );
-			contents.innerHTML = '<iframe id=ifr src=' + txt + ' ></iframe>';
-
-			ic = ifr.contentWindow;
-
-		}
+		ic = ifr.contentWindow; // helps to debug
 
 	}
 

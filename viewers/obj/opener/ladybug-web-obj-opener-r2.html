@@ -6,11 +6,11 @@
 <title>Ladybug Web OBJ Opener R2</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
 <meta name="description" content="
-View Three.js JSON Files from a variety of sources
+Browse folders ans view OBJ and MTL files from a variety of sources
 Basic slide in/slide out menu with three bar icon that adjusts for small screen size.
 ">
 <meta name="keywords" content="CSS, HTML,JavaScript,GitHub,FOSS,3D,STEM">
-<meta name="date" content="2016-04-11">
+<meta name="date" content="2016-04-14">
 </head>
 <body>
 <script>
@@ -69,9 +69,9 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 			'<div>URL:<br><textarea id=taURL cols=35 rows=6 placeholder="Drag and drop a URL here\nor\nsee read me for more tricks..."></textarea></div>' +
 
-
 			'<div>' +
-				'<button onclick=saveFile(); >Save File</button>' +
+				'<button onclick=saveFile(); >Save File</button> &nbsp;' +
+				'<a href=../browser/ladybug-web-obj-browser-r2.html >Browser</a>' +
 			'</div>' +
 
 			'<p>Model Scale: <input type=number id=inpScale value=1 onchange = setParameters(); ></p>' +
@@ -88,7 +88,13 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 				'z: <input id=inpPosZ type=number value=0 onchange = setParameters(); >' +
 			'</p>' +
 
-			'<p><input type=checkbox id=chkGround onchange=toggleGround(); checked > Toggle Ground Plane</p>' +
+			'<p>' + 
+				'Camera Position<br><output id=outCamPos ></output><br>' +
+				'Camera Target<br><output id=outCamTar ></output><br>' +
+			'</p>' +
+
+//			'<p><input type=checkbox id=chkGround onchange=toggleGround(); checked > Toggle Ground Plane</p>' +
+			'<p><button onclick=allPhong(); >All Phong Material</button></p>' +
 
 			'<div id=info ></div>' +
 			'<div id=links ></div>' +
@@ -104,6 +110,8 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		taURL.addEventListener( 'drop', onDrop, false );
 
+		taURL.addEventListener( 'change', function() { setContents( '#' + taURL.value ); }, true );
+
 // let's go
 
 		onHashChange();
@@ -112,11 +120,11 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 	function onHashChange(){
 
-		var url = location.hash.length ? location.hash : '';
+		url = location.hash.length ? location.hash : '';
 
 		taURL.value = url.slice( 1 );
 
-		contents.innerHTML = '<iframe id=ifr src=' + core + url + ' scrolling="no" ></iframe>';
+		setContents( url );
 
 	}
 
@@ -124,23 +132,60 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		event.preventDefault(); 
 
-		var url = event.dataTransfer.getData( 'URL' );
+		url = event.dataTransfer.getData( 'URL' );
 
 		taURL.value = url;
 
-		contents.innerHTML = '<iframe id=ifr src=' + core + '#' + url + ' scrolling="no" ></iframe>';
+		setContents( '#' + url );
+
+	}
+
+
+	function setContents( hash ) {
+
+		contents.innerHTML = '<iframe id=ifr src=' + core + hash + ' scrolling="no" ></iframe>';
+
+getCoreParameters();
 
 	}
 
 	function setParameters() {
 
-		ico.scale.x = ico.scale.y = ico.scale.z = inpScale.valueAsNumber;
+		ico.scale.x = ico.scale.y = ico.scale.z = inpScale.valueAsNumber.toFixed( 3 );
+
 		ico.rotation.x = inpRotX.valueAsNumber * d2r;
 		ico.rotation.y = inpRotY.valueAsNumber * d2r;
 		ico.rotation.z = inpRotZ.valueAsNumber * d2r;
 		ico.position.x = inpPosX.valueAsNumber;
 		ico.position.y = inpPosY.valueAsNumber;
 		ico.position.z = inpPosZ.valueAsNumber;
+
+		txt = inpScale.valueAsNumber !== 1 ? '#sx=' + inpScale.valueAsNumber : '';
+		txt += inpScale.valueAsNumber !== 1 ? '#sy=' + inpScale.valueAsNumber : '';
+		txt += inpScale.valueAsNumber !== 1 ? '#sz=' + inpScale.valueAsNumber : '';
+		txt += inpRotX.valueAsNumber != 0 ? '#rx=' + inpRotX.valueAsNumber : '';
+		txt += inpRotY.valueAsNumber != 0 ? '#ry=' + inpRotY.valueAsNumber : '';
+		txt += inpRotZ.valueAsNumber != 0 ? '#rz=' + inpRotZ.valueAsNumber : '';
+
+		txt += inpPosX.valueAsNumber != 0 ? '#px=' + inpPosX.valueAsNumber : '';
+		txt += inpPosY.valueAsNumber != 0 ? '#py=' + inpPosY.valueAsNumber : '';
+		txt += inpPosZ.valueAsNumber != 0 ? '#pz=' + inpPosZ.valueAsNumber : '';
+
+		var c = ic.camera.position;
+		var t = ic.controls.target;
+
+		outCamPos.value = c.x.toFixed() + ', ' + c.y.toFixed() + ', ' + c.z.toFixed();
+		outCamTar.value = t.x.toFixed() + ', ' + t.y.toFixed() + ', ' + t.z.toFixed();
+
+		txt += c.x.toFixed() != -100 ? '#cx=' + c.x.toFixed() : '';
+		txt += c.y.toFixed() != 100 ? '#cy=' + c.y.toFixed() : '';
+		txt += c.z.toFixed() != 100 ? '#cz=' + c.z.toFixed() : '';
+
+		txt += t.x.toFixed() != 0 ? '#tx=' + t.x.toFixed() : '';
+		txt += t.y.toFixed() != 0 ? '#ty=' + t.y.toFixed() : '';
+		txt += t.z.toFixed() != 0 ? '#tz=' + t.z.toFixed() : '';
+
+		taURL.value =  ico.name + txt;
 
 //console.log( '', ico );
 
@@ -150,9 +195,12 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		ic = ifr.contentWindow;
 
-		if ( ic ) {
+		if ( ic && ic.object ) {
 
 			ico = ic.object;
+
+			taURL.value = ico.name;
+
 			inpScale.value = ico.scale.x;
 			inpRotX.value = ico.rotation.x * r2d;
 			inpRotY.value = ico.rotation.y * r2d;
@@ -164,6 +212,21 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 		}
 
 // console.log( '', ico );
+
+	}
+
+	function allPhong() {
+
+		ic.scene.traverse( function ( child ) {
+
+			if ( child instanceof THREE.Mesh ) {
+
+				child.castShadow = child.receiveShadow = true;
+				child.material = new THREE.MeshPhongMaterial();
+				child.material.needsUpdate = true;
+
+			}
+		} );
 
 	}
 
