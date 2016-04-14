@@ -33,7 +33,6 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 	var parameters2 = '?recursive=1'
 	var core = '../core/ladybug-web-json-core-r2.html';
 	var urlPrefixFiles = 'http://mrdoob.github.io/three.js/';
-	files = [];
 
 	init();
 
@@ -81,7 +80,8 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 			'<p><select id=selRepo size = 10 onchange=updateMenu(); ></select></p>' +
 			'<p id=coreMessage style=color:crimson; ></p>' +
 
-			'<div id=info ></div>' +
+			'<textarea id=taURL cols=36 rows=3 ></textarea>' +
+			'<p id=sendToOpener > </p>' +
 			'<div id=links ></div>' +
 
 			'<hr>' +
@@ -207,7 +207,13 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		fileName = location.hash.length ? location.hash.slice( 1 ) : files[ 3 ];
 
-		contents.innerHTML = '<iframe id=ifr src=' + core + '#' + repos[ selRepo.selectedIndex ][ 2 ] + fileName + ' ></iframe>';
+		filePath = repos[ selRepo.selectedIndex ][ 2 ] + fileName;
+
+		taURL.value = filePath;
+
+		contents.innerHTML = '<iframe id=ifr src=' + core + '#' + filePath + ' ></iframe>';
+
+		sendToOpener.innerHTML = '<a href=../opener/ladybug-web-json-opener-r2.html#' + filePath + ' >Send to Opener</a>';
 
 		ic = ifr.contentWindow; // helps to debug
 

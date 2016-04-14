@@ -92,7 +92,7 @@
 		material = new THREE.MeshPhongMaterial();
 		groundPlane = new THREE.Mesh( geometry, material );
 		groundPlane.name = 'groundPlane';
-		scene.add( groundPlane );
+//		scene.add( groundPlane );
 
 		var gridHelper = new THREE.GridHelper( 50, 10 );
 		gridHelper.position.set( 0, 1, 0 );
@@ -111,11 +111,17 @@
 
 	function loadXHR( fullFilePath ) {
 
+		
+
 		var loader = new THREE.XHRLoader();
 		loader.crossOrigin = '';
 		loader.load( fullFilePath, function ( text ) {
 
 			fileName = fullFilePath.split( '/' ).pop();
+
+			fileNameSplit = fileName.split( '#' );
+
+			if ( fileNameSplit.length ) { fileName = fileNameSplit[0]; }
 
 			if ( text.slice( 0, 1 ) !== '{' ) {
 
@@ -265,9 +271,33 @@
 
 		var loader = new THREE.ObjectLoader();
 		loader.crossOrigin = 'anonymous';
-		loader.load( fileName, function ( object, materials ) {
+		loader.load( fileName, function ( obj, materials ) {
 
-			addObject( object, materials )
+			if ( obj instanceof THREE.Scene ) {
+
+				object = new THREE.Object3D();;
+
+				for ( var i = 0; i < obj.children.length; i++ ) {
+
+					child = obj.children[ i ];
+
+					if ( child instanceof THREE.Mesh ) {
+
+						child.material = new THREE.MeshPhongMaterial( { side: 2 });
+
+					}
+
+					object.add( child );
+
+				}
+
+				addObject( object, materials )
+
+			} else {
+
+				addObject( obj, materials )
+
+			}
 
 		}, onProgress, onError );
 
@@ -302,14 +332,14 @@
 		distance = bbh.position.distanceTo( bbh.scale );
 		size = object.scale.y * 80 / distance;
 
-		object.scale.multiplyScalar( size );
+//		object.scale.multiplyScalar( size );
 
 		bbh = new THREE.BoundingBoxHelper( object );
 		bbh.update();
 
 		scene.add( object );
 
-		groundPlane.position.y = bbh.box.min.y - 1;
+//		groundPlane.position.y = bbh.box.min.y - 1;
 
 		setMessage( ': load complete' );
 
@@ -341,7 +371,7 @@
 	function animate() {
 
 		requestAnimationFrame( animate );
-//		controls.update();
+		controls.update();
 		stats.update();
 		renderer.render( scene, camera );
 
