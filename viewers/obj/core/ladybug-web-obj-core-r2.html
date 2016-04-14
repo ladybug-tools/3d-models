@@ -40,9 +40,9 @@
 //	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/walt/WaltHead.mtl';
 //	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/walt/WaltHead.mtl';
 
-	var fileName, filePath;
+	var fullFilePath, fileName, filePath;
 
-	var object, groundPlane, gridHelper, axisHelper, message;
+	var object, groundPlane, gridHelper, axisHelper;
 
 	var stats, renderer, scene, camera, controls, coreLight;
 
@@ -117,25 +117,46 @@
 		axisHelper = new THREE.AxisHelper( 50 );
 		scene.add( axisHelper );
 
-// assets
 
 		fullFilePath = location.hash.length ? location.hash.slice( 1 ) : fullFilePathDefault;
 
-		if ( fullFilePath.endsWith( '.obj' )  ){
+		setLoader( fullFilePath );
+
+	}
+
+
+	function setLoader( fullFilePath ) {
+
+		if ( fullFilePath.includes( '#' ) ) {
+
+			filePath = fullFilePath.slice( 0, fullFilePath.indexOf( '#' ) );
+
+		} else {
+
+			filePath = fullFilePath;
+
+		}
+
+//parent.console.log( 'filePath', filePath);
+
+		fileName = filePath.split( '/' ).pop();
+
+		if ( filePath.endsWith( '.obj' )  ){
 
 			loadOBJFileByURL( fullFilePath );
 
-		} else if ( fullFilePath.endsWith( '.mtl'  ) ) {
+		} else if ( filePath.endsWith( '.mtl'  ) ) {
 
 			loadMTLFileByURL( fullFilePath );
 
 		} else {
 
-			parent.coreMessage.innerHTML = 'fileName oops: ' + fullFilePath;
+			parent.coreMessage.innerHTML = 'file oops: ' + filePath;
 
 		}
 
 	}
+
 
 	function loadMTLFileByURL( file ) {
 
@@ -174,13 +195,13 @@
 
 	}
 
-	function loadOBJFileByURL( file ) {
+	function loadOBJFileByURL( filePath ) {
 
-		fileName = file.slice( file.lastIndexOf( '/' ) + 1 );
+parent.console.log( 'fullFilePath', fullFilePath );
 
 		var loader = new THREE.OBJLoader();
 		loader.crossOrigin = 'Anonymous';
-		loader.load( file, function ( object ) {
+		loader.load( fullFilePath, function ( object ) {
 
 			addObject( object );
 
@@ -211,7 +232,7 @@
 		var bbh, distance, size;
 
 		object = obj;
-		object.name = filePath;
+		object.name = fullFilePath;
 
 		bbh = new THREE.BoundingBoxHelper( object );
 		bbh.update();

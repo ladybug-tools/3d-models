@@ -2,7 +2,7 @@
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>Angel House Gallery R1</title>
+<title>Engel House Gallery R1</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
 <meta name=description content='
 View Three.js JSON Files from a variety of sources
@@ -14,7 +14,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 <body>
 <script>
 
-	var core = '../../viewers/json/core/ladybug-web-json-core-r2.html';
+	var core = '../../viewers/obj/core/ladybug-web-obj-core-r2.html';
 
 	init();
 
@@ -64,8 +64,9 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 			'<p id=coreMessage style=color:crimson; >&nbsp;</p>' +
 
-			'<textarea id=taURL cols=36 rows=3 ></textarea>' +
+			'<textarea id=taURL cols=36 rows=6 ></textarea>' +
 
+			'<p><a href=# onclick=setMD("obj/engel-house/readme.md"); >Read Me</a></p>' +
 			'<div id=links ></div>' +
 
 			'<hr>' +
@@ -73,26 +74,32 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		'';
 
-		window.addEventListener( 'hashchange', onHashChange, false );
+//		window.addEventListener( 'hashchange', onHashChange, false );
 
 // let's go
 
 		setMenu();
 
+		 setMD( "obj/engel-house/readme.md" )
 	}
 
 	function setMenu() {
 
-		links.innerHTML = '<iframe id=gallery src=../../index.html#json/angel-house/menu.md ></iframe>';
+		links.innerHTML = '<iframe id=gallery src=../../index.html#obj/engel-house/menu.md ></iframe>';
 
 		gallery.contentWindow.addEventListener( 'hashchange', onHashChange, false );
 
 	}
 
+	function setMD( file ) {
+
+		contents.innerHTML = '<iframe id=ifr src=../../index.html#' + file + ' ></iframe>';
+
+	}
 
 	function onHashChange(){
 
-console.log( '', gallery.contentWindow.location.hash );
+// console.log( '', gallery.contentWindow.location.hash );
 
 		filePath = gallery.contentWindow.location.hash.length ? gallery.contentWindow.location.hash.slice( 1 ) : '';
 
@@ -101,6 +108,7 @@ console.log( '', gallery.contentWindow.location.hash );
 		contents.innerHTML = '<iframe id=ifr src=' + core + '#' + filePath + ' ></iframe>';
 
 	}
+
 
 	function getCoreParameters() {
 
@@ -148,6 +156,20 @@ console.log( '', gallery.contentWindow.location.hash );
 			}
 
 		}
+
+		gc.scene.traverse( function ( child ) {
+
+			if ( child instanceof gc.THREE.Mesh ) {
+
+				child.castShadow = child.receiveShadow = true;
+				child.material = new gc.THREE.MeshPhongMaterial( { side: 2 } );
+				child.material.needsUpdate = true;
+
+			}
+		} );
+
+		ambient = new gc.THREE.AmbientLight( 0x333333 );
+		gc.scene.add( ambient );
 
 	}
 

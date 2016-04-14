@@ -111,8 +111,6 @@
 
 	function loadXHR( fullFilePath ) {
 
-		
-
 		var loader = new THREE.XHRLoader();
 		loader.crossOrigin = '';
 		loader.load( fullFilePath, function ( text ) {
@@ -345,7 +343,7 @@
 
 	}
 
-	function setMessage( message ){ 
+	function setMessage( message ){
 
 		if ( window.self !== window.top && message === ': load complete' ) {
 

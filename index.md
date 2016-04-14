@@ -10,6 +10,13 @@ value='You are now in the home page view - Click this button to view the read me
 _Not just pretty things to look at: 3D model data you can use for building and testing_
 
 
+## [Engel House Gallery]( ./obj/engel-house/index.html )
+
+A first glimpse at the possibilities offered by the Ladybug Web 3D Models Viewers
+
+
+
+
 ## full screen: [Ladybug Web JSON Browser]( ./viewers/json/browser/index.html )
 
 View JSON files from this repository - and from a variety of other repositories on GitHub

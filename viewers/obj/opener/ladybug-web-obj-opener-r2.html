@@ -147,7 +147,6 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		contents.innerHTML = '<iframe id=ifr src=' + core + hash + ' scrolling="no" ></iframe>';
 
-// getCoreParameters();
 
 	}
 
@@ -217,18 +216,82 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 	}
 
+	function getCoreParameters() {
+
+		ic = ifr.contentWindow;
+		ico = ic.object;
+
+		taURL.value = ico.name;
+
+		var hashes, hash, parameter, value;
+		var object, gc;
+		var d2r = Math.PI / 180;
+
+console.log( 'ico', ico );
+
+		hashes = taURL.value.split( '#' );
+
+		for ( var i = 1; i < hashes.length; i++ ) {
+
+			hash = hashes[ i ].split( '=' );
+			parameter = hash[ 0 ];
+			value = hash[ 1 ];
+
+			switch( parameter ) {
+
+				case 'rx': ico.rotation.x = parseFloat( value * d2r ); break;
+				case 'ry': ico.rotation.y = parseFloat( value * d2r ); break;
+				case 'rz': ico.rotation.z = parseFloat( value * d2r ); break;
+
+				case 'px': ico.position.x = parseFloat( value ); break;
+				case 'py': ico.position.y = parseFloat( value ); break;
+				case 'pz': ico.position.z = parseFloat( value ); break;
+
+				case 'sx': ico.scale.x = parseFloat( value ) || 1 ; break;
+				case 'sy': ico.scale.y = parseFloat( value ) || 1; break;
+				case 'sz': ico.scale.z = parseFloat( value ) || 1; break;
+
+				case 'cx': ic.camera.position.x = parseFloat( value ); break;
+				case 'cy': ic.camera.position.y = parseFloat( value ); break;
+				case 'cz': ic.camera.position.z = parseFloat( value ); break;
+
+				case 'tx': ic.controls.target.x = parseFloat( value ); break;
+				case 'ty': ic.controls.target.y = parseFloat( value ); break;
+				case 'tz': ic.controls.target.z = parseFloat( value ); break;
+
+				case  hashes[ 1 ] : break;
+
+				default: console.log( 'oops', value, i, hashes );
+
+			}
+
+		}
+
+			inpScale.value = ico.scale.x;
+			inpRotX.value = ico.rotation.x * r2d;
+			inpRotY.value = ico.rotation.y * r2d;
+			inpRotZ.value = ico.rotation.z * r2d;
+			inpPosX.value = ico.position.x;
+			inpPosY.value = ico.position.y;
+			inpPosZ.value = ico.position.z;
+
+	}
+
 	function allPhong() {
 
 		ic.scene.traverse( function ( child ) {
 
-			if ( child instanceof THREE.Mesh ) {
+			if ( child instanceof ic.THREE.Mesh ) {
 
 				child.castShadow = child.receiveShadow = true;
-				child.material = new THREE.MeshPhongMaterial();
+				child.material = new ic.THREE.MeshPhongMaterial( { side: 2 } );
 				child.material.needsUpdate = true;
 
 			}
 		} );
+
+		ambient = new ic.THREE.AmbientLight( 0x333333 );
+		ic.scene.add( ambient );
 
 	}
 
