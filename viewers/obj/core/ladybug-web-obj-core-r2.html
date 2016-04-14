@@ -40,7 +40,7 @@
 //	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/walt/WaltHead.mtl';
 //	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/walt/WaltHead.mtl';
 
-	var fileName;
+	var fileName, filePath;
 
 	var object, groundPlane, gridHelper, axisHelper, message;
 
@@ -139,7 +139,7 @@
 
 	function loadMTLFileByURL( file ) {
 
-		var index, filePath, fileNameOBJ, mtlLoader, loader;
+		var index, fileNameOBJ, mtlLoader, loader;
 
 		index = file.lastIndexOf( '/' ) + 1;
 		filePath = file.slice( 0, index );
@@ -211,7 +211,7 @@
 		var bbh, distance, size;
 
 		object = obj;
-		object.name = fileName;
+		object.name = filePath;
 
 		bbh = new THREE.BoundingBoxHelper( object );
 		bbh.update();
