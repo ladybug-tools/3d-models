@@ -275,9 +275,9 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 			inpPosY.value = ico.position.y;
 			inpPosZ.value = ico.position.z;
 
-	}
+//	}
 
-	function allPhong() {
+//	function allPhong() {
 
 		ic.scene.traverse( function ( child ) {
 
@@ -293,6 +293,12 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 		ambient = new ic.THREE.AmbientLight( 0x333333 );
 		ic.scene.add( ambient );
 
+		if ( window.self !== window.top ) {
+
+			hamburger.style.left = '0';
+			ic.controls.enableZoom = false;
+
+		}
 	}
 
 // could be in core??
