@@ -23,6 +23,3 @@ External links
 &#128279; [Google Images]( https://www.google.com/search?q=angel+house+bauhaus+tel+aviv&espv=2&biw=1851&bih=995&tbm=isch&tbo=u&source=univ&sa=X&ved=0ahUKEwizrMP1hY_MAhUC-mMKHWW3BPUQsAQIXA&dpr=1 )
 
 
-***
-
-<center><img src="http://ladybug-analysis-tools.github.io/images/ladybug-logo.png" width=32 ></center>

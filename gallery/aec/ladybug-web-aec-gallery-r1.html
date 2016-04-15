@@ -2,7 +2,7 @@
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>Engel House Gallery R1</title>
+<title>Ladybug Web AEC Gallery R1</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
 <meta name=description content='
 View Three.js JSON Files from a variety of sources
@@ -14,8 +14,8 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 <body>
 <script>
 
-	var core = '../../viewers/obj/core/ladybug-web-obj-core-r2.html';
-
+	var coreJSON = '../core/ladybug-web-json-core-r2.html';
+	var coreOBJ = '../../viewers/obj/core/ladybug-web-obj-core-r2.html';
 	init();
 
 	function init() {
@@ -30,12 +30,15 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 			'a { text-decoration: none; }' +
 			'button, input[type=button] { background-color: #eee; border: 2px #eee solid; color: #888; }' +
 
-			'#contents iframe { border: 0px red solid; height: 100%; overflow: hidden; position: absolute; top: 0; width: 100%; }' +
+
 
 			'input[type=range] { -webkit-appearance: none; -moz-appearance: none; background-color: silver; width: 160px; }' +
 			'input[type=range]::-moz-range-thumb { background-color: #888; border-radius: 0; width: 10px; }' +
 			'input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; background-color: #888; height: 20px; width: 10px; }' +
 
+//			'.markdown { border: 10px red solid; left: 325px; margin: 0; position: absolute; top: 0; }' +
+
+			'#contents iframe { border: 0px red solid; height: 100%; overflow: hidden; position: absolute; top: 0; width: 100%; }' +
 			'#bars { color: crimson; cursor: pointer; font-size: 24pt; text-decoration: none; }' +
 			'#hamburger { left: 325px; position: absolute; top: 20px; transition: left 1s; }' +
 			'#menu { background-color: #eee; border: 1px #ccc solid; left: -325px; max-height: ' + ( window.innerHeight - 10 ) + 'px; ' +
@@ -64,9 +67,10 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 			'<p id=coreMessage style=color:crimson; >&nbsp;</p>' +
 
-			'<textarea id=taURL cols=36 rows=6 ></textarea>' +
+			'<textarea id=taURL cols=36 rows=3 ></textarea>' +
 
-			'<p><a href=# onclick=setMD("obj/engel-house/readme.md"); >Read Me</a></p>' +
+			'<p><a href=# onclick=setMarkdown("gallery/aec/readme.md"); >Read Me</a></p>' +
+
 			'<div id=links ></div>' +
 
 			'<hr>' +
@@ -74,41 +78,41 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		'';
 
-//		window.addEventListener( 'hashchange', onHashChange, false );
+		window.addEventListener( 'hashchange', onHashChange, false );
 
 // let's go
 
 		setMenu();
 
-		 setMD( "obj/engel-house/readme.md" )
+		 setMarkdown( 'gallery/aec/readme.md' )
+
 	}
 
 	function setMenu() {
 
-		links.innerHTML = '<iframe id=gallery src=../../index.html#obj/engel-house/menu.md ></iframe>';
+		links.innerHTML = '<iframe id=gallery src=../../index.html#gallery/aec/menu.md ></iframe>';
 
 		gallery.contentWindow.addEventListener( 'hashchange', onHashChange, false );
 
 	}
 
-	function setMD( file ) {
+	function setMarkdown( file ) {
 
-		contents.innerHTML = '<iframe id=ifr src=../../index.html#' + file + ' ></iframe>';
+		contents.innerHTML = '<iframe class=markdown src=../../index.html#' + file + ' ></iframe>';
 
 	}
 
 	function onHashChange(){
 
-// console.log( '', gallery.contentWindow.location.hash );
+console.log( '', gallery.contentWindow.location.hash );
 
 		filePath = gallery.contentWindow.location.hash.length ? gallery.contentWindow.location.hash.slice( 1 ) : '';
 
 		taURL.value = filePath;
 
-		contents.innerHTML = '<iframe id=ifr src=' + core + '#' + filePath + ' ></iframe>';
+		contents.innerHTML = '<iframe id=ifr src=' + coreOBJ + '#' + filePath + ' ></iframe>';
 
 	}
-
 
 	function getCoreParameters() {
 
@@ -156,20 +160,6 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 			}
 
 		}
-
-		gc.scene.traverse( function ( child ) {
-
-			if ( child instanceof gc.THREE.Mesh ) {
-
-				child.castShadow = child.receiveShadow = true;
-				child.material = new gc.THREE.MeshPhongMaterial( { side: 2 } );
-				child.material.needsUpdate = true;
-
-			}
-		} );
-
-		ambient = new gc.THREE.AmbientLight( 0x333333 );
-		gc.scene.add( ambient );
 
 	}
 
