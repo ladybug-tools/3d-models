@@ -1,7 +1,7 @@
 AEC Models
 
 
-[Engle House]( #https://ladybug-analysis-tools.github.io/3d-models/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1#rx=-90#px=-30#pz=25#cx=-34#cy=40#cz=13#tx=-1#ty=2#tz=-7 )
+[Engel House]( #https://ladybug-analysis-tools.github.io/3d-models/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1#rx=-90#px=-30#pz=25#cx=-34#cy=40#cz=13#tx=-1#ty=2#tz=-7 )
 
 [Urban Model]( #https://ladybug-analysis-tools.github.io/3d-models/obj/urban_model_001/model.mtl#sx=0.1#sy=0.1#sz=0.1#rx=-90#px=-15#pz=-20#cx=-32#cy=39#cz=92 )
 
