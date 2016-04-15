@@ -7,23 +7,36 @@ value='You are now in the home page view - Click this button to view the read me
 [Ladybug Web 3D Models]( ./index.html#index.md )
 ===
 
-_Not just pretty things to look at: 3D model data you can use for building and testing_
+_Not just pretty things to look at: 3D model data and viewers you can use for building and testing your 3D apps_
 
 
-## [Engel House Gallery]( ./obj/engel-house/index.html )
+## &#128279; [Engel House Gallery]( ./obj/engel-house/index.html )
 
-A first glimpse at the possibilities offered by the Ladybug Web 3D Models Viewers
+A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewers
+
+* Menus to help you select what you want to see
+* Viewers to display content in 3D
+* Menus and read me files created using Markdown
+
+## &#128279; [JSON Gallery]( ./viewers/json/gallery/index.html )
+
+* First attempt at building a JSON file gallery
+
+## &#128279; [OBJ Gallery]( ./viewers/obj/gallery/index.html )
+
+* First attempt at building an OBJ file gallery
 
 
+***
+_The scripts used to create and support the content_
 
+## &#128279; [Ladybug Web JSON Browser]( ./viewers/json/browser/index.html )
 
-## full screen: [Ladybug Web JSON Browser]( ./viewers/json/browser/index.html )
+View Three.js JSON and JS files from this repository - and from a variety of other repositories on GitHub
 
-View JSON files from this repository - and from a variety of other repositories on GitHub
+## &#128279; [Ladybug Web OBJ Browser]( ./viewers/obj/browser/index.html )
 
-## full screen: [Ladybug Web OBJ Browser]( ./viewers/obj/browser/index.html )
-
-View OBJ files from this repository - and from a variety of other repositories on GitHub
+View OBJ and MTL files from this repository - and from a variety of other repositories on GitHub
 
 ### Notes
 
@@ -31,25 +44,42 @@ Both the above viewers display nearly raw or 'uncurated' models.
 
 * File listings are gathered in real-time from the given repo.
 * Models use varying scales and units. We try to make the model fit the screen
-* Models are position all over the place. We try to position the model in the center of the screen
+* Models are positioned all over the place. We try to position the model in the center of the screen
 * For Three.js, Z-axis is out the screen. For many apps, its the Y-axis coming at you - so a number of models are rotated incorrectly. We don't know how to correct for this
-
-Further releases of these viewers will have curated revisions where many parameters such as camera position and lighting are pre-set.
 
 Both these apps just create the users experience. 
 They invoke their respective 'core' counterparts to do the opening loading and display of the models.
 The communication between the apps is via location.hash through the core beng embedded in an iframe in the browser app
 
 
-## full screen: [Ladybug Web JSON Core]( ./viewers/json/core/index.html )
+## &#128279; [Ladybug Web JSON Opener]( ./viewers/json/opener/index.html )
 
-The basic core or engine to load and display JSON images
+* Open and edit JSON files 
 
-## full screen: [Ladybug Web OBJ Core]( ./viewers/obj/core/index.html )
+## &#128279; [Ladybug Web OBJ Opener]( ./viewers/obj/opener/index.html )
 
-The basic core or engine to load and display OBJ images
+* Open and edit OBJ and MTL files 
+
+### Notes
+
+* The scripts provide a user interface for setting viewing parameters
+* These scripts manage their respectives cores via standatd iframe protocols
 
 
+
+## &#128279; [Ladybug Web JSON Core]( ./viewers/json/core/index.html )
+
+The basic core or engine to load and display Three.js JSON and JS files
+
+## &#128279; [Ladybug Web OBJ Core]( ./viewers/obj/core/index.html )
+
+The basic core or engine to load and display OBJ and MTL filea
+
+### Notes
+
+* These scripts have minimal user interface
+* Their job is to examine the data and send it to the appropriate loader
+* They are designed to work inside iframes 
 
 ## Concept
 
