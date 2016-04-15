@@ -26,6 +26,11 @@ A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewer
 
 * First attempt at building an OBJ file gallery
 
+## &#128279; [Ladybug Web AEC Gallery]( ./gallery/aec/index.html )
+
+* The main event gallery R1
+* 3D models that can help build, edit and test your solar analysis scripts
+
 
 ***
 _The scripts used to create and support the content_
