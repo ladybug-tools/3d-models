@@ -75,7 +75,7 @@
 
 				if ( file.indexOf( 'readme.md' ) === -1 ) { continue; }
 
-				if ( file === 'obj\/readme.md' ) { continue; }
+				if ( file === 'obj\/readme.md' || file.indexOf( 'viewers' ) !== -1 ) { continue; }
 
 				files.push( file );
 
