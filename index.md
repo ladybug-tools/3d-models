@@ -8,7 +8,31 @@ value='You are now in the home page view - Click this button to view the read me
 
 _Not just pretty things to look at: 3D model data and viewers you can use for building and testing your 3D apps_
 
+## Content
 
+### [Gallery]( http://ladybug-analysis-tools.github.io/3d-models/index.html#gallery/readme.md )
+A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewers
+
+* Menus to help you select what you want to see
+* Viewers to display content in 3D
+* Menus and read me files created using Markdown
+
+
+The gallery folder contains a single gallery of AEC files
+
+The read me file links to the AEC gallery and three other Galleries
+
+### [JSON Files]( http://ladybug-analysis-tools.github.io/3d-models/json/index.html )
+
+Currently supplies three models
+
+### [OBJ Files]( http://ladybug-analysis-tools.github.io/3d-models/obj/index.html )
+
+Currently supplies three models
+
+
+
+<!--
 ## &#128279; [Engel House Gallery]( send-to.html#./obj/engel-house/index.html )
 
 A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewers
@@ -29,6 +53,7 @@ A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewer
 
 * The main event gallery R1
 * 3D models that can help build, edit and test your solar analysis scripts
+-->
 
 
 ***
@@ -37,6 +62,17 @@ _The scripts used to create and support the content_
 ## &#128279; [Ladybug Web JSON Browser]( ./viewers/json/browser/index.html )
 
 View Three.js JSON and JS files from this repository - and from a variety of other repositories on GitHub
+
+## &#128279; [Ladybug Web JSON Opener]( ./viewers/json/opener/index.html )
+
+* Open and edit JSON files 
+
+## &#128279; [Ladybug Web JSON Core]( ./viewers/json/core/index.html )
+
+The basic core or engine to load and display Three.js JSON and JS files
+
+***
+
 
 ## &#128279; [Ladybug Web OBJ Browser]( ./viewers/obj/browser/index.html )
 
@@ -57,9 +93,7 @@ The communication between the apps is via location.hash through the core being e
 
 ***
 
-## &#128279; [Ladybug Web JSON Opener]( ./viewers/json/opener/index.html )
 
-* Open and edit JSON files 
 
 ## &#128279; [Ladybug Web OBJ Opener]( ./viewers/obj/opener/index.html )
 
@@ -73,9 +107,7 @@ The communication between the apps is via location.hash through the core being e
 
 ***
 
-## &#128279; [Ladybug Web JSON Core]( ./viewers/json/core/index.html )
 
-The basic core or engine to load and display Three.js JSON and JS files
 
 ## &#128279; [Ladybug Web OBJ Core]( ./viewers/obj/core/index.html )
 
