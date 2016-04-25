@@ -1,257 +1,129 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>OBJ Files</title>
+<title>Ladybug Analysis Tools R1</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
-<meta name=description content='Gallery of a variety of scripts that enable you to view the sun path device in new ways.' >
-<meta name=keywords content='WebGL,Three.js,Tween.js,JavaScript,GitHub,FOSS,3D,STEM' >
-<meta name=date content='2016-03-25' >
+<meta name=description content='Browse and view files on FGx written in Markdown format.' >
+<meta name=keywords content='FCx, GitHub API,JavaScript,GitHub,FOSS,3D,STEM' >
+<meta name=date content='2016-04-22' >
 </head>
 <body>
 <script src=http://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js ></script>
 <script>
 
-// C:\Users\Theo\Dropbox\Public\git-repos\jaanga.github.io\cookbook-threejs\viewers\multiple-iframes\multiple-iframes-via-github-api\multiple-iframes-via-github-api-r2.html
+//file:///C:/Users/Theo/Dropbox/Public/git-repos/jaanga.github.io/cookbook-html/templates/menu-contents-browser/menu-github-api-readme-jaanga/menu-readme-jaanga-r2.html
 
-
-//	var urlAPIContents = 'https://api.github.com/repos/jaanga/jaanga.github.io/git/trees/master?recursive=1';
 	var urlAPIContents = 'https://api.github.com/repos/ladybug-analysis-tools/3d-models/git/trees/gh-pages?recursive=1';
 
-//	var urlSourceFilter = 'demo/ms/';
-	var urlSourceFilter = '';
-
-
-//	var urlSource = 'http://jaanga.github.io/demo/ms/';
-//	var urlSource = '../../../../';
-//	var urlSource = 'http://ladybug-analysis-tools.github.io/ladybug-web/';
-	var urlSource = '../../3d-models/';
-
-	var converter;
-
-	var footer =
-
-		'<center title="dingbat" >' +
-		'<h1><a href=javascript:window.scrollTo(0,0); style=text-decoration:none; > ❦ </a></h1>' +
-		'</center>' +
-
-	'';
-
-
-	var iframeContainers = [];
-	var iframesActive = [];
-	var iframesActiveLimit = 3;
-
-	var texts, files;
+	var defaultFile = './readme.md';
+	var files;
 
 	init();
-	animate();
 
 	function init() {
 
-		converter = new showdown.Converter( { strikethrough: true, literalMidWordUnderscores: true, simplifiedAutoLink: true, tables: true });
+		var css, menu, contents;
 
-		var css = document.body.appendChild( document.createElement( 'style' ) );
+		css = document.body.appendChild( document.createElement( 'style' ) );
 		css.innerHTML =
 
-			'body { font: 12pt monospace; left: 0; right: 0; margin: auto; position: absolute; max-width: 800px; }' +
-			'a, a:visited { color: crimson; text-decoration: none; }' +
-			'input[type=button]  { background-color: #eee; border: 2px #eee solid; color: #888; }' +
-			'iframe { border: 0px solid green; height: 100%; width: 100%; }' +
+			'body { font: 12pt monospace; margin: 0; }' +
+			'button, input[type=button] { background-color: #eee; border: 2px #eee solid; color: #888; }' +
 
-			'.divIframe { border: 1px solid crimson; height:512px; margin: 80px 0 0 ' + ( -0.5 * ( window.innerWidth - 800 ) ) + 'px; width: ' + ( window.innerWidth - 20 ) + 'px; }' +
-			'div.readme { border: 1px solid blue; max-height:512px; overflow: hidden; transform: scale( 0.75, 0.75 }; ' +
+//			'h2 { margin: 0; }' +
+			'h1 a, h2 a, a { color: crimson; text-decoration: none; }' +
+
+			'#menu { box-sizing: border-box; background-color: #ccc; height: 100%; max-width: 300px; overflow: auto; padding: 0 10px; position: absolute; }' +
+			'#contents { border: 0px red solid; left: 350px; overflow: auto; position: absolute; top: 0; width: ' + ( window.innerWidth - 370 ) + 'px; }' +
+
 		'';
 
-		var contents = document.body.appendChild( document.createElement( 'div' ) );
-		contents.innerHTML = 
-			'<div id=header ></div>' +
-			'<div id=container ></div>';
+		menu = document.body.appendChild( document.createElement( 'div' ) );
+		menu.id = 'menu';
 
-		getMarkdown( 'index.md', header );
+		contents = document.body.appendChild( document.createElement( 'div' ) );
+		contents.id = 'contents';
 
-		requestFileNames();
+		window.addEventListener ( 'hashchange', hashChange, false );
+
+		requestAPIContents();
+
+		hashChange();
 
 	}
 
-	function requestFileNames() {
+	function requestAPIContents() {
 
 		var xhr = new XMLHttpRequest();
 		xhr.open( 'GET', urlAPIContents, true );
-		xhr.onreadystatechange = callback;
+		xhr.onload = callback;
 		xhr.send( null );
 
 		function callback() {
 
-			if ( xhr.readyState !== 4  ) { return; }
+			var response, file;
 
-			var response = JSON.parse( xhr.response );
-			var keys = Object.keys( response.tree );
-
+			response = JSON.parse( xhr.response );
 			files = [];
-			var count = 0;
 
-			for ( var key in keys ) {
+			for ( var i = 0; i < response.tree.length; i++ ) {
 
-				var file = response.tree[ key ].path;
+				file = response.tree[ i ].path;
 
-				if ( file.indexOf( 'obj\/' ) === -1 ) { continue; }
+				if ( file.indexOf( 'obj' ) === -1 ) { continue; }
 
-				if ( file.indexOf( 'index.html' ) === -1 ) { continue; }
+				if ( file.indexOf( 'readme.md' ) === -1 ) { continue; }
 
-
-
-//				if ( file !== 'index.html' ) { continue; }
+//				if ( file.indexOf( 'obj\/readme.md' ) !== -1 ) { continue; }
 
 				files.push( file );
 
-				count++;
-
 			}
 
-//console.log( 'files', files );
+console.log( 'files', files );
 
-			createMultipleViews()
+			createTableOfContents();
 
 		}
 
 	}
 
-	function createMultipleViews() {
+	function createTableOfContents() {
+
+		var txt =  '<a href=../Index.html >Ladybug </a> &raquo;<h2><a href=./index.html >OBJ</a></h2>';
 
 		for ( var i = 0; i < files.length; i++ ) {
 
-			container.innerHTML += 
+			txt += 
 
-				'<div class=divIframe id=' + i + ' ></div>' +
-				'<div class=divText >header ' + ( i + 1 ) + '</div>' +
-				'<hr>' +
+				'<h3><a href=#../' + files[ i ] + ' >'+ files[ i ].replace( '\/readme.md','' ).replace( 'obj\/','' ) + '<a></h3>' +
 
 			'';
 
 		}
 
-		container.innerHTML += footer;
-
-		iframeContainers = document.getElementsByClassName( 'divIframe' );
-		texts = document.getElementsByClassName( 'divText' );
+		menu.innerHTML = txt + '';
 
 	}
 
-	function updateIframe( activeContainer ) {
 
-		var iframes = document.getElementsByTagName( 'iframe' );
+	function hashChange() {
 
-		if ( iframes.length > iframesActiveLimit ) {
+		var fileName = location.hash ? location.hash.slice( 1 ) : defaultFile;
 
-			var frameTooMany = iframesActive.shift();
-			frameTooMany.innerHTML = '';
-
-
-		}
-
-		if ( activeContainer.innerHTML === '' ) {
-
-			id = activeContainer.id;
-
-			activeContainer.innerHTML = '<iframe src="' + urlSource + files[ id ] + '" onload=loadIt(this,' + id + '); scrolling="no" ></iframe>';
-
-			iframesActive.push( activeContainer );
-
-		}
-
-	}
-
-	function loadIt( that, index ) {
-
-		var metas = that.contentWindow.document.getElementsByTagName('meta'); ;
-		var description = 'none';
-		var keywords = 'none';
-		var date = 'none';
-
-		for ( var i = 0; i < metas.length; i++ ) {
-
-			if ( metas[ i ].name === 'description' ) { description = metas[ i ].content; }
-			if ( metas[ i ].name === 'keywords' ) { keywords = metas[ i ].content; }
-			if ( metas[ i ].name === 'date' ) { date = metas[ i ].content; }
-
-		}
-
-		texts[ index ].innerHTML =
-
-			'<h2><a href=' + that.src + ' >' + that.contentWindow.document.title + '</a></h2>' +
-			'<p>Description:' + description + '</p>' +
-			'<p>Keywords: ' + keywords + '</p>' +
-			'<p>Date: ' + date + '</p>' +
-			'<Div>Read Me: </div>' +
-			'<div class=readme id=readme' + index + ' ></div>' +
-
-		'';
-
-		folder = files[ index ].replace( 'index.html', '' );
-
-		thing = document.getElementById( 'readme' + index );
-		getMarkdown( urlSource + folder + 'readme.md', thing );
-
-
-		if ( that.contentWindow.controls ) {
-
-			that.contentWindow.controls.enableZoom = false;
-
-		} else if ( that.contentWindow.ifr && that.contentWindow.ifr.contentWindow.controls ) {
-
-			that.contentWindow.ifr.contentWindow.controls.enableZoom = false;
-
-		} else {
-
-			if ( that.contentWindow.menu ) {
-
-				that.contentWindow.menu.style.overflow = 'hidden';
-
-			}
-
-			if ( that.contentWindow.contents ) {
-
-				that.contentWindow.contents.style.overflow = 'hidden';
-
-			}
-
-		}
+		getMarkdown( fileName, contents );
 
 	}
 
 	function getMarkdown( fileName, target ) {
 
+		var converter = new showdown.Converter( { strikethrough: true, literalMidWordUnderscores: true, simplifiedAutoLink: true, tables: true });
+
 		var xhr = new XMLHttpRequest();
 		xhr.open( 'GET', fileName, true );
-		xhr.onreadystatechange = callback;
+		xhr.onload = function() { target.innerHTML = converter.makeHtml( xhr.responseText ); };
 		xhr.send( null );
-
-		function callback() {
-
-			if ( xhr.readyState != 4  ) { return; }
-
-			target.innerHTML = converter.makeHtml(  xhr.responseText );
-
-		}
-
-	}
-
-	function animate() {
-
-		requestAnimationFrame( animate );
-
-		for ( var i = 0; i < iframeContainers.length; i++ ) {
-
-			var iframeContainer = iframeContainers[ i ];
-
-			var rect = iframeContainer.getBoundingClientRect();
-
-			if ( rect.bottom < 0 || rect.top > window.innerHeight ) { continue; }
-
-			updateIframe( iframeContainer );
-
-		}
 
 	}
 
