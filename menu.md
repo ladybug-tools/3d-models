@@ -13,26 +13,27 @@ Collections of curated content
 
 ### [OBJ Files]( ./obj/index.html )
 
-### JSON files
+### [JSON Files]( ./json/index.html )
 
-## Code
-Tools you can use to locate, edit and embed 3D models in your apps
+## Code for JSON
+Tools you can use to locate, edit and embed 3D Three.js JSON models in your apps
 
-### Browser
+### [JSON Browser ]( viewers/json/browser/index.html )
 
+### [JSON Opener]( viewers/json/opener/index.html )
 
-### Opener
-
-
-
-### Core
-
-<!--
-[Browse JSON files]( http://ladybug-analysis-tools.github.io/3d-models/viewers/json/browser/ )
+### [JSON Core]( viewers/json/core/index.html )
 
 
-[Browse OBJ files]( http://ladybug-analysis-tools.github.io/3d-models/viewers/obj/browser/ )
--->
+## Code for OBJ
+Tools you can use to locate, edit and embed 3D OBJ and MTL models in your apps
+
+### [OBJ Browser ]( viewers/obj/browser/index.html )
+
+### [OBJ Opener]( viewers/obj/opener/index.html )
+
+### [OBJ Core]( viewers/obj/core/index.html )
+
 
 ## [Concept / Manifesto ]( #concept.md )
 Wow, do we have a mission!

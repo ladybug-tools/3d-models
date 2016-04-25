@@ -17,7 +17,7 @@ A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewer
 
 * First attempt at building a JSON file gallery
 
-## &#128279; [OBJ Gallery]( ../viewers/obj/gallery/index.html )
+## &#128279; [OBJ Gallery]( ./viewers/obj/gallery/index.html )
 
 * First attempt at building an OBJ file gallery
 

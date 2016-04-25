@@ -17,11 +17,11 @@ A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewer
 * Viewers to display content in 3D
 * Menus and read me files created using Markdown
 
-## &#128279; [JSON Gallery]( ../viewers/json/gallery/index.html )
+## &#128279; [JSON Gallery]( ./viewers/json/gallery/index.html )
 
 * First attempt at building a JSON file gallery
 
-## &#128279; [OBJ Gallery]( ../viewers/obj/gallery/index.html )
+## &#128279; [OBJ Gallery]( ./viewers/obj/gallery/index.html )
 
 * First attempt at building an OBJ file gallery
 
@@ -87,22 +87,6 @@ The basic core or engine to load and display OBJ and MTL filea
 * Their job is to examine the data and send it to the appropriate loader
 * They are designed to work inside iframes 
 
-
-***
-
-## Licensing
-
-Currently the work herein is under the MIT license
-
-But consideration should be given to a dual license - either MIT or GPL
-
-And furthermore, the models here are content much more than code, therefore a Creative Commons license may be appropriate
-
-## Issues
-
-Probably a majority of the files that you can view here had issues the first time they were opened by one of the scripts.
-Each of these issues has been used to improve the process.
-The more models we can access, the more issues we will find and the better we will get
 
 ***
 
