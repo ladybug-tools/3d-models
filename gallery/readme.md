@@ -2,8 +2,6 @@
 <input type=button onclick=window.location.href='https://github.com/ladybug-analysis-tools/3d-models/tree/gh-pages/gallery/aec'; 
 value='You are now in the home page view - Click this button to view the read me file and the source code' >
 
-
-
 3D Models Gallery
 ===
 
@@ -19,7 +17,7 @@ A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewer
 
 * First attempt at building a JSON file gallery
 
-## &#128279; [OBJ Gallery]( ./viewers/obj/gallery/index.html )
+## &#128279; [OBJ Gallery]( ../viewers/obj/gallery/index.html )
 
 * First attempt at building an OBJ file gallery
 

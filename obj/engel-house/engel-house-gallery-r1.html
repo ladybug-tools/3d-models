@@ -80,13 +80,13 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		setMenu();
 
-		 setMD( "obj/engel-house/readme.md" );
+		setMD( "#/engel-house/readme.md" );
 
 	}
 
 	function setMenu() {
 
-		links.innerHTML = '<iframe id=gallery src=../../index.html#obj/engel-house/menu.md ></iframe>';
+		links.innerHTML = '<iframe id=gallery src=./index.html#engel-house/menu.md ></iframe>';
 
 		gallery.contentWindow.addEventListener( 'hashchange', onHashChange, false );
 
@@ -94,7 +94,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 	function setMD( file ) {
 
-		contents.innerHTML = '<iframe id=ifr src=../../index.html#' + file + ' ></iframe>';
+		contents.innerHTML = '<iframe id=ifr src=../index.html#' + file + ' ></iframe>';
 
 	}
 
@@ -111,6 +111,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 	}
 
 
+/*
 	function getCoreParameters() {
 
 		var hashes, hash, parameter, value;
@@ -173,6 +174,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 		gc.scene.add( ambient );
 
 	}
+*/
 
 </script>
 </body>

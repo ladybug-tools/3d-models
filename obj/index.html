@@ -75,7 +75,7 @@
 
 				if ( file.indexOf( 'readme.md' ) === -1 ) { continue; }
 
-//				if ( file.indexOf( 'obj\/readme.md' ) !== -1 ) { continue; }
+				if ( file === 'obj\/readme.md' ) { continue; }
 
 				files.push( file );
 
@@ -91,7 +91,9 @@ console.log( 'files', files );
 
 	function createTableOfContents() {
 
-		var txt =  '<a href=../Index.html >Ladybug </a> &raquo;<h2><a href=./index.html >OBJ</a></h2>';
+		var txt =  '<a href=../../index.html >Ladybug Analysis Tools</a> &raquo; ' +
+			'<a href=../index.html >3D Models</a> &raquo; ' +
+			'<h2><a href=./index.html >OBJ</a></h2>';
 
 		for ( var i = 0; i < files.length; i++ ) {
 
