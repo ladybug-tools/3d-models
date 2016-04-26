@@ -1,4 +1,5 @@
-﻿<span style=display:none; >[You are now in a GitHub source code view - click this link to view the home page]( http://ladybug-analysis-tools.github.io/3d-models/ "View file as a web page." ) </span>
+﻿<span style=display:none; >
+[You are now in a GitHub source code view - click this link to view the home page]( http://ladybug-analysis-tools.github.io/3d-models/ "View file as a web page." ) </span>
 <input type=button onclick=window.location.href='https://github.com/ladybug-analysis-tools/3d-models/'; 
 value='You are now in the home page view - Click this button to view the read me file and the source code' >
 
@@ -10,7 +11,8 @@ _Not just pretty things to look at: 3D model data and viewers you can use for bu
 
 ## Content
 
-### [Gallery]( http://ladybug-analysis-tools.github.io/3d-models/index.html#gallery/readme.md )
+### [Galleries]( http://ladybug-analysis-tools.github.io/3d-models/index.html#gallery/readme.md )
+
 A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewers
 
 * Menus to help you select what you want to see
@@ -18,9 +20,8 @@ A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewer
 * Menus and read me files created using Markdown
 
 
-The gallery folder contains a single gallery of AEC files
-
-The read me file links to the AEC gallery and three other Galleries
+The Galleries folder contains a three galleries of files. 
+There's also a link to a Galley in the OBJ files
 
 ### [JSON Files]( http://ladybug-analysis-tools.github.io/3d-models/json/index.html )
 
@@ -57,28 +58,22 @@ A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewer
 
 
 ***
-_The scripts used to create and support the content_
 
-## &#128279; [Ladybug Web JSON Browser]( ./viewers/json/browser/index.html )
+## Code
+
+_The scripts you can use to create and support the content_
+
+### Browser Code
+
+#### &#128279; [Ladybug Web JSON Browser]( ./viewers/json/browser/index.html )
 
 View Three.js JSON and JS files from this repository - and from a variety of other repositories on GitHub
 
-## &#128279; [Ladybug Web JSON Opener]( ./viewers/json/opener/index.html )
-
-* Open and edit JSON files 
-
-## &#128279; [Ladybug Web JSON Core]( ./viewers/json/core/index.html )
-
-The basic core or engine to load and display Three.js JSON and JS files
-
-***
-
-
-## &#128279; [Ladybug Web OBJ Browser]( ./viewers/obj/browser/index.html )
+#### &#128279; [Ladybug Web OBJ Browser]( ./viewers/obj/browser/index.html )
 
 View OBJ and MTL files from this repository - and from a variety of other repositories on GitHub
 
-### Notes
+#### Notes
 
 Both the above viewers display nearly raw or 'uncurated' models.
 
@@ -91,29 +86,35 @@ Both these apps just create the users experience.
 They invoke their respective 'core' counterparts to do the opening loading and display of the models.
 The communication between the apps is via location.hash through the core being embedded in an iframe in the browser app
 
-***
+
+### Opener Code
 
 
+#### &#128279; [Ladybug Web JSON Opener]( ./viewers/json/opener/index.html )
 
-## &#128279; [Ladybug Web OBJ Opener]( ./viewers/obj/opener/index.html )
+Open and prepare JSON files 
 
-* Open and edit OBJ and MTL files 
+#### &#128279; [Ladybug Web OBJ Opener]( ./viewers/obj/opener/index.html )
 
-### Notes
+Open and prepare OBJ and MTL files 
+
+#### Notes
 
 * The scripts provide a user interface for setting viewing parameters
 * These scripts manage their respective cores via standard iframe protocols
 
 
-***
+### Core Code
 
+#### &#128279; [Ladybug Web JSON Core]( ./viewers/json/core/index.html )
 
+The basic core or engine to load and display Three.js JSON and JS files
 
-## &#128279; [Ladybug Web OBJ Core]( ./viewers/obj/core/index.html )
+#### &#128279; [Ladybug Web OBJ Core]( ./viewers/obj/core/index.html )
 
 The basic core or engine to load and display OBJ and MTL filea
 
-### Notes
+#### Notes
 
 * These scripts have minimal user interface
 * Their job is to examine the data and send it to the appropriate loader
@@ -123,5 +124,5 @@ The basic core or engine to load and display OBJ and MTL filea
 ***
 
 <center title="dingbat" >
-# <a href=javascript:window.scrollTo(0,0); style=text-decoration:none; ><img src="http://ladybug-analysis-tools.github.io/images/ladybug-logo.png" width=32 ></a>
+# <a href=javascript:contents.scrollTop=0; style=text-decoration:none; ><img src="http://ladybug-analysis-tools.github.io/images/ladybug-logo.png" width=32 ></a>
 </center>

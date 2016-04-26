@@ -1,5 +1,5 @@
-﻿[Ladybug Analysis Tools]( http://ladybug-analysis-tools.github.io/ ) &raquo; [3D Models]( http://ladybug-analysis-tools.github.io/3d-models/ ) &raquo;
-[Gallery]( http://ladybug-analysis-tools.github.io/3d-models/gallery/ ) &raquo;
+﻿[Ladybug Analysis Tools]( ../../../index.html  ) &raquo; [3D Models]( ../../index.html ) &raquo;
+[Galleries]( ../index.html ) &raquo;
 
 [OBJ Gallery]( index.html )
 ===

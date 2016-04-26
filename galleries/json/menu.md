@@ -1,9 +1,11 @@
-﻿[Ladybug Analysis Tools]( http://ladybug-analysis-tools.github.io/ ) &raquo; [3D Models]( http://ladybug-analysis-tools.github.io/3d-models/ ) &raquo;
-[Gallery]( http://ladybug-analysis-tools.github.io/3d-models/gallery/ ) &raquo;
+﻿[Ladybug Analysis Tools]( ../../../index.html  ) &raquo; [3D Models]( ../../index.html ) &raquo;
+[Galleries]( ../index.html ) &raquo;
 
 [JSON Gallery]( index.html )
 ===
+<div id=message ></div>
 
+[read me]( index.html#readme.md )
 
 A very nice creature  
 [horse]( #https://mrdoob.github.io/three.js/examples/models/animated/horse.js#cx=-212#cy=163#cz=221#tx=17#ty=73#tz=-35 )  

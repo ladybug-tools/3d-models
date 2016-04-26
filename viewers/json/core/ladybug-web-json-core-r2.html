@@ -349,9 +349,13 @@
 
 			if ( parent.getCoreParameters ) { parent.getCoreParameters(); }
 
-		} else {
+		} else if ( parent.coreMessage ) {
 
 			parent.coreMessage.innerHTML = message;
+
+		} else {
+
+			parent.console.log( 'message:', message );
 
 		}
 

@@ -4,7 +4,10 @@ value='You are now in the home page view - Click this button to view the read me
 
 3D Models Gallery
 ===
+Once you have a collection of 3D models you also want a variety of ways of displaying and using the models.
 
+
+<!--
 ## &#128279; [Engel House Gallery]( send-to.html#./obj/engel-house/index.html )
 
 A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewers
@@ -25,3 +28,4 @@ A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewer
 
 * The main event gallery R1
 * 3D models that can help build, edit and test your solar analysis scripts
+-->
