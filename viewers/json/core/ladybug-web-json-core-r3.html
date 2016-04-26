@@ -1,0 +1,434 @@
+﻿<!doctype html>
+<html lang=en >
+<head>
+<meta charset=utf-8 >
+<title>Ladybug Web JSON Core R3</title>
+<meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
+<meta name=description content='' >
+<meta name=keywords content='WebGL,Three.js,Tween.js,JavaScript,GitHub,FOSS,3D,STEM' >
+<meta name=date content='' >
+</head>
+<body>
+
+<script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/controls/OrbitControls.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/loaders/BinaryLoader.js ></script>
+<!--
+<script src=http://rawgit.com/mrdoob/three.js/dev/build/three.min.js ></script>
+<script src=http://rawgit.com/mrdoob/three.js/dev/examples/js/controls/OrbitControls.js ></script>
+<script src=http://rawgit.com/mrdoob/three.js/dev/examples/js/libs/stats.min.js ></script>
+-->
+<script>
+
+//	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/WaltHeadLo.js';
+//	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/models/json/teapot-claraio.json';
+//	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/cubecolors/cubecolors.js'
+	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/walt/WaltHead_bin.js';
+
+	var object, groundPlane, message;
+
+	var stats, renderer, scene, camera, controls, coreLight;
+
+	init();
+	animate();
+
+	function init() {
+
+		var css, menu;
+		var geometry, material, mesh;
+
+		css = document.head.appendChild( document.createElement( 'style' ) );
+		css.innerHTML =
+
+			'body { font: 12pt monospace; margin: 0; overflow: hidden; }' +
+			'a {text-decoration: none; }' +
+			'h2 { margin: 0 }' +
+
+		'';
+
+		if ( window.self === window.top ) {
+
+			menu = document.body.appendChild( document.createElement( 'div' ) );
+			menu.style.cssText = `margin: 0 20px; position: absolute; `;
+			menu.innerHTML =
+
+				'<h2>' +
+					'<a href="" >' + document.title + '</a> ' +
+					'<a href=http://ladybug-analysis-tools.github.io/3d-models/ > &#x24D8; </a>' +
+				'</h2>' +
+				'<div id=coreMessage ></div>' +
+			'';
+
+		}
+
+		stats = new Stats();
+		stats.domElement.style.cssText = `position: absolute; right: 0; top: 0; z-index: 100; `;
+		document.body.appendChild( stats.domElement );
+
+		window.addEventListener( 'resize', onWindowResize, false );
+
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true }  );
+//		renderer.setClearColor( 0xf0f0f0 );
+//		renderer.setPixelRatio( window.devicePixelRatio );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+		camera.position.set( 100, 100, 100 );
+
+		controls = new THREE.OrbitControls( camera, renderer.domElement );
+		controls.maxDistance = 1000;
+
+		scene = new THREE.Scene();
+
+		coreLight = new THREE.DirectionalLight();
+		coreLight.position.set( -100, 100, 100 );
+		scene.add( coreLight );
+
+// helpers
+
+		geometry = new THREE.BoxGeometry( 100, 2, 100 );
+		material = new THREE.MeshPhongMaterial();
+		groundPlane = new THREE.Mesh( geometry, material );
+		groundPlane.name = 'groundPlane';
+//		scene.add( groundPlane );
+
+		var gridHelper = new THREE.GridHelper( 50, 10 );
+		gridHelper.position.set( 0, 1, 0 );
+		groundPlane.add( gridHelper );
+
+		var axisHelper = new THREE.AxisHelper( 50 );
+		groundPlane.add( axisHelper );
+
+// assets
+
+		fullFilePath = location.hash.length ? location.hash.slice( 1 ) : fullFilePathDefault;
+
+		loadXHR( fullFilePath );
+
+	}
+
+	function loadXHR( fullFilePath ) {
+
+		var loader = new THREE.XHRLoader();
+		loader.crossOrigin = '';
+		loader.load( fullFilePath, function ( text ) {
+
+			fileName = fullFilePath.split( '/' ).pop();
+
+			fileNameSplit = fileName.split( '#' );
+
+			if ( fileNameSplit.length ) { fileName = fileNameSplit[0]; }
+
+			if ( text.slice( 0, 1 ) !== '{' ) {
+
+				message = fileName + ': is not JSON';
+
+				return;
+
+			}
+
+			text = JSON.parse( text );
+
+			handleJSON( fullFilePath, text );
+
+		} );
+
+	}
+
+	function handleJSON( fullFilePath, data ) {
+
+		if ( data.offsets !== undefined || data.__metadata__ !== undefined || data.urls !== undefined || data.materials === undefined ) {
+
+			data.metadata = { type: 'Not a Three.js JSON file' };
+
+		} else if ( data.metadata === undefined ) { // 2.0
+
+			data.metadata = { type: 'Geometry' };
+
+		} else if ( data.metadata.type === undefined ) { // 3.0
+
+			data.metadata.type = 'Geometry';
+
+		} else if ( data.metadata.formatVersion !== undefined ) {
+
+			data.metadata.version = data.metadata.formatVersion;
+
+		}
+
+		if ( data.buffers ) {
+
+			data.metadata.type = 'binary';
+
+		}
+
+		switch ( data.metadata.type.toLowerCase() ) {
+
+			case 'binary':
+
+				loadBinaryLoaderFileByURL( fullFilePath );
+
+				break;
+
+			case 'buffergeometry':
+
+				var loader = new THREE.BufferGeometryLoader();
+				var result = loader.parse( data );
+
+				scene.remove( object );
+
+				object = new THREE.Mesh( result );
+
+				scene.add( object );
+
+				break;
+
+			case 'geometry':
+
+				loadJSONLoaderFileByURL( fullFilePath );
+
+				break;
+
+			case 'object':
+
+				loadObjectLoaderFileByURL( fullFilePath );
+
+				break;
+
+			case 'scene':
+			case 'app':
+
+				break;
+
+		}
+
+		setMessage( fileName + ': ' + data.metadata.type.toLowerCase() );
+
+	}
+
+	function loadBinaryLoaderFileByURL( fileName ) {
+
+		var loader = new THREE.BinaryLoader();
+		loader.crossOrigin = 'anonymous';
+		loader.load( fileName, function ( geometry, materials ) {
+
+			if ( materials && materials.length > 1 ) {
+
+				material = new THREE.MultiMaterial( materials );
+
+			} else if ( materials ) {
+
+				material = materials[ 0 ];
+
+			} else {
+
+				material = new THREE.MeshPhongMaterial();
+
+			}
+
+			mesh = new THREE.Mesh( geometry, material );
+			mesh.name = fileName;
+
+			addObject( mesh );
+
+		} );
+
+	}
+
+	function loadJSONLoaderFileByURL( fileName ) {
+
+		var loader = new THREE.JSONLoader();
+		loader.crossOrigin = 'anonymous';
+		loader.load( fileName, function ( geometry, materials ) {
+
+			if ( materials && materials.length > 1 ) {
+
+				material = new THREE.MultiMaterial( materials );
+
+			} else if ( materials ) {
+
+				material = materials[ 0 ];
+
+			} else {
+
+				material = new THREE.MeshPhongMaterial();
+
+			}
+
+			mesh = new THREE.Mesh( geometry, material );
+			mesh.name = fileName;
+
+			addObject( mesh );
+
+		} );
+
+	}
+
+	function loadObjectLoaderFileByURL( fileName ) {
+
+		var loader = new THREE.ObjectLoader();
+		loader.crossOrigin = 'anonymous';
+		loader.load( fileName, function ( obj, materials ) {
+
+			if ( obj instanceof THREE.Scene ) {
+
+				object = new THREE.Object3D();;
+
+				for ( var i = 0; i < obj.children.length; i++ ) {
+
+					child = obj.children[ i ];
+
+					if ( child instanceof THREE.Mesh ) {
+
+						child.material = new THREE.MeshPhongMaterial( { side: 2 });
+
+					}
+
+					object.add( child );
+
+				}
+
+				addObject( object, materials )
+
+			} else {
+
+				addObject( obj, materials )
+
+			}
+
+		}, onProgress, onError );
+
+	}
+
+	function onProgress( xhr ) {
+
+		if ( xhr.total ) {
+
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			setMessage( fileName + ': ' + percentComplete.toFixed() + '% or ' + xhr.loaded + ' bytes of ' + xhr.total + ' downloaded' );
+
+		} else {
+
+			setMessage( fileName + ': ' + xhr.loaded + ' bytes loaded' );
+
+		}
+
+	}
+
+	function onError ( xhr ) { setMessage( 'An error happened' ); };
+
+	function addObject( obj ) {
+
+		var bbh, distance, size;
+
+		object = obj;
+
+		bbh = new THREE.BoundingBoxHelper( object );
+		bbh.update();
+
+		distance = bbh.position.distanceTo( bbh.scale );
+		size = object.scale.y * 80 / distance;
+
+//		object.scale.multiplyScalar( size );
+
+		bbh = new THREE.BoundingBoxHelper( object );
+		bbh.update();
+
+		scene.add( object );
+
+//		groundPlane.position.y = bbh.box.min.y - 1;
+
+		onHashChange();
+
+		setMessage( ': load complete' );
+
+	}
+
+	function onHashChange() {
+
+		var hashes, hash, parameter, value;
+//		var object;
+		var d2r = Math.PI / 180;
+
+		hashes = location.hash.split( '#' );
+
+//console.log( 'ico', ico );
+
+		for ( var i = 1; i < hashes.length; i++ ) {
+
+			hash = hashes[ i ].split( '=' );
+			parameter = hash[ 0 ];
+			value = hash[ 1 ];
+
+			switch( parameter ) {
+
+				case 'rx': object.rotation.x = parseFloat( value * d2r ); break;
+				case 'ry': object.rotation.y = parseFloat( value * d2r ); break;
+				case 'rz': object.rotation.z = parseFloat( value * d2r ); break;
+
+				case 'px': object.position.x = parseFloat( value ); break;
+				case 'py': object.position.y = parseFloat( value ); break;
+				case 'pz': object.position.z = parseFloat( value ); break;
+
+				case 'sx': object.scale.x = parseFloat( value ) || 1 ; break;
+				case 'sy': object.scale.y = parseFloat( value ) || 1; break;
+				case 'sz': object.scale.z = parseFloat( value ) || 1; break;
+
+				case 'cx': camera.position.x = parseFloat( value ); break;
+				case 'cy': camera.position.y = parseFloat( value ); break;
+				case 'cz': camera.position.z = parseFloat( value ); break;
+
+				case 'tx': controls.target.x = parseFloat( value ); break;
+				case 'ty': controls.target.y = parseFloat( value ); break;
+				case 'tz': controls.target.z = parseFloat( value ); break;
+
+				case  hashes[ 1 ] : break;
+
+				default: console.log( 'oops', value, i, hashes );
+
+			}
+
+		}
+
+	}
+
+	function setMessage( message ){
+
+		if ( window.self !== window.top && message === ': load complete' ) {
+
+			if ( parent.getCoreParameters ) { parent.getCoreParameters(); }
+
+		} else if ( parent.coreMessage ) {
+
+			parent.coreMessage.innerHTML = message;
+
+		} else {
+
+			parent.console.log( 'message:', message );
+
+		}
+
+	}
+
+	function onWindowResize() {
+
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+
+		renderer.setSize( window.innerWidth, window.innerHeight );
+
+	}
+
+	function animate() {
+
+		requestAnimationFrame( animate );
+		controls.update();
+		stats.update();
+		renderer.render( scene, camera );
+
+	}
+
+</script>
+</body>
+</html>
