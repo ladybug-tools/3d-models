@@ -1,9 +1,5 @@
-﻿[Ladybug Analysis Tools]( http://ladybug-analysis-tools.github.io/ )  »  [3D Models]( http://ladybug-analysis-tools.github.io/3d-models/ )  » 
-
-<!-- 
-[Viewers]( http://ladybug-analysis-tools.github.io/3d-models/viewers/ )  » 
--->
-
+﻿[Ladybug Analysis Tools]( http://ladybug-analysis-tools.github.io/ ) &raquo; [3D Models]( http://ladybug-analysis-tools.github.io/3d-models/ ) &raquo;
+[Gallery]( http://ladybug-analysis-tools.github.io/3d-models/gallery/ ) &raquo;
 
 [OBJ Gallery]( index.html )
 ===
@@ -24,3 +20,4 @@ A place to lean against
 
 A place to move away from  
 [shark]( #https://cdn.rawgit.com/josdirksen/threejs-cookbook/master/assets/models/shark/Shark.mtl#cx=-4#cy=-2#cz=13#tz=2 )
+

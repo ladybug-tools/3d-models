@@ -1,8 +1,5 @@
-﻿[Ladybug Analysis Tools]( http://ladybug-analysis-tools.github.io/ )  »  [3D Models]( http://ladybug-analysis-tools.github.io/3d-models/ )  » 
-
-<!--
-[Viewers]( http://ladybug-analysis-tools.github.io/3d-models/viewers/ )  » 
--->
+﻿[Ladybug Analysis Tools]( http://ladybug-analysis-tools.github.io/ ) &raquo; [3D Models]( http://ladybug-analysis-tools.github.io/3d-models/ ) &raquo;
+[Gallery]( http://ladybug-analysis-tools.github.io/3d-models/gallery/ ) &raquo;
 
 [JSON Gallery]( index.html )
 ===
