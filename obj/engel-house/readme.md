@@ -70,6 +70,8 @@ From the article:
 
 [@ayezioro]( https://github.com/ayezioro ) has uploaded both OBJ and JSON versions of a 3D model exported from Rhino.
 
+The original model was created in Rhino by Saba Nichola - a student at [Technion - IIT]( http://www.technion.ac.il/en/ ).
+
 
 There are currently three files.
 

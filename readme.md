@@ -4,13 +4,14 @@
 value='You are now in the home page view - Click this button to view the read me file and the source code' >
 
 
-
 Ladybug Web 3D Models Read Me
 ===
 
 ## [Ladybug Web 3D Models Viewer]( http://ladybug-analysis-tools.github.io/3d-models/ )
 
 A collection of 3d models of buildings.
+
+See the home page for the details
 
 Everyone: create a readme.json file and add a thumbnail for each model. We will use later to make a visual web-based dashboard for your models.
 
@@ -31,6 +32,13 @@ The more models we can access, the more issues we will find and the better we wi
 
 
 ## Change Log
+
+### 2016-04-25
+
+* Too many changes to record in the past few day 
+* Looks like it's all beginning to settle down
+ 
+
 
 ### 2016-04-09
 
