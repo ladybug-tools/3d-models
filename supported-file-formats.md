@@ -11,7 +11,7 @@ Currently we have importers for Three.js JSON files and also for OBJ files. Next
 
 ## Possible Support
 
-Here's a list of the 3D model file formats supported - more or less - by Three.js. Thes are the files listed in the [Three.js Editor]( http://mrdoob.github.io/three.js/editor/ )
+Here's a list of the 3D model file formats supported - more or less - by Three.js. These are the files listed in the [Three.js Editor]( http://mrdoob.github.io/three.js/editor/ ). 
 Many are quite obscure, but you might find one or two that you like.
 
 * amf
@@ -92,7 +92,7 @@ With most traditional CAD apps, the X and Y are parallel with the floor and Z po
 
 Three.js is written as a computer graphics app, but a good number of models ae created by CAD apps and come in facing the wrong way
 
-###
+### View
 
 It may be the most beautiful view in the world, but you may not always be able to see that in the default view.
 
@@ -101,5 +101,5 @@ It may be the most beautiful view in the world, but you may not always be able t
 
 [Cross origin resource sharing (CORS)]( https://en.wikipedia.org/wiki/Cross-origin_resource_sharing ) issues are ongoing.
 
-The primary CORS issue is gaining acces to subsidiary files sich as bitmap textures.
+The primary CORS issue is gaining acces to subsidiary files such as bitmap textures.
 
