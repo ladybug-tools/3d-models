@@ -37,6 +37,8 @@ Tools you can use to locate, edit and embed 3D OBJ and MTL models in your apps
 
 ## More
 
+### [Supported File Formats]( #supported-file-formats.md )
+
 ### [Concept / Manifesto ]( #concept.md )
 Wow, do we have a mission!
 
