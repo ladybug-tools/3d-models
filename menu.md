@@ -3,10 +3,10 @@
 [Ladybug Web 3D Models]( ./index.html#index.md )
 ===
 
+[Read Me]( #readme.md )
+
 ## Content
 3D models you can use for building ad testing 3D apps
-
-[Read Me]( #readme.md )
 
 ### [Galleries]( ./galleries/index.html )
 
@@ -16,7 +16,15 @@ Collections of curated content
 
 ### [JSON Files]( ./json/index.html )
 
+***
+_Code section needs it's own readme - before getting to the following files._
+
 ## Code for JSON
+
+
+
+
+
 Tools you can use to locate, edit and embed 3D Three.js JSON models in your apps
 
 ### [JSON Browser ]( viewers/json/browser/index.html )
@@ -27,6 +35,7 @@ Tools you can use to locate, edit and embed 3D Three.js JSON models in your apps
 
 
 ## Code for OBJ
+
 Tools you can use to locate, edit and embed 3D OBJ and MTL models in your apps
 
 ### [OBJ Browser ]( viewers/obj/browser/index.html )
@@ -34,6 +43,8 @@ Tools you can use to locate, edit and embed 3D OBJ and MTL models in your apps
 ### [OBJ Opener]( viewers/obj/opener/index.html )
 
 ### [OBJ Core]( viewers/obj/core/index.html )
+
+***
 
 ## More
 
