@@ -1,9 +1,13 @@
-JSON Read Me
+<span style=display:none; >
+[You are now in a GitHub source code view - click this link to view the home page]( http://ladybug-analysis-tools.github.io/3d-models/content/json/ "View file as a web page." ) </span>
+<input type=button onclick=window.location.href='https://github.com/ladybug-analysis-tools/3d-models/tree/gh-pages/content/json/'; 
+value='You are now in the home page view - Click this button to view the read me file and the source code' >
+
+
+[JSON Files Read Me]( index.html )
 ===
 
 
-
-lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?
-
-
-lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?
+The menu for this folder uses the GitHub API to obtain the names of all the folders under this folder.
+If any folder contains a readme file then it is added to this menu.
+This ability allows you to add files without having to edit menus - which is handy when there are large numbers of files moving in and out of folders.

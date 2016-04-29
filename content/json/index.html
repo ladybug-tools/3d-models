@@ -71,17 +71,17 @@
 
 				file = response.tree[ i ].path;
 
-				if ( file.indexOf( 'json' ) === -1 ) { continue; }
+				if ( file.indexOf( 'content\/json' ) === -1 ) { continue; }
 
 				if ( file.indexOf( 'readme.md' ) === -1 ) { continue; }
 
-				if ( file === 'galleries\/json\/readme.md' || file === 'json\/readme.md' || file.indexOf( 'viewers' ) !== -1 ) { continue; }
+				if ( file === 'content\/json\/readme.md' ) { continue; }
 
 				files.push( file );
 
 			}
 
-console.log( 'files', files );
+//console.log( 'files', files );
 
 			createTableOfContents();
 
@@ -93,7 +93,7 @@ console.log( 'files', files );
 
 		var txt =  '<a href=../../../index.html >Ladybug Analysis Tools</a> &raquo; ' +
 			'<a href=../../index.html >3D Models</a> &raquo; ' + '<a href=../index.html >Content</a> &raquo; ' +
-			'<h2><a href=./index.html >JSON</a></h2>';
+			'<h2><a href=./index.html >JSON Files</a></h2>';
 
 		for ( var i = 0; i < files.length; i++ ) {
 
