@@ -16,7 +16,7 @@
 
 	var urlAPIContents = 'https://api.github.com/repos/ladybug-analysis-tools/3d-models/git/trees/gh-pages?recursive=1';
 
-	var defaultFile = './readme.md';
+	var defaultFile = 'readme.md';
 	var files;
 
 	init();
@@ -99,7 +99,7 @@
 
 			txt += 
 
-				'<h3><a href=#../' + files[ i ] + ' >'+ files[ i ].replace( '\/readme.md','' ).replace( 'obj\/','' ) + '<a></h3>' +
+				'<h3><a href=#../../' + files[ i ] + ' >'+ files[ i ].replace( '\/readme.md','' ).replace( 'obj\/','' ) + '<a></h3>' +
 
 			'';
 
