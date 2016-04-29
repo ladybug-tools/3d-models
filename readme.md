@@ -3,7 +3,6 @@
 <input type=button onclick=window.location.href='https://github.com/ladybug-analysis-tools/3d-models/'; 
 value='You are now in the home page view - Click this button to view the read me file and the source code' >
 
-
 Ladybug Web 3D Models Read Me
 ===
 

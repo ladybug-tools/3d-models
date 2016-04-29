@@ -3,46 +3,53 @@
 [Ladybug Web 3D Models]( ./index.html#index.md )
 ===
 
-[Read Me]( #readme.md )
+## [Content]( content/index.html )
 
-## Content
-3D models you can use for building ad testing 3D apps
+3D models you can use for building and testing 3D apps
 
-### [Galleries]( ./galleries/index.html )
+### [OBJ Files]( ./content/obj/index.html )
 
-Collections of curated content
+3D models hosted here
 
-### [OBJ Files]( ./obj/index.html )
+### [JSON Files]( ./content/json/index.html )
 
-### [JSON Files]( ./json/index.html )
+3D models hosted here
+
+### [Galleries]( ./content/galleries/index.html )
+
+Collections of curated content from around the web
+
+
 
 ***
-_Code section needs it's own readme - before getting to the following files._
-
-## Code for JSON
 
 
+## [Code]( code/index.html )
 
 
 
+### [Gallery]( ./gallery/index.html )
+The script to create menus that we use here
+
+
+### JSON Code
 Tools you can use to locate, edit and embed 3D Three.js JSON models in your apps
 
-### [JSON Browser ]( viewers/json/browser/index.html )
+### [JSON Browser ]( code/json/browser/index.html )
 
-### [JSON Opener]( viewers/json/opener/index.html )
+### [JSON Opener]( code/json/opener/index.html )
 
-### [JSON Core]( viewers/json/core/index.html )
+### [JSON Core]( code/json/core/index.html )
 
 
-## Code for OBJ
-
+### OBJ Code
 Tools you can use to locate, edit and embed 3D OBJ and MTL models in your apps
 
-### [OBJ Browser ]( viewers/obj/browser/index.html )
+### [OBJ Browser ]( code/obj/browser/index.html )
 
-### [OBJ Opener]( viewers/obj/opener/index.html )
+### [OBJ Opener]( code/obj/opener/index.html )
 
-### [OBJ Core]( viewers/obj/core/index.html )
+### [OBJ Core]( code/obj/core/index.html )
 
 ***
 

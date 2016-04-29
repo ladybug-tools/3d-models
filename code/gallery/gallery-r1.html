@@ -2,7 +2,7 @@
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>Ladybug Web 3D Models</title>
+<title>Gallery R1</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
 <meta name=description content='Browse and view Markdown, OBJ and Three.js JSON files in an iframe. Menu in Markdown' >
 <meta name=keywords content='JavaScript,GitHub,FOSS,3D,STEM' >
@@ -16,7 +16,7 @@
 //	var coreJSON = '../../viewers/json/core/ladybug-web-json-core-r3.html';
 	var coreOBJ = 'http://ladybug-analysis-tools.github.io/3d-models/viewers/obj/core/ladybug-web-obj-core-r3.html';
 
-	var defaultFile = 'index.md';
+	var defaultFile = 'readme.md';
 
 	init();
 
@@ -33,10 +33,6 @@
 			'iframe { border: 0px solid; height: 100%; width: 100%; }' +
 
 			'#menu { box-sizing: border-box; background-color: #ccc; height: 100%; max-width: 300px; overflow: auto; padding: 0 10px; position: absolute; }' +
-			'#menu h2 { margin-bottom: 0; }' +
-			'#menu h3 { margin: 10px 0 0 10px; }' +
-
-			'#menu p { margin: 0 0 0 10px; }' +
 			'#contents { height: 100%; left: 350px; overflow: auto; position: absolute; top: 0; width: ' + ( window.innerWidth - 370 ) + 'px; }' +
 
 		'';
