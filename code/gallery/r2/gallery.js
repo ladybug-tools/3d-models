@@ -1,20 +1,15 @@
-﻿<!doctype html>
-<html lang=en >
-<head>
-<meta charset=utf-8 >
-<title>Gallery R1ccc</title>
-<meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
-<meta name=description content='Browse and view files in an iframe. Menu in Markdown' >
-<meta name=keywords content='JavaScript,GitHub,FOSS,3D,STEM' >
-<meta name=date content='2016-04-24' >
-</head>
-<body>
-<script src=http://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js ></script>
-<script>
+﻿
+	if ( location.origin === 'http://' || location.origin === 'https://' ) {
 
-	var coreJSON = 'http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html';
-//	var coreJSON = '../../../code/json/core/ladybug-web-json-core-r3.html';
-	var coreOBJ = 'http://ladybug-analysis-tools.github.io/3d-models/code/obj/core/ladybug-web-obj-core-r3.html';
+		var coreJSON = 'http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html';
+		var coreOBJ = 'http://ladybug-analysis-tools.github.io/3d-models/code/obj/core/ladybug-web-obj-core-r3.html';
+
+	} else {
+
+		var coreJSON = '../../../code/json/core/ladybug-web-json-core-r3.html';
+		var coreOBJ = '../../../code/obj/core/ladybug-web-obj-core-r3.html';
+
+	}
 
 	var defaultFile = 'readme.md';
 
@@ -22,16 +17,15 @@
 
 	function init() {
 
-		var css, menu, contents;
+		var css, menu, contents, reader;
 
 		css = document.body.appendChild( document.createElement( 'style' ) );
 		css.innerHTML =
 
 			'body { font: 12pt monospace; margin: 0; }' +
-			'a { color: crimson; }' +
+			'a { color: crimson; text-decoration: none; }' +
 			'button, input[type=button] { background-color: #eee; border: 2px #eee solid; color: #888; }' +
 			'iframe { border: 0px solid; height: 100%; width: 100%; }' +
-			'h1 a, h2 a { text-decoration: none; }' +
 
 			'#menu { box-sizing: border-box; background-color: #ccc; height: 100%; max-width: 300px; overflow: auto; padding: 0 10px; position: absolute; }' +
 			'#contents { height: 100%; left: 350px; overflow: auto; position: absolute; top: 0; width: ' + ( window.innerWidth - 370 ) + 'px; }' +
@@ -46,36 +40,50 @@
 
 		window.addEventListener ( 'hashchange', hashChange, false );
 
-		getMarkdown( 'menu.md', menu );
 
-		hashChange();
+		reader = document.body.appendChild( document.createElement( 'script' ) );
+
+		reader.onload = function() {
+
+			getMarkdown( 'menu.md', menu );
+
+			hashChange();
+
+		};
+
+		reader.src = 'http://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js';
+
 
 	}
 
 	function hashChange() {
 
-		var fileName, hashes, styleIframe, styleMarkdown;
+//		var styleIframe, styleMarkdown, hashes, fileName, extension;
 
 		styleIframe = 'left: 0; overflow: hidden; position: absolute; top: 0; width: 100%; ';
 		styleMarkdown = 'left: 350px; overflow: auto; position: absolute; top: 0; width: ' + ( window.innerWidth - 370 ) + 'px; ';
 
-		fileName = location.hash ? location.hash.slice( 1 ) : defaultFile;
+		hashes = location.hash ? location.hash.slice( 1 ) : defaultFile;
 
-		hashes = fileName.split( '#' );
+		hashes = hashes.split( '#' );
 
 		fileName = hashes[ 0 ];
 
-		if ( fileName.slice( -3 ) === '.md' ) {
+		document.title = document.title === '' ? fileName | document.title;
+
+		extension = fileName.split( '.' ).pop().toLowerCase();
+
+		if ( extension === 'md' ) {
 
 			contents.style.cssText = styleMarkdown;
 			getMarkdown( fileName, contents );
 
-		} else if ( fileName.slice( -5 ) === '.json' || fileName.slice( -3 ) === '.js' ) {
+		} else if ( extension === 'json' || extension === 'js' ) {
 
 			contents.style.cssText = styleIframe;
 			contents.innerHTML = '<iframe id=ifr src=' + coreJSON + location.hash + '  ><iframe>';
 
-		} else if ( fileName.slice( -4 ) === '.obj' || fileName.slice( -4 ) === '.mtl' ) {
+		} else if ( extension === 'obj' || extension === 'mtl' ) {
 
 			contents.style.cssText = styleIframe;
 			contents.innerHTML = '<iframe id=ifr src=' + coreOBJ + location.hash + '  ><iframe>';
@@ -90,9 +98,9 @@
 
 	function getMarkdown( fileName, target ) {
 
-		var xhr, converter;
+		var converter, xhr;
 
-		converter = new showdown.Converter( { strikethrough: true, literalMidWordUnderscores: true, simplifiedAutoLink: true, tables: true });
+		converter = new showdown.Converter( { strikethrough: true, literalMidWordUnderscores: true, simplifiedAutoLink: true, tables: true } );
 
 		xhr = new XMLHttpRequest();
 		xhr.open( 'GET', fileName, true );
@@ -105,6 +113,3 @@
 
 	}
 
-</script>
-</body>
-</html>

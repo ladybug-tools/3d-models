@@ -25,6 +25,9 @@ And furthermore, the models here are content much more than code, therefore a Cr
 
 ## Issues
 
+* Talk to grasshopper json dev
+* Add a page on getting files to Three.js
+
 Probably a majority of the files that you can view here had issues the first time they were opened by one of the scripts.
 Each of these issues has been used to improve the process.
 The more models we can access, the more issues we will find and the better we will get
