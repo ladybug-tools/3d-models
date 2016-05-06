@@ -10,11 +10,11 @@ value='You are now in the home page view - Click this button to view the read me
 ===
 
 
-<iframe src=http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html#http://ladybug-analysis-tools.github.io/3d-models/content/json/schroder-house/schroder-house-r2.js width=800 height=500 ></iframe>
+<iframe src=http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html#http://ladybug-analysis-tools.github.io/3d-models/content/json/schroder-house/schroder-house-r2.js#sx=5#sy=5#sz=5 width=800 height=500 ></iframe>
 
-View full screen using [Opener]( http://ladybug-analysis-tools.github.io/3d-models/code/json/opener/ladybug-web-json-opener-r2.html#http://ladybug-analysis-tools.github.io/3d-models/content/json/schroder-house/schroder-house-r2.js )
+View full screen using [Opener]( http://ladybug-analysis-tools.github.io/3d-models/code/json/opener/ladybug-web-json-opener-r2.html#http://ladybug-analysis-tools.github.io/3d-models/content/json/schroder-house/schroder-house-r2.js#sx=5#sy=5#sz=5 )
 
-View full screen using [Core]( http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html#http://ladybug-analysis-tools.github.io/3d-models/content/json/schroder-house/schroder-house-r2.js )
+View full screen using [Core]( http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html#http://ladybug-analysis-tools.github.io/3d-models/content/json/schroder-house/schroder-house-r2.js#sx=5#sy=5#sz=5 )
 
 
 

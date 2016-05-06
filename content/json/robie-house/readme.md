@@ -9,15 +9,15 @@ value='You are now in the home page view - Click this button to view the read me
 [Robie House Read Me]( ../index.html#json/robie-house/readme.md )
 ===
 
-<iframe src=http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html#http://ladybug-analysis-tools.github.io/3d-models/content/json/robie-house/robie-house-r2.js width=800 height=500 ></iframe>
+<iframe src=http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html#http://ladybug-analysis-tools.github.io/3d-models/content/json/robie-house/robie-house-r2.js#px=-50#sx=60#sy=60#sz=60#cx=-40#cy=40#cz=70 width=800 height=500 ></iframe>
 
 
 File size: 900 KB
 
 
-View full screen using [Opener]( http://ladybug-analysis-tools.github.io/3d-models/code/json/opener/ladybug-web-json-opener-r2.html#http://ladybug-analysis-tools.github.io/3d-models/content/json/robie-house/robie-house-r2.js )
+View full screen using [Opener]( http://ladybug-analysis-tools.github.io/3d-models/code/json/opener/ladybug-web-json-opener-r2.html#http://ladybug-analysis-tools.github.io/3d-models/content/json/robie-house/robie-house-r2.js#px=-50#sx=60#sy=60#sz=60#cx=-40#cy=40#cz=70 )
 
-View full screen using [Core]( http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html#http://ladybug-analysis-tools.github.io/3d-models/content/json/robie-house/robie-house-r2.js )
+View full screen using [Core]( http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html#http://ladybug-analysis-tools.github.io/3d-models/content/json/robie-house/robie-house-r2.js#px=-50#sx=60#sy=60#sz=60#cx=-40#cy=40#cz=70 )
 
 
 
