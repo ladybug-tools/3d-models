@@ -11,3 +11,6 @@ value='You are now in the home page view - Click this button to view the read me
 The menu for this folder uses the GitHub API to obtain the names of all the folders under this folder.
 If any folder contains a readme file then it is added to this menu.
 This ability allows you to add files without having to edit menus - which is handy when there are large numbers of files moving in and out of folders.
+
+There are also three JSON files - created using [flux.io]( http://flux.io ) 
+- that are not compatible with Three.js JSON files, but are kept here as test cases to help in identifying files.

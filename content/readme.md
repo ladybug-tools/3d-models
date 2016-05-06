@@ -9,13 +9,13 @@ value='You are now in the home page view - Click this button to view the read me
 
 This is the parent folder for Ladybug Web 3D Models content.
 
-The JSON Files and OBJ Files folder contains links to the 3D models hosted on the Ladybug Web GitHub repository.
+The JSON Files and OBJ Files folders contain links to the 3D models hosted on the Ladybug Web GitHub repository.
 It is hoped that support for STL and GLTF files will be added in the near future.
 See also [Supported File Formats]( http://ladybug-analysis-tools.github.io/3d-models/#supported-file-formats.md ) for more discussion on this topic. 
 
 The Galleries folder contains links to galleries with content you can use from around the web.
 The software or code for creating and editing the galleries is a major aspect for this project.
-It's designed to be simple and esy to edit: so you can build online galleries too.
+The code is designed to be simple and easy to edit, so you can build online galleries quickly and easily.
 
 
  

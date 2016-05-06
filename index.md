@@ -29,7 +29,7 @@ This repository provides you with content and code
 
 The content comes in two flavors:
 
-* Files: models you can copy, linkt to, edit and use and share however you want
+* Files: models you can copy, link to, edit and use and share however you want
 * Galleries: curated set of files, sample content and code you can use to build your own menus, reports and  demos
 
 
@@ -52,54 +52,39 @@ A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewer
 
 
 The Galleries folder contains a three galleries of files. 
-There's also a link to a Galley in the OBJ files
+There's also a link to the EngleHouse gallery in the OBJ files
 
-
-
-
-<!--
-## &#128279; [Engel House Gallery]( send-to.html#./obj/engel-house/index.html )
-
-A first glimpse at the possibilities offered by the Ladybug Web 3D Models viewers
-
-* Menus to help you select what you want to see
-* Viewers to display content in 3D
-* Menus and read me files created using Markdown
-
-## &#128279; [JSON Gallery]( ./viewers/json/gallery/index.html )
-
-* First attempt at building a JSON file gallery
-
-## &#128279; [OBJ Gallery]( ./viewers/obj/gallery/index.html )
-
-* First attempt at building an OBJ file gallery
-
-## &#128279; [Ladybug Web AEC Gallery]( ./gallery/aec/index.html )
-
-* The main event gallery R1
-* 3D models that can help build, edit and test your solar analysis scripts
--->
 
 
 ***
 
-## Code
+## [Code]( http://ladybug-analysis-tools.github.io/3d-models/code/index.html )
 
-_The scripts you can use to create and support the content_
+_Scripts you can use to create and support 3D content_
+
+## JSON
+
+#### [Ladybug Web JSON Browser]( ./code/json/browser/index.html )
+
+#### [Ladybug Web JSON Opener]( ./code/json/opener/index.html )
+
+#### [Ladybug Web JSON Core]( ./code/json/core/index.html )
+
+## OBJ
+
+#### [Ladybug Web OBJ Browser]( ./code/obj/browser/index.html )
+
+#### [Ladybug Web OBJ Opener]( ./code/obj/opener/index.html )
+
+#### [Ladybug Web OBJ Core]( ./code/obj/core/index.html )
+
 
 ### Browser Code
 
-#### &#128279; [Ladybug Web JSON Browser]( ./viewers/json/browser/index.html )
 
-View Three.js JSON and JS files from this repository - and from a variety of other repositories on GitHub
+View files from this repository and from a variety of other repositories on GitHub
 
-#### &#128279; [Ladybug Web OBJ Browser]( ./viewers/obj/browser/index.html )
-
-View OBJ and MTL files from this repository - and from a variety of other repositories on GitHub
-
-#### Notes
-
-Both the above viewers display nearly raw or 'uncurated' models.
+Both the above browsers display nearly raw or 'uncurated' models.
 
 * File listings are gathered in real-time from the given repo.
 * Models use varying scales and units. We try to make the model fit the screen
@@ -113,16 +98,7 @@ The communication between the apps is via location.hash through the core being e
 
 ### Opener Code
 
-
-#### &#128279; [Ladybug Web JSON Opener]( ./viewers/json/opener/index.html )
-
-Open and prepare JSON files 
-
-#### &#128279; [Ladybug Web OBJ Opener]( ./viewers/obj/opener/index.html )
-
-Open and prepare OBJ and MTL files 
-
-#### Notes
+Open and prepare files 
 
 * The scripts provide a user interface for setting viewing parameters
 * These scripts manage their respective cores via standard iframe protocols
@@ -130,15 +106,7 @@ Open and prepare OBJ and MTL files
 
 ### Core Code
 
-#### &#128279; [Ladybug Web JSON Core]( ./viewers/json/core/index.html )
-
-The basic core or engine to load and display Three.js JSON and JS files
-
-#### &#128279; [Ladybug Web OBJ Core]( ./viewers/obj/core/index.html )
-
-The basic core or engine to load and display OBJ and MTL filea
-
-#### Notes
+The basic core or engine to load and display 3D files
 
 * These scripts have minimal user interface
 * Their job is to examine the data and send it to the appropriate loader

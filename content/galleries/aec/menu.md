@@ -11,10 +11,10 @@ view [Engel House]( #https://ladybug-analysis-tools.github.io/3d-models/content/
 home page [Engel House]( http://ladybug-analysis-tools.github.io/3d-models/content/obj/engel-house/ )
 
 view [Urban Model]( #https://ladybug-analysis-tools.github.io/3d-models/content/obj/urban_model_001/model.mtl#sx=0.1#sy=0.1#sz=0.1#rx=-90#px=-15#pz=-20#cx=-32#cy=39#cz=92 )  
-[Urban Model]( http://ladybug-analysis-tools.github.io/3d-models/content/obj/index.html#../content/obj/urban_model_001/readme.md )
+[Urban Model]( http://ladybug-analysis-tools.github.io/3d-models/content/obj/index.html#./content/obj/urban_model_001/readme.md )
 
 view [Seaside Villa]( #https://ladybug-analysis-tools.github.io/3d-models/content/obj/seaside-villa-obj/seaside-villa.mtl#sx=0.1#sy=0.1#sz=0.1#px=100#pz=100#cx=164#cy=38#cz=143#tx=-24#ty=20#tz=19 )  
-[Seaside Villa]( http://ladybug-analysis-tools.github.io/3d-models/content/obj/index.html#../content/obj/seaside-villa-obj/readme.md )
+[Seaside Villa]( http://ladybug-analysis-tools.github.io/3d-models/content/obj/index.html#./content/obj/seaside-villa-obj/readme.md )
 
 ***
 

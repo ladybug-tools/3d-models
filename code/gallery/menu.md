@@ -42,3 +42,8 @@ A place to lean against
 A place to move away from  
 [shark]( #https://cdn.rawgit.com/josdirksen/threejs-cookbook/master/assets/models/shark/Shark.mtl#cx=-4#cy=-2#cz=13#tz=2 )
 
+***
+
+<center title="dingbat" >
+# <a href=javascript:menu.scrollTop=0; style=text-decoration:none; ><img src="http://ladybug-analysis-tools.github.io/images/ladybug-logo.png" width=32 ></a>
+</center>

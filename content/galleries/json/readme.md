@@ -8,4 +8,4 @@ value='You are now in the home page view - Click this button to view the read me
 [JSON Gallery Read Me]( index.html )
 ===
 
- lightly curate collection of Three;js JSON models from around the web.
+A lightly curated collection of Three/js JSON models from around the web.

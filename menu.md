@@ -27,12 +27,8 @@ Collections of curated content from around the web
 ## [Code]( code/index.html )
 
 
+### [JSON Code]( code/json/index.html )
 
-### [Gallery]( ./gallery/index.html )
-The script to create menus that we use here
-
-
-### JSON Code
 Tools you can use to locate, edit and embed 3D Three.js JSON models in your apps
 
 ### [JSON Browser ]( code/json/browser/index.html )
@@ -42,7 +38,8 @@ Tools you can use to locate, edit and embed 3D Three.js JSON models in your apps
 ### [JSON Core]( code/json/core/index.html )
 
 
-### OBJ Code
+### [OBJ Code]( code/obj/index.html )
+
 Tools you can use to locate, edit and embed 3D OBJ and MTL models in your apps
 
 ### [OBJ Browser ]( code/obj/browser/index.html )
@@ -50,6 +47,9 @@ Tools you can use to locate, edit and embed 3D OBJ and MTL models in your apps
 ### [OBJ Opener]( code/obj/opener/index.html )
 
 ### [OBJ Core]( code/obj/core/index.html )
+
+### [Gallery]( code/gallery/index.html )
+The script to create menus that we use here
 
 ***
 

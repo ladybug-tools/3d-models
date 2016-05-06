@@ -8,6 +8,12 @@ value='You are now in the home page view - Click this button to view the read me
 [OBJ Files Read Me]( index.html )
 ===
 
+The menu for this folder uses the GitHub API to obtain the names of all the folders under this folder.
+If any folder contains a readme file then it is added to this menu.
+This ability allows you to add files without having to edit menus - which is handy when there are large numbers of files moving in and out of folders.
+
+
+
 There are currently three models available
 
 

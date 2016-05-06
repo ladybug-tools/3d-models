@@ -6,8 +6,8 @@
 
 	} else {
 
-		var coreJSON = '../../../code/json/core/ladybug-web-json-core-r3.html';
-		var coreOBJ = '../../../code/obj/core/ladybug-web-obj-core-r3.html';
+		var coreJSON = '../json/core/ladybug-web-json-core-r3.html';
+		var coreOBJ = '../obj/core/ladybug-web-obj-core-r3.html';
 
 	}
 

@@ -1,5 +1,5 @@
 ﻿[Ladybug Analysis Tools]( http://ladybug-analysis-tools.github.io/ ) » [3D Models]( http://ladybug-analysis-tools.github.io/3d-models/ ) »
-[OBJ]( http://ladybug-analysis-tools.github.io/3d-models/obj/ ) »
+[OBJ]( http://ladybug-analysis-tools.github.io/3d-models/content/obj/ ) »
 
 [Engel House]( index.html )
 ===
@@ -7,13 +7,13 @@
 Engel House (Beit Engel) in Tel-Aviv was designed by architect Zeev Rechter and built in 1933/1934. 
 
 
-[View from Maze Street]( #http://ladybug-analysis-tools.github.io/3d-models/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1 )
+[View from Maze Street]( #http://ladybug-analysis-tools.github.io/3d-models/content/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1 )
 
-[View from Sderot Rothschild]( #http://ladybug-analysis-tools.github.io/3d-models/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1#rx=-90#px=-30#pz=25#cx=-26#cy=10#cz=-33#tx=-4#ty=5#tz=-1 )
+[View from Sderot Rothschild]( #http://ladybug-analysis-tools.github.io/3d-models/content/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1#rx=-90#px=-30#pz=25#cx=-26#cy=10#cz=-33#tx=-4#ty=5#tz=-1 )
 
-[View of the pilotis]( #http://ladybug-analysis-tools.github.io/3d-models/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1#rx=-90#px=-30#pz=25#cx=-29#cy=2#cz=11#tx=-13#ty=5#tz=1 )
+[View of the pilotis]( #http://ladybug-analysis-tools.github.io/3d-models/content/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1#rx=-90#px=-30#pz=25#cx=-29#cy=2#cz=11#tx=-13#ty=5#tz=1 )
 
-[View from above]( #http://ladybug-analysis-tools.github.io/3d-models/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1#rx=-90#px=-30#pz=25#cx=-34#cy=40#cz=13#tx=-1#ty=2#tz=-7 )
+[View from above]( #http://ladybug-analysis-tools.github.io/3d-models/content/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1#rx=-90#px=-30#pz=25#cx=-34#cy=40#cz=13#tx=-1#ty=2#tz=-7 )
 
 
 
