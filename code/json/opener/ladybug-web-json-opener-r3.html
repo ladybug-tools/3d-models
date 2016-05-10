@@ -16,10 +16,13 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 //	var core = ( location.protocol === 'http:' || location.protocol === 'https:' ) ? 
 //		'../core/ladybug-web-json-core-r3.html' : 'http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html';
-	var core = '../core/ladybug-web-json-core-r3.html';
+	var core = '../core/ladybug-web-json-core-r4.html';
+//	var core = 'http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html';
 
 	var pi = Math.PI;
 	var d2r = pi / 180, r2d = 180 / pi;  // degrees / radians
+
+	var ifrContentWindow, ifrContentWindowObject;
 
 	init();
 
@@ -63,9 +66,11 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 			'<h2>' +
 				'<a href="" >' + document.title + '</a>' +
-				'<a href=http://ladybug-analysis-tools.github.io/3d-models/ > &#x24D8; </a>' +
+				'<a href=http://ladybug-analysis-tools.github.io/3d-models/code/json/opener/index.html#readme.md > &#x24D8; </a>' +
 			'</h2>' +
-			'<p id=coreMessage style=color:crimson; onchange=console.log("msg",message); ></p>' +
+
+			'<p><a href=../browser/ladybug-web-json-browser-r2.html >Browser</a></p>' +
+			'<p id=coreMessage style=color:crimson; /* onchange=console.log("msg",message); */ ></p>' +
 
 			'<div><b>URL</b><br>' +
 				'<small>Drag and drop file URL here</small>' +
@@ -73,8 +78,9 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 
 			'<div>' +
-				'<button onclick=saveFile(); >Save File</button> &nbsp;' +
-				'<a href=../browser/ladybug-web-json-browser-r2.html >Browser</a>' +
+				'<button onclick=saveFile(); >Save file</button> &nbsp;' +
+				'<button onclick=openNewTab(); >Test in new tab</button>' +
+
 			'</div>' +
 
 			'<p>' +
@@ -84,21 +90,21 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 				'z <input type=number id=inpLightZ value=0 onchange = setParameters(); >' +
 			'</p>' +
 
-			'<p>Model Scale <input type=number id=inpScale value=1 onchange = setParameters(); ></p>' +
+			'<p>Model Scale <input type=number id=inpScale value=1 step=0.001 onchange = setParameters(); ></p>' +
 			'<p>' +
-				'Model Rotation<br>' +
+				'Model rotation<br>' +
 				'x <input type=number id=inpRotX value=0 onchange = setParameters(); > ' +
 				'y <input type=number id=inpRotY value=0 onchange = setParameters(); > ' +
 				'z <input type=number id=inpRotZ value=0 onchange = setParameters(); >' +
 			'</p>' +
 			'<p>' +
-				'Model Position<br>' +
+				'Model position<br>' +
 				'x <input type=number id=inpPosX value=0 onchange = setParameters(); > ' +
 				'y <input type=number id=inpPosY value=0 onchange = setParameters(); > ' +
 				'z <input type=number id=inpPosZ value=0 onchange = setParameters(); >' +
 			'</p>' +
 			'<p>' + 
-				'Camera Position<br>' +
+				'Camera position<br>' +
 				'x <input type=number id=inpCamX value=0 onchange = setParameters(); > ' +
 				'y <input type=number id=inpCamY value=0 onchange = setParameters(); > ' +
 				'z <input type=number id=inpCamZ value=0 onchange = setParameters(); >' +
@@ -111,9 +117,12 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 			'</p>' +
 
 			'<p><input type=checkbox onchange=ifrContentWindow.mesh.material.wireframe=!ifrContentWindow.mesh.material.wireframe; > Wireframe</p>' +
-//			'<p><input type=checkbox id=chkGround onchange=toggleGround(); checked > Toggle Ground Plane</p>' +
-			'<p><button onclick=allPhong(); >All Phong Material</button></p>' +
+			'<p>' +
+				'<button onclick=allPhong(); >All phong material</button> ' +
+				'<button onclick=allNormal(); >All normal material</button>' +
+			'</p>' +
 
+			'<p><button onclick=zoomBoundary(); >Zoom boundary</button></p>' +
 			'<div id=info ></div>' +
 			'<div id=links ></div>' +
 
@@ -138,9 +147,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 	function onHashChange(){
 
-		url = location.hash.length ? location.hash : '';
-
-		taURL.value = url.slice( 1 );
+		url = location.hash.length ? location.hash.slice( 1 ) : '';
 
 		setContents( url );
 
@@ -152,27 +159,24 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		url = event.dataTransfer.getData( 'URL' );
 
-		taURL.value = url;
-
-		setContents( '#' + url );
+		setContents( url );
 
 	}
 
+	function setContents( url ) {
 
-	function setContents( hash ) {
-
-		contents.innerHTML = '<iframe id=ifr src=' + core + hash + ' scrolling="no" ></iframe>';
+		taURL.value = url;
+		contents.innerHTML = '<iframe id=ifr src=' + core + '#' + url + ' scrolling="no" ></iframe>';
 
 	}
 
 	function setParameters() {
 
-
 		ifrContentWindow.coreLight.position.x = inpLightX.valueAsNumber ;
 		ifrContentWindow.coreLight.position.y = inpLightY.valueAsNumber;
 		ifrContentWindow.coreLight.position.z = inpLightZ.valueAsNumber;
 
-		ifrContentWindowObject.scale.x = ifrContentWindowObject.scale.y = ifrContentWindowObject.scale.z = inpScale.valueAsNumber.toFixed( 3 );
+		ifrContentWindowObject.scale.x = ifrContentWindowObject.scale.y = ifrContentWindowObject.scale.z = inpScale.valueAsNumber.toFixed( 3 ) || 0.1;
 
 		ifrContentWindowObject.rotation.x = inpRotX.valueAsNumber * d2r;
 		ifrContentWindowObject.rotation.y = inpRotY.valueAsNumber * d2r;
@@ -199,38 +203,31 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 	function getCoreParameters() {
 
 		ifrContentWindow = ifr.contentWindow;
+		ifrContentWindowObject = ifrContentWindow.object;
 
-		if ( ifrContentWindow ) {
+		inpLightX.value = ifrContentWindow.coreLight.position.x;
+		inpLightY.value = ifrContentWindow.coreLight.position.y;
+		inpLightZ.value = ifrContentWindow.coreLight.position.z;
 
-			ifrContentWindowObject = ifrContentWindow.object;
+		inpScale.value = ifrContentWindowObject.scale.x;
 
-			taURL.value = ifrContentWindowObject.name;
+		inpRotX.value = ifrContentWindowObject.rotation.x * r2d;
+		inpRotY.value = ifrContentWindowObject.rotation.y * r2d;
+		inpRotZ.value = ifrContentWindowObject.rotation.z * r2d;
 
-			inpLightX.value = ifrContentWindow.coreLight.position.x;
-			inpLightY.value = ifrContentWindow.coreLight.position.y;
-			inpLightZ.value = ifrContentWindow.coreLight.position.z;
+		inpPosX.value = ifrContentWindowObject.position.x;
+		inpPosY.value = ifrContentWindowObject.position.y;
+		inpPosZ.value = ifrContentWindowObject.position.z;
 
-			inpScale.value = ifrContentWindowObject.scale.x;
+		inpCamX.value = ifrContentWindow.camera.position.x.toFixed();
+		inpCamY.value = ifrContentWindow.camera.position.y.toFixed();
+		inpCamZ.value = ifrContentWindow.camera.position.z.toFixed();
 
-			inpRotX.value = ifrContentWindowObject.rotation.x * r2d;
-			inpRotY.value = ifrContentWindowObject.rotation.y * r2d;
-			inpRotZ.value = ifrContentWindowObject.rotation.z * r2d;
+		inpTarX.value = ifrContentWindow.controls.target.x.toFixed();
+		inpTarY.value = ifrContentWindow.controls.target.y.toFixed();
+		inpTarZ.value = ifrContentWindow.controls.target.z.toFixed();
 
-			inpPosX.value = ifrContentWindowObject.position.x;
-			inpPosY.value = ifrContentWindowObject.position.y;
-			inpPosZ.value = ifrContentWindowObject.position.z;
-
-			inpCamX.value = ifrContentWindow.camera.position.x.toFixed();
-			inpCamY.value = ifrContentWindow.camera.position.y.toFixed();
-			inpCamZ.value = ifrContentWindow.camera.position.z.toFixed();
-
-			inpTarX.value = ifrContentWindow.controls.target.x.toFixed();
-			inpTarY.value = ifrContentWindow.controls.target.y.toFixed();
-			inpTarZ.value = ifrContentWindow.controls.target.z.toFixed();
-
-			setPermalinks();
-
-		}
+		setPermalinks();
 
 // console.log( '', ifrContentWindowObject );
 
@@ -257,7 +254,6 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 		txt += inpPosY.valueAsNumber != 0 ? '#py=' + inpPosY.valueAsNumber : '';
 		txt += inpPosZ.valueAsNumber != 0 ? '#pz=' + inpPosZ.valueAsNumber : '';
 
-
 		c = ifrContentWindow.camera.position;
 		t = ifrContentWindow.controls.target;
 
@@ -276,26 +272,62 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 	function allPhong() {
 
-		ifrContentWindow.scene.traverse( function ( child ) {
+		ifrContentWindowObject.traverse( function ( child ) {
 
 			if ( child instanceof ifrContentWindow.THREE.Mesh ) {
-console.log( '', child );
+
 				child.material = new ifrContentWindow.THREE.MeshPhongMaterial( { side: 2 } );
 				child.material.needsUpdate = true;
 
 			}
+
 		} );
 
+	}
+
+	function allNormal() {
+
+		ifrContentWindowObject.traverse( function ( child ) {
+
+			if ( child instanceof ifrContentWindow.THREE.Mesh ) {
+
+				child.material = new ifrContentWindow.THREE.MeshNormalMaterial( { side: 2 } );
+				child.material.needsUpdate = true;
+
+			}
+
+		} );
 
 	}
 
-// could be in core??
+	function zoomBoundary() {
 
-	function toggleGround() {
+			bbh = new ifrContentWindow.THREE.BoundingBoxHelper( ifrContentWindowObject );
+			bbh.update();
+//			bbh.geometry.computeBoundingSphere();
+//			radius = bbh.geometry.boundingSphere.radius;
 
-		ifrContentWindow.groundPlane.visible = !chkGround.checked === true ? false : true;
+			distance = bbh.position.distanceTo( bbh.scale );
+			size = ifrContentWindowObject.scale.y * 80 / distance;
+
+			ifrContentWindowObject.scale.multiplyScalar( size );
+
+			bbh = new ifrContentWindow.THREE.BoundingBoxHelper( ifrContentWindowObject );
+			bbh.update();
+			ifrContentWindow.scene.add( bbh );
+
+			inpScale.value = size.toFixed( 3 );
+
+			setPermalinks();
 
 	}
+
+	function openNewTab() {
+
+		window.open( core + '#' + taURL.value, '_blank' )
+
+	}
+
 
 	function saveFile() {
 
