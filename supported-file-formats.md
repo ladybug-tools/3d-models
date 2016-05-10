@@ -56,6 +56,8 @@ There are files that contain features that are no longer supported. These usuall
 MTL files add material properties to OBJ files - and therefore add an extra level of complexity to the loading process
 
 
+## Supported Elsewhere
+
 
 ### STL 
 
@@ -67,6 +69,30 @@ Unfortunately, we have not found any terrific AEC files.
 
 The current Three.js loader for FBX files seems to work quite well. There is a very large number of AEC FBX files on the web.
 Unfortunately the Three.js FBX reader reads only ASCII files and all the AEC FBX files are in binary format. 
+
+## Export tools
+
+
+### Rhino
+
+* http://www.food4rhino.com/project/iris?ufh
+
+http://discourse.mcneel.com/t/iris-webgl-export-plugin-for-rhino/18105/31
+
+http://datable.net/WebGL/h/js/data.json
+
+http://rhino.willemderks.com/mobius/js/data.json
+
+
+
+### Blender
+
+### MAX
+
+### Maya
+
+### Revit
+
 
  
 

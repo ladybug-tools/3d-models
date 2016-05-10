@@ -15,7 +15,8 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 <body>
 <script>
 
-//	var core = ( location.origin === 'file://' ) ? '../core/ladybug-web-json-core-r2.html' : 'http://ladybug-analysis-tools.github.io/3d-models/viewers/json/core/';
+//	var core = ( location.origin === 'file://' ) ? 
+//		'../core/ladybug-web-json-core-r2.html' : 'http://ladybug-analysis-tools.github.io/3d-models/viewers/json/core/';
 	var core = '../core/ladybug-web-json-core-r2.html';
 
 	var pi = Math.PI;
@@ -67,7 +68,9 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 			'</h2>' +
 			'<p id=coreMessage style=color:crimson; onchange=console.log("msg",message); ></p>' +
 
-			'<div>URL:<br><textarea id=taURL cols=35 rows=6 placeholder="Drag and drop a URL here\nor\nsee read me for more tricks..."></textarea></div>' +
+			'<div><b>URL</b><br>' +
+				'<small>Drag and drop file URL here</small>' +
+				'<textarea id=taURL cols=35 rows=6 placeholder="Drag and drop a URL here\nor\nsee read me for more tricks..."></textarea></div>' +
 
 
 			'<div>' +
@@ -150,14 +153,14 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 	function setParameters() {
 
-		ico.scale.x = ico.scale.y = ico.scale.z = inpScale.valueAsNumber.toFixed( 3 );
+		ifrContentWindowObject.scale.x = ifrContentWindowObject.scale.y = ifrContentWindowObject.scale.z = inpScale.valueAsNumber.toFixed( 3 );
 
-		ico.rotation.x = inpRotX.valueAsNumber * d2r;
-		ico.rotation.y = inpRotY.valueAsNumber * d2r;
-		ico.rotation.z = inpRotZ.valueAsNumber * d2r;
-		ico.position.x = inpPosX.valueAsNumber;
-		ico.position.y = inpPosY.valueAsNumber;
-		ico.position.z = inpPosZ.valueAsNumber;
+		ifrContentWindowObject.rotation.x = inpRotX.valueAsNumber * d2r;
+		ifrContentWindowObject.rotation.y = inpRotY.valueAsNumber * d2r;
+		ifrContentWindowObject.rotation.z = inpRotZ.valueAsNumber * d2r;
+		ifrContentWindowObject.position.x = inpPosX.valueAsNumber;
+		ifrContentWindowObject.position.y = inpPosY.valueAsNumber;
+		ifrContentWindowObject.position.z = inpPosZ.valueAsNumber;
 
 		txt = inpScale.valueAsNumber !== 1 ? '#sx=' + inpScale.valueAsNumber : '';
 		txt += inpScale.valueAsNumber !== 1 ? '#sy=' + inpScale.valueAsNumber : '';
@@ -171,9 +174,8 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 		txt += inpPosZ.valueAsNumber != 0 ? '#pz=' + inpPosZ.valueAsNumber : '';
 
 
-
-		var c = ic.camera.position;
-		var t = ic.controls.target;
+		var c = ifrContentWindow.camera.position;
+		var t = ifrContentWindow.controls.target;
 
 		outCamPos.value = c.x.toFixed() + ', ' + c.y.toFixed() + ', ' + c.z.toFixed();
 		outCamTar.value = t.x.toFixed() + ', ' + t.y.toFixed() + ', ' + t.z.toFixed();
@@ -186,40 +188,40 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 		txt += t.y.toFixed() != 0 ? '#ty=' + t.y.toFixed() : '';
 		txt += t.z.toFixed() != 0 ? '#tz=' + t.z.toFixed() : '';
 
-		taURL.value =  ico.name + txt;
+		taURL.value =  ifrContentWindowObject.name + txt;
 
-//console.log( '', ico );
+//console.log( 'ifrContentWindowObject', ifrContentWindowObject );
 
 	}
 
 	function getCoreParameters() {
 
-		ic = ifr.contentWindow;
+		ifrContentWindow = ifr.contentWindow;
 
-		if ( ic ) {
+		if ( ifrContentWindow ) {
 
-			ico = ic.object;
+			ifrContentWindowObject = ifrContentWindow.object;
 
-			taURL.value = ico.name;
+			taURL.value = ifrContentWindowObject.name;
 
-			inpScale.value = ico.scale.x;
-			inpRotX.value = ico.rotation.x * r2d;
-			inpRotY.value = ico.rotation.y * r2d;
-			inpRotZ.value = ico.rotation.z * r2d;
-			inpPosX.value = ico.position.x;
-			inpPosY.value = ico.position.y;
-			inpPosZ.value = ico.position.z;
+			inpScale.value = ifrContentWindowObject.scale.x;
+			inpRotX.value = ifrContentWindowObject.rotation.x * r2d;
+			inpRotY.value = ifrContentWindowObject.rotation.y * r2d;
+			inpRotZ.value = ifrContentWindowObject.rotation.z * r2d;
+			inpPosX.value = ifrContentWindowObject.position.x;
+			inpPosY.value = ifrContentWindowObject.position.y;
+			inpPosZ.value = ifrContentWindowObject.position.z;
 
 		}
 
-// console.log( '', ico );
+// console.log( '', ifrContentWindowObject );
 
 	}
 
 
 	function allPhong() {
 
-		ic.scene.traverse( function ( child ) {
+		ifrContentWindow.scene.traverse( function ( child ) {
 
 			if ( child instanceof THREE.Mesh ) {
 
@@ -235,7 +237,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 	function toggleGround() {
 
-		ic.groundPlane.visible = !chkGround.checked === true ? false : true;
+		ifrContentWindow.groundPlane.visible = !chkGround.checked === true ? false : true;
 
 	}
 
@@ -243,7 +245,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		var blob, a;
 
-		blob = new Blob( [ JSON.stringify( ic.object.toJSON() ) ] );
+		blob = new Blob( [ JSON.stringify( ifrContentWindow.object.toJSON() ) ] );
 
 		a = document.body.appendChild( document.createElement( 'a' ) );
 		a.href = window.URL.createObjectURL( blob );

@@ -1,15 +1,15 @@
 ﻿
-	if ( location.protocol === 'http' || location.origin === 'https' ) {
+//	if ( location.protocol === 'http' || location.origin === 'https' ) {
 
 		var coreJSON = 'https://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html';
 		var coreOBJ = 'https://ladybug-analysis-tools.github.io/3d-models/code/obj/core/ladybug-web-obj-core-r3.html';
 
-	} else {
+//	} else {
 
-		var coreJSON = '../json/core/ladybug-web-json-core-r3.html';
-		var coreOBJ = '../obj/core/ladybug-web-obj-core-r3.html';
+//		var coreJSON = '../json/core/ladybug-web-json-core-r3.html';
+//		var coreOBJ = '../obj/core/ladybug-web-obj-core-r3.html';
 
-	}
+//	}
 
 	var defaultFile = 'readme.md';
 
@@ -58,7 +58,7 @@
 
 	function hashChange() {
 
-//		var styleIframe, styleMarkdown, hashes, fileName, extension;
+		var styleIframe, styleMarkdown, hashes, fileName, extension;
 
 		styleIframe = 'left: 0; overflow: hidden; position: absolute; top: 0; width: 100%; ';
 		styleMarkdown = 'left: 350px; overflow: auto; position: absolute; top: 0; width: ' + ( window.innerWidth - 370 ) + 'px; ';

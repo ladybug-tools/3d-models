@@ -1,11 +1,65 @@
 <!doctype html>
-<html lang = en >
+<html lang=en >
 <head>
-<title></title>
-<meta charset = utf-8 >
-<meta name = viewport content = 'width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0' >
+<meta charset=utf-8 >
+<title>Open Index or Markdown</title>
+<meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
+<meta name=description content='
+
+Top folder file wrangler
+Opens index file or Markdown reader template file
+
+' >
+<meta name=keywords content='AJAX,JavaScript,GitHub,FOSS' >
+<meta name=date content='2016-05-01' >
 </head>
 <body>
-<script src = https://ladybug-analysis-tools.github.io/3d-models/code/gallery/gallery.js ></script>
+<script src=http://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js ></script>
+<script>
+
+// original: http://jaanga.github.io/cookbook-html/templates/open-index-or-markdown/index.html
+
+	defaultFile = './ladybug-web-json-opener-r3.html';
+
+	init();
+
+	function init() {
+
+		if ( location.hash ) {
+
+			var css, fileName, contents, converter;
+
+			fileName = location.hash.slice( 1 );
+			document.title = fileName.split( '/' ).pop() + ' ~ ' + document.title;
+
+			css = document.head.appendChild( document.createElement( 'style' ) );
+			css.innerHTML =
+
+				'body { font: 12pt monospace; left: 0; margin: 0 auto; max-width: 800px; right: 0;  }' +
+				'button, input[type=button] { background-color: #eee; border: 2px #eee solid; color: #888; }' +
+				'h1 a, h2 a { color: crimson; text-decoration: none; }' +
+				'a { color: mediumblue; }' +
+
+			'';
+
+			contents = document.body.appendChild( document.createElement( 'div' ) );
+			contents.id = 'contents';
+
+			converter = new showdown.Converter( { strikethrough: true, literalMidWordUnderscores: true, simplifiedAutoLink: true, tables: true });
+
+			xhr = new XMLHttpRequest();
+			xhr.open( 'get', fileName, true );
+			xhr.onload = function() { contents.innerHTML = converter.makeHtml( xhr.responseText ); };
+			xhr.send( null );
+
+		} else {
+
+			window.location.href = defaultFile + location.hash;
+
+		}
+
+	}
+
+</script>
 </body>
 </html>

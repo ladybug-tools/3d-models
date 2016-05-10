@@ -25,6 +25,7 @@
 //	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/models/json/teapot-claraio.json';
 //	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/cubecolors/cubecolors.js'
 	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/walt/WaltHead_bin.js';
+	var fullFilePathDefault = 'data.json';
 
 	var object, groundPlane, message;
 
@@ -67,6 +68,7 @@
 		document.body.appendChild( stats.domElement );
 
 		window.addEventListener( 'resize', onWindowResize, false );
+		document.body.addEventListener("mouseup", function() { if ( parent.getCoreParameters ) { parent.getCoreParameters(); } }, false);
 
 		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true }  );
 //		renderer.setClearColor( 0xf0f0f0 );
