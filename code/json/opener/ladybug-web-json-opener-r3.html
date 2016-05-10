@@ -278,10 +278,11 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 		ifrContentWindow.scene.traverse( function ( child ) {
 
-			if ( child instanceof THREE.Mesh ) {
-
-				child.material = new THREE.MeshPhongMaterial();
+			if ( child instanceof ifrContentWindow.THREE.Mesh ) {
+console.log( '', child );
+				child.material = new ifrContentWindow.THREE.MeshPhongMaterial( { side: 2 } );
 				child.material.needsUpdate = true;
+
 			}
 		} );
 

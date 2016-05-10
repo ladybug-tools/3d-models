@@ -6,10 +6,10 @@
 
 
 A very nice creature  
-[thing]( #http://datable.net/WebGL/h/js/data.jsoncx=-212#cy=163#cz=221#tx=17#ty=73#tz=-35 )  
+[thing]( #https://datable.net/WebGL/h/js/data.jsoncx=-212#cy=163#cz=221#tx=17#ty=73#tz=-35 )  
 
 A fancy car  
-[Mobius]( #http://rhino.willemderks.com/mobius/js/data.json )  
+[Mobius]( #https://rhino.willemderks.com/mobius/js/data.json )  
 
 A great veggie  
 [pumpkin]( #https://jaanga.github.io/3d-models/js/ado/pumpkin.js#sx=11#sy=11#sz=11#cx=5#cy=73#cz=59#tx=-8#ty=7#tz=1 )  
