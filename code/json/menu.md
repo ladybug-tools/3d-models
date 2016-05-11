@@ -4,9 +4,10 @@
 [JSON Code]( index.html )
 ===
 
+### [JSON Core]( core/index.html )
 
 ### [JSON Browser]( browser/index.html )
 
 ### [JSON Opener]( opener/index.html )
 
-### [JSON Core]( core/index.html#readme.md )
+

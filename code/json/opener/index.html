@@ -1,17 +1,17 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>Open Index or Markdown</title>
+<title>3D Models JSON Opener R3</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
 <meta name=description content='
 
 Top folder file wrangler
-Opens index file or Markdown reader template file
+Opens index file plus lication.hash or Markdown reader template file
 
 ' >
 <meta name=keywords content='AJAX,JavaScript,GitHub,FOSS' >
-<meta name=date content='2016-05-01' >
+<meta name=date content='2016-05-10' >
 </head>
 <body>
 <script src=http://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js ></script>
@@ -25,12 +25,14 @@ Opens index file or Markdown reader template file
 
 	function init() {
 
-		if ( location.hash ) {
+console.log( 'location.hash', location.hash  );
 
-			var css, fileName, contents, converter;
+		if ( location.hash && location.hash.indexOf( '.md' ) > -1 ) {
 
-			fileName = location.hash.slice( 1 );
-			document.title = fileName.split( '/' ).pop() + ' ~ ' + document.title;
+			var css, url, contents, converter;
+
+			url = location.hash.slice( 1 );
+			document.title = url.split( '/' ).pop() + ' ~ ' + document.title;
 
 			css = document.head.appendChild( document.createElement( 'style' ) );
 			css.innerHTML =
@@ -48,7 +50,7 @@ Opens index file or Markdown reader template file
 			converter = new showdown.Converter( { strikethrough: true, literalMidWordUnderscores: true, simplifiedAutoLink: true, tables: true });
 
 			xhr = new XMLHttpRequest();
-			xhr.open( 'get', fileName, true );
+			xhr.open( 'get', url, true );
 			xhr.onload = function() { contents.innerHTML = converter.makeHtml( xhr.responseText ); };
 			xhr.send( null );
 

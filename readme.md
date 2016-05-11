@@ -33,11 +33,16 @@ Each of these issues has been used to improve the process.
 The more models we can access, the more issues we will find and the better we will get
 
 
+
 ## Change Log
+
+### 2016-05-10
+
+* Ditto 2016-04-25 ;-)
 
 ### 2016-04-25
 
-* Too many changes to record in the past few day 
+* Too many changes to record in the past few days
 * Looks like it's all beginning to settle down
  
 

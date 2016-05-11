@@ -1,9 +1,9 @@
 ﻿
-//	var coreJSON = 'https://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html';
-//	var coreOBJ = 'https://ladybug-analysis-tools.github.io/3d-models/code/obj/core/ladybug-web-obj-core-r3.html';
+	var coreJSON = 'https://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r4.html';
+	var coreOBJ = 'https://ladybug-analysis-tools.github.io/3d-models/code/obj/core/ladybug-web-obj-core-r3.html';
 
-	var coreJSON = '../json/core/ladybug-web-json-core-r4.html';
-	var coreOBJ = '../obj/core/ladybug-web-obj-core-r3.html';
+//	var coreJSON = '../json/core/index.html';
+//	var coreOBJ = '../obj/core/ladybug-web-obj-core-r3.html';
 
 	var defaultFile = 'readme.md';
 
@@ -19,14 +19,14 @@
 			'body { font: 12pt monospace; margin: 0; padding: 0; }' +
 			'a { color: crimson; text-decoration: none; }' +
 			'button, input[type=button] { background-color: #eee; border: 2px #eee solid; color: #888; }' +
-			'iframe { border: 0px solid; height: 100%; width: 100%; }' +
+			'iframe { border: 1px solid; height: 100%; width: 100%; }' +
 
 			'#bars { color: crimson; cursor: pointer; font-size: 24pt; text-decoration: none; }' +
 			'#hamburger { left: 325px; position: absolute; top: 20px; transition: left 1s; }' +
 			'#menu { background-color: #eee; border: 1px #ccc solid; left: -325px; max-height: ' + ( window.innerHeight - 10 ) + 'px; ' +
 				'opacity: 0.85; overflow: auto; padding: 0 10px; position: absolute; top: -20px; transition: left 1s; width: 300px; }' +
-			'#contents { height: 100%; left: 380px; overflow: auto; position: absolute; top: 0; width: ' + ( window.innerWidth - 370 ) + 'px; }' +
-
+//			'#contents { height: 100%; left: 380px; overflow: auto; position: absolute; top: 0; width: ' + ( window.innerWidth - 450 ) + 'px; }' +
+			'#contents { margin-left: 380px; }' +
 		'';
 
 		contents = document.body.appendChild( document.createElement( 'div' ) );
@@ -65,7 +65,7 @@
 
 		var styleIframe, styleMarkdown, hashes, fileName, extension;
 
-		styleIframe = 'left: 0; overflow: hidden; top: 0; width: 100%; ';
+		styleIframe = 'height: 100%; left: 0; margin: 0; position: absolute; overflow: hidden; top: 0; width: 100%; ';
 
 		hashes = location.hash ? location.hash.slice( 1 ).split( '#' ) : [ defaultFile ];
 
@@ -114,4 +114,3 @@
 		xhr.send( null );
 
 	}
-

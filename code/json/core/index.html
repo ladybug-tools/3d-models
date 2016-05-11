@@ -19,13 +19,13 @@ Opens index file or Markdown reader template file
 
 // original: http://jaanga.github.io/cookbook-html/templates/open-index-or-markdown/index.html
 
-	defaultFile = './ladybug-web-json-core-r3.html';
+	defaultFile = './ladybug-web-json-core-r4.html';
 
 	init();
 
 	function init() {
 
-		if ( location.hash ) {
+		if ( location.hash && location.hash.indexOf( '.md' ) > -1 ) {
 
 			var css, fileName, contents, converter;
 
