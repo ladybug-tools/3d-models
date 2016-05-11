@@ -58,7 +58,7 @@
 
 		};
 
-		reader.src = 'http://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js';
+		reader.src = 'https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js';
 
 	}
 
@@ -66,7 +66,7 @@
 
 		var styleIframe, styleMarkdown, hashes, fileName, extension;
 
-		styleIframe = 'height: 100%; left: 0; margin: 0; position: absolute; overflow: hidden; top: 0; width: 100%; ';
+		styleIframe = 'height: 100%; left: 0; margin: 0; position: absolute; overflow: hidden; top: 0; max-width: ' + window.innerWidth + 'px; width: ' + window.innerWidth + 'px; ';
 
 		hashes = location.hash ? location.hash.slice( 1 ).split( '#' ) : [ defaultFile ];
 
