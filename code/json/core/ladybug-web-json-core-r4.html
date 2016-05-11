@@ -27,8 +27,11 @@
 //	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/cubecolors/cubecolors.js'
 //	var fullFilePathDefault = 'http://mrdoob.github.io/three.js/examples/obj/walt/WaltHead_bin.js';
 	var fullFilePathDefault = 'mobius.json';
+//	var fullFilePathDefault = 'data.json';
 
 	var fullFilePath, fileName, object;
+
+	var metadata, fileSize;
 
 	var stats, renderer, scene, camera, controls, coreLight;
 
@@ -155,6 +158,8 @@
 
 		}
 
+		metadata = data.metadata;
+
 		switch ( data.metadata.type.toLowerCase() ) {
 
 			case 'binary':
@@ -196,7 +201,7 @@
 
 		}
 
-		setCoreMessage( fileName + ': ' + data.metadata.type.toLowerCase() );
+//		setCoreMessage( fileName + ': ' + data.metadata.type.toLowerCase() );
 
 	}
 
@@ -280,7 +285,7 @@
 
 					if ( child instanceof THREE.Mesh ) {
 
-						child.material = new THREE.MeshPhongMaterial( { side: 2 });
+						child.material.side = 2;
 
 					}
 
@@ -288,11 +293,16 @@
 
 				}
 
-				addObject( object )
+				addObject( object );
+
+scene = obj;
+
+scene.add( object );
 
 			} else {
 
-				addObject( obj )
+				addObject( obj );
+
 
 			}
 
@@ -314,7 +324,11 @@
 
 			}
 
+			fileSize = xhr.total;
+
 		}
+
+
 
 		function onError ( xhr ) { 
 
@@ -329,8 +343,12 @@
 
 // for the parent
 
+console.log( '', obj );
+
 		object = obj;
 		object.name = fullFilePath;
+		object.userData.metadata = metadata
+		object.userData.fileSize = fileSize;
 
 		scene.add( object );
 
@@ -396,6 +414,8 @@
 // send data via 'object'...
 
 			parent.coreMessage.innerHTML = message;
+
+console.log( 'metadata', metadata, 'fileSize', fileSize );
 
 		} else {
 
