@@ -9,4 +9,4 @@
 
 ### [JSON Opener]( opener/index.html )
 
-### [JSON Core]( core/index.html )
+### [JSON Core]( core/index.html#readme.md )
