@@ -1,4 +1,4 @@
-﻿[Ladybug Analysis Tools]( http://ladybug-analysis-tools.github.io/ ) »
+﻿[Ladybug Analysis Tools]( https://ladybug-analysis-tools.github.io/ ) »
 
 [Ladybug Web 3D Models]( ./index.html#index.md )
 ===
@@ -66,5 +66,5 @@ All the other bits and pieces
 ***
 
 <center title="dingbat" >
-# <a href=javascript:menu.scrollTop=0; style=text-decoration:none; ><img src="http://ladybug-analysis-tools.github.io/images/ladybug-logo.png" width=32 ></a>
+# <a href=javascript:menu.scrollTop=0; style=text-decoration:none; ><img src="https://ladybug-analysis-tools.github.io/images/ladybug-logo.png" width=32 ></a>
 </center>
