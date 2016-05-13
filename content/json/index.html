@@ -2,14 +2,14 @@
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>Ladybug Web 3D Models JSOn Files</title>
+<title>Ladybug Web 3D Models JSON Files</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
 <meta name=description content='Browse and view files on FGx written in Markdown format.' >
 <meta name=keywords content='FCx, GitHub API,JavaScript,GitHub,FOSS,3D,STEM' >
 <meta name=date content='2016-04-22' >
 </head>
 <body>
-<script src=http://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js ></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js ></script>
 <script>
 
 //file:///C:/Users/Theo/Dropbox/Public/git-repos/jaanga.github.io/cookbook-html/templates/menu-contents-browser/menu-github-api-readme-jaanga/menu-readme-jaanga-r2.html
@@ -120,9 +120,11 @@
 
 	function getMarkdown( fileName, target ) {
 
-		var converter = new showdown.Converter( { strikethrough: true, literalMidWordUnderscores: true, simplifiedAutoLink: true, tables: true });
+		var converter, xhr;
 
-		var xhr = new XMLHttpRequest();
+		converter = new showdown.Converter( { strikethrough: true, literalMidWordUnderscores: true, simplifiedAutoLink: true, tables: true });
+
+		xhr = new XMLHttpRequest();
 		xhr.open( 'GET', fileName, true );
 		xhr.onload = function() { target.innerHTML = converter.makeHtml( xhr.responseText ); };
 		xhr.send( null );
