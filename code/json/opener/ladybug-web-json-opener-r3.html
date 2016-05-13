@@ -16,7 +16,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 //	var core = ( location.protocol === 'http:' || location.protocol === 'https:' ) ? 
 //		'../core/ladybug-web-json-core-r3.html' : 'http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html';
-	var core = '../core/ladybug-web-json-core-r4.html';
+	var core = '../core/index.html';
 //	var core = 'http://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html';
 
 	var pi = Math.PI;
@@ -85,35 +85,35 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 			'<p>' +
 				'Directional Light<br>' +
-				'x <input type=number id=inpLightX value=0 onchange = setParameters(); > ' +
-				'y <input type=number id=inpLightY value=0 onchange = setParameters(); > ' +
-				'z <input type=number id=inpLightZ value=0 onchange = setParameters(); >' +
+				'x <input type=number id=inpLightX value=0 onchange = setPermalinks(); > ' +
+				'y <input type=number id=inpLightY value=0 onchange = setPermalinks(); > ' +
+				'z <input type=number id=inpLightZ value=0 onchange = setPermalinks(); >' +
 			'</p>' +
 
-			'<p>Model Scale <input type=number id=inpScale value=1 step=0.001 onchange = setParameters(); ></p>' +
+			'<p>Model Scale <input type=number id=inpScale value=1 step=0.001 onchange = setPermalinks(); ></p>' +
 			'<p>' +
 				'Model rotation<br>' +
-				'x <input type=number id=inpRotX value=0 onchange = setParameters(); > ' +
-				'y <input type=number id=inpRotY value=0 onchange = setParameters(); > ' +
-				'z <input type=number id=inpRotZ value=0 onchange = setParameters(); >' +
+				'x <input type=number id=inpRotX value=0 onchange = setPermalinks(); > ' +
+				'y <input type=number id=inpRotY value=0 onchange = setPermalinks(); > ' +
+				'z <input type=number id=inpRotZ value=0 onchange = setPermalinks(); >' +
 			'</p>' +
 			'<p>' +
 				'Model position<br>' +
-				'x <input type=number id=inpPosX value=0 onchange = setParameters(); > ' +
-				'y <input type=number id=inpPosY value=0 onchange = setParameters(); > ' +
-				'z <input type=number id=inpPosZ value=0 onchange = setParameters(); >' +
+				'x <input type=number id=inpPosX value=0 onchange = setPermalinks(); > ' +
+				'y <input type=number id=inpPosY value=0 onchange = setPermalinks(); > ' +
+				'z <input type=number id=inpPosZ value=0 onchange = setPermalinks(); >' +
 			'</p>' +
 			'<p>' + 
 				'Camera position<br>' +
-				'x <input type=number id=inpCamX value=0 onchange = setParameters(); > ' +
-				'y <input type=number id=inpCamY value=0 onchange = setParameters(); > ' +
-				'z <input type=number id=inpCamZ value=0 onchange = setParameters(); >' +
+				'x <input type=number id=inpCamX value=0 onchange = setPermalinks(); > ' +
+				'y <input type=number id=inpCamY value=0 onchange = setPermalinks(); > ' +
+				'z <input type=number id=inpCamZ value=0 onchange = setPermalinks(); >' +
 			'</p>' +
 			'<p>' + 
 				'Camera Target<br>' +
-				'x <input type=number id=inpTarX value=0 onchange = setParameters(); > ' +
-				'y <input type=number id=inpTarY value=0 onchange = setParameters(); > ' +
-				'z <input type=number id=inpTarZ value=0 onchange = setParameters(); >' +
+				'x <input type=number id=inpTarX value=0 onchange = setPermalinks(); > ' +
+				'y <input type=number id=inpTarY value=0 onchange = setPermalinks(); > ' +
+				'z <input type=number id=inpTarZ value=0 onchange = setPermalinks(); >' +
 			'</p>' +
 
 			'<p><input type=checkbox onchange=ifrContentWindow.mesh.material.wireframe=!ifrContentWindow.mesh.material.wireframe; > Wireframe</p>' +
@@ -170,44 +170,17 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 	}
 
-	function setParameters() {
-
-		ifrContentWindow.coreLight.position.x = inpLightX.valueAsNumber ;
-		ifrContentWindow.coreLight.position.y = inpLightY.valueAsNumber;
-		ifrContentWindow.coreLight.position.z = inpLightZ.valueAsNumber;
-
-		ifrContentWindowObject.scale.x = ifrContentWindowObject.scale.y = ifrContentWindowObject.scale.z = inpScale.valueAsNumber.toFixed( 3 ) || 0.1;
-
-		ifrContentWindowObject.rotation.x = inpRotX.valueAsNumber * d2r;
-		ifrContentWindowObject.rotation.y = inpRotY.valueAsNumber * d2r;
-		ifrContentWindowObject.rotation.z = inpRotZ.valueAsNumber * d2r;
-
-		ifrContentWindowObject.position.x = inpPosX.valueAsNumber;
-		ifrContentWindowObject.position.y = inpPosY.valueAsNumber;
-		ifrContentWindowObject.position.z = inpPosZ.valueAsNumber;
-
-		ifrContentWindow.camera.position.x = inpCamX.valueAsNumber ;
-		ifrContentWindow.camera.position.y = inpCamY.valueAsNumber;
-		ifrContentWindow.camera.position.z = inpCamZ.valueAsNumber;
-
-		ifrContentWindow.controls.x = inpTarX.valueAsNumber ;
-		ifrContentWindow.controls.y = inpTarY.valueAsNumber;
-		ifrContentWindow.controls.target.z = inpTarZ.valueAsNumber;
-
-//console.log( 'ifrContentWindowObject', ifrContentWindowObject );
-
-		setPermalinks();
-
-	}
+// called by core
+// could this be in core?
 
 	function getCoreParameters() {
 
 		ifrContentWindow = ifr.contentWindow;
 		ifrContentWindowObject = ifrContentWindow.object;
 
-		inpLightX.value = ifrContentWindow.coreLight.position.x;
-		inpLightY.value = ifrContentWindow.coreLight.position.y;
-		inpLightZ.value = ifrContentWindow.coreLight.position.z;
+		inpLightX.value = ifrContentWindow.directionalLight.position.x;
+		inpLightY.value = ifrContentWindow.directionalLight.position.y;
+		inpLightZ.value = ifrContentWindow.directionalLight.position.z;
 
 		inpScale.value = ifrContentWindowObject.scale.x;
 
@@ -236,11 +209,10 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 	function setPermalinks() {
 
 		var txt = '';
-		var c, t;
 
-		txt += inpLightX.valueAsNumber != -100 ? '#px=' + inpLightX.valueAsNumber : '';
-		txt += inpLightY.valueAsNumber != 100 ? '#py=' + inpLightY.valueAsNumber : '';
-		txt += inpLightZ.valueAsNumber != 100 ? '#pz=' + inpLightZ.valueAsNumber : '';
+		txt += inpLightX.valueAsNumber != -100 ? '#dx=' + inpLightX.valueAsNumber : '';
+		txt += inpLightY.valueAsNumber != 100 ? '#dy=' + inpLightY.valueAsNumber : '';
+		txt += inpLightZ.valueAsNumber != 100 ? '#dz=' + inpLightZ.valueAsNumber : '';
 
 		txt += inpScale.valueAsNumber !== 1 ? '#sx=' + inpScale.valueAsNumber : '';
 		txt += inpScale.valueAsNumber !== 1 ? '#sy=' + inpScale.valueAsNumber : '';
@@ -254,18 +226,16 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 		txt += inpPosY.valueAsNumber != 0 ? '#py=' + inpPosY.valueAsNumber : '';
 		txt += inpPosZ.valueAsNumber != 0 ? '#pz=' + inpPosZ.valueAsNumber : '';
 
-		c = ifrContentWindow.camera.position;
-		t = ifrContentWindow.controls.target;
+		txt += inpCamX.valueAsNumber != 100 ? '#cx=' + inpCamX.valueAsNumber : '';
+		txt += inpCamY.valueAsNumber != 100 ? '#cy=' + inpCamY.valueAsNumber : '';
+		txt += inpCamZ.valueAsNumber != 100 ? '#cz=' + inpCamZ.valueAsNumber : '';
 
-		txt += c.x.toFixed() != 100 ? '#cx=' + c.x.toFixed() : '';
-		txt += c.y.toFixed() != 100 ? '#cy=' + c.y.toFixed() : '';
-		txt += c.z.toFixed() != 100 ? '#cz=' + c.z.toFixed() : '';
+		txt += inpTarX.valueAsNumber != 0 ? '#tx=' + inpTarX.valueAsNumber : '';
+		txt += inpTarY.valueAsNumber != 0 ? '#ty=' + inpTarY.valueAsNumber : '';
+		txt += inpTarZ.valueAsNumber != 0 ? '#tz=' + inpTarZ.valueAsNumber : '';
 
-		txt += t.x.toFixed() != 0 ? '#tx=' + t.x.toFixed() : '';
-		txt += t.y.toFixed() != 0 ? '#ty=' + t.y.toFixed() : '';
-		txt += t.z.toFixed() != 0 ? '#tz=' + t.z.toFixed() : '';
-
-		taURL.value =  ifrContentWindowObject.name + txt;
+		taURL.value = ifrContentWindowObject.name + txt;
+		ifrContentWindow.location.hash = txt;
 
 	}
 
