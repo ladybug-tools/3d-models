@@ -7,19 +7,18 @@
 
 3D models you can use for building and testing 3D apps
 
-### [OBJ Files]( ./content/obj/index.html )
-
-3D models hosted here
 
 ### [JSON Files]( ./content/json/index.html )
 
-3D models hosted here
+3D .JSON and .JS models hosted here
+
+### [OBJ Files]( ./content/obj/index.html )
+
+3D .OBJ and .MTL models hosted here
 
 ### [Galleries]( ./content/galleries/index.html )
 
-Collections of curated content from around the web
-
-
+Collections of curated content - links to 3D models from around the web
 
 ***
 

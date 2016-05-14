@@ -4,7 +4,7 @@
 <input type=button onclick=window.location.href='https://github.com/ladybug-analysis-tools/3d-models/tree/gh-pages/code/json/browser/'; 
 value='You are now in the home page view - Click this button to view the read me file and the source code' >
 
-[JSON Browser Read Me]( index.html )
+[Ladybug Web JSON Browser Read Me]( index.html )
 ===
 
  

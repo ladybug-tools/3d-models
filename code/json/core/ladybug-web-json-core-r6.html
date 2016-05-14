@@ -31,8 +31,8 @@
 //	var fullFilePathDefault = '#fn=../../../content/json/mobius.json';
 //	var fullFilePathDefault = '#fn=../../../content/json/data.json';
 
-	var fullFilePathDefault = '#fn=http://va3c.github.io/json-r2/MissSpacyEyes.json';
-
+//	var fullFilePathDefault = '#fn=http://va3c.github.io/json-r2/MissSpacyEyes.json';
+	var fullFilePathDefault = '#fn=https://tt-acm.github.io/Spectacles.RevitExporter/sampleModels/rst_basic_sample_project.rvt.js';
 //	var fullFilePathDefault = '#fn=https://ladybug-analysis-tools.github.io/3d-models/content/json/urban-model/urban-model-001.json' +
 //		'#la=37.796#lo=-122.398#cx=50#cy=70#cz=40#tx=-7#ty=6#tz=-15#hr=12#sx=0.1#sy=0.1#sz=0.1#px=10#pz=10#rx=90#ry=180#sl=1.5#gv=0#av=1';
 
@@ -337,12 +337,32 @@
 						child.castShadow = true;
 						child.receiveShadow = true;
 
-					}
+						object.add( child );
 
-					object.add( child );
+					}
 
 				}
 
+/*
+				result.traverse( function ( child ) {
+
+					if ( child instanceof THREE.Mesh ) {
+
+//						child.material = new THREE.MeshPhongMaterial();
+						child.material.side = 2;
+//						child.castShadow = true;
+//						child.receiveShadow = true;
+						child.material.needsUpdate = true;
+
+						helper = new THREE.EdgesHelper( child, 0x444444 );
+						scene.add( helper );
+
+						object.add( child );
+
+					}
+
+				} );
+*/
 				addObject( object );
 
 // for mobius.json
@@ -352,6 +372,7 @@
 
 			} else {
 
+/*
 			for ( var i = 0; i < result.children.length; i++ ) {
 
 				child = result.children[ i ];
@@ -361,6 +382,24 @@
 				scene.add( helper );
 
 			} 
+*/
+
+				result.traverse( function ( child ) {
+
+					if ( child instanceof THREE.Mesh ) {
+
+						child.material = new THREE.MeshPhongMaterial();
+						child.material.side = 2;
+						child.castShadow = true;
+						child.receiveShadow = true;
+						child.material.needsUpdate = true;
+
+						helper = new THREE.EdgesHelper( child, 0x444444 );
+						scene.add( helper );
+
+					}
+
+				} );
 
 				addObject( result );
 
@@ -427,7 +466,7 @@
 		hashes = location.hash.length ? location.hash.slice( 1 ) : fullFilePathDefault;
 		hashes = hashes.split( '#' );
 
-		for ( var i = 0; i < hashes.length; i++ ) {
+		for ( var i = 1; i < hashes.length; i++ ) {
 
 			hash = hashes[ i ].split( '=' );
 			parameter = hash[ 0 ];
