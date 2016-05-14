@@ -1,6 +1,6 @@
 ﻿
 	var coreJSON = 'https://ladybug-analysis-tools.github.io/3d-models/code/json/core/';
-	var coreOBJ = 'https://ladybug-analysis-tools.github.io/3d-models/code/obj/core/ladybug-web-obj-core-r3.html';
+	var coreOBJ = 'https://ladybug-analysis-tools.github.io/3d-models/code/obj/core/index.html';
 
 //	var coreJSON = '../json/core/index.html';
 //	var coreOBJ = '../obj/core/ladybug-web-obj-core-r3.html';
