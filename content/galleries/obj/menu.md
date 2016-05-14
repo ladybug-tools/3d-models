@@ -6,15 +6,15 @@
 
 
 A nice place to be  
-[campfire]( #https://rawgit.com/mrdoob/three.js/dev/examples/models/campfire/campfire.mtl#cx=7#cy=7#cz=7)  
+[campfire]( #https://rawgit.com/mrdoob/three.js/dev/examples/models/campfire/campfire.mtl#cx=7#cy=7#cz=7 )  
 
 
 A place not to be in front of  
-[cerberus]( #https://mrdoob.github.io/three.js/examples/models/obj/cerberus/Cerberus.obj#cx=1#cy=0#cz=-2 )  
+[cerberus]( #https://rawgit.com/mrdoob/three.js/dev/examples/models/obj/cerberus/Cerberus.obj#cx=1#cy=0#cz=-2 )  
 
 
 A place for climbing  
-[tree]( #https://mrdoob.github.io/three.js/examples/models/obj/tree.obj#cx=1#cy=0#cz=1 )  
+[tree]( #https://rawgit.com/mrdoob/three.js/dev/examples/models/obj/tree.obj#cx=1#cy=0#cz=1 )  
 
 
 A place to lean against  
