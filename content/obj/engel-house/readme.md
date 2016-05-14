@@ -8,7 +8,8 @@ Engel House Read Me
 ===
 
 
-<iframe src=http://ladybug-analysis-tools.github.io/3d-models/code/obj/core/ladybug-web-obj-core-r3.html#http://ladybug-analysis-tools.github.io/3d-models/content/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1 width=800 height=500 ></iframe>
+<iframe src=https://ladybug-analysis-tools.github.io/3d-models/code/obj/core/index.html#https://ladybug-analysis-tools.github.io/3d-models/content/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1 width=800 height=500 ></iframe>
+
 
 _Engel House - view from Maze Street_
 
@@ -16,13 +17,9 @@ _Engel House - view from Maze Street_
 File size: 2.4 MB
 
 
-View full screen using [Opener]( http://ladybug-analysis-tools.github.io/3d-models/code/obj/opener/ladybug-web-obj-opener-r2.html#http://ladybug-analysis-tools.github.io/3d-models/content/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1 )
+View full screen using [Opener]( https://ladybug-analysis-tools.github.io/3d-models/code/obj/opener/index.html#https://ladybug-analysis-tools.github.io/3d-models/content/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1 )
 
-View full screen using [Core]( http://ladybug-analysis-tools.github.io/3d-models/code/obj/core/ladybug-web-obj-core-r3.html#http://ladybug-analysis-tools.github.io/3d-models/content/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1 )
-
-
-GitHub folder [engel-house]( https://github.com/ladybug-analysis-tools/3d-models/tree/gh-pages/content/obj/engel-house ) 
-
+View full screen using [Core]( https://ladybug-analysis-tools.github.io/3d-models/code/obj/core/index.html#https://ladybug-analysis-tools.github.io/3d-models/content/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1 )
 
 
 ## About the Architecture

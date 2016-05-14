@@ -8,7 +8,7 @@ Seaside Villa Read Me
 ===
 
 
-<iframe src=http://ladybug-analysis-tools.github.io/3d-models/code/obj/core/ladybug-web-obj-core-r3.html#http://ladybug-analysis-tools.github.io/3d-models/content/obj/seaside-villa-obj/seaside-villa.mtl#sx=0.02#sy=0.02#sz=0.02#px=20#pz=17#cx=27#cy=11#cz=23#tx=-2#ty=4#tz=1 width=800 height=500 ></iframe>
+<iframe src=http://ladybug-analysis-tools.github.io/3d-models/code/obj/core/index.html#http://ladybug-analysis-tools.github.io/3d-models/content/obj/seaside-villa-obj/seaside-villa.mtl#sx=0.02#sy=0.02#sz=0.02#px=20#pz=17#cx=27#cy=11#cz=23#tx=-2#ty=4#tz=1 width=800 height=500 ></iframe>
 
 File size: 6 MB
 
