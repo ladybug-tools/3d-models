@@ -18,6 +18,13 @@ First attempt at building an OBJ file gallery
 The main event gallery R1
 3D models that can help build, edit and test your solar analysis scripts
 
+<!--
+### [TT-ACM Gallery]( ./tt-acm/index.html )
+
+### [Rhino Iris Gallery]( ./rhino-iris/index.html )
+
+-->
+
 ***
 
 ## Galleries elsewhere

@@ -37,6 +37,9 @@ The more models we can access, the more issues we will find and the better we wi
 
 ## Change Log
 
+### 2016-05-14
+
+* Continue updating to https
 
 ### 2016-05-14
 
