@@ -35,7 +35,7 @@ The content comes in two flavors:
 
 ### [JSON Files]( https://ladybug-analysis-tools.github.io/3d-models/content/json/index.html )
 
-Currently supplies three AEC models in Three.js JSON file format
+Currently supplies a small number AEC models in Three.js JSON file format
 
 ### [OBJ Files]( https://ladybug-analysis-tools.github.io/3d-models/content/obj/index.html )
 
