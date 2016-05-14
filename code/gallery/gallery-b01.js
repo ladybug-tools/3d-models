@@ -1,9 +1,9 @@
 ﻿
-//	var coreJSON = 'https://ladybug-analysis-tools.github.io/3d-models/code/json/core/ladybug-web-json-core-r3.html';
-//	var coreOBJ = 'https://ladybug-analysis-tools.github.io/3d-models/code/obj/core/ladybug-web-obj-core-r3.html';
+	var coreJSON = 'https://ladybug-analysis-tools.github.io/3d-models/code/json/core/index.html';
+	var coreOBJ = 'https://ladybug-analysis-tools.github.io/3d-models/code/obj/core/index.html';
 
-	var coreJSON = '../json/core/ladybug-web-json-core-r4.html';
-	var coreOBJ = '../obj/core/ladybug-web-obj-core-r3.html';
+//	var coreJSON = '../json/core/ladybug-web-json-core-r4.html';
+//	var coreOBJ = '../obj/core/ladybug-web-obj-core-r3.html';
 
 	var defaultFile = 'readme.md';
 
