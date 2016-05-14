@@ -30,24 +30,29 @@ Collections of curated content - links to 3D models from around the web
 
 Tools you can use to locate, edit and embed 3D Three.js JSON models in your apps
 
+<!--
 ### [JSON Browser ]( code/json/browser/index.html )
 
 ### [JSON Opener]( code/json/opener/index.html )
 
 ### [JSON Core]( code/json/core/index.html )
-
+-->
 
 ### [OBJ Code]( code/obj/index.html )
 
 Tools you can use to locate, edit and embed 3D OBJ and MTL models in your apps
 
+<!--
 ### [OBJ Browser ]( code/obj/browser/index.html )
 
 ### [OBJ Opener]( code/obj/opener/index.html )
 
 ### [OBJ Core]( code/obj/core/index.html )
 
+-->
+
 ### [Gallery]( code/gallery/index.html )
+
 The script to create menus that we use here
 
 ***
@@ -55,6 +60,7 @@ The script to create menus that we use here
 ## More
 
 ### [Supported File Formats]( #supported-file-formats.md )
+And how to prepare them
 
 ### [Concept / Manifesto ]( #concept.md )
 Wow, do we have a mission!

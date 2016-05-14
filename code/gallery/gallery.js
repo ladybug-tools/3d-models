@@ -28,6 +28,8 @@
 				'opacity: 0.85; overflow: auto; padding: 0 10px; position: absolute; top: -20px; transition: left 1s; width: 300px; }' +
 //			'#contents { height: 100%; left: 380px; overflow: auto; position: absolute; top: 0; width: ' + ( window.innerWidth - 450 ) + 'px; }' +
 			'#contents { margin-left: 380px; max-width: 800px; }' +
+			'h2, h3 { margin: 0px; }' +
+			'p { margin: 0 0 16px 0; }' +
 		'';
 
 		contents = document.body.appendChild( document.createElement( 'div' ) );

@@ -8,7 +8,7 @@ value='You are now in the home page view - Click this button to view the read me
 ===
 
 
-<iframe src=http://ladybug-analysis-tools.github.io/3d-models/code/obj/core/ladybug-web-obj-core-r3.html#http://ladybug-analysis-tools.github.io/3d-models/content/obj/urban_model_001/model.mtl#sx=0.1#sy=0.1#sz=0.1#rx=-90#px=-15#pz=-20#cx=-32#cy=39#cz=92 width=800 height=500 ></iframe>
+<iframe src=https://ladybug-analysis-tools.github.io/3d-models/code/obj/core/index.html#https://ladybug-analysis-tools.github.io/3d-models/content/obj/urban_model_001/model.mtl#sx=0.1#sy=0.1#sz=0.1#rx=-90#px=-15#pz=-20#cx=-32#cy=39#cz=92 width=800 height=500 ></iframe>
 
 
 File size: 900 KB
