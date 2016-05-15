@@ -1,27 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang=en >
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<meta charset=utf-8 >
 <title>Ladybug Web OBJ Opener R2</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
-<meta name="description" content="
-Browse folders ans view OBJ and MTL files from a variety of sources
+<meta name=description content='
+Browse folders and view OBJ and MTL files from a variety of sources
 Basic slide in/slide out menu with three bar icon that adjusts for small screen size.
-">
-<meta name="keywords" content="CSS, HTML,JavaScript,GitHub,FOSS,3D,STEM">
-<meta name="date" content="2016-04-14">
+'>
+<meta name=keywords content='Ladybug Web,NOAA,Sun path,WebGL,Three.js,Tween.js,JavaScript,GitHub,FOSS,3D,STEM' >
+<meta name=date content='2016-05-15' >
 </head>
 <body>
 <script>
 
-//	var core = ( location.origin === 'file://' ) ? '../core/ladybug-web-obj-core-r2.html' : 
-//		'http://ladybug-analysis-tools.github.io/3d-models/viewers/json/json/core/ladybug-web-obj-core-r2.html';
+	var debug = false;
 
+//	var core = 'http://ladybug-analysis-tools.github.io/3d-models/code/obj/core/index.html';
 	var core = '../core/index.html';
 
-	var pi = Math.PI;
-	var d2r = pi / 180, r2d = 180 / pi;  // degrees / radians
+	var d2r = Math.PI / 180, r2d = 180 / Math.PI;
+
+	var ifrContentWindow, ifrContentWindowObject;
 
 	init();
 
@@ -73,7 +73,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 			'<div>' +
 				'<button onclick=saveFile(); >Save File</button> &nbsp;' +
-				'<a href=../browser/ladybug-web-obj-browser-r2.html >Browser</a>' +
+				'<a href=../browser/index.html >Browser</a>' +
 			'</div>' +
 
 			'<p>Model Scale: <input type=number id=inpScale value=1 onchange = setParameters(); ></p>' +
@@ -109,9 +109,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 		window.addEventListener( 'hashchange', onHashChange, false );
 
 		taURL.addEventListener( 'dragover', function( event ){ event.preventDefault(); }, true );
-
 		taURL.addEventListener( 'drop', onDrop, false );
-
 		taURL.addEventListener( 'change', function() { setContents( '#' + taURL.value ); }, true );
 
 // let's go
@@ -219,7 +217,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 	function getCoreParameters() {
 
 		ic = ifr.contentWindow;
-		ico = ic.object;
+		ico = ic.model;
 
 		taURL.value = ico.name;
 

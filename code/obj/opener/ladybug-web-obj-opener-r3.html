@@ -2,10 +2,10 @@
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>Ladybug Web JSON Opener R3</title>
+<title>Ladybug Web OBJ Opener R3</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
 <meta name=description content='
-View Three.js JSON Files from a variety of sources
+View Three.js OBJ and MTL Files from a variety of sources
 Basic slide in/slide out menu with three bar icon that adjusts for small screen size.
 '>
 <meta name=keywords content='Ladybug Web,NOAA,Sun path,WebGL,Three.js,Tween.js,JavaScript,GitHub,FOSS,3D,STEM' >
@@ -16,7 +16,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 
 	var debug = false;
 
-//	var core = 'http://ladybug-analysis-tools.github.io/3d-models/code/json/core/index.html';
+//	var core = 'http://ladybug-analysis-tools.github.io/3d-models/code/obj/core/index.html';
 	var core = '../core/index.html';
 
 	var d2r = Math.PI / 180, r2d = 180 / Math.PI;
@@ -175,7 +175,7 @@ Basic slide in/slide out menu with three bar icon that adjusts for small screen 
 	function getCoreParameters() {
 
 		ifrContentWindow = ifr.contentWindow;
-		ifrContentWindowObject = ifrContentWindow.object;
+		ifrContentWindowObject = ifrContentWindow.model;
 
 		inpLightX.value = ifrContentWindow.directionalLight.position.x;
 		inpLightY.value = ifrContentWindow.directionalLight.position.y;

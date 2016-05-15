@@ -2,10 +2,10 @@
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>Ladybug Web JSON Core R6.2</title>
+<title>Ladybug Web JSON Core R7</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
 <meta name=description content='' >
-<meta name=keywords content='WebGL,Three.js,Tween.js,JavaScript,GitHub,FOSS,3D,STEM' >
+<meta name=keywords content='Ladybug Web,NOAA,Sun path,WebGL,Three.js,Tween.js,JavaScript,GitHub,FOSS,3D,STEM' >
 <meta name=date content='2016-05-15' >
 </head>
 <body>
@@ -24,16 +24,16 @@
 
 	var debug;
 
-//	var fullFilePathDefault = '#fn=https://rawgit.com/mrdoob/three.js/dev/examples/obj/WaltHeadLo.js';
-//	var fullFilePathDefault = '#fn=https://rawgit.com/mrdoob/three.js/dev/examples/models/json/teapot-claraio.json';
-//	var fullFilePathDefault = '#fn=https://rawgit.com/mrdoob/three.js/dev/examples/obj/cubecolors/cubecolors.js'
-//	var fullFilePathDefault = '#fn=https://rawgit.com/mrdoob/three.js/dev/examples/obj/walt/WaltHead_bin.js';
-//	var fullFilePathDefault = '#fn=../../../content/json/mobius.json';
-//	var fullFilePathDefault = '#fn=../../../content/json/data.json';
+//	var fullFilePathDefault = 'https://rawgit.com/mrdoob/three.js/dev/examples/obj/WaltHeadLo.js';
+//	var fullFilePathDefault = 'https://rawgit.com/mrdoob/three.js/dev/examples/models/json/teapot-claraio.json';
+//	var fullFilePathDefault = 'https://rawgit.com/mrdoob/three.js/dev/examples/obj/cubecolors/cubecolors.js'
+//	var fullFilePathDefault = 'https://rawgit.com/mrdoob/three.js/dev/examples/obj/walt/WaltHead_bin.js';
+//	var fullFilePathDefault = '../../../content/json/mobius.json';
+	var fullFilePathDefault = '../../../content/json/ants-on-mobius/ants-on-mobius.json';
 
-//	var fullFilePathDefault = '#fn=http://va3c.github.io/json-r2/MissSpacyEyes.json';
-//	var fullFilePathDefault = '#fn=https://tt-acm.github.io/Spectacles.RevitExporter/sampleModels/rst_basic_sample_project.rvt.js';
-	var fullFilePathDefault = '#fn=https://ladybug-analysis-tools.github.io/3d-models/content/json/urban-model/urban-model-001.json' +
+//	var fullFilePathDefault = 'http://va3c.github.io/json-r2/MissSpacyEyes.json';
+//	var fullFilePathDefault = 'https://tt-acm.github.io/Spectacles.RevitExporter/sampleModels/rst_basic_sample_project.rvt.js';
+	var fullFilePathDefault = 'https://ladybug-analysis-tools.github.io/3d-models/content/json/urban-model/urban-model-001.json' +
 		'#la=37.796#lo=-122.398#cx=50#cy=70#cz=40#tx=-7#ty=6#tz=-15#hr=12#sx=0.1#sy=0.1#sz=0.1#px=10#pz=10#rx=90#ry=180#sl=1.5#gv=0#av=1';
 
 	var fullFilePath, fileName;
@@ -79,7 +79,7 @@
 					'<a href="" >' + document.title + '</a> ' +
 					'<a href=http://ladybug-analysis-tools.github.io/3d-models/code/json/core/#readme.md > &#x24D8; </a>' +
 				'</h2>' +
-				'<p><button onclick=location.hash="##cy=0"; >Test permalink</button></p>' +
+				'<p><button onclick=location.hash="#cy=0#rz=-90"; >Test permalink</button></p>' +
 				'<div id=coreMessage ></div>' +
 				'<div id=menuFileName ></div>' +
 				'<div id=menuInfo ></div>' +
@@ -124,7 +124,7 @@
 
 	function onHashChange() {
 
-		fullFilePath = location.hash.length ? location.hash.slice( 1 ) : fullFilePathDefault.slice( 4 ) ;
+		fullFilePath = location.hash.length ? location.hash.slice( 1 ) : fullFilePathDefault;
 
 		if ( !model ) {
 
@@ -146,9 +146,8 @@
 
 		fileName = fullFilePath.split( '/' ).pop();
 
-		fileNameSplit = fileName.split( '#' );
-
-		if ( fileNameSplit.length ) { fileName = fileNameSplit[0]; }
+//		fileNameSplit = fileName.split( '#' );
+//		if ( fileNameSplit.length ) { fileName = fileNameSplit[0]; }
 
 		loader = new THREE.XHRLoader();
 		loader.crossOrigin = '';
@@ -162,7 +161,6 @@
 	}
 
 	function handleJSON( fullFilePath, data ) {
-
 
 // needs streamlining
 
@@ -445,12 +443,12 @@
 		model.userData.metadata = metadata
 		model.userData.fileSize = fileSize;
 
-		model.castShadow = true;
-		model.receiveShadow = true;
+//		model.castShadow = true;
+//		model.receiveShadow = true;
 
 		scene.add( model );
 
-		getHashParameters( model );
+		getHashParameters();
 
 		setCoreMessage( fileName + ': load complete' );
 
@@ -467,9 +465,12 @@
 		hashes = location.hash.length ? location.hash.slice( 1 ) : fullFilePathDefault;
 		hashes = hashes.split( '#' );
 
-		for ( var i = 1; i < hashes.length; i++ ) {
+		for ( var i = 0; i < hashes.length; i++ ) {
 
 			hash = hashes[ i ].split( '=' );
+
+			if ( hash.length < 2 ) { continue; }
+
 			parameter = hash[ 0 ];
 			value = hash[ 1 ];
 
