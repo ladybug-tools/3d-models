@@ -17,6 +17,7 @@ _Engel House - view from Maze Street_
 
 File size: 2.4 MB
 
+Link to this file: https://ladybug-analysis-tools.github.io/3d-models/content/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj
 
 View full screen using [Opener]( https://ladybug-analysis-tools.github.io/3d-models/code/obj/opener/index.html#https://ladybug-analysis-tools.github.io/3d-models/content/obj/engel-house/AngelHouse_Bauhaus-in-Israel-r2.obj#rx=-90#px=-30#pz=25#cx=-11#cy=16#cz=51#tx=-4#ty=5#tz=-1 )
 
