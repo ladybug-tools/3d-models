@@ -5,7 +5,7 @@
 //	var coreJSON = '../json/core/index.html';
 //	var coreOBJ = '../obj/core/ladybug-web-obj-core-r3.html';
 
-	var defaultFile = 'readme.md';
+	var defaultFile = 'README.md';
 
 	init();
 
@@ -109,9 +109,9 @@
 
 		xhr = new XMLHttpRequest();
 		xhr.open( 'GET', url, true );
-		xhr.onload = function() { 
+		xhr.onload = function() {
 
-			target.innerHTML = converter.makeHtml( xhr.responseText ); 
+			target.innerHTML = converter.makeHtml( xhr.responseText );
 
 		};
 		xhr.send( null );

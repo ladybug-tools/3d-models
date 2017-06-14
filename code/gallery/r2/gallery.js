@@ -11,7 +11,7 @@
 
 	}
 
-	var defaultFile = 'readme.md';
+	var defaultFile = 'README.md';
 
 	init();
 
@@ -104,9 +104,9 @@
 
 		xhr = new XMLHttpRequest();
 		xhr.open( 'GET', fileName, true );
-		xhr.onload = function() { 
+		xhr.onload = function() {
 
-			target.innerHTML = converter.makeHtml( xhr.responseText ); 
+			target.innerHTML = converter.makeHtml( xhr.responseText );
 
 		};
 		xhr.send( null );
