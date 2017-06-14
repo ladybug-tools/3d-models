@@ -1,7 +1,7 @@
 <span style=display:none; >
 [You are now in a GitHub source code view - click this link to view the home page]
 ( https://ladybug-analysis-tools.github.io/3d-models/ "View file as a web page." ) </span>
-<input type=button onclick=window.location.href='https://github.com/ladybug-analysis-tools/3d-models/'; 
+<input type=button onclick=window.location.href='https://github.com/ladybug-analysis-tools/3d-models/';
 value='You are now in the home page view - Click this button to view the read me file and the source code' >
 
 Ladybug Web 3D Models Read Me
@@ -53,7 +53,7 @@ The more models we can access, the more issues we will find and the better we wi
 
 * Too many changes to record in the past few days
 * Looks like it's all beginning to settle down
- 
+
 
 
 ### 2016-04-09
@@ -70,5 +70,5 @@ The more models we can access, the more issues we will find and the better we wi
 
 
 <center title="dingbat" >
-# <a href=javascript:window.scrollTo(0,0); style=text-decoration:none; ><img src="http://ladybug-analysis-tools.github.io/images/ladybug-logo.png" width=32 ></a>
+# <a href=javascript:window.scrollTo(0,0); style=text-decoration:none; ><img src="http://ladybug-tools.github.io/images/ladybug_tools_logo.png" width=32 ></a>
 </center>
