@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang=en >
+<head>
+<meta charset=utf-8 >
+<title>Three.js Basic OBJ File Viewer</title>
+<meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' >
+<meta name=description content='' >
+<meta name=keywords content='WebGL,Three.js,JavaScript,GitHub,FOSS,3D,STEM' >
+<meta name=date content='2016-07-23' >
+</head>
+<body>
+<script src=https://rawgit.com/mrdoob/three.js/dev/build/three.min.js ></script>
+<script src=https://rawgit.com/mrdoob/three.js/dev/examples/js/controls/OrbitControls.js ></script>
+<script src=https://rawgit.com/mrdoob/three.js/dev/examples/js/libs/stats.min.js ></script>
+<script src=https://rawgit.com/mrdoob/three.js/dev/examples/js/loaders/OBJLoader.js ></script>
+<script src=ladybug-web-obj-corejs-r1.js ></script>
+<script>
+
+
+	var files = [
+
+		[ 'Tree', '127Kb', 'https://jaanga.github.io/cookbook-threejs/viewers/models/tree.obj', 70 ],
+		['Three.js female02', '595Kb', 'https://rawgit.com/mrdoob/three.js/dev/examples/obj/female02/female02.obj', 0.4 ],
+		[ 'Saab-37 Viggen', '804Kb', 'https://jaanga.github.io/cookbook-threejs/viewers/models/saab-37-viggen/Saab-37_Viggen.obj', 8, -1.5707 ],
+		[ 'TU 160 Blackjack', '237Kb', 'http://jaanga.github.io/3d-models/obj/aircraft/tu-160-blackjack/tu-160-blackjack.obj', 3 ],
+		[ 'Human heart', '1,119Kb', 'https://jaanga.github.io/cookbook-threejs/viewers/models/HumanHeart.obj', 5 ],
+		[ 'Sydney Opera House', '3,824Kb', 'http://jaanga.github.io/3d-models/obj/architecture/sydney-opera-house/sydney-opera-house.obj', 1 ],
+		[ 'Factory Complex', '11,222Kb','http://jaanga.github.io/3d-models/obj/architecture/factory-complex/factory-complex.obj', 0.07 ],
+		[ 'Airbus 330', '24,784Kb', 'http://jaanga.github.io/3d-models/obj/aircraft/a-330/a-330.obj', 3 ],
+		[ 'Nefertiti', '70,792Kb', 'http://jaanga.github.io/3d-models/obj/sculpture/nefertiti/nefertiti.obj', 0.3, -1.5757 ]
+
+	];
+
+	var stats, renderer, scene, camera, controls, mesh;
+
+	init();
+	animate();
+
+	function init() {
+
+		var css, hamburger, menu;
+		var geometry, material;
+		var gridHelper, axisHelper;
+
+		var txt = '<p>lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?</p>';
+
+		css = document.head.appendChild( document.createElement( 'style' ) );
+		css.innerHTML =
+
+			'body { font: 12pt monospace; margin: 0; overflow: hidden; }' +
+			'a { color: crimson; text-decoration: none; }' +
+
+			'button, input[type=button] { background-color: #ccc; border: 2px #fff solid; color: #322; }' +
+
+			'input[type=range] { -webkit-appearance: none; -moz-appearance: none; background-color: #ddd; width: 160px; }' +
+			'input[type=range]::-moz-range-thumb { background-color: #888; border-radius: 0; width: 10px; }' +
+			'input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; background-color: #888; height: 20px; width: 10px; }' +
+
+			'summary { outline: none; }' +
+			'summary h3 { display:inline; }' +
+
+			'.popUp { background-color: white; left: 150px; border: 1px solid red; opacity: 1.0; padding: 5px; position: absolute; width: 120px; z-index: 10; }' +
+
+			'#bars { color: crimson; cursor: pointer; font-size: 24pt; text-decoration: none; }' +
+
+			'#container { left: 0; position: absolute; transition: left 1s; }' +
+
+			'#hamburger { background-color: #eee; left: 325px; position: absolute; top: 20px; }' +
+
+			'#menu { background-color: #eee; border: 1px #ccc solid; max-height: ' + window.innerHeight + 'px; overflow: auto; padding: 0 10px; position: absolute; width: 300px; }' +
+			'#menu h2 { margin: 0; }' +
+
+		'';
+
+		container = document.body.appendChild( document.createElement( 'div' ) );
+		container.id = 'container';
+		container.innerHTML =
+
+			'<div id=menu >' +
+
+				'<h2>' +
+					'<a href=http://jaanga.github.io title="Jaanga - your 3D happy place" > &#x2766 </a><br>' +
+					'<a href="" title="Click here to refresh this page" >' + document.title + '</a>' +
+					' ~ <a href=index.html#readme.md onmouseover=popHelp.style.display=""; onmouseout=popHelp.style.display="none"; > &#x24D8; </a>' +
+				'</h2>' +
+
+				'<div class=popUp id=popHelp style=display:none; ><p>Hi there!</p>Click the i-in-circle, info icon for latest updates.</div>' +
+
+				'<p>' +
+					'A simple demo to load and display OBJ files with Three.js. ' +
+					'No materials or lights are added. ' +
+					'More OBJ/MTL models at <a href=https://ladybug-analysis-tools.github.io/ladybug-web/shadow-range-obj-gallery/ >Ladybug Web</a>. The NASA models are large.' +
+				'</p>' +
+
+				'<div id=menuContents ></div>' +
+
+				'<div id=menuInfo ></div>' +
+
+				'<div id=menuData ></div>' +
+
+				'<details>' +
+					'<summary><h3>about</h3></summary>' +
+					'<p>Copyright &copy; 2016 Jaanga authors. <a href=http://jaanga.github.io/home/r4/index.html#http://jaanga.github.io/jaanga-copyright-and-mit-license.md >MIT license</a>.</p>' +
+					'<p>Click the \'i in a circle\' icon for more <a href=index.html#readme.md title="Click here for help and information" >help</a>.</p>' +
+					'<p></p>' +
+				'</details>' +
+
+				'<hr>' +
+
+				'<center><a href=javascript:menu.scrollTop=0; style=text-decoration:none; onmouseover=pop2.style.display=""; onmouseout=pop2.style.display="none"; ><h1> &#x2766 <h1></a></center>' +
+				'<div class=popUp id=pop2 style=display:none;bottom:10px; >Jaanga - your 3D happy place.<br>Click here to return to the top of the page</div>' +
+
+			'</div>' +
+
+			'<div id=hamburger onclick=container.style.left=container.style.left===""?"-325px":""; >' +
+				'<div id=bars title="Click this hamburger to slide the menu" > &#9776 </div>' +
+			'</div>' +
+
+		'';
+
+		txt = '';
+
+		for ( var i = 0; i < files.length; i++ ) {
+
+			txt += '<p><button onclick=loadOBJFileByURL(' + i + '); >' + files[ i ][ 0 ] + '</button> ' + files[ i ][ 1 ] + '</p>';
+
+		}
+
+		menuContents.innerHTML = txt;
+
+
+		stats = new Stats();
+		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0;' ;
+		document.body.appendChild( stats.domElement );
+		stats.domElement.style.display = window.innerWidth < 500 ? 'none' : '';
+
+		window.addEventListener( 'resize', onWindowResize, false );
+		window.addEventListener( 'click', function() { controls.autoRotate = false; }, false );
+
+		renderer = new THREE.WebGLRenderer( {  alpha: 1, antialias: true }  );
+//		renderer.setClearColor( 0xf0f0f0 );
+//		renderer.setPixelRatio( window.devicePixelRatio );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera.position.set( 100, 100, 100 );
+
+		controls = new THREE.OrbitControls( camera, renderer.domElement );
+		controls.maxDistance = 800;
+		controls.autoRotate = true;
+
+		scene = new THREE.Scene();
+
+		axisHelper = new THREE.AxisHelper( 80 );
+		scene.add( axisHelper );
+
+	}
+
+
+	function onWindowResize() {
+
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+
+		renderer.setSize( window.innerWidth, window.innerHeight );
+
+		stats.domElement.style.display = window.innerWidth < 500 ? 'none' : '';
+
+	}
+
+	function animate() {
+
+		requestAnimationFrame( animate );
+		controls.update();
+		stats.update();
+		renderer.render( scene, camera );
+
+	}
+
+</script>
+</body>
+</html>
