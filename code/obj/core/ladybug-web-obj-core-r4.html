@@ -1,0 +1,393 @@
+﻿<!doctype html>
+<html lang=en >
+<head>
+<meta charset=utf-8 >
+<title>Ladybug Web OBJ Core R4</title>
+<meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
+<meta name=description content='' >
+<meta name=keywords content='Ladybug Web,NOAA,Sun path,WebGL,Three.js,Tween.js,JavaScript,GitHub,FOSS,3D,STEM' >
+<meta name=date content='2016-05-14' >
+</head>
+<body>
+<!--
+<script src=https://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src=https://mrdoob.github.io/three.js/examples/js/controls/OrbitControls.js ></script>
+<script src=https://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
+
+<script src=https://mrdoob.github.io/three.js/examples/js/loaders/DDSLoader.js ></script>
+<script src=https://mrdoob.github.io/three.js/examples/js/loaders/MTLLoader.js ></script>
+<script src=https://mrdoob.github.io/three.js/examples/js/loaders/OBJLoader.js ></script>
+-->
+<script src=https://rawgit.com/mrdoob/three.js/dev/build/three.min.js ></script>
+<script src=https://rawgit.com/mrdoob/three.js/dev/examples/js/controls/OrbitControls.js ></script>
+<script src=https://rawgit.com/mrdoob/three.js/dev/examples/js/libs/stats.min.js ></script>
+
+<script src=https://rawgit.com/mrdoob/three.js/dev/examples/js/loaders/DDSLoader.js ></script>
+<script src=https://rawgit.com/mrdoob/three.js/dev/examples/js/loaders/MTLLoader.js ></script>
+<script src=https://rawgit.com/mrdoob/three.js/dev/examples/js/loaders/OBJLoader.js ></script>
+
+<script>
+
+	var debug = false;
+
+//	var fullFilePathDefault = 'https://mrdoob.github.io/three.js/examples/obj/female02/female02.obj';
+//	var fullFilePathDefault = 'https://rawgit.com/mrdoob/three.js/dev/examples/obj/female02/female02.mtl#sx=0.3#sy=0.3#sz=0.3';
+
+//	var fullFilePathDefault = 'https://mrdoob.github.io/three.js/examples/obj/male02/male02.obj';
+//	var fullFilePathDefault = 'https://mrdoob.github.io/three.js/examples/obj/male02/male02.mtl';
+//	var fullFilePathDefault = 'https://mrdoob.github.io/three.js/examples/obj/male02/male02_dds.mtl';
+
+//	var fullFilePathDefault = 'https://mrdoob.github.io/three.js/examples/models/campfire/campfire.obj';
+//	var fullFilePathDefault = 'https://mrdoob.github.io/three.js/examples/models/campfire/campfire.mtl';
+
+//	var fullFilePathDefault = 'https://mrdoob.github.io/three.js/examples/models/campfire/brownrock.obj';
+//	var fullFilePathDefault = 'https://mrdoob.github.io/three.js/examples/models/campfire/brownrock.mtl';
+
+//	var fullFilePathDefault = 'https://mrdoob.github.io/three.js/examples/obj/walt/WaltHead.mtl';
+//	var fullFilePathDefault = 'https://mrdoob.github.io/three.js/examples/obj/walt/WaltHead.mtl';
+
+	var fullFilePathDefault = 'https://ladybug-analysis-tools.github.io/3d-models/content/obj/urban_model_001/model.mtl' +
+		'#la=37.796#lo=-122.398#cx=50#cy=70#cz=40#tx=-7#ty=6#tz=-15#hr=14#sx=0.1#sy=0.1#sz=0.1#px=-30#pz=-50#rx=-90#rz=0#sp=0#sl=1.5#gv=0#av=0';
+
+	var fullFilePath, fileName;
+	var model;
+	var metadata, fileSize;
+	var stats, renderer, scene, camera, controls, directionalLight;
+
+	init();
+	animate();
+
+	function init() {
+
+		var css, menu;
+		var geometry, material, mesh;
+
+		css = document.head.appendChild( document.createElement( 'style' ) );
+		css.innerHTML =
+
+			'body { font: 12pt monospace; margin: 0; overflow: hidden; }' +
+			'a { color: crimson; text-decoration: none; }' +
+			'button, input[type=button] { background-color: #ccc; border: 2px #ccc solid; color: #333; }' +
+			'h2 { margin: 0 }' +
+
+			'#bars { color: pink; cursor: pointer; font-size: 24pt; text-decoration: none; }' +
+			'#hamburger { left: 325px; position: absolute; top: 20px; transition: left 1s; }' +
+			'#menu { background-color: #eee; border: 1px #ccc solid; left: -324px; max-height: ' + ( window.innerHeight - 10 ) + 'px; ' +
+				'opacity: 0.85; overflow: auto; padding: 0 10px; position: absolute; top: -20px; transition: left 1s; width: 300px; }' +
+
+		'';
+
+		if ( window.self === window.top ) {
+
+			hamburger = document.body.appendChild( document.createElement( 'div' ) );
+			hamburger.id = 'hamburger';
+			hamburger.innerHTML = '<div id=bars >☰</div>';
+			bars.onclick = function() { hamburger.style.left = hamburger.style.left === "0px" ? "325px" : 0; };
+
+			menu = hamburger.appendChild( document.createElement( 'div' ) );
+			menu.id = 'menu';
+			menu.innerHTML =
+
+				'<h2>' +
+					'<a href="" >' + document.title + '</a> ' +
+					'<a href=http://ladybug-analysis-tools.github.io/3d-models/code/obj/core/#readme.md > &#x24D8; </a>' +
+				'</h2>' +
+				'<p><button onclick=location.hash="#cy=0"; >Test permalink</button></p>' +
+				'<div id=coreMessage ></div>' +
+				'<div id=menuFileName ></div>' +
+				'<div id=menuInfo ></div>' +
+				'<div id=menuMessage ></div>' +
+				'<div id=menuMetadata ></div>' +
+
+			'';
+
+		}
+
+		stats = new Stats();
+		stats.domElement.style.cssText = `position: absolute; right: 0; top: 0; z-index: 100; `;
+		document.body.appendChild( stats.domElement );
+
+		window.addEventListener( 'resize', onWindowResize, false );
+		window.addEventListener ( 'hashchange', onHashChange, false );
+		document.body.addEventListener("mouseup", function() { if ( parent.getCoreParameters ) { parent.getCoreParameters(); } }, false );
+
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true }  );
+//		renderer.setClearColor( 0xf0f0f0 );
+//		renderer.setPixelRatio( window.devicePixelRatio );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+		camera.position.set( 100, 100, 100 );
+
+		controls = new THREE.OrbitControls( camera, renderer.domElement );
+		controls.maxDistance = 1000;
+
+		scene = new THREE.Scene();
+
+		directionalLight = new THREE.DirectionalLight();
+		directionalLight.position.set( -100, 100, 100 );
+		scene.add( directionalLight );
+
+
+// assets
+
+		onHashChange();
+
+	}
+
+	function onHashChange() {
+
+		fullFilePath = location.hash.length ? location.hash.slice( 1 ) : fullFilePathDefault;
+
+		if ( !model ) {
+
+			fileName = fullFilePath.split( '/' ).pop();
+
+			fileNameSplit = fileName.split( '#' );
+			if ( fileNameSplit.length ) { fileName = fileNameSplit[0]; }
+
+			if ( fileName.endsWith( '.obj' )  ){
+
+				loadOBJFileByURL( fullFilePath );
+
+			} else if ( fileName.endsWith( '.mtl'  ) ) {
+
+				loadMTLFileByURL( fullFilePath );
+
+			} else {
+
+				parent.coreMessage.innerHTML = 'file oops: ' + fileName;
+
+			}
+
+			return;
+
+		} else {
+
+			getHashParameters();
+
+		}
+
+	}
+
+	function loadOBJFileByURL( filePath ) {
+
+		var loader = new THREE.OBJLoader();
+		loader.crossOrigin = 'Anonymous';
+		loader.load( fullFilePath, function ( object ) { addObject( object ); }, onProgress, onError );
+
+	}
+
+	function loadMTLFileByURL( file ) {
+
+		var index, fileNameOBJ, mtlLoader, loader;
+
+		index = file.lastIndexOf( '/' ) + 1;
+		filePath = file.slice( 0, index );
+//		fileName = file.slice( index );
+
+		fileNameOBJ = fileName.replace( '_dds.mtl', '.obj' );
+		fileNameOBJ = fileNameOBJ.replace( '.obj.mtl', '.mtl' );
+		fileNameOBJ = fileNameOBJ.replace( '.mtl', '.obj' );
+
+		THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+
+		mtlLoader = new THREE.MTLLoader();
+		mtlLoader.crossOrigin = 'Anonymous';
+		mtlLoader.setTexturePath( filePath );
+		mtlLoader.setPath( filePath );
+		mtlLoader.load( fileName, function( materials ) {
+
+			materials.preload();
+
+			loader = new THREE.OBJLoader();
+			loader.crossOrigin = 'Anonymous';
+			loader.setMaterials( materials );
+			loader.setPath( filePath );
+			loader.load( fileNameOBJ, function ( object ) { addObject( object ); }, onProgress, onError );
+
+		});
+
+	}
+
+	function onProgress( xhr ) {
+
+		if ( xhr.total ) {
+
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			setCoreMessage( fileName + ': ' + percentComplete.toFixed() + '% or ' + xhr.loaded + ' bytes of ' + xhr.total + ' downloaded' );
+
+		} else {
+
+			setCoreMessage( fileName + ': ' + xhr.loaded + ' bytes loaded' );
+
+		}
+
+	}
+
+	function onError ( xhr ) { setCoreMessage( 'An error happened' ); };
+
+
+	function addObject( object ) {
+
+//console.log( 'object', object );
+
+// for the parent
+
+		model = object;
+		model.name = fullFilePath;
+
+		model.traverse( function ( child ) {
+
+			if ( child instanceof THREE.Mesh ) {
+
+				child.material.side = 2;
+
+				helper = new THREE.EdgesHelper( child, 0x444444 );
+				scene.add( helper );
+
+			}
+
+		} );
+
+		scene.add( model );
+
+		getHashParameters();
+
+		setCoreMessage( fileName + ': load complete' );
+
+		document.title = fileName + ' - ' + document.title;
+
+	}
+
+	function getHashParameters() {
+
+		var hashes, hash, parameter, value;
+		var d2r = Math.PI / 180, r2d = 180 / Math.PI;
+		var b = '<br>';
+
+		hashes = location.hash.length ? location.hash.slice( 1 ) : fullFilePathDefault;
+		hashes = hashes.split( '#' );
+
+		for ( var i = 0; i < hashes.length; i++ ) {
+
+			hash = hashes[ i ].split( '=' );
+
+			if ( hash.length < 2 ) { continue; }
+
+			parameter = hash[ 0 ];
+			value = hash[ 1 ];
+
+			switch( parameter ) {
+
+				case 'rx': model.rotation.x = parseFloat( value * d2r ); break;
+				case 'ry': model.rotation.y = parseFloat( value * d2r ); break;
+				case 'rz': model.rotation.z = parseFloat( value * d2r ); break;
+
+				case 'px': model.position.x = parseFloat( value ); break;
+				case 'py': model.position.y = parseFloat( value ); break;
+				case 'pz': model.position.z = parseFloat( value ); break;
+
+				case 'sx': model.scale.x = parseFloat( value ) || 1 ; break;
+				case 'sy': model.scale.y = parseFloat( value ) || 1; break;
+				case 'sz': model.scale.z = parseFloat( value ) || 1; break;
+
+				case 'cx': camera.position.x = parseFloat( value ); break;
+				case 'cy': camera.position.y = parseFloat( value ); break;
+				case 'cz': camera.position.z = parseFloat( value ); break;
+
+				case 'tx': controls.target.x = parseFloat( value ); break;
+				case 'ty': controls.target.y = parseFloat( value ); break;
+				case 'tz': controls.target.z = parseFloat( value ); break;
+
+				case 'dx': directionalLight.position.x = parseFloat( value ); break;
+				case 'dy': directionalLight.position.y = parseFloat( value ); break;
+				case 'dz': directionalLight.position.z = parseFloat( value ); break;
+
+				case 'sl' : directionalLight.intensity = parseFloat( value ); break;
+
+				case '' :
+				case 'fn' :
+				case 'av' :
+				case 'gv' : 
+				case 'si' :
+				case 'sl' :
+				case 'sp' :
+				case 'hr' :
+				case 'la' : 
+				case 'lo' :   
+					break;
+
+				default: console.log( 'oops', hash, i );
+
+			}
+
+		}
+
+		if ( window.self === window.top || debug === true ) {
+
+			menuInfo.innerHTML =
+
+				'Position X: ' + model.position.x + b +
+				'Position Y: ' + model.position.y + b +
+				'Position Z: ' + model.position.z + b +
+
+				'Rotation X: ' + ( model.rotation.x * r2d ) + b +
+				'Rotation Y: ' + ( model.rotation.y * r2d ) + b +
+				'Rotation Z: ' + ( model.rotation.z * r2d ) + b +
+
+				'Scale: ' + model.scale.z + b +
+// add light?
+				'Camera position: ' + camera.position.x.toFixed() + ', '+ camera.position.y.toFixed() + ', '+ camera.position.z.toFixed() + ', ' + b +
+				'Camera target: ' + controls.target.x.toFixed() + ', '+ controls.target.y.toFixed() + ', '+ controls.target.z.toFixed() + ', ' + b +
+
+				b +
+
+			'';
+
+		}
+
+	}
+
+	function setCoreMessage( message ){
+
+		if ( window.self !== window.top && message === ( fileName + ': load complete' ) ) {
+
+			if ( parent.getCoreParameters ) { parent.getCoreParameters(); }
+
+		} else if ( parent.coreMessage ) {
+
+// send data via 'model'...
+
+			parent.coreMessage.innerHTML = message;
+
+		} else {
+
+			parent.console.log( 'message:', message );
+
+		}
+
+	}
+
+	function onWindowResize() {
+
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+
+		renderer.setSize( window.innerWidth, window.innerHeight );
+
+	}
+
+	function animate() {
+
+		requestAnimationFrame( animate );
+		controls.update();
+		stats.update();
+		renderer.render( scene, camera );
+
+	}
+
+</script>
+</body>
+</html>

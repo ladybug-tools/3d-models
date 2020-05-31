@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang=en >
+<head>
+<meta charset=utf-8 >
+<title>Ladybug Web 3D Models OBJ Files</title>
+<meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
+<meta name=description content='Browse and view files on FGx written in Markdown format.' >
+<meta name=keywords content='Ldybug Web, GitHub API,JavaScript,GitHub,FOSS,3D,STEM' >
+<meta name=date content='2016-05-04 ~ ' >
+</head>
+<body>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js ></script>
+<script>
+
+//file:///C:/Users/Theo/Dropbox/Public/git-repos/jaanga.github.io/cookbook-html/templates/menu-contents-browser/menu-github-api-readme-jaanga/menu-readme-jaanga-r2.html
+
+	var urlAPIContents = 'https://api.github.com/repos/ladybug-analysis-tools/3d-models/git/trees/gh-pages?recursive=1';
+
+	var defaultFile = './readme.md';
+	var files;
+
+	init();
+
+	function init() {
+
+		var css, menu, contents;
+
+		css = document.body.appendChild( document.createElement( 'style' ) );
+		css.innerHTML =
+
+			'body { font: 12pt monospace; margin: 0; }' +
+			'button, input[type=button] { background-color: #eee; border: 2px #eee solid; color: #888; }' +
+
+//			'h2 { margin: 0; }' +
+			'h1 a, h2 a, a { color: crimson; text-decoration: none; }' +
+
+			'#menu { box-sizing: border-box; background-color: #ccc; height: 100%; max-width: 300px; overflow: auto; padding: 0 10px; position: absolute; }' +
+			'#contents { border: 0px red solid; left: 350px; overflow: auto; position: absolute; top: 0; width: ' + ( window.innerWidth - 370 ) + 'px; }' +
+
+		'';
+
+		menu = document.body.appendChild( document.createElement( 'div' ) );
+		menu.id = 'menu';
+
+		contents = document.body.appendChild( document.createElement( 'div' ) );
+		contents.id = 'contents';
+
+		window.addEventListener ( 'hashchange', hashChange, false );
+
+		requestAPIContents();
+
+		hashChange();
+
+	}
+
+	function requestAPIContents() {
+
+		var xhr = new XMLHttpRequest();
+		xhr.open( 'GET', urlAPIContents, true );
+		xhr.onload = callback;
+		xhr.send( null );
+
+		function callback() {
+
+			var response, file;
+
+			response = JSON.parse( xhr.response );
+			files = [];
+
+			for ( var i = 0; i < response.tree.length; i++ ) {
+
+				file = response.tree[ i ].path;
+
+				if ( file.indexOf( 'content\/obj' ) === -1 ) { continue; }
+
+				if ( file.indexOf( 'readme.md' ) === -1 ) { continue; }
+
+				if ( file === 'content\/obj\/readme.md' ) { continue; }
+
+				files.push( file );
+
+			}
+
+//console.log( 'files', files );
+
+			createTableOfContents();
+
+		}
+
+	}
+
+	function createTableOfContents() {
+
+		var txt =  '<a href=../../../index.html >Ladybug Analysis Tools</a> &raquo; ' +
+			'<a href=../../index.html >3D Models</a> &raquo; ' + '<a href=../index.html >Content</a> &raquo; ' +
+			'<h2><a href=./index.html >OBJ Files</a></h2>';
+
+		for ( var i = 0; i < files.length; i++ ) {
+
+			txt += 
+
+				'<h3><a href=#../../' + files[ i ] + ' >'+ files[ i ].replace( '\/readme.md','' ).replace( 'content\/obj\/','' ) + '<a></h3>' +
+
+			'';
+
+		}
+
+		menu.innerHTML = txt + '';
+
+	}
+
+
+	function hashChange() {
+
+		var fileName = location.hash ? location.hash.slice( 1 ) : defaultFile;
+
+		getMarkdown( fileName, contents );
+
+	}
+
+	function getMarkdown( fileName, target ) {
+
+		var converter = new showdown.Converter( { strikethrough: true, literalMidWordUnderscores: true, simplifiedAutoLink: true, tables: true });
+
+		var xhr = new XMLHttpRequest();
+		xhr.open( 'GET', fileName, true );
+		xhr.onload = function() { target.innerHTML = converter.makeHtml( xhr.responseText ); };
+		xhr.send( null );
+
+	}
+
+</script>
+</body>
+</html>

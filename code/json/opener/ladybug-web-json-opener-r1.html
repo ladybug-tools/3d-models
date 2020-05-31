@@ -1,0 +1,244 @@
+﻿<!doctype html>
+<html lang=en >
+<head>
+<meta charset=utf-8 >
+<title>Ladybug Web JSON Opener R1</title>
+<meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
+<meta name=description content='
+View Three.js JSON Files from a variety of sources
+Basic slide in/slide out menu with three bar icon that adjusts for small screen size.
+' >
+<meta name=keywords content='CSS, HTML,JavaScript,GitHub,FOSS,3D,STEM' >
+<meta name=date content='2016-04-11' >
+</head>
+<body>
+<script>
+
+	var core = ( location.origin === 'file://' ) ? '../core/ladybug-web-json-core-r1.html' : 'http://ladybug-analysis-tools.github.io/3d-models/viewers/json/json/core/ladybug-web-json-core-r1';
+
+	var pi = Math.PI;
+	var d2r = pi / 180, r2d = 180 / pi;  // degrees / radians
+
+	init();
+
+	function init() {
+
+		var css, hamburger, menu, contents;
+
+		css = document.body.appendChild( document.createElement('style') );
+		css.innerHTML =
+
+			'body { font: 12pt monospace; margin: 0; }' +
+			'h2, h3 { margin: 0; }' +
+			'a { text-decoration: none; }' +
+			'button, input[type=button] { background-color: #eee; border: 2px #eee solid; color: #888; }' +
+			'iframe { border: 0px red solid; height: 100%;; overflow: hidden; position: absolute; top: 0; width: 100%; }' +
+
+			'input[type=number] { text-align: right; width: 50px; }' +
+			'input[type=range] { -webkit-appearance: none; -moz-appearance: none; background-color: silver; width: 160px; }' +
+			'input[type=range]::-moz-range-thumb { background-color: #888; border-radius: 0; width: 10px; }' +
+			'input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; background-color: #888; height: 20px; width: 10px; }' +
+
+			'#bars { color: crimson; cursor: pointer; font-size: 24pt; text-decoration: none; }' +
+			'#hamburger { left: 325px; position: absolute; top: 20px; transition: left 1s; }' +
+			'#menu { background-color: #eee; border: 1px #ccc solid; left: -324px; max-height: ' + ( window.innerHeight - 10 ) + 'px; ' +
+				'opacity: 0.95; overflow: auto; padding: 0 10px; position: absolute; top: -20px; transition: left 1s; width: 300px; }' +
+
+		'';
+
+		contents = document.body.appendChild( document.createElement( 'div' ) );
+		contents.id = 'contents';
+		contents.innerHTML = '<h1>Stuff</h1>'
+
+		hamburger = document.body.appendChild( document.createElement( 'div' ) );
+		hamburger.id = 'hamburger';
+		hamburger.innerHTML = '<div id=bars >☰</div>';
+		bars.onclick = function() { hamburger.style.left = hamburger.style.left === "0px" ? "325px" : 0; };
+
+		menu = hamburger.appendChild( document.createElement( 'div' ) );
+		menu.id = 'menu';
+		menu.innerHTML =
+
+			'<h2>' +
+				'<a href="" >' + document.title + '</a>' +
+				'<a href=http://ladybug-analysis-tools.github.io/3d-models/ > &#x24D8; </a>' +
+			'</h2>' +
+			'<p id=message style=color:crimson; onchange=console.log("msg",message); ></p>' +
+
+			'<div>URL:<br><textarea id=taURL cols=35 rows=6 placeholder="Drag and drop a URL here\nor\nsee read me for more tricks..."></textarea></div>' +
+
+
+			'<div>' +
+				'<button onclick=getParameters();doIt(); >Update</button> ' +
+				'<button onclick=saveFile(); >Save File</button>' +
+			'</div>' +
+
+			'<p>Model Scale: <input type=number id=inpScale value=1 onchange = setParameters(); ></p>' +
+			'<p>' +
+				'Model Rotation:<br>' +
+				'x: <input type=number id=inpRotX value=0 onchange = setParameters(); > ' +
+				'y: <input type=number id=inpRotY value=0 onchange = setParameters(); > ' +
+				'z: <input type=number id=inpRotZ value=0 onchange = setParameters(); >' +
+			'</p>' +
+			'<p>' +
+				'Model Position:<br>' +
+				'x: <input type=number id=inpPosX value=0 onchange = setParameters(); > ' +
+				'y: <input type=number id=inpPosY value=0 onchange = setParameters(); > ' +
+				'z: <input id=inpPosZ type=number value=0 onchange = setParameters(); >' +
+			'</p>' +
+
+			'<p><input type=checkbox id=chkScaleProject onchange=pud.scaleProject=!pud.scaleProject;updateParameters() checked > Toggle Auto-Scale on Load</p>' +
+			'<p><input type=checkbox id=chkGround onchange=toggleGround(); checked > Toggle Ground Plane</p>' +
+
+			'<p>' + 
+				'Camera Position<br><output id=outCamPos ></output><br>' +
+				'Camera Target<br><output id=outCamTar ></output><br>' +
+			'</p>' +
+
+
+			'<div id=info ></div>' +
+			'<div id=links ></div>' +
+
+			'<hr>' +
+//			'<p><a href="http://ladybug-analysis-tools.github.io/ladybug-web/shadow-core/" target="_blank" >&#x1f5d7; Ladybug Web Shadow Core</a></p>' +
+			'<center><h1> &#x2766 </h1></center>';
+		'';
+
+		window.addEventListener( 'hashchange', onHashChange, false );
+
+		taURL.addEventListener( 'dragover', function( event ){ event.preventDefault(); }, true );
+
+		taURL.addEventListener( 'drop', onDrop, false );
+
+// let's go
+
+		onHashChange();
+
+	}
+
+	function doIt() {
+
+		ifr.src = core + '#'+ taURL.value;
+
+	}
+
+	function onHashChange(){
+
+		fileName = location.hash.length ? location.hash.slice( 1 ) : '';
+
+		contents.innerHTML = '<iframe id=ifr src=' + core + ' scrolling="no" ></iframe>';
+
+		ic = ifr.contentWindow; // helps to debug
+
+	}
+
+
+	function onDrop( event ) {
+
+		event.preventDefault(); 
+
+		var url = event.dataTransfer.getData( 'URL' );
+
+		taURL.value = url;
+
+		ifr.src = core + '#'+ taURL.value;
+
+	}
+
+	function openFile( that ) {
+
+		var reader = new FileReader();
+		reader.onloadend = function( event ) {
+			data =  reader.result;
+//			txtarea.innerHTML = data;
+
+			info.innerHTML = 'name: ' + that.files[0].name + '<br>size: ' + that.files[0].size +
+				'<br>type: ' + that.files[0].type + '<br>modified: ' + that.files[0].lastModifiedDate;
+
+console.log( '', that.files[0] );
+
+		}
+
+		reader.readAsText( that.files[0] );
+
+	}
+
+	function setParameters() {
+
+		ico = ic.object;
+
+		ico.scale.x = ico.scale.y = ico.scale.z = inpScale.valueAsNumber;
+		ico.rotation.x = inpRotX.valueAsNumber * d2r;
+		ico.rotation.y = inpRotY.valueAsNumber * d2r;
+		ico.rotation.z = inpRotZ.valueAsNumber * d2r;
+		ico.position.x = inpPosX.valueAsNumber;
+		ico.position.y = inpPosY.valueAsNumber;
+		ico.position.z = inpPosZ.valueAsNumber;
+
+//console.log( '', ico );
+
+	}
+
+	function getParameters() {
+
+		var c = ic.camera.position;
+		var t = ic.controls.target;
+
+		outCamPos.value = c.x.toFixed() + ', ' + c.y.toFixed() + ', ' + c.z.toFixed();
+		outCamTar.value = t.x.toFixed() + ', ' + t.y.toFixed() + ', ' + t.z.toFixed();
+
+		ico = ic.object;
+
+		inpScale.value = ico.scale.x;
+		inpRotX.value = ico.rotation.x * r2d;
+		inpRotY.value = ico.rotation.y * r2d;
+		inpRotZ.value = ico.rotation.z * r2d;
+		inpPosX.value = ico.position.x;
+		inpPosY.value = ico.position.y;
+		inpPosZ.value = ico.position.z;
+
+
+//console.log( '', ico );
+
+	}
+
+	ifr.onload = function() {
+
+		ic = ifr.contentWindow;
+
+		if ( window.self !== window.top ) {
+
+			ic.controls.enableZoom = false;
+
+		}
+
+//		taURL.value = ifr.src;
+
+	}
+
+// could be in core??
+
+	function toggleGround() {
+
+		ic.groundPlane.visible = !chkGround.checked === true ? false : true;
+
+		updateParameters();
+
+	}
+
+	function saveFile() {
+
+		var blob;
+
+		var blob = new Blob( [ JSON.stringify( ic.object.toJSON() ) ] );
+		var a = document.body.appendChild( document.createElement( 'a' ) );
+		a.href = window.URL.createObjectURL( blob );
+		a.download = 'test' + '.json';
+		a.click();
+		delete a;
+
+	}
+
+</script>
+</body>
+</html>

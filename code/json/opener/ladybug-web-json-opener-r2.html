@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Ladybug Web JSON Opener R2</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+<meta name="description" content="
+View Three.js JSON Files from a variety of sources
+Basic slide in/slide out menu with three bar icon that adjusts for small screen size.
+">
+<meta name="keywords" content="CSS, HTML,JavaScript,GitHub,FOSS,3D,STEM">
+<meta name="date" content="2016-04-11">
+</head>
+<body>
+<script>
+
+//	var core = ( location.origin === 'file://' ) ? 
+//		'../core/ladybug-web-json-core-r2.html' : 'http://ladybug-analysis-tools.github.io/3d-models/viewers/json/core/';
+	var core = '../core/ladybug-web-json-core-r2.html';
+
+	var pi = Math.PI;
+	var d2r = pi / 180, r2d = 180 / pi;  // degrees / radians
+
+	init();
+
+	function init() {
+
+		var css, hamburger, menu, contents;
+
+		css = document.body.appendChild( document.createElement('style') );
+		css.innerHTML =
+
+			'body { font: 12pt monospace; margin: 0; }' +
+			'h2, h3 { margin: 0; }' +
+			'a { text-decoration: none; }' +
+			'button, input[type=button] { background-color: #ccc; border: 2px #ccc solid; color: #444; }' +
+			'iframe { border: 0px red solid; height: 100%;; overflow: hidden; position: absolute; top: 0; width: 100%; }' +
+
+			'input[type=number] { text-align: right; width: 50px; }' +
+			'input[type=range] { -webkit-appearance: none; -moz-appearance: none; background-color: silver; width: 160px; }' +
+			'input[type=range]::-moz-range-thumb { background-color: #888; border-radius: 0; width: 10px; }' +
+			'input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; background-color: #888; height: 20px; width: 10px; }' +
+
+			'#bars { color: crimson; cursor: pointer; font-size: 24pt; text-decoration: none; }' +
+			'#hamburger { left: 325px; position: absolute; top: 20px; transition: left 1s; }' +
+			'#menu { background-color: #eee; border: 1px #ccc solid; left: -324px; max-height: ' + ( window.innerHeight - 10 ) + 'px; ' +
+				'opacity: 0.95; overflow: auto; padding: 0 10px; position: absolute; top: -20px; transition: left 1s; width: 300px; }' +
+
+		'';
+
+		contents = document.body.appendChild( document.createElement( 'div' ) );
+		contents.id = 'contents';
+		contents.innerHTML = '<h1>Stuff</h1>';
+
+		hamburger = document.body.appendChild( document.createElement( 'div' ) );
+		hamburger.id = 'hamburger';
+		hamburger.innerHTML = '<div id=bars >☰</div>';
+		bars.onclick = function() { hamburger.style.left = hamburger.style.left === "0px" ? "325px" : 0; };
+
+		menu = hamburger.appendChild( document.createElement( 'div' ) );
+		menu.id = 'menu';
+		menu.innerHTML =
+
+			'<h2>' +
+				'<a href="" >' + document.title + '</a>' +
+				'<a href=http://ladybug-analysis-tools.github.io/3d-models/ > &#x24D8; </a>' +
+			'</h2>' +
+			'<p id=coreMessage style=color:crimson; onchange=console.log("msg",message); ></p>' +
+
+			'<div><b>URL</b><br>' +
+				'<small>Drag and drop file URL here</small>' +
+				'<textarea id=taURL cols=35 rows=6 placeholder="Drag and drop a URL here\nor\nsee read me for more tricks..."></textarea></div>' +
+
+
+			'<div>' +
+				'<button onclick=saveFile(); >Save File</button> &nbsp;' +
+				'<a href=../browser/ladybug-web-json-browser-r2.html >Browser</a>' +
+			'</div>' +
+
+			'<p>Model Scale: <input type=number id=inpScale value=1 onchange = setParameters(); ></p>' +
+			'<p>' +
+				'Model Rotation:<br>' +
+				'x: <input type=number id=inpRotX value=0 onchange = setParameters(); > ' +
+				'y: <input type=number id=inpRotY value=0 onchange = setParameters(); > ' +
+				'z: <input type=number id=inpRotZ value=0 onchange = setParameters(); >' +
+			'</p>' +
+			'<p>' +
+				'Model Position:<br>' +
+				'x: <input type=number id=inpPosX value=0 onchange = setParameters(); > ' +
+				'y: <input type=number id=inpPosY value=0 onchange = setParameters(); > ' +
+				'z: <input id=inpPosZ type=number value=0 onchange = setParameters(); >' +
+			'</p>' +
+
+			'<p>' + 
+				'Camera Position<br><output id=outCamPos ></output><br>' +
+				'Camera Target<br><output id=outCamTar ></output><br>' +
+			'</p>' +
+
+//			'<p><input type=checkbox id=chkGround onchange=toggleGround(); checked > Toggle Ground Plane</p>' +
+			'<p><button onclick=allPhong(); >All Phong Material</button></p>' +
+
+			'<div id=info ></div>' +
+			'<div id=links ></div>' +
+
+			'<hr>' +
+//			'<p><a href="http://ladybug-analysis-tools.github.io/ladybug-web/shadow-core/" target="_blank" >&#x1f5d7; Ladybug Web Shadow Core</a></p>' +
+			'<center><h1> <img src=http://ladybug-analysis-tools.github.io/images/ladybug-logo.png width=32 </h1></center>';
+		'';
+
+		window.addEventListener( 'hashchange', onHashChange, false );
+
+		taURL.addEventListener( 'dragover', function( event ){ event.preventDefault(); }, true );
+
+		taURL.addEventListener( 'drop', onDrop, false );
+
+		taURL.addEventListener( 'change', function() { setContents( '#' + taURL.value ); }, true );
+
+// let's go
+
+		onHashChange();
+
+	}
+
+	function onHashChange(){
+
+		url = location.hash.length ? location.hash : '';
+
+		taURL.value = url.slice( 1 );
+
+		setContents( url );
+
+	}
+
+	function onDrop( event ) {
+
+		event.preventDefault(); 
+
+		url = event.dataTransfer.getData( 'URL' );
+
+		taURL.value = url;
+
+		setContents( '#' + url );
+
+	}
+
+
+	function setContents( hash ) {
+
+		contents.innerHTML = '<iframe id=ifr src=' + core + hash + ' scrolling="no" ></iframe>';
+
+	}
+
+	function setParameters() {
+
+		ifrContentWindowObject.scale.x = ifrContentWindowObject.scale.y = ifrContentWindowObject.scale.z = inpScale.valueAsNumber.toFixed( 3 );
+
+		ifrContentWindowObject.rotation.x = inpRotX.valueAsNumber * d2r;
+		ifrContentWindowObject.rotation.y = inpRotY.valueAsNumber * d2r;
+		ifrContentWindowObject.rotation.z = inpRotZ.valueAsNumber * d2r;
+		ifrContentWindowObject.position.x = inpPosX.valueAsNumber;
+		ifrContentWindowObject.position.y = inpPosY.valueAsNumber;
+		ifrContentWindowObject.position.z = inpPosZ.valueAsNumber;
+
+		txt = inpScale.valueAsNumber !== 1 ? '#sx=' + inpScale.valueAsNumber : '';
+		txt += inpScale.valueAsNumber !== 1 ? '#sy=' + inpScale.valueAsNumber : '';
+		txt += inpScale.valueAsNumber !== 1 ? '#sz=' + inpScale.valueAsNumber : '';
+		txt += inpRotX.valueAsNumber != 0 ? '#rx=' + inpRotX.valueAsNumber : '';
+		txt += inpRotY.valueAsNumber != 0 ? '#ry=' + inpRotY.valueAsNumber : '';
+		txt += inpRotZ.valueAsNumber != 0 ? '#rz=' + inpRotZ.valueAsNumber : '';
+
+		txt += inpPosX.valueAsNumber != 0 ? '#px=' + inpPosX.valueAsNumber : '';
+		txt += inpPosY.valueAsNumber != 0 ? '#py=' + inpPosY.valueAsNumber : '';
+		txt += inpPosZ.valueAsNumber != 0 ? '#pz=' + inpPosZ.valueAsNumber : '';
+
+
+		var c = ifrContentWindow.camera.position;
+		var t = ifrContentWindow.controls.target;
+
+		outCamPos.value = c.x.toFixed() + ', ' + c.y.toFixed() + ', ' + c.z.toFixed();
+		outCamTar.value = t.x.toFixed() + ', ' + t.y.toFixed() + ', ' + t.z.toFixed();
+
+		txt += c.x.toFixed() != 100 ? '#cx=' + c.x.toFixed() : '';
+		txt += c.y.toFixed() != 100 ? '#cy=' + c.y.toFixed() : '';
+		txt += c.z.toFixed() != 100 ? '#cz=' + c.z.toFixed() : '';
+
+		txt += t.x.toFixed() != 0 ? '#tx=' + t.x.toFixed() : '';
+		txt += t.y.toFixed() != 0 ? '#ty=' + t.y.toFixed() : '';
+		txt += t.z.toFixed() != 0 ? '#tz=' + t.z.toFixed() : '';
+
+		taURL.value =  ifrContentWindowObject.name + txt;
+
+//console.log( 'ifrContentWindowObject', ifrContentWindowObject );
+
+	}
+
+	function getCoreParameters() {
+
+		ifrContentWindow = ifr.contentWindow;
+
+		if ( ifrContentWindow ) {
+
+			ifrContentWindowObject = ifrContentWindow.object;
+
+			taURL.value = ifrContentWindowObject.name;
+
+			inpScale.value = ifrContentWindowObject.scale.x;
+			inpRotX.value = ifrContentWindowObject.rotation.x * r2d;
+			inpRotY.value = ifrContentWindowObject.rotation.y * r2d;
+			inpRotZ.value = ifrContentWindowObject.rotation.z * r2d;
+			inpPosX.value = ifrContentWindowObject.position.x;
+			inpPosY.value = ifrContentWindowObject.position.y;
+			inpPosZ.value = ifrContentWindowObject.position.z;
+
+		}
+
+// console.log( '', ifrContentWindowObject );
+
+	}
+
+
+	function allPhong() {
+
+		ifrContentWindow.scene.traverse( function ( child ) {
+
+			if ( child instanceof THREE.Mesh ) {
+
+				child.material = new THREE.MeshPhongMaterial();
+				child.material.needsUpdate = true;
+			}
+		} );
+
+
+	}
+
+// could be in core??
+
+	function toggleGround() {
+
+		ifrContentWindow.groundPlane.visible = !chkGround.checked === true ? false : true;
+
+	}
+
+	function saveFile() {
+
+		var blob, a;
+
+		blob = new Blob( [ JSON.stringify( ifrContentWindow.object.toJSON() ) ] );
+
+		a = document.body.appendChild( document.createElement( 'a' ) );
+		a.href = window.URL.createObjectURL( blob );
+		a.download = 'test' + '.json';
+		a.click();
+
+		delete a;
+
+	}
+
+</script>
+</body>
+</html>

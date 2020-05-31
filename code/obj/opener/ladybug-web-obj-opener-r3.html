@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang=en >
+<head>
+<meta charset=utf-8 >
+<title>Ladybug Web OBJ Opener R3</title>
+<meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
+<meta name=description content='
+View Three.js OBJ and MTL Files from a variety of sources
+Basic slide in/slide out menu with three bar icon that adjusts for small screen size.
+'>
+<meta name=keywords content='Ladybug Web,NOAA,Sun path,WebGL,Three.js,Tween.js,JavaScript,GitHub,FOSS,3D,STEM' >
+<meta name=date content='2016-05-15' >
+</head>
+<body>
+<script>
+
+	var debug = false;
+
+//	var core = 'http://ladybug-analysis-tools.github.io/3d-models/code/obj/core/index.html';
+	var core = '../core/index.html';
+
+	var d2r = Math.PI / 180, r2d = 180 / Math.PI;
+
+	var ifrContentWindow, ifrContentWindowObject;
+
+	init();
+
+	function init() {
+
+		var css, hamburger, menu, contents;
+
+		css = document.body.appendChild( document.createElement('style') );
+		css.innerHTML =
+
+			'body { font: 12pt monospace; margin: 0; }' +
+			'h2, h3 { margin: 0; }' +
+			'a { text-decoration: none; }' +
+			'button, input[type=button] { background-color: #ccc; border: 2px #ccc solid; color: #444; }' +
+			'iframe { border: 0px red solid; height: 100%;; overflow: hidden; position: absolute; top: 0; width: 100%; }' +
+
+			'input[type=number] { text-align: right; width: 50px; }' +
+			'input[type=range] { -webkit-appearance: none; -moz-appearance: none; background-color: silver; width: 160px; }' +
+			'input[type=range]::-moz-range-thumb { background-color: #888; border-radius: 0; width: 10px; }' +
+			'input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; background-color: #888; height: 20px; width: 10px; }' +
+
+			'#bars { color: crimson; cursor: pointer; font-size: 24pt; text-decoration: none; }' +
+			'#hamburger { left: 325px; position: absolute; top: 20px; transition: left 1s; }' +
+			'#menu { background-color: #eee; border: 1px #ccc solid; left: -324px; max-height: ' + ( window.innerHeight - 10 ) + 'px; ' +
+				'opacity: 0.95; overflow: auto; padding: 0 10px; position: absolute; top: -20px; transition: left 1s; width: 300px; }' +
+
+		'';
+
+		contents = document.body.appendChild( document.createElement( 'div' ) );
+		contents.id = 'contents';
+		contents.innerHTML = '<h1>Stuff</h1>';
+
+		hamburger = document.body.appendChild( document.createElement( 'div' ) );
+		hamburger.id = 'hamburger';
+		hamburger.innerHTML = '<div id=bars >☰</div>';
+		bars.onclick = function() { hamburger.style.left = hamburger.style.left === "0px" ? "325px" : 0; };
+
+		menu = hamburger.appendChild( document.createElement( 'div' ) );
+		menu.id = 'menu';
+		menu.innerHTML =
+
+			'<h2>' +
+				'<a href="" >' + document.title + '</a>' +
+				'<a href=https://ladybug-analysis-tools.github.io/3d-models/code/json/opener/index.html#readme.md > &#x24D8; </a>' +
+			'</h2>' +
+
+			'<p><a href=../browser/ladybug-web-json-browser-r2.html >Browser</a></p>' +
+			'<p id=coreMessage style=color:crimson; /* onchange=console.log("msg",message); */ ></p>' +
+
+			'<div><b>URL</b><br>' +
+				'<small>Drag and drop file URL here</small>' +
+				'<textarea id=taURL cols=35 rows=6 placeholder="Drag and drop a URL here\nor\nsee read me for more tricks..."></textarea></div>' +
+
+
+			'<div>' +
+				'<button onclick=saveFile(); >Save file</button> &nbsp;' +
+				'<button onclick=openNewTab(); >Test in new tab</button>' +
+
+			'</div>' +
+
+			'<p>' +
+				'Directional Light<br>' +
+				'x <input type=number id=inpLightX value=0 onchange = setPermalinks(); > ' +
+				'y <input type=number id=inpLightY value=0 onchange = setPermalinks(); > ' +
+				'z <input type=number id=inpLightZ value=0 onchange = setPermalinks(); >' +
+			'</p>' +
+
+			'<p>Model Scale <input type=number id=inpScale value=1 step=0.001 onchange = setPermalinks(); ></p>' +
+			'<p>' +
+				'Model rotation<br>' +
+				'x <input type=number id=inpRotX value=0 onchange = setPermalinks(); > ' +
+				'y <input type=number id=inpRotY value=0 onchange = setPermalinks(); > ' +
+				'z <input type=number id=inpRotZ value=0 onchange = setPermalinks(); >' +
+			'</p>' +
+			'<p>' +
+				'Model position<br>' +
+				'x <input type=number id=inpPosX value=0 onchange = setPermalinks(); > ' +
+				'y <input type=number id=inpPosY value=0 onchange = setPermalinks(); > ' +
+				'z <input type=number id=inpPosZ value=0 onchange = setPermalinks(); >' +
+			'</p>' +
+			'<p>' + 
+				'Camera position<br>' +
+				'x <input type=number id=inpCamX value=0 onchange = setPermalinks(); > ' +
+				'y <input type=number id=inpCamY value=0 onchange = setPermalinks(); > ' +
+				'z <input type=number id=inpCamZ value=0 onchange = setPermalinks(); >' +
+			'</p>' +
+			'<p>' + 
+				'Camera Target<br>' +
+				'x <input type=number id=inpTarX value=0 onchange = setPermalinks(); > ' +
+				'y <input type=number id=inpTarY value=0 onchange = setPermalinks(); > ' +
+				'z <input type=number id=inpTarZ value=0 onchange = setPermalinks(); >' +
+			'</p>' +
+
+			'<p><input type=checkbox onchange=ifrContentWindow.mesh.material.wireframe=!ifrContentWindow.mesh.material.wireframe; > Wireframe</p>' +
+			'<p>' +
+				'<button onclick=allPhong(); >All phong material</button> ' +
+				'<button onclick=allNormal(); >All normal material</button>' +
+			'</p>' +
+
+			'<p><button onclick=zoomBoundary(); >Zoom boundary</button></p>' +
+			'<div id=info ></div>' +
+			'<div id=links ></div>' +
+
+			'<hr>' +
+//			'<p><a href="https://ladybug-analysis-tools.github.io/ladybug-web/shadow-core/" target="_blank" >&#x1f5d7; Ladybug Web Shadow Core</a></p>' +
+			'<center><h1> <img src=https://ladybug-analysis-tools.github.io/images/ladybug-logo.png width=32 </h1></center>';
+		'';
+
+		window.addEventListener( 'hashchange', onHashChange, false );
+
+		taURL.addEventListener( 'dragover', function( event ){ event.preventDefault(); }, true );
+
+		taURL.addEventListener( 'drop', onDrop, false );
+
+		taURL.addEventListener( 'change', function() { setContents( '#' + taURL.value ); }, true );
+
+// let's go
+
+		onHashChange();
+
+	}
+
+	function onHashChange(){
+
+		url = location.hash.length ? location.hash.slice( 1 ) : '';
+
+		setContents( url );
+
+	}
+
+	function onDrop( event ) {
+
+		event.preventDefault(); 
+
+		url = event.dataTransfer.getData( 'URL' );
+
+		setContents( url );
+
+	}
+
+	function setContents( url ) {
+
+		taURL.value = url;
+		contents.innerHTML = '<iframe id=ifr src=' + core + '#' + url + ' scrolling="no" ></iframe>';
+
+	}
+
+// called by core
+// could this be in core?
+
+	function getCoreParameters() {
+
+		ifrContentWindow = ifr.contentWindow;
+		ifrContentWindowObject = ifrContentWindow.model;
+
+		inpLightX.value = ifrContentWindow.directionalLight.position.x;
+		inpLightY.value = ifrContentWindow.directionalLight.position.y;
+		inpLightZ.value = ifrContentWindow.directionalLight.position.z;
+
+		inpScale.value = ifrContentWindowObject.scale.x;
+
+		inpRotX.value = ifrContentWindowObject.rotation.x * r2d;
+		inpRotY.value = ifrContentWindowObject.rotation.y * r2d;
+		inpRotZ.value = ifrContentWindowObject.rotation.z * r2d;
+
+		inpPosX.value = ifrContentWindowObject.position.x;
+		inpPosY.value = ifrContentWindowObject.position.y;
+		inpPosZ.value = ifrContentWindowObject.position.z;
+
+		inpCamX.value = ifrContentWindow.camera.position.x.toFixed();
+		inpCamY.value = ifrContentWindow.camera.position.y.toFixed();
+		inpCamZ.value = ifrContentWindow.camera.position.z.toFixed();
+
+		inpTarX.value = ifrContentWindow.controls.target.x.toFixed();
+		inpTarY.value = ifrContentWindow.controls.target.y.toFixed();
+		inpTarZ.value = ifrContentWindow.controls.target.z.toFixed();
+
+		setPermalinks();
+
+// console.log( '', ifrContentWindowObject );
+
+	}
+
+	function setPermalinks() {
+
+		var txt = '';
+
+		txt += inpLightX.valueAsNumber != -100 ? '#dx=' + inpLightX.valueAsNumber : '';
+		txt += inpLightY.valueAsNumber != 100 ? '#dy=' + inpLightY.valueAsNumber : '';
+		txt += inpLightZ.valueAsNumber != 100 ? '#dz=' + inpLightZ.valueAsNumber : '';
+
+		txt += inpScale.valueAsNumber !== 1 ? '#sx=' + inpScale.valueAsNumber : '';
+		txt += inpScale.valueAsNumber !== 1 ? '#sy=' + inpScale.valueAsNumber : '';
+		txt += inpScale.valueAsNumber !== 1 ? '#sz=' + inpScale.valueAsNumber : '';
+
+		txt += inpRotX.valueAsNumber != 0 ? '#rx=' + inpRotX.valueAsNumber : '';
+		txt += inpRotY.valueAsNumber != 0 ? '#ry=' + inpRotY.valueAsNumber : '';
+		txt += inpRotZ.valueAsNumber != 0 ? '#rz=' + inpRotZ.valueAsNumber : '';
+
+		txt += inpPosX.valueAsNumber != 0 ? '#px=' + inpPosX.valueAsNumber : '';
+		txt += inpPosY.valueAsNumber != 0 ? '#py=' + inpPosY.valueAsNumber : '';
+		txt += inpPosZ.valueAsNumber != 0 ? '#pz=' + inpPosZ.valueAsNumber : '';
+
+		txt += inpCamX.valueAsNumber != 100 ? '#cx=' + inpCamX.valueAsNumber : '';
+		txt += inpCamY.valueAsNumber != 100 ? '#cy=' + inpCamY.valueAsNumber : '';
+		txt += inpCamZ.valueAsNumber != 100 ? '#cz=' + inpCamZ.valueAsNumber : '';
+
+		txt += inpTarX.valueAsNumber != 0 ? '#tx=' + inpTarX.valueAsNumber : '';
+		txt += inpTarY.valueAsNumber != 0 ? '#ty=' + inpTarY.valueAsNumber : '';
+		txt += inpTarZ.valueAsNumber != 0 ? '#tz=' + inpTarZ.valueAsNumber : '';
+
+		taURL.value = ifrContentWindowObject.name + txt;
+		ifrContentWindow.location.hash = txt;
+
+	}
+
+
+	function allPhong() {
+
+		ifrContentWindowObject.traverse( function ( child ) {
+
+			if ( child instanceof ifrContentWindow.THREE.Mesh ) {
+
+				child.material = new ifrContentWindow.THREE.MeshPhongMaterial( { side: 2 } );
+				child.material.needsUpdate = true;
+
+			}
+
+		} );
+
+	}
+
+	function allNormal() {
+
+		ifrContentWindowObject.traverse( function ( child ) {
+
+			if ( child instanceof ifrContentWindow.THREE.Mesh ) {
+
+				child.material = new ifrContentWindow.THREE.MeshNormalMaterial( { side: 2 } );
+				child.material.needsUpdate = true;
+
+			}
+
+		} );
+
+	}
+
+	function zoomBoundary() {
+
+			bbh = new ifrContentWindow.THREE.BoundingBoxHelper( ifrContentWindowObject );
+			bbh.update();
+//			bbh.geometry.computeBoundingSphere();
+//			radius = bbh.geometry.boundingSphere.radius;
+
+			distance = bbh.position.distanceTo( bbh.scale );
+			size = ifrContentWindowObject.scale.y * 80 / distance;
+
+			ifrContentWindowObject.scale.multiplyScalar( size );
+
+			bbh = new ifrContentWindow.THREE.BoundingBoxHelper( ifrContentWindowObject );
+			bbh.update();
+			ifrContentWindow.scene.add( bbh );
+
+			inpScale.value = size.toFixed( 3 );
+
+			setPermalinks();
+
+	}
+
+	function openNewTab() {
+
+		window.open( core + '#' + taURL.value, '_blank' )
+
+	}
+
+
+	function saveFile() {
+
+		var blob, a;
+
+		blob = new Blob( [ JSON.stringify( ifrContentWindow.object.toJSON() ) ] );
+
+		a = document.body.appendChild( document.createElement( 'a' ) );
+		a.href = window.URL.createObjectURL( blob );
+		a.download = 'test' + '.json';
+		a.click();
+
+		delete a;
+
+	}
+
+</script>
+</body>
+</html>

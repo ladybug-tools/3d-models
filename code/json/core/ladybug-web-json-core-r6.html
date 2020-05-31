@@ -1,0 +1,595 @@
+﻿<!doctype html>
+<html lang=en >
+<head>
+<meta charset=utf-8 >
+<title>Ladybug Web JSON Core R6.2</title>
+<meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
+<meta name=description content='' >
+<meta name=keywords content='WebGL,Three.js,Tween.js,JavaScript,GitHub,FOSS,3D,STEM' >
+<meta name=date content='2016-05-15' >
+</head>
+<body>
+<!--
+<script src=https://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src=https://mrdoob.github.io/three.js/examples/js/controls/OrbitControls.js ></script>
+<script src=https://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
+<script src=https://mrdoob.github.io/three.js/examples/js/loaders/BinaryLoader.js ></script>
+-->
+<script src=https://rawgit.com/mrdoob/three.js/dev/build/three.min.js ></script>
+<script src=https://rawgit.com/mrdoob/three.js/dev/examples/js/controls/OrbitControls.js ></script>
+<script src=https://rawgit.com/mrdoob/three.js/dev/examples/js/libs/stats.min.js ></script>
+<script src=https://rawgit.com/mrdoob/three.js/dev/examples/js/loaders/BinaryLoader.js ></script>
+
+<script>
+
+	var debug;
+
+//	var fullFilePathDefault = '#fn=https://rawgit.com/mrdoob/three.js/dev/examples/obj/WaltHeadLo.js';
+//	var fullFilePathDefault = '#fn=https://rawgit.com/mrdoob/three.js/dev/examples/models/json/teapot-claraio.json';
+//	var fullFilePathDefault = '#fn=https://rawgit.com/mrdoob/three.js/dev/examples/obj/cubecolors/cubecolors.js'
+//	var fullFilePathDefault = '#fn=https://rawgit.com/mrdoob/three.js/dev/examples/obj/walt/WaltHead_bin.js';
+//	var fullFilePathDefault = '#fn=../../../content/json/mobius.json';
+//	var fullFilePathDefault = '#fn=../../../content/json/data.json';
+
+//	var fullFilePathDefault = '#fn=http://va3c.github.io/json-r2/MissSpacyEyes.json';
+//	var fullFilePathDefault = '#fn=https://tt-acm.github.io/Spectacles.RevitExporter/sampleModels/rst_basic_sample_project.rvt.js';
+	var fullFilePathDefault = '#fn=https://ladybug-analysis-tools.github.io/3d-models/content/json/urban-model/urban-model-001.json' +
+		'#la=37.796#lo=-122.398#cx=50#cy=70#cz=40#tx=-7#ty=6#tz=-15#hr=12#sx=0.1#sy=0.1#sz=0.1#px=10#pz=10#rx=90#ry=180#sl=1.5#gv=0#av=1';
+
+	var fullFilePath, fileName;
+	var model;
+	var metadata, fileSize;
+	var stats, renderer, scene, camera, controls, directionalLight;
+
+	init();
+	animate();
+
+	function init() {
+
+		var css, menu;
+		var geometry, material, mesh;
+
+		css = document.head.appendChild( document.createElement( 'style' ) );
+		css.innerHTML =
+
+			'body { font: 12pt monospace; margin: 0; overflow: hidden; }' +
+			'a { color: crimson; text-decoration: none; }' +
+			'button, input[type=button] { background-color: #ccc; border: 2px #ccc solid; color: #333; }' +
+			'h2 { margin: 0 }' +
+
+			'#bars { color: pink; cursor: pointer; font-size: 24pt; text-decoration: none; }' +
+			'#hamburger { left: 325px; position: absolute; top: 20px; transition: left 1s; }' +
+			'#menu { background-color: #eee; border: 1px #ccc solid; left: -324px; max-height: ' + ( window.innerHeight - 10 ) + 'px; ' +
+				'opacity: 0.85; overflow: auto; padding: 0 10px; position: absolute; top: -20px; transition: left 1s; width: 300px; }' +
+
+		'';
+
+		if ( window.self === window.top ) {
+
+			hamburger = document.body.appendChild( document.createElement( 'div' ) );
+			hamburger.id = 'hamburger';
+			hamburger.innerHTML = '<div id=bars >☰</div>';
+			bars.onclick = function() { hamburger.style.left = hamburger.style.left === "0px" ? "325px" : 0; };
+
+			menu = hamburger.appendChild( document.createElement( 'div' ) );
+			menu.id = 'menu';
+			menu.innerHTML =
+
+				'<h2>' +
+					'<a href="" >' + document.title + '</a> ' +
+					'<a href=http://ladybug-analysis-tools.github.io/3d-models/code/json/core/#readme.md > &#x24D8; </a>' +
+				'</h2>' +
+				'<p><button onclick=location.hash="##cy=0"; >Test permalink</button></p>' +
+				'<div id=coreMessage ></div>' +
+				'<div id=menuFileName ></div>' +
+				'<div id=menuInfo ></div>' +
+				'<div id=menuMessage ></div>' +
+				'<div id=menuMetadata ></div>' +
+
+			'';
+
+		}
+
+		stats = new Stats();
+		stats.domElement.style.cssText = `position: absolute; right: 0; top: 0; z-index: 100; `;
+		document.body.appendChild( stats.domElement );
+
+		window.addEventListener( 'resize', onWindowResize, false );
+		window.addEventListener ( 'hashchange', onHashChange, false );
+		document.body.addEventListener("mouseup", function() { if ( parent.getCoreParameters ) { parent.getCoreParameters(); } }, false );
+
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true }  );
+//		renderer.setClearColor( 0xf0f0f0 );
+//		renderer.setPixelRatio( window.devicePixelRatio );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+		camera.position.set( 100, 100, 100 );
+
+		controls = new THREE.OrbitControls( camera, renderer.domElement );
+		controls.maxDistance = 1000;
+
+		scene = new THREE.Scene();
+
+		directionalLight = new THREE.DirectionalLight( 0xffffff, 1.5 );
+		directionalLight.position.set( -100, 100, 100 );
+		scene.add( directionalLight );
+
+// assets
+
+		onHashChange();
+
+	}
+
+	function onHashChange() {
+
+		fullFilePath = location.hash.length ? location.hash.slice( 1 ) : fullFilePathDefault.slice( 4 ) ;
+
+		if ( !model ) {
+
+			loadXHR();
+
+			return;
+
+		} else {
+
+			getHashParameters();
+
+		}
+
+	}
+
+	function loadXHR() {
+
+		var loader, fileNameSplit;
+
+		fileName = fullFilePath.split( '/' ).pop();
+
+		fileNameSplit = fileName.split( '#' );
+
+		if ( fileNameSplit.length ) { fileName = fileNameSplit[0]; }
+
+		loader = new THREE.XHRLoader();
+		loader.crossOrigin = '';
+		loader.load( fullFilePath, function ( response ) {
+
+			fileSize = response.length;
+			handleJSON( fullFilePath, response );
+
+		} );
+
+	}
+
+	function handleJSON( fullFilePath, data ) {
+
+
+// needs streamlining
+
+		if ( data.slice( 0, 1 ) !== '{' ) {
+
+			setCoreMessage( fileName + ': is not JSON' );
+
+			return;
+
+		}
+
+		data = JSON.parse( data );
+
+		if ( data.offsets !== undefined || data.__metadata__ !== undefined || data.urls !== undefined || data.materials === undefined ) {
+
+			data.metadata = { type: 'Not a Three.js JSON file' };
+
+		} else if ( data.metadata === undefined ) { // 2.0
+
+			data.metadata = { type: 'Geometry' };
+
+		} else if ( data.metadata.type === undefined ) { // 3.0
+
+			data.metadata.type = 'Geometry';
+
+		} else if ( data.metadata.formatVersion !== undefined ) {
+
+			data.metadata.version = data.metadata.formatVersion;
+
+		}
+
+		if ( data.buffers ) {
+
+			data.metadata.type = 'binary';
+
+		}
+
+		metadata = data.metadata;
+
+		switch ( data.metadata.type.toLowerCase() ) {
+
+			case 'binary':
+
+				loadBinaryLoaderFileByURL( fullFilePath );
+
+				break;
+
+			case 'buffergeometry':
+
+				loadBufferGeometryFileByURL( fullFilePath )
+
+				break;
+
+			case 'geometry':
+
+				loadJSONLoaderFileByURL( fullFilePath );
+
+				break;
+
+			case 'object':
+
+				loadObjectLoaderFileByURL( fullFilePath );
+
+				break;
+
+			case 'scene':
+			case 'app':
+
+				break;
+
+		}
+
+//		setCoreMessage( fileName + ': ' + data.metadata.type.toLowerCase() );
+
+	}
+
+	function loadBinaryLoaderFileByURL( url ) {
+
+		var loader, material, mesh;
+
+		loader = new THREE.BinaryLoader();
+		loader.crossOrigin = 'anonymous';
+		loader.load( url, function ( geometry, materials ) {
+
+			if ( materials && materials.length > 1 ) {
+
+				material = new THREE.MultiMaterial( materials );
+
+			} else if ( materials ) {
+
+				material = materials[ 0 ];
+
+			} else {
+
+				material = new THREE.MeshPhongMaterial();
+
+			}
+
+			mesh = new THREE.Mesh( geometry, material );
+			mesh.name = url;
+
+			addObject( mesh );
+
+		} );
+
+	}
+
+	function loadBufferGeometryFileByURL( url ) {
+
+		var loader, result, result, mesh;
+
+		loader = new THREE.BufferGeometryLoader();
+		result = loader.parse( data );
+
+		mesh = new THREE.Mesh( result );
+		mesh.name = url;
+
+		addObject( mesh );
+
+	}
+
+	function loadJSONLoaderFileByURL( url ) {
+
+		var loader, material, mesh;
+
+		loader = new THREE.JSONLoader();
+		loader.crossOrigin = 'anonymous';
+		loader.load( url, function ( geometry, materials ) {
+
+			if ( materials && materials.length > 1 ) {
+
+				material = new THREE.MultiMaterial( materials );
+
+			} else if ( materials ) {
+
+				material = materials[ 0 ];
+
+			} else {
+
+				material = new THREE.MeshPhongMaterial();
+
+			}
+
+			mesh = new THREE.Mesh( geometry, material );
+			mesh.name = url;
+
+			addObject( mesh );
+
+		} );
+
+	}
+
+	function loadObjectLoaderFileByURL( url ) {
+
+		var loader, object;
+
+		loader = new THREE.ObjectLoader();
+		loader.crossOrigin = 'anonymous';
+		loader.load( url, function ( result, materials ) {
+
+			if ( result instanceof THREE.Scene ) {
+
+				object = new THREE.Object3D();;
+
+				for ( var i = 0; i < result.children.length; i++ ) {
+
+					child = result.children[ i ];
+
+					if ( child instanceof THREE.Mesh ) {
+
+						child.material.side = 2;
+						child.castShadow = true;
+						child.receiveShadow = true;
+
+						object.add( child );
+
+					}
+
+				}
+
+/*
+				result.traverse( function ( child ) {
+
+					if ( child instanceof THREE.Mesh ) {
+
+//						child.material = new THREE.MeshPhongMaterial();
+						child.material.side = 2;
+//						child.castShadow = true;
+//						child.receiveShadow = true;
+						child.material.needsUpdate = true;
+
+						helper = new THREE.EdgesHelper( child, 0x444444 );
+						scene.add( helper );
+
+						object.add( child );
+
+					}
+
+				} );
+*/
+				addObject( object );
+
+// for mobius.json
+
+				scene = result;
+				scene.add( object );
+
+			} else {
+
+/*
+			for ( var i = 0; i < result.children.length; i++ ) {
+
+				child = result.children[ i ];
+				child.material.side = 2
+
+				helper = new THREE.EdgesHelper( child, 0x444444 );
+				scene.add( helper );
+
+			} 
+*/
+
+				result.traverse( function ( child ) {
+
+					if ( child instanceof THREE.Mesh ) {
+
+						child.material = new THREE.MeshPhongMaterial();
+						child.material.side = 2;
+						child.castShadow = true;
+						child.receiveShadow = true;
+						child.material.needsUpdate = true;
+
+						helper = new THREE.EdgesHelper( child, 0x444444 );
+						scene.add( helper );
+
+					}
+
+				} );
+
+				addObject( result );
+
+			}
+
+		}, onProgress, onError );
+
+
+		function onProgress( xhr ) {
+
+			var percentComplete;
+
+			if ( xhr.total ) {
+
+				percentComplete = xhr.loaded / xhr.total * 100;
+				setCoreMessage( 'File: ' + fileName + ' - ' + percentComplete.toFixed() + '% or ' + xhr.loaded + ' bytes of ' + xhr.total + ' downloaded' );
+
+			} else {
+
+				setCoreMessage( 'File: ' + fileName + ' - ' + xhr.loaded + ' bytes loaded' );
+
+			}
+
+		}
+
+		function onError ( xhr ) { 
+
+			setCoreMessage( 'An error happened: ' + xhr ); 
+
+		}
+
+	}
+
+
+	function addObject( object ) {
+
+//console.log( 'object', object );
+
+// for the parent
+
+		model = object;
+		model.name = fullFilePath;
+		model.userData.metadata = metadata
+		model.userData.fileSize = fileSize;
+
+		model.castShadow = true;
+		model.receiveShadow = true;
+
+		scene.add( model );
+
+		getHashParameters( model );
+
+		setCoreMessage( fileName + ': load complete' );
+
+		document.title = fileName + ' - ' + document.title;
+
+	}
+
+	function getHashParameters() {
+
+		var hashes, hash, parameter, value;
+		var d2r = Math.PI / 180, r2d = 180 / Math.PI;  // degrees / radians
+		var b = '<br>';
+
+		hashes = location.hash.length ? location.hash.slice( 1 ) : fullFilePathDefault;
+		hashes = hashes.split( '#' );
+
+		for ( var i = 1; i < hashes.length; i++ ) {
+
+			hash = hashes[ i ].split( '=' );
+			parameter = hash[ 0 ];
+			value = hash[ 1 ];
+
+			switch( parameter ) {
+
+				case 'rx': model.rotation.x = parseFloat( value * d2r ); break;
+				case 'ry': model.rotation.y = parseFloat( value * d2r ); break;
+				case 'rz': model.rotation.z = parseFloat( value * d2r ); break;
+
+				case 'px': model.position.x = parseFloat( value ); break;
+				case 'py': model.position.y = parseFloat( value ); break;
+				case 'pz': model.position.z = parseFloat( value ); break;
+
+				case 'sx': model.scale.x = parseFloat( value ) || 1 ; break;
+				case 'sy': model.scale.y = parseFloat( value ) || 1; break;
+				case 'sz': model.scale.z = parseFloat( value ) || 1; break;
+
+				case 'cx': camera.position.x = parseFloat( value ); break;
+				case 'cy': camera.position.y = parseFloat( value ); break;
+				case 'cz': camera.position.z = parseFloat( value ); break;
+
+				case 'tx': controls.target.x = parseFloat( value ); break;
+				case 'ty': controls.target.y = parseFloat( value ); break;
+				case 'tz': controls.target.z = parseFloat( value ); break;
+
+				case 'dx': directionalLight.position.x = parseFloat( value ); break;
+				case 'dy': directionalLight.position.y = parseFloat( value ); break;
+				case 'dz': directionalLight.position.z = parseFloat( value ); break;
+
+				case '' :
+				case 'fn' :
+				case 'av' :
+				case 'gv' : 
+				case 'si' :
+				case 'sl' :
+				case 'hr' :
+				case 'la' : 
+				case 'lo' :   
+					break;
+
+				default: console.log( 'oops', hash, i );
+
+			}
+
+		}
+
+		if ( window.self === window.top || debug === true ) {
+
+			menuInfo.innerHTML =
+
+				'Position X: ' + model.position.x + b +
+				'Position Y: ' + model.position.y + b +
+				'Position Z: ' + model.position.z + b +
+
+				'Rotation X: ' + ( model.rotation.x * r2d ) + b +
+				'Rotation Y: ' + ( model.rotation.y * r2d ) + b +
+				'Rotation Z: ' + ( model.rotation.z * r2d ) + b +
+
+				'Scale: ' + model.scale.z + b +
+// add light?
+				'Camera position: ' + camera.position.x.toFixed() + ', '+ camera.position.y.toFixed() + ', '+ camera.position.z.toFixed() + ', ' + b +
+				'Camera target: ' + controls.target.x.toFixed() + ', '+ controls.target.y.toFixed() + ', '+ controls.target.z.toFixed() + ', ' + b +
+
+				b +
+
+			'';
+
+			menuMetadata.innerHTML =
+
+				'<p>' +
+				'File size: ' + fileSize + '<br>' +
+				'Version: ' + ( metadata.formatVersion || metadata.version )+ '<br>' +
+				'Type: ' + metadata.type + '<br>' +
+				'Generated by: ' + ( metadata.generatedBy || metadata.generator ) + '<br>' +
+				'</p>' +
+
+			'';
+
+		}
+
+	}
+
+	function setCoreMessage( message ){
+
+		if ( window.self !== window.top && message === ( fileName + ': load complete' ) ) {
+
+			if ( parent.getCoreParameters ) { parent.getCoreParameters(); }
+
+		} else if ( parent.coreMessage ) {
+
+// send data via 'model'...
+
+			parent.coreMessage.innerHTML = message;
+
+		} else {
+
+			parent.console.log( 'message:', message );
+
+		}
+
+	}
+
+	function onWindowResize() {
+
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+
+		renderer.setSize( window.innerWidth, window.innerHeight );
+
+	}
+
+	function animate() {
+
+		requestAnimationFrame( animate );
+		controls.update();
+		stats.update();
+		renderer.render( scene, camera );
+
+	}
+
+</script>
+</body>
+</html>
