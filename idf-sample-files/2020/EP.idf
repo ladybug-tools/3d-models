@@ -1,0 +1,2285 @@
+!-Generator IDFEditor 1.50
+!-Option SortedOrder
+
+!-NOTE: All comments with '!-' are ignored by the IDFEditor and are generated automatically.
+!-      Use '!' comments if they need to be retained when using the IDFEditor.
+
+
+!-   ===========  ALL OBJECTS IN CLASS: VERSION ===========
+
+Version,
+    8.9;                     !- Version Identifier
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SIMULATIONCONTROL ===========
+
+SimulationControl,
+    Yes,                     !- Do Zone Sizing Calculation
+    Yes,                     !- Do System Sizing Calculation
+    Yes,                     !- Do Plant Sizing Calculation
+    Yes,                     !- Run Simulation for Sizing Periods
+    Yes,                     !- Run Simulation for Weather File Run Periods
+    No,                      !- Do HVAC Sizing Simulation for Sizing Periods
+    1;                       !- Maximum Number of HVAC Sizing Simulation Passes
+
+
+!-   ===========  ALL OBJECTS IN CLASS: BUILDING ===========
+
+Building,
+    Office,                  !- Name
+    0,                       !- North Axis {deg}
+    Suburbs,                 !- Terrain
+    0.04,                    !- Loads Convergence Tolerance Value
+    0.4,                     !- Temperature Convergence Tolerance Value {deltaC}
+    FullExterior,            !- Solar Distribution
+    25,                      !- Maximum Number of Warmup Days
+    6;                       !- Minimum Number of Warmup Days
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SHADOWCALCULATION ===========
+
+ShadowCalculation,
+    AverageOverDaysInFrequency,  !- Calculation Method
+    20;                      !- Calculation Frequency
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SURFACECONVECTIONALGORITHM:INSIDE ===========
+
+SurfaceConvectionAlgorithm:Inside,
+    TARP;                    !- Algorithm
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SURFACECONVECTIONALGORITHM:OUTSIDE ===========
+
+SurfaceConvectionAlgorithm:Outside,
+    TARP;                    !- Algorithm
+
+
+!-   ===========  ALL OBJECTS IN CLASS: HEATBALANCEALGORITHM ===========
+
+HeatBalanceAlgorithm,
+    ConductionTransferFunction;  !- Algorithm
+
+
+!-   ===========  ALL OBJECTS IN CLASS: TIMESTEP ===========
+
+Timestep,
+    6;                       !- Number of Timesteps per Hour
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SITE:LOCATION ===========
+
+Site:Location,
+    LONDON/GATWICK_GBR Design_Conditions,  !- Name
+    51.15,                   !- Latitude {deg}
+    -0.18,                   !- Longitude {deg}
+    0.00,                    !- Time Zone {hr}
+    62.00;                   !- Elevation {m}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SIZINGPERIOD:DESIGNDAY ===========
+
+SizingPeriod:DesignDay,
+    LONDON/GATWICK Ann Htg 99.6% Condns DB,  !- Name
+    2,                       !- Month
+    21,                      !- Day of Month
+    WinterDesignDay,         !- Day Type
+    -4.6,                    !- Maximum Dry-Bulb Temperature {C}
+    0.0,                     !- Daily Dry-Bulb Temperature Range {deltaC}
+    DefaultMultipliers,      !- Dry-Bulb Temperature Range Modifier Type
+    ,                        !- Dry-Bulb Temperature Range Modifier Day Schedule Name
+    Wetbulb,                 !- Humidity Condition Type
+    -4.6,                    !- Wetbulb or DewPoint at Maximum Dry-Bulb {C}
+    ,                        !- Humidity Condition Day Schedule Name
+    ,                        !- Humidity Ratio at Maximum Dry-Bulb {kgWater/kgDryAir}
+    ,                        !- Enthalpy at Maximum Dry-Bulb {J/kg}
+    ,                        !- Daily Wet-Bulb Temperature Range {deltaC}
+    100582.,                 !- Barometric Pressure {Pa}
+    1.5,                     !- Wind Speed {m/s}
+    80,                      !- Wind Direction {deg}
+    No,                      !- Rain Indicator
+    No,                      !- Snow Indicator
+    No,                      !- Daylight Saving Time Indicator
+    ASHRAEClearSky,          !- Solar Model Indicator
+    ,                        !- Beam Solar Day Schedule Name
+    ,                        !- Diffuse Solar Day Schedule Name
+    ,                        !- ASHRAE Clear Sky Optical Depth for Beam Irradiance (taub) {dimensionless}
+    ,                        !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance (taud) {dimensionless}
+    0.00;                    !- Sky Clearness
+
+SizingPeriod:DesignDay,
+    LONDON/GATWICK Ann Clg .4% Condns DB=>MWB,  !- Name
+    7,                       !- Month
+    21,                      !- Day of Month
+    SummerDesignDay,         !- Day Type
+    27.2,                    !- Maximum Dry-Bulb Temperature {C}
+    9.7,                     !- Daily Dry-Bulb Temperature Range {deltaC}
+    DefaultMultipliers,      !- Dry-Bulb Temperature Range Modifier Type
+    ,                        !- Dry-Bulb Temperature Range Modifier Day Schedule Name
+    Wetbulb,                 !- Humidity Condition Type
+    18.7,                    !- Wetbulb or DewPoint at Maximum Dry-Bulb {C}
+    ,                        !- Humidity Condition Day Schedule Name
+    ,                        !- Humidity Ratio at Maximum Dry-Bulb {kgWater/kgDryAir}
+    ,                        !- Enthalpy at Maximum Dry-Bulb {J/kg}
+    ,                        !- Daily Wet-Bulb Temperature Range {deltaC}
+    100582.,                 !- Barometric Pressure {Pa}
+    3.5,                     !- Wind Speed {m/s}
+    90,                      !- Wind Direction {deg}
+    No,                      !- Rain Indicator
+    No,                      !- Snow Indicator
+    No,                      !- Daylight Saving Time Indicator
+    ASHRAETau,               !- Solar Model Indicator
+    ,                        !- Beam Solar Day Schedule Name
+    ,                        !- Diffuse Solar Day Schedule Name
+    0.455,                   !- ASHRAE Clear Sky Optical Depth for Beam Irradiance (taub) {dimensionless}
+    1.974;                   !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance (taud) {dimensionless}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: RUNPERIOD ===========
+
+RunPeriod,
+    ,                        !- Name
+    1,                       !- Begin Month
+    1,                       !- Begin Day of Month
+    12,                      !- End Month
+    31,                      !- End Day of Month
+    UseWeatherFile,          !- Day of Week for Start Day
+    No,                      !- Use Weather File Holidays and Special Days
+    No,                      !- Use Weather File Daylight Saving Period
+    No,                      !- Apply Weekend Holiday Rule
+    Yes,                     !- Use Weather File Rain Indicators
+    Yes,                     !- Use Weather File Snow Indicators
+    1;                       !- Number of Times Runperiod to be Repeated
+
+
+!-   ===========  ALL OBJECTS IN CLASS: RUNPERIODCONTROL:DAYLIGHTSAVINGTIME ===========
+
+RunPeriodControl:DaylightSavingTime,
+    Last Sunday in March,    !- Start Date
+    Last Sunday in October;  !- End Date
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SITE:GROUNDTEMPERATURE:BUILDINGSURFACE ===========
+
+Site:GroundTemperature:BuildingSurface,
+    14,                      !- January Ground Temperature {C}
+    14,                      !- February Ground Temperature {C}
+    14,                      !- March Ground Temperature {C}
+    14,                      !- April Ground Temperature {C}
+    14,                      !- May Ground Temperature {C}
+    14,                      !- June Ground Temperature {C}
+    14,                      !- July Ground Temperature {C}
+    14,                      !- August Ground Temperature {C}
+    14,                      !- September Ground Temperature {C}
+    14,                      !- October Ground Temperature {C}
+    14,                      !- November Ground Temperature {C}
+    14;                      !- December Ground Temperature {C}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SITE:GROUNDREFLECTANCE ===========
+
+Site:GroundReflectance,
+    0.2,                     !- January Ground Reflectance {dimensionless}
+    0.2,                     !- February Ground Reflectance {dimensionless}
+    0.2,                     !- March Ground Reflectance {dimensionless}
+    0.2,                     !- April Ground Reflectance {dimensionless}
+    0.2,                     !- May Ground Reflectance {dimensionless}
+    0.2,                     !- June Ground Reflectance {dimensionless}
+    0.2,                     !- July Ground Reflectance {dimensionless}
+    0.2,                     !- August Ground Reflectance {dimensionless}
+    0.2,                     !- September Ground Reflectance {dimensionless}
+    0.2,                     !- October Ground Reflectance {dimensionless}
+    0.2,                     !- November Ground Reflectance {dimensionless}
+    0.2;                     !- December Ground Reflectance {dimensionless}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SITE:GROUNDREFLECTANCE:SNOWMODIFIER ===========
+
+Site:GroundReflectance:SnowModifier,
+    1.0,                     !- Ground Reflected Solar Modifier
+    1.0;                     !- Daylighting Ground Reflected Solar Modifier
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SCHEDULETYPELIMITS ===========
+
+ScheduleTypeLimits,
+    Any Number;              !- Name
+
+ScheduleTypeLimits,
+    Fraction,                !- Name
+    0.0,                     !- Lower Limit Value
+    1.0,                     !- Upper Limit Value
+    Continuous;              !- Numeric Type
+
+ScheduleTypeLimits,
+    Temperature,             !- Name
+    -60,                     !- Lower Limit Value
+    200,                     !- Upper Limit Value
+    Continuous;              !- Numeric Type
+
+ScheduleTypeLimits,
+    On/Off,                  !- Name
+    0,                       !- Lower Limit Value
+    1,                       !- Upper Limit Value
+    Discrete;                !- Numeric Type
+
+ScheduleTypeLimits,
+    Control Type,            !- Name
+    0,                       !- Lower Limit Value
+    4,                       !- Upper Limit Value
+    Discrete;                !- Numeric Type
+
+
+!-   ===========  ALL OBJECTS IN CLASS: SCHEDULE:COMPACT ===========
+
+Schedule:Compact,
+    People_Office,           !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: Weekdays SummerDesignDay,  !- Field 2
+    Until: 07:00,            !- Field 3
+    0,                       !- Field 4
+    Until: 08:00,            !- Field 5
+    0.25,                    !- Field 6
+    Until: 09:00,            !- Field 7
+    0.5,                     !- Field 8
+    Until: 12:00,            !- Field 9
+    1,                       !- Field 10
+    Until: 14:00,            !- Field 11
+    0.75,                    !- Field 12
+    Until: 17:00,            !- Field 13
+    1,                       !- Field 14
+    Until: 18:00,            !- Field 15
+    0.5,                     !- Field 16
+    Until: 19:00,            !- Field 17
+    0.25,                    !- Field 18
+    Until: 24:00,            !- Field 19
+    0,                       !- Field 20
+    For: Weekends,           !- Field 21
+    Until: 24:00,            !- Field 22
+    0,                       !- Field 23
+    For: Holidays,           !- Field 24
+    Until: 24:00,            !- Field 25
+    0,                       !- Field 26
+    For: WinterDesignDay AllOtherDays,  !- Field 27
+    Until: 24:00,            !- Field 28
+    0;                       !- Field 29
+
+Schedule:Compact,
+    People_Reception,        !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: Weekdays SummerDesignDay,  !- Field 2
+    Until: 07:00,            !- Field 3
+    0,                       !- Field 4
+    Until: 09:00,            !- Field 5
+    0.1,                     !- Field 6
+    Until: 17:00,            !- Field 7
+    0.25,                    !- Field 8
+    Until: 19:00,            !- Field 9
+    0.1,                     !- Field 10
+    Until: 24:00,            !- Field 11
+    0,                       !- Field 12
+    For: Weekends,           !- Field 13
+    Until: 24:00,            !- Field 14
+    0,                       !- Field 15
+    For: Holidays,           !- Field 16
+    Until: 24:00,            !- Field 17
+    0,                       !- Field 18
+    For: WinterDesignDay AllOtherDays,  !- Field 19
+    Until: 24:00,            !- Field 20
+    0;                       !- Field 21
+
+Schedule:Compact,
+    Activity_Office,         !- Name
+    Any Number,              !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,            !- Field 3
+    125;                     !- Field 4
+
+Schedule:Compact,
+    Activity_Circulation,    !- Name
+    Any Number,              !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,            !- Field 3
+    145;                     !- Field 4
+
+Schedule:Compact,
+    Work Efficiency,         !- Name
+    Any Number,              !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,            !- Field 3
+    0;                       !- Field 4
+
+Schedule:Compact,
+    Clothing,                !- Name
+    Any Number,              !- Schedule Type Limits Name
+    Through: 04/01,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,            !- Field 3
+    1,                       !- Field 4
+    Through: 09/30,          !- Field 5
+    For: AllDays,            !- Field 6
+    Until: 24:00,            !- Field 7
+    0.5,                     !- Field 8
+    Through: 12/31,          !- Field 9
+    For: AllDays,            !- Field 10
+    Until: 24:00,            !- Field 11
+    1;                       !- Field 12
+
+Schedule:Compact,
+    Air Velocity,            !- Name
+    Any Number,              !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,            !- Field 3
+    0.137;                   !- Field 4
+
+Schedule:Compact,
+    Lighting,                !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: Weekdays SummerDesignDay,  !- Field 2
+    Until: 07:00,            !- Field 3
+    0,                       !- Field 4
+    Until: 19:00,            !- Field 5
+    1,                       !- Field 6
+    Until: 24:00,            !- Field 7
+    0,                       !- Field 8
+    For: Weekends,           !- Field 9
+    Until: 24:00,            !- Field 10
+    0,                       !- Field 11
+    For: Holidays,           !- Field 12
+    Until: 24:00,            !- Field 13
+    0,                       !- Field 14
+    For: WinterDesignDay AllOtherDays,  !- Field 15
+    Until: 24:00,            !- Field 16
+    0;                       !- Field 17
+
+Schedule:Compact,
+    Equipment,               !- Name
+    Fraction,                !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: Weekdays SummerDesignDay,  !- Field 2
+    Until: 07:00,            !- Field 3
+    0.05,                    !- Field 4
+    Until: 19:00,            !- Field 5
+    1,                       !- Field 6
+    Until: 24:00,            !- Field 7
+    0.05,                    !- Field 8
+    For: Weekends,           !- Field 9
+    Until: 24:00,            !- Field 10
+    0.05,                    !- Field 11
+    For: Holidays,           !- Field 12
+    Until: 24:00,            !- Field 13
+    0.05,                    !- Field 14
+    For: WinterDesignDay AllOtherDays,  !- Field 15
+    Until: 24:00,            !- Field 16
+    0;                       !- Field 17
+
+Schedule:Compact,
+    Infiltration,            !- Name
+    Any Number,              !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,            !- Field 3
+    1;                       !- Field 4
+
+Schedule:Compact,
+    HeatingSP_Office,        !- Name
+    Temperature,             !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: Weekdays WinterDesignDay SummerDesignDay,  !- Field 2
+    Until: 07:00,            !- Field 3
+    12,                      !- Field 4
+    Until: 19:00,            !- Field 5
+    21,                      !- Field 6
+    Until: 24:00,            !- Field 7
+    12,                      !- Field 8
+    For: Weekends,           !- Field 9
+    Until: 24:00,            !- Field 10
+    12,                      !- Field 11
+    For: Holidays,           !- Field 12
+    Until: 24:00,            !- Field 13
+    12,                      !- Field 14
+    For: AllOtherDays,       !- Field 15
+    Until: 24:00,            !- Field 16
+    12;                      !- Field 17
+
+Schedule:Compact,
+    HeatingSP_Reception,     !- Name
+    Temperature,             !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: Weekdays WinterDesignDay SummerDesignDay,  !- Field 2
+    Until: 07:00,            !- Field 3
+    12,                      !- Field 4
+    Until: 19:00,            !- Field 5
+    18,                      !- Field 6
+    Until: 24:00,            !- Field 7
+    12,                      !- Field 8
+    For: Weekends,           !- Field 9
+    Until: 24:00,            !- Field 10
+    12,                      !- Field 11
+    For: Holidays,           !- Field 12
+    Until: 24:00,            !- Field 13
+    12,                      !- Field 14
+    For: AllOtherDays,       !- Field 15
+    Until: 24:00,            !- Field 16
+    12;                      !- Field 17
+
+Schedule:Compact,
+    Always_ON,               !- Name
+    On/Off,                  !- Schedule Type Limits Name
+    Through: 12/31,          !- Field 1
+    For: AllDays,            !- Field 2
+    Until: 24:00,            !- Field 3
+    1;                       !- Field 4
+
+
+!-   ===========  ALL OBJECTS IN CLASS: MATERIAL ===========
+
+Material,
+    50mm - Flooring screed,  !- Name
+    Rough,                   !- Roughness
+    0.05,                    !- Thickness {m}
+    0.41,                    !- Conductivity {W/m-K}
+    1200,                    !- Density {kg/m3}
+    1000,                    !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.73,                    !- Solar Absorptance
+    0.73;                    !- Visible Absorptance
+
+Material,
+    100mm - Cast concrete,   !- Name
+    Rough,                   !- Roughness
+    0.1,                     !- Thickness {m}
+    1.35,                    !- Conductivity {W/m-K}
+    2000,                    !- Density {kg/m3}
+    1000,                    !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.6,                     !- Solar Absorptance
+    0.6;                     !- Visible Absorptance
+
+Material,
+    25mm - Brick slips,      !- Name
+    Rough,                   !- Roughness
+    0.025,                   !- Thickness {m}
+    0.77,                    !- Conductivity {W/m-K}
+    1700,                    !- Density {kg/m3}
+    1000,                    !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.7,                     !- Solar Absorptance
+    0.7;                     !- Visible Absorptance
+
+Material,
+    750mm - Clay underfloor, !- Name
+    Rough,                   !- Roughness
+    0.75,                    !- Thickness {m}
+    1.5,                     !- Conductivity {W/m-K}
+    1500,                    !- Density {kg/m3}
+    2085,                    !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.6,                     !- Solar Absorptance
+    0.6;                     !- Visible Absorptance
+
+Material,
+    105mm - Brick outer leaf,!- Name
+    Rough,                   !- Roughness
+    0.105,                   !- Thickness {m}
+    0.77,                    !- Conductivity {W/m-K}
+    1700,                    !- Density {kg/m3}
+    840,                     !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.7,                     !- Solar Absorptance
+    0.7;                     !- Visible Absorptance
+
+Material,
+    100mm - Concrete 1800,   !- Name
+    Rough,                   !- Roughness
+    0.1,                     !- Thickness {m}
+    1.13,                    !- Conductivity {W/m-K}
+    1800,                    !- Density {kg/m3}
+    1000,                    !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.6,                     !- Solar Absorptance
+    0.6;                     !- Visible Absorptance
+
+Material,
+    13mm - Plasterboard (wallboard),  !- Name
+    Rough,                   !- Roughness
+    0.013,                   !- Thickness {m}
+    0.21,                    !- Conductivity {W/m-K}
+    900,                     !- Density {kg/m3}
+    1000,                    !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.6,                     !- Solar Absorptance
+    0.6;                     !- Visible Absorptance
+
+Material,
+    100mm - Cast concrete (Dense),  !- Name
+    Rough,                   !- Roughness
+    0.1,                     !- Thickness {m}
+    1.4,                     !- Conductivity {W/m-K}
+    2100,                    !- Density {kg/m3}
+    840,                     !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.6,                     !- Solar Absorptance
+    0.6;                     !- Visible Absorptance
+
+Material,
+    25mm - Gypsum Plasterboard,  !- Name
+    Rough,                   !- Roughness
+    0.025,                   !- Thickness {m}
+    0.25,                    !- Conductivity {W/m-K}
+    900,                     !- Density {kg/m3}
+    1000,                    !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.5,                     !- Solar Absorptance
+    0.5;                     !- Visible Absorptance
+
+Material,
+    12mm - Roof tile,        !- Name
+    Rough,                   !- Roughness
+    0.012,                   !- Thickness {m}
+    0.84,                    !- Conductivity {W/m-K}
+    1900,                    !- Density {kg/m3}
+    800,                     !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.6,                     !- Solar Absorptance
+    0.6;                     !- Visible Absorptance
+
+Material,
+    16mm - Plywood sheathing,!- Name
+    Rough,                   !- Roughness
+    0.016,                   !- Thickness {m}
+    0.13,                    !- Conductivity {W/m-K}
+    500,                     !- Density {kg/m3}
+    1600,                    !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.5,                     !- Solar Absorptance
+    0.5;                     !- Visible Absorptance
+
+
+!-   ===========  ALL OBJECTS IN CLASS: MATERIAL:NOMASS ===========
+
+Material:NoMass,
+    Air gap,                 !- Name
+    Rough,                   !- Roughness
+    0.15,                    !- Thermal Resistance {m2-K/W}
+    0.9,                     !- Thermal Absorptance
+    0.7,                     !- Solar Absorptance
+    0.7;                     !- Visible Absorptance
+
+
+!-   ===========  ALL OBJECTS IN CLASS: WINDOWMATERIAL:GLAZING ===========
+
+WindowMaterial:Glazing,
+    Generic Clear 4mm,       !- Name
+    SpectralAverage,         !- Optical Data Type
+    ,                        !- Window Glass Spectral Data Set Name
+    0.004,                   !- Thickness {m}
+    0.816,                   !- Solar Transmittance at Normal Incidence
+    0.075,                   !- Front Side Solar Reflectance at Normal Incidence
+    0.075,                   !- Back Side Solar Reflectance at Normal Incidence
+    0.892,                   !- Visible Transmittance at Normal Incidence
+    0.081,                   !- Front Side Visible Reflectance at Normal Incidence
+    0.081,                   !- Back Side Visible Reflectance at Normal Incidence
+    0,                       !- Infrared Transmittance at Normal Incidence
+    0.84,                    !- Front Side Infrared Hemispherical Emissivity
+    0.84,                    !- Back Side Infrared Hemispherical Emissivity
+    1,                       !- Conductivity {W/m-K}
+    1,                       !- Dirt Correction Factor for Solar and Visible Transmittance
+    No;                      !- Solar Diffusing
+
+
+!-   ===========  ALL OBJECTS IN CLASS: CONSTRUCTION ===========
+
+Construction,
+    Solid ground floor,      !- Name
+    750mm - Clay underfloor, !- Outside Layer
+    25mm - Brick slips,      !- Layer 2
+    100mm - Cast concrete,   !- Layer 3
+    50mm - Flooring screed;  !- Layer 4
+
+Construction,
+    Pitched roof,            !- Name
+    12mm - Roof tile,        !- Outside Layer
+    Air gap,                 !- Layer 2
+    16mm - Plywood sheathing;!- Layer 3
+
+Construction,
+    Cavity Wall,             !- Name
+    105mm - Brick outer leaf,!- Outside Layer
+    Air gap,                 !- Layer 2
+    100mm - Concrete 1800,   !- Layer 3
+    13mm - Plasterboard (wallboard);  !- Layer 4
+
+Construction,
+    Internal ceiling,        !- Name
+    100mm - Cast concrete (Dense);  !- Outside Layer
+
+Construction,
+    Internal partition,      !- Name
+    25mm - Gypsum Plasterboard,  !- Outside Layer
+    Air gap,                 !- Layer 2
+    25mm - Gypsum Plasterboard;  !- Layer 3
+
+Construction,
+    Singe glazing,           !- Name
+    Generic Clear 4mm;       !- Outside Layer
+
+
+!-   ===========  ALL OBJECTS IN CLASS: GLOBALGEOMETRYRULES ===========
+
+GlobalGeometryRules,
+    UpperLeftCorner,         !- Starting Vertex Position
+    Counterclockwise,        !- Vertex Entry Direction
+    Relative,                !- Coordinate System
+    Relative;                !- Daylighting Reference Point Coordinate System
+
+
+!-   ===========  ALL OBJECTS IN CLASS: ZONE ===========
+
+Zone,
+    WestZone,                !- Name
+    0.0,                     !- Direction of Relative North {deg}
+    0.0,                     !- X Origin {m}
+    0.0,                     !- Y Origin {m}
+    0.0,                     !- Z Origin {m}
+    ,                        !- Type
+    1;                       !- Multiplier
+
+Zone,
+    Reception,               !- Name
+    0.0,                     !- Direction of Relative North {deg}
+    0.0,                     !- X Origin {m}
+    0.0,                     !- Y Origin {m}
+    0.0,                     !- Z Origin {m}
+    ,                        !- Type
+    1;                       !- Multiplier
+
+Zone,
+    EastZone,                !- Name
+    0.0,                     !- Direction of Relative North {deg}
+    0.0,                     !- X Origin {m}
+    0.0,                     !- Y Origin {m}
+    0.0,                     !- Z Origin {m}
+    ,                        !- Type
+    1;                       !- Multiplier
+
+Zone,
+    SouthZone,               !- Name
+    0.0,                     !- Direction of Relative North {deg}
+    0.0,                     !- X Origin {m}
+    0.0,                     !- Y Origin {m}
+    0.0,                     !- Z Origin {m}
+    ,                        !- Type
+    1;                       !- Multiplier
+
+Zone,
+    Attic,                   !- Name
+    0.0,                     !- Direction of Relative North {deg}
+    0,                       !- X Origin {m}
+    0,                       !- Y Origin {m}
+    4,                       !- Z Origin {m}
+    ,                        !- Type
+    1;                       !- Multiplier
+
+
+!-   ===========  ALL OBJECTS IN CLASS: ZONELIST ===========
+
+ZoneList,
+    Office_Zones,            !- Name
+    WestZone,                !- Zone 1 Name
+    EastZone,                !- Zone 2 Name
+    SouthZone;               !- Zone 3 Name
+
+ZoneList,
+    All_Zones,               !- Name
+    WestZone,                !- Zone 1 Name
+    EastZone,                !- Zone 2 Name
+    SouthZone,               !- Zone 3 Name
+    Reception,               !- Zone 4 Name
+    Attic;                   !- Zone 5 Name
+
+
+!-   ===========  ALL OBJECTS IN CLASS: BUILDINGSURFACE:DETAILED ===========
+
+BuildingSurface:Detailed,
+    WZ_floor,                !- Name
+    Floor,                   !- Surface Type
+    Solid ground floor,      !- Construction Name
+    WestZone,                !- Zone Name
+    Ground,                  !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.0,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    8,                       !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    0,                       !- Vertex 1 Z-coordinate {m}
+    8,                       !- Vertex 2 X-coordinate {m}
+    8,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    0;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    WZ_part1,                !- Name
+    Wall,                    !- Surface Type
+    Internal partition,      !- Construction Name
+    WestZone,                !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    SZ_part1,                !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    8,                       !- Vertex 3 X-coordinate {m}
+    8,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    8,                       !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    WZ_ceiling,              !- Name
+    Ceiling,                 !- Surface Type
+    Internal ceiling,        !- Construction Name
+    WestZone,                !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    Attic_WZ_floor,          !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.0,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    4,                       !- Vertex 2 Z-coordinate {m}
+    8,                       !- Vertex 3 X-coordinate {m}
+    8,                       !- Vertex 3 Y-coordinate {m}
+    4,                       !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    WZ_part2,                !- Name
+    Wall,                    !- Surface Type
+    Internal partition,      !- Construction Name
+    WestZone,                !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    Reception_part1,         !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    8,                       !- Vertex 1 X-coordinate {m}
+    8,                       !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    8,                       !- Vertex 2 X-coordinate {m}
+    8,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    8,                       !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    WZ_westwall,             !- Name
+    Wall,                    !- Surface Type
+    Cavity Wall,             !- Construction Name
+    WestZone,                !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    WZ_northwall,            !- Name
+    Wall,                    !- Surface Type
+    Cavity Wall,             !- Construction Name
+    WestZone,                !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    8,                       !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    8,                       !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Reception_ceiling,       !- Name
+    Ceiling,                 !- Surface Type
+    Internal ceiling,        !- Construction Name
+    Reception,               !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    Attic_Reception_floor,   !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.0,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    8,                       !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    8,                       !- Vertex 2 X-coordinate {m}
+    8,                       !- Vertex 2 Y-coordinate {m}
+    4,                       !- Vertex 2 Z-coordinate {m}
+    12,                      !- Vertex 3 X-coordinate {m}
+    8,                       !- Vertex 3 Y-coordinate {m}
+    4,                       !- Vertex 3 Z-coordinate {m}
+    12,                      !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Reception_part3,         !- Name
+    Wall,                    !- Surface Type
+    Internal partition,      !- Construction Name
+    Reception,               !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    EZ_part2,                !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    12,                      !- Vertex 1 X-coordinate {m}
+    8,                       !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    12,                      !- Vertex 2 X-coordinate {m}
+    8,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    12,                      !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    12,                      !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Reception_part2,         !- Name
+    Wall,                    !- Surface Type
+    Internal partition,      !- Construction Name
+    Reception,               !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    SZ_part2,                !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    8,                       !- Vertex 1 X-coordinate {m}
+    8,                       !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    8,                       !- Vertex 2 X-coordinate {m}
+    8,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    12,                      !- Vertex 3 X-coordinate {m}
+    8,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    12,                      !- Vertex 4 X-coordinate {m}
+    8,                       !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Reception_part1,         !- Name
+    Wall,                    !- Surface Type
+    Internal partition,      !- Construction Name
+    Reception,               !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    WZ_part2,                !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    8,                       !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    8,                       !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    8,                       !- Vertex 3 X-coordinate {m}
+    8,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    8,                       !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    EZ_floor,                !- Name
+    Floor,                   !- Surface Type
+    Solid ground floor,      !- Construction Name
+    EastZone,                !- Zone Name
+    Ground,                  !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.0,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    20,                      !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    0,                       !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    12,                      !- Vertex 3 X-coordinate {m}
+    8,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    12,                      !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    0;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    EZ_ceiling,              !- Name
+    Ceiling,                 !- Surface Type
+    Internal ceiling,        !- Construction Name
+    EastZone,                !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    Attic_EZ_floor,          !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.0,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    12,                      !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    12,                      !- Vertex 2 X-coordinate {m}
+    8,                       !- Vertex 2 Y-coordinate {m}
+    4,                       !- Vertex 2 Z-coordinate {m}
+    20,                      !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    4,                       !- Vertex 3 Z-coordinate {m}
+    20,                      !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    EZ_northwall,            !- Name
+    Wall,                    !- Surface Type
+    Cavity Wall,             !- Construction Name
+    EastZone,                !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    20,                      !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    12,                      !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    12,                      !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    EZ_eastwall,             !- Name
+    Wall,                    !- Surface Type
+    Cavity Wall,             !- Construction Name
+    EastZone,                !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    20,                      !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    20,                      !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    20,                      !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    EZ_part2,                !- Name
+    Wall,                    !- Surface Type
+    Internal partition,      !- Construction Name
+    EastZone,                !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    Reception_part3,         !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    12,                      !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    12,                      !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    12,                      !- Vertex 3 X-coordinate {m}
+    8,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    12,                      !- Vertex 4 X-coordinate {m}
+    8,                       !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    EZ_part1,                !- Name
+    Wall,                    !- Surface Type
+    Internal partition,      !- Construction Name
+    EastZone,                !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    SZ_part3,                !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    12,                      !- Vertex 1 X-coordinate {m}
+    8,                       !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    12,                      !- Vertex 2 X-coordinate {m}
+    8,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    20,                      !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    20,                      !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    SZ_floor,                !- Name
+    Floor,                   !- Surface Type
+    Solid ground floor,      !- Construction Name
+    SouthZone,               !- Zone Name
+    Ground,                  !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.0,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    12,                      !- Vertex 1 X-coordinate {m}
+    8,                       !- Vertex 1 Y-coordinate {m}
+    0,                       !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    8,                       !- Vertex 4 Y-coordinate {m}
+    0;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    SZ_part3,                !- Name
+    Wall,                    !- Surface Type
+    Internal partition,      !- Construction Name
+    SouthZone,               !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    EZ_part1,                !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    20,                      !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    12,                      !- Vertex 3 X-coordinate {m}
+    8,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    12,                      !- Vertex 4 X-coordinate {m}
+    8,                       !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    SZ_part1,                !- Name
+    Wall,                    !- Surface Type
+    Internal partition,      !- Construction Name
+    SouthZone,               !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    WZ_part1,                !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    8,                       !- Vertex 1 X-coordinate {m}
+    8,                       !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    8,                       !- Vertex 2 X-coordinate {m}
+    8,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    SZ_part2,                !- Name
+    Wall,                    !- Surface Type
+    Internal partition,      !- Construction Name
+    SouthZone,               !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    Reception_part2,         !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    12,                      !- Vertex 1 X-coordinate {m}
+    8,                       !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    12,                      !- Vertex 2 X-coordinate {m}
+    8,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    8,                       !- Vertex 3 X-coordinate {m}
+    8,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    8,                       !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    SZ_southwall,            !- Name
+    Wall,                    !- Surface Type
+    Cavity Wall,             !- Construction Name
+    SouthZone,               !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    20,                      !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    20,                      !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    SZ_ceiling,              !- Name
+    Ceiling,                 !- Surface Type
+    Internal ceiling,        !- Construction Name
+    SouthZone,               !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    Attic_SZ_floor,          !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.0,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    8,                       !- Vertex 1 X-coordinate {m}
+    8,                       !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    4,                       !- Vertex 2 Z-coordinate {m}
+    20,                      !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    4,                       !- Vertex 3 Z-coordinate {m}
+    12,                      !- Vertex 4 X-coordinate {m}
+    8,                       !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Attic_westwall,          !- Name
+    Wall,                    !- Surface Type
+    Cavity Wall,             !- Construction Name
+    Attic,                   !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    0.3,                     !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    0.3;                     !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Attic_northwall,         !- Name
+    Wall,                    !- Surface Type
+    Cavity Wall,             !- Construction Name
+    Attic,                   !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    20,                      !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    0.3,                     !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    0.3;                     !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Attic_roof4,             !- Name
+    Roof,                    !- Surface Type
+    Pitched roof,            !- Construction Name
+    Attic,                   !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    0.0,                     !- View Factor to Ground
+    3,                       !- Number of Vertices
+    20,                      !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    0.3,                     !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0.3,                     !- Vertex 2 Z-coordinate {m}
+    17,                      !- Vertex 3 X-coordinate {m}
+    10,                      !- Vertex 3 Y-coordinate {m}
+    3.3;                     !- Vertex 3 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Attic_eastwall,          !- Name
+    Wall,                    !- Surface Type
+    Cavity Wall,             !- Construction Name
+    Attic,                   !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    20,                      !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    0.3,                     !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    20,                      !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    20,                      !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    0.3;                     !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Attic_southwall,         !- Name
+    Wall,                    !- Surface Type
+    Cavity Wall,             !- Construction Name
+    Attic,                   !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    0.3,                     !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    20,                      !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    20,                      !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    0.3;                     !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Reception_northwall,     !- Name
+    Wall,                    !- Surface Type
+    Cavity Wall,             !- Construction Name
+    Reception,               !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    12,                      !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    4,                       !- Vertex 1 Z-coordinate {m}
+    12,                      !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    8,                       !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    4;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Reception_floor,         !- Name
+    Floor,                   !- Surface Type
+    Solid ground floor,      !- Construction Name
+    Reception,               !- Zone Name
+    Ground,                  !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    12,                      !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    0,                       !- Vertex 1 Z-coordinate {m}
+    12,                      !- Vertex 2 X-coordinate {m}
+    8,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    8,                       !- Vertex 3 X-coordinate {m}
+    8,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    0;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Attic_roof2,             !- Name
+    Roof,                    !- Surface Type
+    Pitched roof,            !- Construction Name
+    Attic,                   !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    0.0,                     !- View Factor to Ground
+    3,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    0.3,                     !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0.3,                     !- Vertex 2 Z-coordinate {m}
+    3,                       !- Vertex 3 X-coordinate {m}
+    10,                      !- Vertex 3 Y-coordinate {m}
+    3.3;                     !- Vertex 3 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Attic_roof1,             !- Name
+    Roof,                    !- Surface Type
+    Pitched roof,            !- Construction Name
+    Attic,                   !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    17,                      !- Vertex 1 X-coordinate {m}
+    10,                      !- Vertex 1 Y-coordinate {m}
+    3.3,                     !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0.3,                     !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0.3,                     !- Vertex 3 Z-coordinate {m}
+    3,                       !- Vertex 4 X-coordinate {m}
+    10,                      !- Vertex 4 Y-coordinate {m}
+    3.3;                     !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Attic_roof3,             !- Name
+    Roof,                    !- Surface Type
+    Pitched roof,            !- Construction Name
+    Attic,                   !- Zone Name
+    Outdoors,                !- Outside Boundary Condition
+    ,                        !- Outside Boundary Condition Object
+    SunExposed,              !- Sun Exposure
+    WindExposed,             !- Wind Exposure
+    ,                        !- View Factor to Ground
+    4,                       !- Number of Vertices
+    3,                       !- Vertex 1 X-coordinate {m}
+    10,                      !- Vertex 1 Y-coordinate {m}
+    3.3,                     !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0.3,                     !- Vertex 2 Z-coordinate {m}
+    20,                      !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0.3,                     !- Vertex 3 Z-coordinate {m}
+    17,                      !- Vertex 4 X-coordinate {m}
+    10,                      !- Vertex 4 Y-coordinate {m}
+    3.3;                     !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Attic_WZ_floor,          !- Name
+    Floor,                   !- Surface Type
+    Internal ceiling,        !- Construction Name
+    Attic,                   !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    WZ_ceiling,              !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.0,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    8,                       !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    0,                       !- Vertex 1 Z-coordinate {m}
+    8,                       !- Vertex 2 X-coordinate {m}
+    8,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    0;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Attic_EZ_floor,          !- Name
+    Floor,                   !- Surface Type
+    Internal ceiling,        !- Construction Name
+    Attic,                   !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    EZ_ceiling,              !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.0,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    20,                      !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    0,                       !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    12,                      !- Vertex 3 X-coordinate {m}
+    8,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    12,                      !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    0;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Attic_Reception_floor,   !- Name
+    Floor,                   !- Surface Type
+    Internal ceiling,        !- Construction Name
+    Attic,                   !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    Reception_ceiling,       !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0,                       !- View Factor to Ground
+    4,                       !- Number of Vertices
+    12,                      !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    0,                       !- Vertex 1 Z-coordinate {m}
+    12,                      !- Vertex 2 X-coordinate {m}
+    8,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    8,                       !- Vertex 3 X-coordinate {m}
+    8,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    0;                       !- Vertex 4 Z-coordinate {m}
+
+BuildingSurface:Detailed,
+    Attic_SZ_floor,          !- Name
+    Floor,                   !- Surface Type
+    Internal ceiling,        !- Construction Name
+    Attic,                   !- Zone Name
+    Surface,                 !- Outside Boundary Condition
+    SZ_ceiling,              !- Outside Boundary Condition Object
+    NoSun,                   !- Sun Exposure
+    NoWind,                  !- Wind Exposure
+    0.0,                     !- View Factor to Ground
+    4,                       !- Number of Vertices
+    12,                      !- Vertex 1 X-coordinate {m}
+    8,                       !- Vertex 1 Y-coordinate {m}
+    0,                       !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0,                       !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0,                       !- Vertex 3 Z-coordinate {m}
+    8,                       !- Vertex 4 X-coordinate {m}
+    8,                       !- Vertex 4 Y-coordinate {m}
+    0;                       !- Vertex 4 Z-coordinate {m}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: FENESTRATIONSURFACE:DETAILED ===========
+
+FenestrationSurface:Detailed,
+    EA27D1,                  !- Name
+    GlassDoor,               !- Surface Type
+    Singe glazing,           !- Construction Name
+    Reception_northwall,     !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    11,                      !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    2.5,                     !- Vertex 1 Z-coordinate {m}
+    11,                      !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0.1,                     !- Vertex 2 Z-coordinate {m}
+    9,                       !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0.1,                     !- Vertex 3 Z-coordinate {m}
+    9,                       !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    2.5;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    EZ_win2,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    EZ_northwall,            !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    18.5,                    !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    18.5,                    !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    17,                      !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    17,                      !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    EZ_win1,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    EZ_northwall,            !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    15,                      !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    15,                      !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    13.5,                    !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    13.5,                    !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    EZ_win5,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    EZ_eastwall,             !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    20,                      !- Vertex 1 X-coordinate {m}
+    3,                       !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    3,                       !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    20,                      !- Vertex 3 X-coordinate {m}
+    6,                       !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    20,                      !- Vertex 4 X-coordinate {m}
+    6,                       !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    EZ_win3,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    EZ_eastwall,             !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    20,                      !- Vertex 1 X-coordinate {m}
+    14,                      !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    14,                      !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    20,                      !- Vertex 3 X-coordinate {m}
+    17,                      !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    20,                      !- Vertex 4 X-coordinate {m}
+    17,                      !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    EZ_win4,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    EZ_eastwall,             !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    20,                      !- Vertex 1 X-coordinate {m}
+    8.5,                     !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    20,                      !- Vertex 2 X-coordinate {m}
+    8.5,                     !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    20,                      !- Vertex 3 X-coordinate {m}
+    11.5,                    !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    20,                      !- Vertex 4 X-coordinate {m}
+    11.5,                    !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    WZ_win1,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    WZ_northwall,            !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    6.5,                     !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    6.5,                     !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    5,                       !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    5,                       !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    WZ_win2,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    WZ_northwall,            !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    3,                       !- Vertex 1 X-coordinate {m}
+    20,                      !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    3,                       !- Vertex 2 X-coordinate {m}
+    20,                      !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    1.5,                     !- Vertex 3 X-coordinate {m}
+    20,                      !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    1.5,                     !- Vertex 4 X-coordinate {m}
+    20,                      !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    WZ_win3,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    WZ_westwall,             !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    17,                      !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    17,                      !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    14,                      !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    14,                      !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    WZ_win5,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    WZ_westwall,             !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    6,                       !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    6,                       !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    3,                       !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    3,                       !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    WZ_win4,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    WZ_westwall,             !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    0,                       !- Vertex 1 X-coordinate {m}
+    11.5,                    !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    0,                       !- Vertex 2 X-coordinate {m}
+    11.5,                    !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    0,                       !- Vertex 3 X-coordinate {m}
+    8.5,                     !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    0,                       !- Vertex 4 X-coordinate {m}
+    8.5,                     !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    SZ_win1,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    SZ_southwall,            !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    1,                       !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    1,                       !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    3,                       !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    3,                       !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    SZ_win5,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    SZ_southwall,            !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    17,                      !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    17,                      !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    19,                      !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    19,                      !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    SZ_win3,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    SZ_southwall,            !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    9,                       !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    9,                       !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    11,                      !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    11,                      !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    SZ_win4,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    SZ_southwall,            !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    13,                      !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    13,                      !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    15,                      !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    15,                      !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+FenestrationSurface:Detailed,
+    SZ_win2,                 !- Name
+    Window,                  !- Surface Type
+    Singe glazing,           !- Construction Name
+    SZ_southwall,            !- Building Surface Name
+    ,                        !- Outside Boundary Condition Object
+    ,                        !- View Factor to Ground
+    ,                        !- Shading Control Name
+    ,                        !- Frame and Divider Name
+    ,                        !- Multiplier
+    4,                       !- Number of Vertices
+    5,                       !- Vertex 1 X-coordinate {m}
+    0,                       !- Vertex 1 Y-coordinate {m}
+    2.8,                     !- Vertex 1 Z-coordinate {m}
+    5,                       !- Vertex 2 X-coordinate {m}
+    0,                       !- Vertex 2 Y-coordinate {m}
+    0.8,                     !- Vertex 2 Z-coordinate {m}
+    7,                       !- Vertex 3 X-coordinate {m}
+    0,                       !- Vertex 3 Y-coordinate {m}
+    0.8,                     !- Vertex 3 Z-coordinate {m}
+    7,                       !- Vertex 4 X-coordinate {m}
+    0,                       !- Vertex 4 Y-coordinate {m}
+    2.8;                     !- Vertex 4 Z-coordinate {m}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: PEOPLE ===========
+
+People,
+    People_Office,           !- Name
+    Office_Zones,            !- Zone or ZoneList Name
+    People_Office,           !- Number of People Schedule Name
+    Area/Person,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    ,                        !- People per Zone Floor Area {person/m2}
+    8,                       !- Zone Floor Area per Person {m2/person}
+    0.5,                     !- Fraction Radiant
+    autocalculate,           !- Sensible Heat Fraction
+    Activity_Office,         !- Activity Level Schedule Name
+    ,                        !- Carbon Dioxide Generation Rate {m3/s-W}
+    No,                      !- Enable ASHRAE 55 Comfort Warnings
+    ZoneAveraged,            !- Mean Radiant Temperature Calculation Type
+    ,                        !- Surface Name/Angle Factor List Name
+    Work Efficiency,         !- Work Efficiency Schedule Name
+    ClothingInsulationSchedule,  !- Clothing Insulation Calculation Method
+    ,                        !- Clothing Insulation Calculation Method Schedule Name
+    Clothing,                !- Clothing Insulation Schedule Name
+    Air Velocity;            !- Air Velocity Schedule Name
+
+People,
+    People_Reception,        !- Name
+    Reception,               !- Zone or ZoneList Name
+    People_Reception,        !- Number of People Schedule Name
+    Area/Person,             !- Number of People Calculation Method
+    ,                        !- Number of People
+    ,                        !- People per Zone Floor Area {person/m2}
+    12,                      !- Zone Floor Area per Person {m2/person}
+    0.5,                     !- Fraction Radiant
+    autocalculate,           !- Sensible Heat Fraction
+    Activity_Circulation,    !- Activity Level Schedule Name
+    ,                        !- Carbon Dioxide Generation Rate {m3/s-W}
+    No,                      !- Enable ASHRAE 55 Comfort Warnings
+    ZoneAveraged,            !- Mean Radiant Temperature Calculation Type
+    ,                        !- Surface Name/Angle Factor List Name
+    Work Efficiency,         !- Work Efficiency Schedule Name
+    ClothingInsulationSchedule,  !- Clothing Insulation Calculation Method
+    ,                        !- Clothing Insulation Calculation Method Schedule Name
+    Clothing,                !- Clothing Insulation Schedule Name
+    Air Velocity;            !- Air Velocity Schedule Name
+
+
+!-   ===========  ALL OBJECTS IN CLASS: LIGHTS ===========
+
+Lights,
+    Lights_Office,           !- Name
+    Office_Zones,            !- Zone or ZoneList Name
+    Lighting,                !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Lighting Level {W}
+    12,                      !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0,                       !- Return Air Fraction
+    0.37,                    !- Fraction Radiant
+    0.18,                    !- Fraction Visible
+    1,                       !- Fraction Replaceable
+    General,                 !- End-Use Subcategory
+    No;                      !- Return Air Fraction Calculated from Plenum Temperature
+
+Lights,
+    Lights_Reception,        !- Name
+    Reception,               !- Zone or ZoneList Name
+    Lighting,                !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Lighting Level {W}
+    3,                       !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0,                       !- Return Air Fraction
+    0.37,                    !- Fraction Radiant
+    0.18,                    !- Fraction Visible
+    1,                       !- Fraction Replaceable
+    General,                 !- End-Use Subcategory
+    No;                      !- Return Air Fraction Calculated from Plenum Temperature
+
+
+!-   ===========  ALL OBJECTS IN CLASS: ELECTRICEQUIPMENT ===========
+
+ElectricEquipment,
+    Equipment_Office,        !- Name
+    Office_Zones,            !- Zone or ZoneList Name
+    Equipment,               !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Design Level {W}
+    16,                      !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0,                       !- Fraction Latent
+    0.2,                     !- Fraction Radiant
+    0,                       !- Fraction Lost
+    General;                 !- End-Use Subcategory
+
+ElectricEquipment,
+    Equipment_Reception,     !- Name
+    Reception,               !- Zone or ZoneList Name
+    Equipment,               !- Schedule Name
+    Watts/Area,              !- Design Level Calculation Method
+    ,                        !- Design Level {W}
+    2,                       !- Watts per Zone Floor Area {W/m2}
+    ,                        !- Watts per Person {W/person}
+    0,                       !- Fraction Latent
+    0.2,                     !- Fraction Radiant
+    0,                       !- Fraction Lost
+    General;                 !- End-Use Subcategory
+
+
+!-   ===========  ALL OBJECTS IN CLASS: ZONEINFILTRATION:DESIGNFLOWRATE ===========
+
+ZoneInfiltration:DesignFlowRate,
+    Infiltration,            !- Name
+    All_Zones,               !- Zone or ZoneList Name
+    Infiltration,            !- Schedule Name
+    AirChanges/Hour,         !- Design Flow Rate Calculation Method
+    ,                        !- Design Flow Rate {m3/s}
+    ,                        !- Flow per Zone Floor Area {m3/s-m2}
+    ,                        !- Flow per Exterior Surface Area {m3/s-m2}
+    0.7,                     !- Air Changes per Hour {1/hr}
+    1,                       !- Constant Term Coefficient
+    0,                       !- Temperature Term Coefficient
+    0,                       !- Velocity Term Coefficient
+    0;                       !- Velocity Squared Term Coefficient
+
+
+!-   ===========  ALL OBJECTS IN CLASS: HVACTEMPLATE:THERMOSTAT ===========
+
+HVACTemplate:Thermostat,
+    Office,                  !- Name
+    HeatingSP_Office,        !- Heating Setpoint Schedule Name
+    ,                        !- Constant Heating Setpoint {C}
+    ,                        !- Cooling Setpoint Schedule Name
+    100;                     !- Constant Cooling Setpoint {C}
+
+HVACTemplate:Thermostat,
+    Reception,               !- Name
+    HeatingSP_Reception,     !- Heating Setpoint Schedule Name
+    ,                        !- Constant Heating Setpoint {C}
+    ,                        !- Cooling Setpoint Schedule Name
+    100;                     !- Constant Cooling Setpoint {C}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: HVACTEMPLATE:ZONE:BASEBOARDHEAT ===========
+
+HVACTemplate:Zone:BaseboardHeat,
+    WestZone,                !- Zone Name
+    Office,                  !- Template Thermostat Name
+    ,                        !- Zone Heating Sizing Factor
+    HotWater,                !- Baseboard Heating Type
+    Always_ON,               !- Baseboard Heating Availability Schedule Name
+    autosize,                !- Baseboard Heating Capacity {W}
+    ,                        !- Dedicated Outdoor Air System Name
+    ,                        !- Outdoor Air Method
+    ,                        !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ;                        !- Outdoor Air Flow Rate per Zone {m3/s}
+
+HVACTemplate:Zone:BaseboardHeat,
+    EastZone,                !- Zone Name
+    Office,                  !- Template Thermostat Name
+    ,                        !- Zone Heating Sizing Factor
+    HotWater,                !- Baseboard Heating Type
+    Always_ON,               !- Baseboard Heating Availability Schedule Name
+    autosize,                !- Baseboard Heating Capacity {W}
+    ,                        !- Dedicated Outdoor Air System Name
+    ,                        !- Outdoor Air Method
+    ,                        !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ;                        !- Outdoor Air Flow Rate per Zone {m3/s}
+
+HVACTemplate:Zone:BaseboardHeat,
+    SouthZone,               !- Zone Name
+    Office,                  !- Template Thermostat Name
+    ,                        !- Zone Heating Sizing Factor
+    HotWater,                !- Baseboard Heating Type
+    Always_ON,               !- Baseboard Heating Availability Schedule Name
+    autosize,                !- Baseboard Heating Capacity {W}
+    ,                        !- Dedicated Outdoor Air System Name
+    ,                        !- Outdoor Air Method
+    ,                        !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ;                        !- Outdoor Air Flow Rate per Zone {m3/s}
+
+HVACTemplate:Zone:BaseboardHeat,
+    Reception,               !- Zone Name
+    Reception,               !- Template Thermostat Name
+    ,                        !- Zone Heating Sizing Factor
+    HotWater,                !- Baseboard Heating Type
+    Always_ON,               !- Baseboard Heating Availability Schedule Name
+    autosize,                !- Baseboard Heating Capacity {W}
+    ,                        !- Dedicated Outdoor Air System Name
+    ,                        !- Outdoor Air Method
+    ,                        !- Outdoor Air Flow Rate per Person {m3/s}
+    ,                        !- Outdoor Air Flow Rate per Zone Floor Area {m3/s-m2}
+    ;                        !- Outdoor Air Flow Rate per Zone {m3/s}
+
+
+!-   ===========  ALL OBJECTS IN CLASS: HVACTEMPLATE:PLANT:HOTWATERLOOP ===========
+
+HVACTemplate:Plant:HotWaterLoop,
+    HW_Loop,                 !- Name
+    Always_ON,               !- Pump Schedule Name
+    Intermittent,            !- Pump Control Type
+    Default,                 !- Hot Water Plant Operation Scheme Type
+    ,                        !- Hot Water Plant Equipment Operation Schemes Name
+    ,                        !- Hot Water Setpoint Schedule Name
+    80,                      !- Hot Water Design Setpoint {C}
+    ConstantFlow,            !- Hot Water Pump Configuration
+    180000,                  !- Hot Water Pump Rated Head {Pa}
+    None,                    !- Hot Water Setpoint Reset Type
+    82.2,                    !- Hot Water Setpoint at Outdoor Dry-Bulb Low {C}
+    -6.7,                    !- Hot Water Reset Outdoor Dry-Bulb Low {C}
+    65.6,                    !- Hot Water Setpoint at Outdoor Dry-Bulb High {C}
+    10,                      !- Hot Water Reset Outdoor Dry-Bulb High {C}
+    SinglePump,              !- Hot Water Pump Type
+    Yes,                     !- Supply Side Bypass Pipe
+    Yes,                     !- Demand Side Bypass Pipe
+    Water,                   !- Fluid Type
+    10,                      !- Loop Design Delta Temperature {deltaC}
+    ,                        !- Maximum Outdoor Dry Bulb Temperature {C}
+    SequentialLoad;          !- Load Distribution Scheme
+
+
+!-   ===========  ALL OBJECTS IN CLASS: HVACTEMPLATE:PLANT:BOILER ===========
+
+HVACTemplate:Plant:Boiler,
+    HW_Boiler,               !- Name
+    HotWaterBoiler,          !- Boiler Type
+    autosize,                !- Capacity {W}
+    0.65,                    !- Efficiency
+    NaturalGas,              !- Fuel Type
+    1,                       !- Priority
+    1,                       !- Sizing Factor
+    0.2,                     !- Minimum Part Load Ratio
+    1.1,                     !- Maximum Part Load Ratio
+    1,                       !- Optimum Part Load Ratio
+    100,                     !- Water Outlet Upper Temperature Limit {C}
+    HotWater;                !- Template Plant Loop Type
+
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:VARIABLEDICTIONARY ===========
+
+Output:VariableDictionary,
+    IDF,                     !- Key Field
+    Name;                    !- Sort Option
+
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:SURFACES:DRAWING ===========
+
+Output:Surfaces:Drawing,
+    DXF,                     !- Report Type
+    Triangulate3DFace;       !- Report Specifications 1
+
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:SCHEDULES ===========
+
+Output:Schedules,
+    Hourly;                  !- Key Field
+
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:TABLE:SUMMARYREPORTS ===========
+
+Output:Table:SummaryReports,
+    AllSummary;              !- Report 1 Name
+
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUTCONTROL:TABLE:STYLE ===========
+
+OutputControl:Table:Style,
+    HTML,                    !- Column Separator
+    JtoKWH;                  !- Unit Conversion
+
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:VARIABLE ===========
+
+Output:Variable,
+    *,                       !- Key Value
+    Zone Mean Air Temperature,  !- Variable Name
+    Hourly;                  !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Boiler Heating Rate,     !- Variable Name
+    hourly;                  !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Boiler Inlet Temperature,!- Variable Name
+    hourly;                  !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Boiler Outlet Temperature,  !- Variable Name
+    hourly;                  !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Boiler Part Load Ratio,  !- Variable Name
+    hourly;                  !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Facility Heating Setpoint Not Met Time,  !- Variable Name
+    hourly;                  !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Facility Heating Setpoint Not Met While Occupied Time,  !- Variable Name
+    hourly;                  !- Reporting Frequency
+
+Output:Variable,
+    *,                       !- Key Value
+    Pump Mass Flow Rate,     !- Variable Name
+    hourly;                  !- Reporting Frequency
+
+
+!-   ===========  ALL OBJECTS IN CLASS: OUTPUT:METER ===========
+
+Output:Meter,
+    Baseboard:EnergyTransfer,!- Key Name
+    hourly;                  !- Reporting Frequency
+
+Output:Meter,
+    Boilers:EnergyTransfer,  !- Key Name
+    hourly;                  !- Reporting Frequency
+
+Output:Meter,
+    Pumps:Electricity,       !- Key Name
+    hourly;                  !- Reporting Frequency
+
