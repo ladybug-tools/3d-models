@@ -1,0 +1,2701 @@
+
+Version,
+  9.2;                                    !- Version Identifier
+
+Timestep,
+  6;                                      !- Number of Timesteps per Hour
+
+LifeCycleCost:Parameters,
+  Life Cycle Cost Parameters,             !- Name
+  EndOfYear,                              !- Discounting Convention
+  ConstantDollar,                         !- Inflation Approach
+  0.03,                                   !- Real Discount Rate
+  ,                                       !- Nominal Discount Rate
+  ,                                       !- Inflation
+  ,                                       !- Base Date Month
+  2011,                                   !- Base Date Year
+  ,                                       !- Service Date Month
+  2011,                                   !- Service Date Year
+  25,                                     !- Length of Study Period in Years
+  ,                                       !- Tax rate
+  None;                                   !- Depreciation Method
+
+LifeCycleCost:UsePriceEscalation,
+  U.S. Avg  Commercial-Electricity,       !- LCC Price Escalation Name
+  Electricity,                            !- Resource
+  2011,                                   !- Escalation Start Year
+  January,                                !- Escalation Start Month
+  0.9838,                                 !- Year Escalation 1
+  0.9730,                                 !- Year Escalation 2
+  0.9632,                                 !- Year Escalation 3
+  0.9611,                                 !- Year Escalation 4
+  0.9571,                                 !- Year Escalation 5
+  0.9553,                                 !- Year Escalation 6
+  0.9539,                                 !- Year Escalation 7
+  0.9521,                                 !- Year Escalation 8
+  0.9546,                                 !- Year Escalation 9
+  0.9550,                                 !- Year Escalation 10
+  0.9553,                                 !- Year Escalation 11
+  0.9564,                                 !- Year Escalation 12
+  0.9575,                                 !- Year Escalation 13
+  0.9596,                                 !- Year Escalation 14
+  0.9618,                                 !- Year Escalation 15
+  0.9614,                                 !- Year Escalation 16
+  0.9618,                                 !- Year Escalation 17
+  0.9618,                                 !- Year Escalation 18
+  0.9593,                                 !- Year Escalation 19
+  0.9589,                                 !- Year Escalation 20
+  0.9607,                                 !- Year Escalation 21
+  0.9625,                                 !- Year Escalation 22
+  0.9650,                                 !- Year Escalation 23
+  0.9708,                                 !- Year Escalation 24
+  0.9751,                                 !- Year Escalation 25
+  0.9762,                                 !- Year Escalation 26
+  0.9766,                                 !- Year Escalation 27
+  0.9766,                                 !- Year Escalation 28
+  0.9769,                                 !- Year Escalation 29
+  0.9773;                                 !- Year Escalation 30
+
+LifeCycleCost:UsePriceEscalation,
+  U.S. Avg  Commercial-Distillate Oil,    !- LCC Price Escalation Name
+  FuelOil#1,                              !- Resource
+  2011,                                   !- Escalation Start Year
+  January,                                !- Escalation Start Month
+  0.9714,                                 !- Year Escalation 1
+  0.9730,                                 !- Year Escalation 2
+  0.9942,                                 !- Year Escalation 3
+  1.0164,                                 !- Year Escalation 4
+  1.0541,                                 !- Year Escalation 5
+  1.0928,                                 !- Year Escalation 6
+  1.1267,                                 !- Year Escalation 7
+  1.1580,                                 !- Year Escalation 8
+  1.1792,                                 !- Year Escalation 9
+  1.1967,                                 !- Year Escalation 10
+  1.2200,                                 !- Year Escalation 11
+  1.2333,                                 !- Year Escalation 12
+  1.2566,                                 !- Year Escalation 13
+  1.2709,                                 !- Year Escalation 14
+  1.2826,                                 !- Year Escalation 15
+  1.2985,                                 !- Year Escalation 16
+  1.3102,                                 !- Year Escalation 17
+  1.3250,                                 !- Year Escalation 18
+  1.3261,                                 !- Year Escalation 19
+  1.3282,                                 !- Year Escalation 20
+  1.3324,                                 !- Year Escalation 21
+  1.3356,                                 !- Year Escalation 22
+  1.3431,                                 !- Year Escalation 23
+  1.3510,                                 !- Year Escalation 24
+  1.3568,                                 !- Year Escalation 25
+  1.3606,                                 !- Year Escalation 26
+  1.3637,                                 !- Year Escalation 27
+  1.3674,                                 !- Year Escalation 28
+  1.3706,                                 !- Year Escalation 29
+  1.3743;                                 !- Year Escalation 30
+
+LifeCycleCost:UsePriceEscalation,
+  U.S. Avg  Commercial-Residual Oil,      !- LCC Price Escalation Name
+  FuelOil#2,                              !- Resource
+  2011,                                   !- Escalation Start Year
+  January,                                !- Escalation Start Month
+  0.8469,                                 !- Year Escalation 1
+  0.8257,                                 !- Year Escalation 2
+  0.8681,                                 !- Year Escalation 3
+  0.8988,                                 !- Year Escalation 4
+  0.9289,                                 !- Year Escalation 5
+  0.9604,                                 !- Year Escalation 6
+  0.9897,                                 !- Year Escalation 7
+  1.0075,                                 !- Year Escalation 8
+  1.0314,                                 !- Year Escalation 9
+  1.0554,                                 !- Year Escalation 10
+  1.0861,                                 !- Year Escalation 11
+  1.1278,                                 !- Year Escalation 12
+  1.1497,                                 !- Year Escalation 13
+  1.1620,                                 !- Year Escalation 14
+  1.1743,                                 !- Year Escalation 15
+  1.1852,                                 !- Year Escalation 16
+  1.1948,                                 !- Year Escalation 17
+  1.2037,                                 !- Year Escalation 18
+  1.2071,                                 !- Year Escalation 19
+  1.2119,                                 !- Year Escalation 20
+  1.2139,                                 !- Year Escalation 21
+  1.2194,                                 !- Year Escalation 22
+  1.2276,                                 !- Year Escalation 23
+  1.2365,                                 !- Year Escalation 24
+  1.2420,                                 !- Year Escalation 25
+  1.2461,                                 !- Year Escalation 26
+  1.2509,                                 !- Year Escalation 27
+  1.2550,                                 !- Year Escalation 28
+  1.2591,                                 !- Year Escalation 29
+  1.2638;                                 !- Year Escalation 30
+
+LifeCycleCost:UsePriceEscalation,
+  U.S. Avg  Commercial-Natural gas,       !- LCC Price Escalation Name
+  NaturalGas,                             !- Resource
+  2011,                                   !- Escalation Start Year
+  January,                                !- Escalation Start Month
+  0.9823,                                 !- Year Escalation 1
+  0.9557,                                 !- Year Escalation 2
+  0.9279,                                 !- Year Escalation 3
+  0.9257,                                 !- Year Escalation 4
+  0.9346,                                 !- Year Escalation 5
+  0.9412,                                 !- Year Escalation 6
+  0.9512,                                 !- Year Escalation 7
+  0.9645,                                 !- Year Escalation 8
+  0.9856,                                 !- Year Escalation 9
+  1.0067,                                 !- Year Escalation 10
+  1.0222,                                 !- Year Escalation 11
+  1.0410,                                 !- Year Escalation 12
+  1.0610,                                 !- Year Escalation 13
+  1.0787,                                 !- Year Escalation 14
+  1.0942,                                 !- Year Escalation 15
+  1.1098,                                 !- Year Escalation 16
+  1.1220,                                 !- Year Escalation 17
+  1.1308,                                 !- Year Escalation 18
+  1.1386,                                 !- Year Escalation 19
+  1.1486,                                 !- Year Escalation 20
+  1.1619,                                 !- Year Escalation 21
+  1.1763,                                 !- Year Escalation 22
+  1.1918,                                 !- Year Escalation 23
+  1.2118,                                 !- Year Escalation 24
+  1.2284,                                 !- Year Escalation 25
+  1.2439,                                 !- Year Escalation 26
+  1.2605,                                 !- Year Escalation 27
+  1.2772,                                 !- Year Escalation 28
+  1.2938,                                 !- Year Escalation 29
+  1.3115;                                 !- Year Escalation 30
+
+LifeCycleCost:UsePriceEscalation,
+  U.S. Avg  Commercial-Coal,              !- LCC Price Escalation Name
+  Coal,                                   !- Resource
+  2011,                                   !- Escalation Start Year
+  January,                                !- Escalation Start Month
+  0.9970,                                 !- Year Escalation 1
+  1.0089,                                 !- Year Escalation 2
+  1.0089,                                 !- Year Escalation 3
+  0.9941,                                 !- Year Escalation 4
+  0.9941,                                 !- Year Escalation 5
+  1.0000,                                 !- Year Escalation 6
+  1.0030,                                 !- Year Escalation 7
+  1.0059,                                 !- Year Escalation 8
+  1.0089,                                 !- Year Escalation 9
+  1.0119,                                 !- Year Escalation 10
+  1.0148,                                 !- Year Escalation 11
+  1.0178,                                 !- Year Escalation 12
+  1.0208,                                 !- Year Escalation 13
+  1.0267,                                 !- Year Escalation 14
+  1.0297,                                 !- Year Escalation 15
+  1.0356,                                 !- Year Escalation 16
+  1.0415,                                 !- Year Escalation 17
+  1.0534,                                 !- Year Escalation 18
+  1.0564,                                 !- Year Escalation 19
+  1.0593,                                 !- Year Escalation 20
+  1.0653,                                 !- Year Escalation 21
+  1.0712,                                 !- Year Escalation 22
+  1.0742,                                 !- Year Escalation 23
+  1.0801,                                 !- Year Escalation 24
+  1.0831,                                 !- Year Escalation 25
+  1.0831,                                 !- Year Escalation 26
+  1.0861,                                 !- Year Escalation 27
+  1.0890,                                 !- Year Escalation 28
+  1.0920,                                 !- Year Escalation 29
+  1.0950;                                 !- Year Escalation 30
+
+Building,
+  bldg-1,                                 !- Name
+  ,                                       !- North Axis {deg}
+  ,                                       !- Terrain
+  ,                                       !- Loads Convergence Tolerance Value
+  ,                                       !- Temperature Convergence Tolerance Value {deltaC}
+  ,                                       !- Solar Distribution
+  ,                                       !- Maximum Number of Warmup Days
+  ;                                       !- Minimum Number of Warmup Days
+
+Shading:Building:Detailed,
+  X-S-100,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.04585, 2.414532, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -15.29248, 0.6770979, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -15.0326, 2.000678, 17.57027;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-101,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.0326, 2.000678, 17.57027,           !- X,Y,Z Vertex 1 {m}
+  -13.68262, 0.6770979, 18.62879,         !- X,Y,Z Vertex 2 {m}
+  -13.54226, 1.391961, 18.62879;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-102,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.68262, 0.6770979, 18.62879,         !- X,Y,Z Vertex 1 {m}
+  -11.79203, 0.6770979, 19,               !- X,Y,Z Vertex 2 {m}
+  -13.54226, 1.391961, 18.62879;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-103,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.76341, 0.6770979, 9.405039,         !- X,Y,Z Vertex 1 {m}
+  -13.60371, -0.1001682, 9.405039,        !- X,Y,Z Vertex 2 {m}
+  -11.79203, 0.6770979, 9;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-104,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.36231, 0.6770979, 10.49955,         !- X,Y,Z Vertex 1 {m}
+  -15.07309, -0.7305737, 10.49955,        !- X,Y,Z Vertex 2 {m}
+  -13.76341, 0.6770979, 9.405039;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-105,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.42082, 0.6770979, 12.10941,         !- X,Y,Z Vertex 1 {m}
+  -16.04585, -1.14792, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -15.36231, 0.6770979, 10.49955;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-106,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.79203, 0.6770979, 14,               !- X,Y,Z Vertex 1 {m}
+  -16.38699, -1.29428, 14,                !- X,Y,Z Vertex 2 {m}
+  -16.42082, 0.6770979, 12.10941;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-107,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.38699, -1.29428, 14,                !- X,Y,Z Vertex 1 {m}
+  -16.01477, -1.134583, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -16.38699, 0.6770979, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-108,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.38699, 0.6770979, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -15.00892, -0.7030438, 17.57027,        !- X,Y,Z Vertex 2 {m}
+  -15.29248, 0.6770979, 17.57027;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-109,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.00892, -0.7030438, 17.57027,        !- X,Y,Z Vertex 1 {m}
+  -13.52947, -0.0683141, 18.62879,        !- X,Y,Z Vertex 2 {m}
+  -13.68262, 0.6770979, 18.62879;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-110,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.68262, 0.6770979, 18.62879,         !- X,Y,Z Vertex 1 {m}
+  -13.52947, -0.0683141, 18.62879,        !- X,Y,Z Vertex 2 {m}
+  -11.79203, 0.6770979, 19;               !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-111,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.60371, -0.1001682, 9.405039,        !- X,Y,Z Vertex 1 {m}
+  -13.17218, -0.7305737, 9.405039,        !- X,Y,Z Vertex 2 {m}
+  -11.79203, 0.6770979, 9;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-112,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.07309, -0.7305737, 10.49955,        !- X,Y,Z Vertex 1 {m}
+  -14.29155, -1.872273, 10.49955,         !- X,Y,Z Vertex 2 {m}
+  -13.17218, -0.7305737, 9.405039;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-113,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.04585, -1.14792, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -15.0326, -2.62811, 12.10941,           !- X,Y,Z Vertex 2 {m}
+  -14.29155, -1.872273, 10.49955;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-114,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.38699, -1.29428, 14,                !- X,Y,Z Vertex 1 {m}
+  -15.29248, -2.893175, 14,               !- X,Y,Z Vertex 2 {m}
+  -16.04585, -1.14792, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-115,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.38699, -1.29428, 14,                !- X,Y,Z Vertex 1 {m}
+  -15.00892, -2.603956, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -16.01477, -1.134583, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-116,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.01477, -1.134583, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -14.24266, -1.822415, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -15.00892, -0.7030438, 17.57027;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-117,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -14.24266, -1.822415, 17.57027,         !- X,Y,Z Vertex 1 {m}
+  -13.11561, -0.6728841, 18.62879,        !- X,Y,Z Vertex 2 {m}
+  -13.52947, -0.0683141, 18.62879;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-118,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.52947, -0.0683141, 18.62879,        !- X,Y,Z Vertex 1 {m}
+  -13.11561, -0.6728841, 18.62879,        !- X,Y,Z Vertex 2 {m}
+  -11.79203, 0.6770979, 19;               !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-119,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.17218, -0.7305737, 9.405039,        !- X,Y,Z Vertex 1 {m}
+  -12.53745, -1.14792, 9.405039,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 0.6770979, 9;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-120,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -14.29155, -1.872273, 10.49955,         !- X,Y,Z Vertex 1 {m}
+  -13.14202, -2.62811, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -13.17218, -0.7305737, 9.405039;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-121,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.0326, -2.62811, 12.10941,           !- X,Y,Z Vertex 1 {m}
+  -13.54226, -3.608039, 12.10941,         !- X,Y,Z Vertex 2 {m}
+  -13.14202, -2.62811, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-122,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.29248, -2.893175, 14,               !- X,Y,Z Vertex 1 {m}
+  -13.68262, -3.95169, 14,                !- X,Y,Z Vertex 2 {m}
+  -15.0326, -2.62811, 12.10941;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-123,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.00892, -2.603956, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -13.68262, -3.95169, 14,                !- X,Y,Z Vertex 2 {m}
+  -13.52947, -3.576723, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-124,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -14.24266, -1.822415, 17.57027,         !- X,Y,Z Vertex 1 {m}
+  -13.52947, -3.576723, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -13.11561, -2.56347, 17.57027;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-125,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.11561, -2.56347, 17.57027,          !- X,Y,Z Vertex 1 {m}
+  -12.5069, -1.073127, 18.62879,          !- X,Y,Z Vertex 2 {m}
+  -13.11561, -0.6728841, 18.62879;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-126,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.11561, -0.6728841, 18.62879,        !- X,Y,Z Vertex 1 {m}
+  -12.5069, -1.073127, 18.62879,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 0.6770979, 19;               !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-127,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -12.53745, -1.14792, 9.405039,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, -1.29428, 9.405039,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 0.6770979, 9;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-128,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.14202, -2.62811, 10.49955,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, -2.893175, 10.49955,         !- X,Y,Z Vertex 2 {m}
+  -12.53745, -1.14792, 9.405039;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-129,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.54226, -3.608039, 12.10941,         !- X,Y,Z Vertex 1 {m}
+  -11.79203, -3.95169, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -13.14202, -2.62811, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-130,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.68262, -3.95169, 14,                !- X,Y,Z Vertex 1 {m}
+  -11.79203, -4.322902, 14,               !- X,Y,Z Vertex 2 {m}
+  -13.54226, -3.608039, 12.10941;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-131,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.52947, -3.576723, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -11.79203, -4.322902, 14,               !- X,Y,Z Vertex 2 {m}
+  -11.79203, -3.917863, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-132,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.11561, -2.56347, 17.57027,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, -3.917863, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -11.79203, -2.823352, 17.57027;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-133,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -12.5069, -1.073127, 18.62879,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, -2.823352, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -11.79203, -1.213488, 18.62879;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-134,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -12.5069, -1.073127, 18.62879,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, -1.213488, 18.62879,         !- X,Y,Z Vertex 2 {m}
+  -11.79203, 0.6770979, 19;               !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-135,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -1.29428, 9.405039,          !- X,Y,Z Vertex 1 {m}
+  -11.01477, -1.134583, 9.405039,         !- X,Y,Z Vertex 2 {m}
+  -11.79203, 0.6770979, 9;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-136,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -2.893175, 10.49955,         !- X,Y,Z Vertex 1 {m}
+  -10.38436, -2.603956, 10.49955,         !- X,Y,Z Vertex 2 {m}
+  -11.79203, -1.29428, 9.405039;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-137,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -3.95169, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -9.967014, -3.576723, 12.10941,         !- X,Y,Z Vertex 2 {m}
+  -10.38436, -2.603956, 10.49955;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-138,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -4.322902, 14,               !- X,Y,Z Vertex 1 {m}
+  -9.820655, -3.917863, 14,               !- X,Y,Z Vertex 2 {m}
+  -11.79203, -3.95169, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-139,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -4.322902, 14,               !- X,Y,Z Vertex 1 {m}
+  -9.980352, -3.545636, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -11.79203, -3.917863, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-140,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -2.823352, 17.57027,         !- X,Y,Z Vertex 1 {m}
+  -9.980352, -3.545636, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -10.41189, -2.539788, 17.57027;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-141,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -1.213488, 18.62879,         !- X,Y,Z Vertex 1 {m}
+  -10.41189, -2.539788, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -11.04662, -1.060336, 18.62879;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-142,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -1.213488, 18.62879,         !- X,Y,Z Vertex 1 {m}
+  -11.04662, -1.060336, 18.62879,         !- X,Y,Z Vertex 2 {m}
+  -11.79203, 0.6770979, 19;               !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-143,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 9,                !- X,Y,Z Vertex 1 {m}
+  -11.01477, -1.134583, 9.405039,         !- X,Y,Z Vertex 2 {m}
+  -10.38436, -0.7030438, 9.405039;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-144,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.01477, -1.134583, 9.405039,         !- X,Y,Z Vertex 1 {m}
+  -10.38436, -2.603956, 10.49955,         !- X,Y,Z Vertex 2 {m}
+  -9.242662, -1.822415, 10.49955;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-145,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.967014, -3.576723, 12.10941,         !- X,Y,Z Vertex 1 {m}
+  -8.486825, -2.56347, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -9.242662, -1.822415, 10.49955;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-146,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.967014, -3.576723, 12.10941,         !- X,Y,Z Vertex 1 {m}
+  -9.820655, -3.917863, 14,               !- X,Y,Z Vertex 2 {m}
+  -8.22176, -2.823352, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-147,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.980352, -3.545636, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -9.820655, -3.917863, 14,               !- X,Y,Z Vertex 2 {m}
+  -8.51098, -2.539788, 15.97138;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-148,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.41189, -2.539788, 17.57027,         !- X,Y,Z Vertex 1 {m}
+  -8.51098, -2.539788, 15.97138,          !- X,Y,Z Vertex 2 {m}
+  -9.292521, -1.773532, 17.57027;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-149,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.04662, -1.060336, 18.62879,         !- X,Y,Z Vertex 1 {m}
+  -10.41189, -2.539788, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -10.44205, -0.6464825, 18.62879;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-150,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 19,               !- X,Y,Z Vertex 1 {m}
+  -11.04662, -1.060336, 18.62879,         !- X,Y,Z Vertex 2 {m}
+  -10.44205, -0.6464825, 18.62879;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-151,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 9,                !- X,Y,Z Vertex 1 {m}
+  -10.38436, -0.7030438, 9.405039,        !- X,Y,Z Vertex 2 {m}
+  -9.967014, -0.0683141, 9.405039;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-152,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.967014, -0.0683141, 9.405039,        !- X,Y,Z Vertex 1 {m}
+  -9.242662, -1.822415, 10.49955,         !- X,Y,Z Vertex 2 {m}
+  -8.486825, -0.6728841, 10.49955;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-153,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.486825, -2.56347, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -7.506896, -1.073127, 12.10941,         !- X,Y,Z Vertex 2 {m}
+  -8.486825, -0.6728841, 10.49955;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-154,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.486825, -2.56347, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -8.22176, -2.823352, 14,                !- X,Y,Z Vertex 2 {m}
+  -7.163244, -1.213488, 14;               !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-155,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.51098, -2.539788, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -8.22176, -2.823352, 14,                !- X,Y,Z Vertex 2 {m}
+  -7.538213, -1.060336, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-156,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.292521, -1.773532, 17.57027,         !- X,Y,Z Vertex 1 {m}
+  -7.538213, -1.060336, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -8.551465, -0.6464825, 17.57027;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-157,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.44205, -0.6464825, 18.62879,        !- X,Y,Z Vertex 1 {m}
+  -9.292521, -1.773532, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -10.04181, -0.0377654, 18.62879;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-158,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 19,               !- X,Y,Z Vertex 1 {m}
+  -10.44205, -0.6464825, 18.62879,        !- X,Y,Z Vertex 2 {m}
+  -10.04181, -0.0377654, 18.62879;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-159,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 9,                !- X,Y,Z Vertex 1 {m}
+  -9.967014, -0.0683141, 9.405039,        !- X,Y,Z Vertex 2 {m}
+  -9.820655, 0.6770979, 9.405039;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-160,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.967014, -0.0683141, 9.405039,        !- X,Y,Z Vertex 1 {m}
+  -8.486825, -0.6728841, 10.49955,        !- X,Y,Z Vertex 2 {m}
+  -8.22176, 0.6770979, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-161,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.22176, 0.6770979, 10.49955,          !- X,Y,Z Vertex 1 {m}
+  -7.506896, -1.073127, 12.10941,         !- X,Y,Z Vertex 2 {m}
+  -7.163244, 0.6770979, 12.10941;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-162,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -7.506896, -1.073127, 12.10941,         !- X,Y,Z Vertex 1 {m}
+  -7.163244, -1.213488, 14,               !- X,Y,Z Vertex 2 {m}
+  -6.792033, 0.6770979, 14;               !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-163,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -7.538213, -1.060336, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -7.163244, -1.213488, 14,               !- X,Y,Z Vertex 2 {m}
+  -7.197072, 0.6770979, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-164,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.551465, -0.6464825, 17.57027,        !- X,Y,Z Vertex 1 {m}
+  -7.197072, 0.6770979, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -8.291584, 0.6770979, 17.57027;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-165,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.04181, -0.0377654, 18.62879,        !- X,Y,Z Vertex 1 {m}
+  -8.291584, 0.6770979, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -9.901446, 0.6770979, 18.62879;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-166,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 19,               !- X,Y,Z Vertex 1 {m}
+  -10.04181, -0.0377654, 18.62879,        !- X,Y,Z Vertex 2 {m}
+  -9.901446, 0.6770979, 18.62879;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-167,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.980352, 1.454364, 9.405039,          !- X,Y,Z Vertex 1 {m}
+  -9.820655, 0.6770979, 9.405039,         !- X,Y,Z Vertex 2 {m}
+  -8.51098, 2.084769, 10.49955;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-168,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.51098, 2.084769, 10.49955,           !- X,Y,Z Vertex 1 {m}
+  -8.22176, 0.6770979, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -7.538213, 2.502116, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-169,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -7.538213, 2.502116, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -7.163244, 0.6770979, 12.10941,         !- X,Y,Z Vertex 2 {m}
+  -7.197072, 2.648476, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-170,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -7.197072, 0.6770979, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -6.792033, 0.6770979, 14,               !- X,Y,Z Vertex 2 {m}
+  -7.197072, 2.648476, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-171,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.575147, 2.05724, 17.57027,           !- X,Y,Z Vertex 1 {m}
+  -7.197072, 0.6770979, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -7.5693, 2.488779, 15.97138;            !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-172,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.0546, 1.42251, 18.62879,            !- X,Y,Z Vertex 1 {m}
+  -8.291584, 0.6770979, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -8.575147, 2.05724, 17.57027;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-173,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.41189, 2.084769, 9.405039,          !- X,Y,Z Vertex 1 {m}
+  -9.980352, 1.454364, 9.405039,          !- X,Y,Z Vertex 2 {m}
+  -8.51098, 2.084769, 10.49955;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-174,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.292521, 3.226469, 10.49955,          !- X,Y,Z Vertex 1 {m}
+  -8.51098, 2.084769, 10.49955,           !- X,Y,Z Vertex 2 {m}
+  -7.538213, 2.502116, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-175,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.551465, 3.982306, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -7.538213, 2.502116, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -8.291584, 4.247371, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-176,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.575147, 3.958152, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -7.197072, 2.648476, 14,                !- X,Y,Z Vertex 2 {m}
+  -8.291584, 4.247371, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-177,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.341403, 3.17661, 17.57027,           !- X,Y,Z Vertex 1 {m}
+  -7.5693, 2.488779, 15.97138,            !- X,Y,Z Vertex 2 {m}
+  -8.575147, 3.958152, 15.97138;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-178,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.0546, 1.42251, 18.62879,            !- X,Y,Z Vertex 1 {m}
+  -8.575147, 2.05724, 17.57027,           !- X,Y,Z Vertex 2 {m}
+  -9.341403, 3.17661, 17.57027;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-179,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.04662, 2.502116, 9.405039,          !- X,Y,Z Vertex 1 {m}
+  -10.41189, 2.084769, 9.405039,          !- X,Y,Z Vertex 2 {m}
+  -10.44205, 3.982306, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-180,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.44205, 3.982306, 10.49955,          !- X,Y,Z Vertex 1 {m}
+  -9.292521, 3.226469, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -10.04181, 4.962234, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-181,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.04181, 4.962234, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -8.551465, 3.982306, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -9.901446, 5.305886, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-182,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.0546, 4.930919, 15.97138,           !- X,Y,Z Vertex 1 {m}
+  -8.291584, 4.247371, 14,                !- X,Y,Z Vertex 2 {m}
+  -9.901446, 5.305886, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-183,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.0546, 4.930919, 15.97138,           !- X,Y,Z Vertex 1 {m}
+  -9.341403, 3.17661, 17.57027,           !- X,Y,Z Vertex 2 {m}
+  -8.575147, 3.958152, 15.97138;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-184,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.46845, 2.02708, 18.62879,           !- X,Y,Z Vertex 1 {m}
+  -9.341403, 3.17661, 17.57027,           !- X,Y,Z Vertex 2 {m}
+  -10.46845, 3.917666, 17.57027;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-185,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 2.648476, 9.405039,          !- X,Y,Z Vertex 1 {m}
+  -11.04662, 2.502116, 9.405039,          !- X,Y,Z Vertex 2 {m}
+  -10.44205, 3.982306, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-186,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 4.247371, 10.49955,          !- X,Y,Z Vertex 1 {m}
+  -10.44205, 3.982306, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 5.305886, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-187,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 5.305886, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -10.04181, 4.962234, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 5.677098, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-188,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 5.677098, 14,                !- X,Y,Z Vertex 1 {m}
+  -10.0546, 4.930919, 15.97138,           !- X,Y,Z Vertex 2 {m}
+  -9.901446, 5.305886, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-189,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 4.177547, 17.57027,          !- X,Y,Z Vertex 1 {m}
+  -10.0546, 4.930919, 15.97138,           !- X,Y,Z Vertex 2 {m}
+  -11.79203, 5.272059, 15.97138;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-190,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 2.567684, 18.62879,          !- X,Y,Z Vertex 1 {m}
+  -10.46845, 3.917666, 17.57027,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 4.177547, 17.57027;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-191,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -12.5693, 2.488779, 9.405039,           !- X,Y,Z Vertex 1 {m}
+  -11.79203, 2.648476, 9.405039,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 4.247371, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-192,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.61705, 4.930919, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -13.19971, 3.958152, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 4.247371, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-193,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.61705, 4.930919, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, 5.305886, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 5.677098, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-194,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.76341, 5.272059, 14,                !- X,Y,Z Vertex 1 {m}
+  -13.60371, 4.899832, 15.97138,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 5.677098, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-195,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.60371, 4.899832, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, 4.177547, 17.57027,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 5.272059, 15.97138;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-196,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.17218, 3.893984, 17.57027,          !- X,Y,Z Vertex 1 {m}
+  -12.53745, 2.414532, 18.62879,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 4.177547, 17.57027;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-197,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.19971, 2.05724, 9.405039,           !- X,Y,Z Vertex 1 {m}
+  -12.5693, 2.488779, 9.405039,           !- X,Y,Z Vertex 2 {m}
+  -13.19971, 3.958152, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-198,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.09724, 3.917666, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -14.3414, 3.17661, 10.49955,            !- X,Y,Z Vertex 2 {m}
+  -13.19971, 3.958152, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-199,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.09724, 3.917666, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -13.61705, 4.930919, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -13.76341, 5.272059, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-200,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.36231, 4.177547, 14,                !- X,Y,Z Vertex 1 {m}
+  -15.07309, 3.893984, 15.97138,          !- X,Y,Z Vertex 2 {m}
+  -13.76341, 5.272059, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-201,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.07309, 3.893984, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -13.17218, 3.893984, 17.57027,          !- X,Y,Z Vertex 2 {m}
+  -13.60371, 4.899832, 15.97138;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-202,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -14.29155, 3.127728, 17.57027,          !- X,Y,Z Vertex 1 {m}
+  -13.14202, 2.000678, 18.62879,          !- X,Y,Z Vertex 2 {m}
+  -13.17218, 3.893984, 17.57027;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-203,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.09724, 2.02708, 10.49955,           !- X,Y,Z Vertex 1 {m}
+  -13.61705, 1.42251, 9.405039,           !- X,Y,Z Vertex 2 {m}
+  -13.19971, 2.05724, 9.405039;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-204,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.09724, 2.02708, 10.49955,           !- X,Y,Z Vertex 1 {m}
+  -14.3414, 3.17661, 10.49955,            !- X,Y,Z Vertex 2 {m}
+  -15.09724, 3.917666, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-205,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.42082, 2.567684, 14,                !- X,Y,Z Vertex 1 {m}
+  -16.07717, 2.427323, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -15.09724, 3.917666, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-206,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.42082, 2.567684, 14,                !- X,Y,Z Vertex 1 {m}
+  -16.04585, 2.414532, 15.97138,          !- X,Y,Z Vertex 2 {m}
+  -15.36231, 4.177547, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-207,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.04585, 2.414532, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -14.29155, 3.127728, 17.57027,          !- X,Y,Z Vertex 2 {m}
+  -15.07309, 3.893984, 15.97138;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-208,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.0326, 2.000678, 17.57027,           !- X,Y,Z Vertex 1 {m}
+  -13.14202, 2.000678, 18.62879,          !- X,Y,Z Vertex 2 {m}
+  -14.29155, 3.127728, 17.57027;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-209,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.09724, 2.02708, 10.49955,           !- X,Y,Z Vertex 1 {m}
+  -13.76341, 0.6770979, 9.405039,         !- X,Y,Z Vertex 2 {m}
+  -13.61705, 1.42251, 9.405039;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-210,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.07717, 2.427323, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -15.36231, 0.6770979, 10.49955,         !- X,Y,Z Vertex 2 {m}
+  -15.09724, 2.02708, 10.49955;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-211,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.79203, 0.6770979, 14,               !- X,Y,Z Vertex 1 {m}
+  -16.42082, 0.6770979, 12.10941,         !- X,Y,Z Vertex 2 {m}
+  -16.07717, 2.427323, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-212,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.79203, 0.6770979, 14,               !- X,Y,Z Vertex 1 {m}
+  -16.38699, 0.6770979, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -16.42082, 2.567684, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-213,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.38699, 0.6770979, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -15.29248, 0.6770979, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -16.04585, 2.414532, 15.97138;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-214,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.29248, 0.6770979, 17.57027,         !- X,Y,Z Vertex 1 {m}
+  -13.68262, 0.6770979, 18.62879,         !- X,Y,Z Vertex 2 {m}
+  -15.0326, 2.000678, 17.57027;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-215,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.07309, -0.7305737, 10.49955,        !- X,Y,Z Vertex 1 {m}
+  -13.60371, -0.1001682, 9.405039,        !- X,Y,Z Vertex 2 {m}
+  -13.76341, 0.6770979, 9.405039;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-216,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.04585, -1.14792, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -15.07309, -0.7305737, 10.49955,        !- X,Y,Z Vertex 2 {m}
+  -15.36231, 0.6770979, 10.49955;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-217,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.42082, 0.6770979, 12.10941,         !- X,Y,Z Vertex 1 {m}
+  -16.38699, -1.29428, 14,                !- X,Y,Z Vertex 2 {m}
+  -16.04585, -1.14792, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-218,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.79203, 0.6770979, 14,               !- X,Y,Z Vertex 1 {m}
+  -16.38699, -1.29428, 14,                !- X,Y,Z Vertex 2 {m}
+  -16.38699, 0.6770979, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-219,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.38699, 0.6770979, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -16.01477, -1.134583, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -15.00892, -0.7030438, 17.57027;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-220,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.29248, 0.6770979, 17.57027,         !- X,Y,Z Vertex 1 {m}
+  -15.00892, -0.7030438, 17.57027,        !- X,Y,Z Vertex 2 {m}
+  -13.68262, 0.6770979, 18.62879;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-221,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.07309, -0.7305737, 10.49955,        !- X,Y,Z Vertex 1 {m}
+  -13.17218, -0.7305737, 9.405039,        !- X,Y,Z Vertex 2 {m}
+  -13.60371, -0.1001682, 9.405039;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-222,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.04585, -1.14792, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -14.29155, -1.872273, 10.49955,         !- X,Y,Z Vertex 2 {m}
+  -15.07309, -0.7305737, 10.49955;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-223,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.04585, -1.14792, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -15.29248, -2.893175, 14,               !- X,Y,Z Vertex 2 {m}
+  -15.0326, -2.62811, 12.10941;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-224,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.38699, -1.29428, 14,                !- X,Y,Z Vertex 1 {m}
+  -15.29248, -2.893175, 14,               !- X,Y,Z Vertex 2 {m}
+  -15.00892, -2.603956, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-225,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.01477, -1.134583, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -15.00892, -2.603956, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -14.24266, -1.822415, 17.57027;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-226,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.00892, -0.7030438, 17.57027,        !- X,Y,Z Vertex 1 {m}
+  -14.24266, -1.822415, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -13.52947, -0.0683141, 18.62879;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-227,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.17218, -0.7305737, 9.405039,        !- X,Y,Z Vertex 1 {m}
+  -13.14202, -2.62811, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -12.53745, -1.14792, 9.405039;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-228,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.0326, -2.62811, 12.10941,           !- X,Y,Z Vertex 1 {m}
+  -13.14202, -2.62811, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -14.29155, -1.872273, 10.49955;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-229,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.0326, -2.62811, 12.10941,           !- X,Y,Z Vertex 1 {m}
+  -13.68262, -3.95169, 14,                !- X,Y,Z Vertex 2 {m}
+  -13.54226, -3.608039, 12.10941;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-230,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.29248, -2.893175, 14,               !- X,Y,Z Vertex 1 {m}
+  -13.68262, -3.95169, 14,                !- X,Y,Z Vertex 2 {m}
+  -15.00892, -2.603956, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-231,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.00892, -2.603956, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -13.52947, -3.576723, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -14.24266, -1.822415, 17.57027;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-232,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -14.24266, -1.822415, 17.57027,         !- X,Y,Z Vertex 1 {m}
+  -13.11561, -2.56347, 17.57027,          !- X,Y,Z Vertex 2 {m}
+  -13.11561, -0.6728841, 18.62879;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-233,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -12.53745, -1.14792, 9.405039,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, -2.893175, 10.49955,         !- X,Y,Z Vertex 2 {m}
+  -11.79203, -1.29428, 9.405039;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-234,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.14202, -2.62811, 10.49955,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, -3.95169, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, -2.893175, 10.49955;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-235,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.54226, -3.608039, 12.10941,         !- X,Y,Z Vertex 1 {m}
+  -11.79203, -4.322902, 14,               !- X,Y,Z Vertex 2 {m}
+  -11.79203, -3.95169, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-236,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.68262, -3.95169, 14,                !- X,Y,Z Vertex 1 {m}
+  -11.79203, -4.322902, 14,               !- X,Y,Z Vertex 2 {m}
+  -13.52947, -3.576723, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-237,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.52947, -3.576723, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -11.79203, -3.917863, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -13.11561, -2.56347, 17.57027;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-238,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.11561, -2.56347, 17.57027,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, -2.823352, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -12.5069, -1.073127, 18.62879;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-239,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -1.29428, 9.405039,          !- X,Y,Z Vertex 1 {m}
+  -10.38436, -2.603956, 10.49955,         !- X,Y,Z Vertex 2 {m}
+  -11.01477, -1.134583, 9.405039;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-240,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -3.95169, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -10.38436, -2.603956, 10.49955,         !- X,Y,Z Vertex 2 {m}
+  -11.79203, -2.893175, 10.49955;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-241,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -3.95169, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -9.820655, -3.917863, 14,               !- X,Y,Z Vertex 2 {m}
+  -9.967014, -3.576723, 12.10941;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-242,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -4.322902, 14,               !- X,Y,Z Vertex 1 {m}
+  -9.820655, -3.917863, 14,               !- X,Y,Z Vertex 2 {m}
+  -9.980352, -3.545636, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-243,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -3.917863, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -9.980352, -3.545636, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -11.79203, -2.823352, 17.57027;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-244,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, -2.823352, 17.57027,         !- X,Y,Z Vertex 1 {m}
+  -10.41189, -2.539788, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -11.79203, -1.213488, 18.62879;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-245,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.01477, -1.134583, 9.405039,         !- X,Y,Z Vertex 1 {m}
+  -9.242662, -1.822415, 10.49955,         !- X,Y,Z Vertex 2 {m}
+  -10.38436, -0.7030438, 9.405039;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-246,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.38436, -2.603956, 10.49955,         !- X,Y,Z Vertex 1 {m}
+  -9.967014, -3.576723, 12.10941,         !- X,Y,Z Vertex 2 {m}
+  -9.242662, -1.822415, 10.49955;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-247,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.967014, -3.576723, 12.10941,         !- X,Y,Z Vertex 1 {m}
+  -8.22176, -2.823352, 14,                !- X,Y,Z Vertex 2 {m}
+  -8.486825, -2.56347, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-248,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.820655, -3.917863, 14,               !- X,Y,Z Vertex 1 {m}
+  -8.22176, -2.823352, 14,                !- X,Y,Z Vertex 2 {m}
+  -8.51098, -2.539788, 15.97138;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-249,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.41189, -2.539788, 17.57027,         !- X,Y,Z Vertex 1 {m}
+  -9.980352, -3.545636, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -8.51098, -2.539788, 15.97138;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-250,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.44205, -0.6464825, 18.62879,        !- X,Y,Z Vertex 1 {m}
+  -10.41189, -2.539788, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -9.292521, -1.773532, 17.57027;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-251,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.38436, -0.7030438, 9.405039,        !- X,Y,Z Vertex 1 {m}
+  -9.242662, -1.822415, 10.49955,         !- X,Y,Z Vertex 2 {m}
+  -9.967014, -0.0683141, 9.405039;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-252,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.242662, -1.822415, 10.49955,         !- X,Y,Z Vertex 1 {m}
+  -8.486825, -2.56347, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -8.486825, -0.6728841, 10.49955;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-253,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.486825, -2.56347, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -7.163244, -1.213488, 14,               !- X,Y,Z Vertex 2 {m}
+  -7.506896, -1.073127, 12.10941;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-254,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.22176, -2.823352, 14,                !- X,Y,Z Vertex 1 {m}
+  -7.163244, -1.213488, 14,               !- X,Y,Z Vertex 2 {m}
+  -7.538213, -1.060336, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-255,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.292521, -1.773532, 17.57027,         !- X,Y,Z Vertex 1 {m}
+  -8.51098, -2.539788, 15.97138,          !- X,Y,Z Vertex 2 {m}
+  -7.538213, -1.060336, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-256,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.04181, -0.0377654, 18.62879,        !- X,Y,Z Vertex 1 {m}
+  -9.292521, -1.773532, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -8.551465, -0.6464825, 17.57027;        !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-257,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.967014, -0.0683141, 9.405039,        !- X,Y,Z Vertex 1 {m}
+  -8.22176, 0.6770979, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -9.820655, 0.6770979, 9.405039;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-258,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.486825, -0.6728841, 10.49955,        !- X,Y,Z Vertex 1 {m}
+  -7.506896, -1.073127, 12.10941,         !- X,Y,Z Vertex 2 {m}
+  -8.22176, 0.6770979, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-259,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -7.506896, -1.073127, 12.10941,         !- X,Y,Z Vertex 1 {m}
+  -6.792033, 0.6770979, 14,               !- X,Y,Z Vertex 2 {m}
+  -7.163244, 0.6770979, 12.10941;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-260,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -7.197072, 0.6770979, 15.97138,         !- X,Y,Z Vertex 1 {m}
+  -7.163244, -1.213488, 14,               !- X,Y,Z Vertex 2 {m}
+  -6.792033, 0.6770979, 14;               !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-261,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.551465, -0.6464825, 17.57027,        !- X,Y,Z Vertex 1 {m}
+  -7.538213, -1.060336, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -7.197072, 0.6770979, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-262,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.04181, -0.0377654, 18.62879,        !- X,Y,Z Vertex 1 {m}
+  -8.551465, -0.6464825, 17.57027,        !- X,Y,Z Vertex 2 {m}
+  -8.291584, 0.6770979, 17.57027;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-263,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.174, 2.579211, 0,                   !- X,Y,Z Vertex 1 {m}
+  -11.174, 2.579211, 10,                  !- X,Y,Z Vertex 2 {m}
+  -9.792033, 0.6770979, 10,               !- X,Y,Z Vertex 3 {m}
+  -9.792033, 0.6770979, 0;                !- X,Y,Z Vertex 4 {m}
+
+Shading:Building:Detailed,
+  X-S-264,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.174, -1.225015, 0,                  !- X,Y,Z Vertex 1 {m}
+  -9.792033, 0.6770979, 0,                !- X,Y,Z Vertex 2 {m}
+  -9.792033, 0.6770979, 10,               !- X,Y,Z Vertex 3 {m}
+  -11.174, -1.225015, 10;                 !- X,Y,Z Vertex 4 {m}
+
+Shading:Building:Detailed,
+  X-S-265,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.41007, -0.4984726, 0,               !- X,Y,Z Vertex 1 {m}
+  -11.174, -1.225015, 0,                  !- X,Y,Z Vertex 2 {m}
+  -11.174, -1.225015, 10,                 !- X,Y,Z Vertex 3 {m}
+  -13.41007, -0.4984726, 10;              !- X,Y,Z Vertex 4 {m}
+
+Shading:Building:Detailed,
+  X-S-266,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.41007, -0.4984726, 0,               !- X,Y,Z Vertex 1 {m}
+  -13.41007, -0.4984726, 10,              !- X,Y,Z Vertex 2 {m}
+  -13.41007, 1.852668, 10,                !- X,Y,Z Vertex 3 {m}
+  -13.41007, 1.852668, 0;                 !- X,Y,Z Vertex 4 {m}
+
+Shading:Building:Detailed,
+  X-S-267,                                !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.41007, 1.852668, 0,                 !- X,Y,Z Vertex 1 {m}
+  -13.41007, 1.852668, 10,                !- X,Y,Z Vertex 2 {m}
+  -11.174, 2.579211, 10,                  !- X,Y,Z Vertex 3 {m}
+  -11.174, 2.579211, 0;                   !- X,Y,Z Vertex 4 {m}
+
+Shading:Building:Detailed,
+  X-S-38,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  5.071606, -4.409075, 4.5,               !- X,Y,Z Vertex 1 {m}
+  8.021605, -4.409075, 4.5,               !- X,Y,Z Vertex 2 {m}
+  8.021605, -0.0840752, 4.5,              !- X,Y,Z Vertex 3 {m}
+  5.071606, -0.0840752, 4.5;              !- X,Y,Z Vertex 4 {m}
+
+Shading:Building:Detailed,
+  X-S-39,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 9,                !- X,Y,Z Vertex 1 {m}
+  -9.820655, 0.6770979, 9.405039,         !- X,Y,Z Vertex 2 {m}
+  -9.980352, 1.454364, 9.405039;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-40,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.820655, 0.6770979, 9.405039,         !- X,Y,Z Vertex 1 {m}
+  -8.22176, 0.6770979, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -8.51098, 2.084769, 10.49955;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-41,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.22176, 0.6770979, 10.49955,          !- X,Y,Z Vertex 1 {m}
+  -7.163244, 0.6770979, 12.10941,         !- X,Y,Z Vertex 2 {m}
+  -7.538213, 2.502116, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-42,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -7.197072, 2.648476, 14,                !- X,Y,Z Vertex 1 {m}
+  -7.163244, 0.6770979, 12.10941,         !- X,Y,Z Vertex 2 {m}
+  -6.792033, 0.6770979, 14;               !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-43,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -7.5693, 2.488779, 15.97138,            !- X,Y,Z Vertex 1 {m}
+  -7.197072, 0.6770979, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -7.197072, 2.648476, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-44,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.575147, 2.05724, 17.57027,           !- X,Y,Z Vertex 1 {m}
+  -8.291584, 0.6770979, 17.57027,         !- X,Y,Z Vertex 2 {m}
+  -7.197072, 0.6770979, 15.97138;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-45,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.0546, 1.42251, 18.62879,            !- X,Y,Z Vertex 1 {m}
+  -9.901446, 0.6770979, 18.62879,         !- X,Y,Z Vertex 2 {m}
+  -8.291584, 0.6770979, 17.57027;         !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-46,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 19,               !- X,Y,Z Vertex 1 {m}
+  -9.901446, 0.6770979, 18.62879,         !- X,Y,Z Vertex 2 {m}
+  -10.0546, 1.42251, 18.62879;            !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-47,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 9,                !- X,Y,Z Vertex 1 {m}
+  -9.980352, 1.454364, 9.405039,          !- X,Y,Z Vertex 2 {m}
+  -10.41189, 2.084769, 9.405039;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-48,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.41189, 2.084769, 9.405039,          !- X,Y,Z Vertex 1 {m}
+  -8.51098, 2.084769, 10.49955,           !- X,Y,Z Vertex 2 {m}
+  -9.292521, 3.226469, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-49,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.292521, 3.226469, 10.49955,          !- X,Y,Z Vertex 1 {m}
+  -7.538213, 2.502116, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -8.551465, 3.982306, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-50,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.291584, 4.247371, 14,                !- X,Y,Z Vertex 1 {m}
+  -7.538213, 2.502116, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -7.197072, 2.648476, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-51,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -8.575147, 3.958152, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -7.5693, 2.488779, 15.97138,            !- X,Y,Z Vertex 2 {m}
+  -7.197072, 2.648476, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-52,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.341403, 3.17661, 17.57027,           !- X,Y,Z Vertex 1 {m}
+  -8.575147, 2.05724, 17.57027,           !- X,Y,Z Vertex 2 {m}
+  -7.5693, 2.488779, 15.97138;            !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-53,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.46845, 2.02708, 18.62879,           !- X,Y,Z Vertex 1 {m}
+  -10.0546, 1.42251, 18.62879,            !- X,Y,Z Vertex 2 {m}
+  -9.341403, 3.17661, 17.57027;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-54,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 19,               !- X,Y,Z Vertex 1 {m}
+  -10.0546, 1.42251, 18.62879,            !- X,Y,Z Vertex 2 {m}
+  -10.46845, 2.02708, 18.62879;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-55,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 9,                !- X,Y,Z Vertex 1 {m}
+  -10.41189, 2.084769, 9.405039,          !- X,Y,Z Vertex 2 {m}
+  -11.04662, 2.502116, 9.405039;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-56,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.44205, 3.982306, 10.49955,          !- X,Y,Z Vertex 1 {m}
+  -10.41189, 2.084769, 9.405039,          !- X,Y,Z Vertex 2 {m}
+  -9.292521, 3.226469, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-57,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.04181, 4.962234, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -9.292521, 3.226469, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -8.551465, 3.982306, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-58,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -9.901446, 5.305886, 14,                !- X,Y,Z Vertex 1 {m}
+  -8.551465, 3.982306, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -8.291584, 4.247371, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-59,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.0546, 4.930919, 15.97138,           !- X,Y,Z Vertex 1 {m}
+  -8.575147, 3.958152, 15.97138,          !- X,Y,Z Vertex 2 {m}
+  -8.291584, 4.247371, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-60,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -10.46845, 3.917666, 17.57027,          !- X,Y,Z Vertex 1 {m}
+  -9.341403, 3.17661, 17.57027,           !- X,Y,Z Vertex 2 {m}
+  -10.0546, 4.930919, 15.97138;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-61,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.07717, 2.427323, 18.62879,          !- X,Y,Z Vertex 1 {m}
+  -10.46845, 2.02708, 18.62879,           !- X,Y,Z Vertex 2 {m}
+  -10.46845, 3.917666, 17.57027;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-62,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 19,               !- X,Y,Z Vertex 1 {m}
+  -10.46845, 2.02708, 18.62879,           !- X,Y,Z Vertex 2 {m}
+  -11.07717, 2.427323, 18.62879;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-63,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 9,                !- X,Y,Z Vertex 1 {m}
+  -11.04662, 2.502116, 9.405039,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 2.648476, 9.405039;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-64,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 2.648476, 9.405039,          !- X,Y,Z Vertex 1 {m}
+  -10.44205, 3.982306, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 4.247371, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-65,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 5.305886, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -10.44205, 3.982306, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -10.04181, 4.962234, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-66,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 5.677098, 14,                !- X,Y,Z Vertex 1 {m}
+  -10.04181, 4.962234, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -9.901446, 5.305886, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-67,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 5.272059, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -10.0546, 4.930919, 15.97138,           !- X,Y,Z Vertex 2 {m}
+  -11.79203, 5.677098, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-68,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 4.177547, 17.57027,          !- X,Y,Z Vertex 1 {m}
+  -10.46845, 3.917666, 17.57027,          !- X,Y,Z Vertex 2 {m}
+  -10.0546, 4.930919, 15.97138;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-69,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 2.567684, 18.62879,          !- X,Y,Z Vertex 1 {m}
+  -11.07717, 2.427323, 18.62879,          !- X,Y,Z Vertex 2 {m}
+  -10.46845, 3.917666, 17.57027;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-70,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -11.79203, 0.6770979, 19,               !- X,Y,Z Vertex 1 {m}
+  -11.07717, 2.427323, 18.62879,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 2.567684, 18.62879;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-71,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -12.5693, 2.488779, 9.405039,           !- X,Y,Z Vertex 1 {m}
+  -11.79203, 0.6770979, 9,                !- X,Y,Z Vertex 2 {m}
+  -11.79203, 2.648476, 9.405039;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-72,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.19971, 3.958152, 10.49955,          !- X,Y,Z Vertex 1 {m}
+  -12.5693, 2.488779, 9.405039,           !- X,Y,Z Vertex 2 {m}
+  -11.79203, 4.247371, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-73,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.61705, 4.930919, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, 4.247371, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 5.305886, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-74,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.76341, 5.272059, 14,                !- X,Y,Z Vertex 1 {m}
+  -13.61705, 4.930919, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 5.677098, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-75,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.60371, 4.899832, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, 5.272059, 15.97138,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 5.677098, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-76,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.60371, 4.899832, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -13.17218, 3.893984, 17.57027,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 4.177547, 17.57027;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-77,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -12.53745, 2.414532, 18.62879,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, 2.567684, 18.62879,          !- X,Y,Z Vertex 2 {m}
+  -11.79203, 4.177547, 17.57027;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-78,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -12.53745, 2.414532, 18.62879,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, 0.6770979, 19,               !- X,Y,Z Vertex 2 {m}
+  -11.79203, 2.567684, 18.62879;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-79,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.19971, 2.05724, 9.405039,           !- X,Y,Z Vertex 1 {m}
+  -11.79203, 0.6770979, 9,                !- X,Y,Z Vertex 2 {m}
+  -12.5693, 2.488779, 9.405039;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-80,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -14.3414, 3.17661, 10.49955,            !- X,Y,Z Vertex 1 {m}
+  -13.19971, 2.05724, 9.405039,           !- X,Y,Z Vertex 2 {m}
+  -13.19971, 3.958152, 10.49955;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-81,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.09724, 3.917666, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -13.19971, 3.958152, 10.49955,          !- X,Y,Z Vertex 2 {m}
+  -13.61705, 4.930919, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-82,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.36231, 4.177547, 14,                !- X,Y,Z Vertex 1 {m}
+  -15.09724, 3.917666, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -13.76341, 5.272059, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-83,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.07309, 3.893984, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -13.60371, 4.899832, 15.97138,          !- X,Y,Z Vertex 2 {m}
+  -13.76341, 5.272059, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-84,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.07309, 3.893984, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -14.29155, 3.127728, 17.57027,          !- X,Y,Z Vertex 2 {m}
+  -13.17218, 3.893984, 17.57027;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-85,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.17218, 3.893984, 17.57027,          !- X,Y,Z Vertex 1 {m}
+  -13.14202, 2.000678, 18.62879,          !- X,Y,Z Vertex 2 {m}
+  -12.53745, 2.414532, 18.62879;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-86,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.14202, 2.000678, 18.62879,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, 0.6770979, 19,               !- X,Y,Z Vertex 2 {m}
+  -12.53745, 2.414532, 18.62879;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-87,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.61705, 1.42251, 9.405039,           !- X,Y,Z Vertex 1 {m}
+  -11.79203, 0.6770979, 9,                !- X,Y,Z Vertex 2 {m}
+  -13.19971, 2.05724, 9.405039;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-88,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.09724, 2.02708, 10.49955,           !- X,Y,Z Vertex 1 {m}
+  -13.19971, 2.05724, 9.405039,           !- X,Y,Z Vertex 2 {m}
+  -14.3414, 3.17661, 10.49955;            !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-89,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.07717, 2.427323, 12.10941,          !- X,Y,Z Vertex 1 {m}
+  -15.09724, 2.02708, 10.49955,           !- X,Y,Z Vertex 2 {m}
+  -15.09724, 3.917666, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-90,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.42082, 2.567684, 14,                !- X,Y,Z Vertex 1 {m}
+  -15.09724, 3.917666, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -15.36231, 4.177547, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-91,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.04585, 2.414532, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -15.07309, 3.893984, 15.97138,          !- X,Y,Z Vertex 2 {m}
+  -15.36231, 4.177547, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-92,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.04585, 2.414532, 15.97138,          !- X,Y,Z Vertex 1 {m}
+  -15.0326, 2.000678, 17.57027,           !- X,Y,Z Vertex 2 {m}
+  -14.29155, 3.127728, 17.57027;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-93,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.0326, 2.000678, 17.57027,           !- X,Y,Z Vertex 1 {m}
+  -13.54226, 1.391961, 18.62879,          !- X,Y,Z Vertex 2 {m}
+  -13.14202, 2.000678, 18.62879;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-94,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.54226, 1.391961, 18.62879,          !- X,Y,Z Vertex 1 {m}
+  -11.79203, 0.6770979, 19,               !- X,Y,Z Vertex 2 {m}
+  -13.14202, 2.000678, 18.62879;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-95,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -13.76341, 0.6770979, 9.405039,         !- X,Y,Z Vertex 1 {m}
+  -11.79203, 0.6770979, 9,                !- X,Y,Z Vertex 2 {m}
+  -13.61705, 1.42251, 9.405039;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-96,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -15.36231, 0.6770979, 10.49955,         !- X,Y,Z Vertex 1 {m}
+  -13.76341, 0.6770979, 9.405039,         !- X,Y,Z Vertex 2 {m}
+  -15.09724, 2.02708, 10.49955;           !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-97,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.42082, 0.6770979, 12.10941,         !- X,Y,Z Vertex 1 {m}
+  -15.36231, 0.6770979, 10.49955,         !- X,Y,Z Vertex 2 {m}
+  -16.07717, 2.427323, 12.10941;          !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-98,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.79203, 0.6770979, 14,               !- X,Y,Z Vertex 1 {m}
+  -16.07717, 2.427323, 12.10941,          !- X,Y,Z Vertex 2 {m}
+  -16.42082, 2.567684, 14;                !- X,Y,Z Vertex 3 {m}
+
+Shading:Building:Detailed,
+  X-S-99,                                 !- Name
+  ,                                       !- Transmittance Schedule Name
+  ,                                       !- Number of Vertices
+  -16.42082, 2.567684, 14,                !- X,Y,Z Vertex 1 {m}
+  -16.38699, 0.6770979, 15.97138,         !- X,Y,Z Vertex 2 {m}
+  -16.04585, 2.414532, 15.97138;          !- X,Y,Z Vertex 3 {m}
+
+Zone,
+  Default,                                !- Name
+  ,                                       !- Direction of Relative North {deg}
+  0,                                      !- X Origin {m}
+  0,                                      !- Y Origin {m}
+  0,                                      !- Z Origin {m}
+  ,                                       !- Type
+  ,                                       !- Multiplier
+  ,                                       !- Ceiling Height {m}
+  ,                                       !- Volume {m3}
+  344.869706359425,                       !- Floor Area {m2}
+  ,                                       !- Zone Inside Convection Algorithm
+  ,                                       !- Zone Outside Convection Algorithm
+  Yes;                                    !- Part of Total Floor Area
+
+BuildingSurface:Detailed,
+  B-00_913-E-F-4,                         !- Name
+  Floor,                                  !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -6.742033, 0, 4.5,                      !- X,Y,Z Vertex 1 {m}
+  -6.742033, 4.3225, 4.5,                 !- X,Y,Z Vertex 2 {m}
+  -2.955, 4.3225, 4.5,                    !- X,Y,Z Vertex 3 {m}
+  -2.955, 0.0025, 4.5,                    !- X,Y,Z Vertex 4 {m}
+  0, 0.0025, 4.5;                         !- X,Y,Z Vertex 5 {m}
+
+BuildingSurface:Detailed,
+  B-00_913-E-F-5,                         !- Name
+  Floor,                                  !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -2.955, 0.0025, 4.5,                    !- X,Y,Z Vertex 1 {m}
+  -2.955, 4.3225, 4.5,                    !- X,Y,Z Vertex 2 {m}
+  0, 4.3225, 4.5,                         !- X,Y,Z Vertex 3 {m}
+  0, 0.0025, 4.5;                         !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  B-00_914-E-F-15,                        !- Name
+  Floor,                                  !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -6.742033, 4.325, 4.5,                  !- X,Y,Z Vertex 1 {m}
+  -6.742033, 8, 4.5,                      !- X,Y,Z Vertex 2 {m}
+  -2.945007, 8, 4.5,                      !- X,Y,Z Vertex 3 {m}
+  -2.955, 4.325, 4.5;                     !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  B-00_914-E-F-16,                        !- Name
+  Floor,                                  !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -2.954993, 4.325, 4.5,                  !- X,Y,Z Vertex 1 {m}
+  -2.945007, 8, 4.5,                      !- X,Y,Z Vertex 2 {m}
+  0, 8, 4.5,                              !- X,Y,Z Vertex 3 {m}
+  0, 4.325, 4.5;                          !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  B-00_915-E-F-24,                        !- Name
+  Floor,                                  !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  0, 4, 0,                                !- X,Y,Z Vertex 1 {m}
+  0, 8, 0,                                !- X,Y,Z Vertex 2 {m}
+  10, 8, 0,                               !- X,Y,Z Vertex 3 {m}
+  10, 4, 0;                               !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  B-00_916-E-F-29,                        !- Name
+  Floor,                                  !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  0, 0, 0,                                !- X,Y,Z Vertex 1 {m}
+  0, 4, 0,                                !- X,Y,Z Vertex 2 {m}
+  10, 4, 0,                               !- X,Y,Z Vertex 3 {m}
+  10, 0, 0;                               !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  B-00_917-E-F-34,                        !- Name
+  Floor,                                  !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -1.566784, 8.0025, 9,                   !- X,Y,Z Vertex 1 {m}
+  0.5889834, 10.4825, 9,                  !- X,Y,Z Vertex 2 {m}
+  3.162388, 9.06111, 9,                   !- X,Y,Z Vertex 3 {m}
+  5.07217, 8.0025, 9;                     !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  B-00_917-E-F-35,                        !- Name
+  Floor,                                  !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -1.276107, 0, 9,                        !- X,Y,Z Vertex 1 {m}
+  8.447098, 0, 9,                         !- X,Y,Z Vertex 2 {m}
+  5.748983, -3.5775, 9;                   !- X,Y,Z Vertex 3 {m}
+
+BuildingSurface:Detailed,
+  B-00_917-E-F-36,                        !- Name
+  Floor,                                  !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  10, 2.063843, 9,                        !- X,Y,Z Vertex 1 {m}
+  10, 5.270959, 9,                        !- X,Y,Z Vertex 2 {m}
+  11.70594, 4.324188, 9;                  !- X,Y,Z Vertex 3 {m}
+
+BuildingSurface:Detailed,
+  E-00_913-E-W-3,                         !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  10, 0, 4.5,                             !- X,Y,Z Vertex 1 {m}
+  10, 4.325, 4.5,                         !- X,Y,Z Vertex 2 {m}
+  10, 4.325, 9,                           !- X,Y,Z Vertex 3 {m}
+  10, 0, 9;                               !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  E-00_914-E-W-14,                        !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  10, 4.325, 4.5,                         !- X,Y,Z Vertex 1 {m}
+  10, 8, 4.5,                             !- X,Y,Z Vertex 2 {m}
+  10, 8, 9,                               !- X,Y,Z Vertex 3 {m}
+  10, 4.325, 9;                           !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  E-00_915-E-W-23,                        !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  10, 4, 0,                               !- X,Y,Z Vertex 1 {m}
+  10, 8, 0,                               !- X,Y,Z Vertex 2 {m}
+  10, 8, 4.5,                             !- X,Y,Z Vertex 3 {m}
+  10, 4, 4.5;                             !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  E-00_916-E-W-28,                        !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  10, 0, 0,                               !- X,Y,Z Vertex 1 {m}
+  10, 4, 0,                               !- X,Y,Z Vertex 2 {m}
+  10, 4, 4.5,                             !- X,Y,Z Vertex 3 {m}
+  10, 0, 4.5;                             !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  N-00_914-E-W-12,                        !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -6.742033, 8, 4.5,                      !- X,Y,Z Vertex 1 {m}
+  -6.742033, 8, 9,                        !- X,Y,Z Vertex 2 {m}
+  10, 8, 9,                               !- X,Y,Z Vertex 3 {m}
+  10, 8, 4.5;                             !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  N-00_915-E-W-21,                        !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  0, 8, 0,                                !- X,Y,Z Vertex 1 {m}
+  0, 8, 4.5,                              !- X,Y,Z Vertex 2 {m}
+  10, 8, 4.5,                             !- X,Y,Z Vertex 3 {m}
+  10, 8, 0;                               !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  NE-00_917-E-W-31,                       !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  0.5920014, 10.4859, 9,                  !- X,Y,Z Vertex 1 {m}
+  0.5920014, 10.4859, 15.9513,            !- X,Y,Z Vertex 2 {m}
+  11.70656, 4.325, 15.9513,               !- X,Y,Z Vertex 3 {m}
+  11.70656, 4.325, 9;                     !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  NW-00_917-E-W-30,                       !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -6.299992, 2.557566, 9,                 !- X,Y,Z Vertex 1 {m}
+  -6.299992, 2.557566, 15.9513,           !- X,Y,Z Vertex 2 {m}
+  0.5920014, 10.4859, 15.9513,            !- X,Y,Z Vertex 3 {m}
+  0.5920014, 10.4859, 9;                  !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  S-00_913-E-W-2,                         !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -6.742033, 0, 4.5,                      !- X,Y,Z Vertex 1 {m}
+  10, 0, 4.5,                             !- X,Y,Z Vertex 2 {m}
+  10, 0, 9,                               !- X,Y,Z Vertex 3 {m}
+  -6.742033, 0, 9;                        !- X,Y,Z Vertex 4 {m}
+
+FenestrationSurface:Detailed,
+  S-00_913-E-W-2-D-1,                     !- Name
+  Door,                                   !- Surface Type
+  ,                                       !- Construction Name
+  S-00_913-E-W-2,                         !- Building Surface Name
+  ,                                       !- Outside Boundary Condition Object
+  ,                                       !- View Factor to Ground
+  ,                                       !- Frame and Divider Name
+  ,                                       !- Multiplier
+  ,                                       !- Number of Vertices
+  6.225, 0, 4.5,                          !- X,Y,Z Vertex 1 {m}
+  7.151, 0, 4.5,                          !- X,Y,Z Vertex 2 {m}
+  7.151, 0, 6.54,                         !- X,Y,Z Vertex 3 {m}
+  6.225, 0, 6.54;                         !- X,Y,Z Vertex 4 {m}
+
+FenestrationSurface:Detailed,
+  S-00_913-E-W-2-W-2,                     !- Name
+  Window,                                 !- Surface Type
+  ,                                       !- Construction Name
+  S-00_913-E-W-2,                         !- Building Surface Name
+  ,                                       !- Outside Boundary Condition Object
+  ,                                       !- View Factor to Ground
+  ,                                       !- Frame and Divider Name
+  ,                                       !- Multiplier
+  ,                                       !- Number of Vertices
+  1.325, 0, 6.397861,                     !- X,Y,Z Vertex 1 {m}
+  4.325, 0, 6.397861,                     !- X,Y,Z Vertex 2 {m}
+  4.325, 0, 7.897861,                     !- X,Y,Z Vertex 3 {m}
+  1.325, 0, 7.897861;                     !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  S-00_916-E-W-27,                        !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  0, 0, 0,                                !- X,Y,Z Vertex 1 {m}
+  10, 0, 0,                               !- X,Y,Z Vertex 2 {m}
+  10, 0, 4.5,                             !- X,Y,Z Vertex 3 {m}
+  0, 0, 4.5;                              !- X,Y,Z Vertex 4 {m}
+
+FenestrationSurface:Detailed,
+  S-00_916-E-W-27-D-1,                    !- Name
+  Door,                                   !- Surface Type
+  ,                                       !- Construction Name
+  S-00_916-E-W-27,                        !- Building Surface Name
+  ,                                       !- Outside Boundary Condition Object
+  ,                                       !- View Factor to Ground
+  ,                                       !- Frame and Divider Name
+  ,                                       !- Multiplier
+  ,                                       !- Number of Vertices
+  6.225, 0, 0,                            !- X,Y,Z Vertex 1 {m}
+  7.151, 0, 0,                            !- X,Y,Z Vertex 2 {m}
+  7.151, 0, 2.04,                         !- X,Y,Z Vertex 3 {m}
+  6.225, 0, 2.04;                         !- X,Y,Z Vertex 4 {m}
+
+FenestrationSurface:Detailed,
+  S-00_916-E-W-27-W-2,                    !- Name
+  Window,                                 !- Surface Type
+  ,                                       !- Construction Name
+  S-00_916-E-W-27,                        !- Building Surface Name
+  ,                                       !- Outside Boundary Condition Object
+  ,                                       !- View Factor to Ground
+  ,                                       !- Frame and Divider Name
+  ,                                       !- Multiplier
+  ,                                       !- Number of Vertices
+  1.325, 0, 1.897861,                     !- X,Y,Z Vertex 1 {m}
+  4.325, 0, 1.897861,                     !- X,Y,Z Vertex 2 {m}
+  4.325, 0, 3.397861,                     !- X,Y,Z Vertex 3 {m}
+  1.325, 0, 3.397861;                     !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  SE-00_917-E-W-32,                       !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  5.748587, -3.581491, 9,                 !- X,Y,Z Vertex 1 {m}
+  11.70656, 4.325, 9,                     !- X,Y,Z Vertex 2 {m}
+  11.70656, 4.325, 15.9513,               !- X,Y,Z Vertex 3 {m}
+  5.748587, -3.581491, 15.9513;           !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  SW-00_917-E-W-33,                       !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -6.299992, 2.557566, 9,                 !- X,Y,Z Vertex 1 {m}
+  5.748587, -3.581491, 9,                 !- X,Y,Z Vertex 2 {m}
+  5.748587, -3.581491, 15.9513,           !- X,Y,Z Vertex 3 {m}
+  -6.299992, 2.557566, 15.9513;           !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  T-00_913-E-R-6,                         !- Name
+  Roof,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -6.742033, 0, 9,                        !- X,Y,Z Vertex 1 {m}
+  -1.280486, 0, 9,                        !- X,Y,Z Vertex 2 {m}
+  -2.712729, 0.7297643, 9,                !- X,Y,Z Vertex 3 {m}
+  -6.301016, 2.5525, 9,                   !- X,Y,Z Vertex 4 {m}
+  -4.765759, 4.3225, 9,                   !- X,Y,Z Vertex 5 {m}
+  -6.741016, 4.3225, 9;                   !- X,Y,Z Vertex 6 {m}
+
+BuildingSurface:Detailed,
+  T-00_913-E-R-7,                         !- Name
+  Roof,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  8.449318, 0.0025, 9,                    !- X,Y,Z Vertex 1 {m}
+  9.998983, 0.0025, 9,                    !- X,Y,Z Vertex 2 {m}
+  9.998983, 2.058975, 9;                  !- X,Y,Z Vertex 3 {m}
+
+BuildingSurface:Detailed,
+  T-00_914-E-R-17,                        !- Name
+  Roof,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -6.742033, 8, 9,                        !- X,Y,Z Vertex 1 {m}
+  -6.741016, 4.325, 9,                    !- X,Y,Z Vertex 2 {m}
+  -4.763586, 4.325, 9,                    !- X,Y,Z Vertex 3 {m}
+  -3.075549, 6.266864, 9,                 !- X,Y,Z Vertex 4 {m}
+  -1.573184, 8, 9;                        !- X,Y,Z Vertex 5 {m}
+
+BuildingSurface:Detailed,
+  T-00_914-E-R-18,                        !- Name
+  Roof,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  5.083489, 8, 9,                         !- X,Y,Z Vertex 1 {m}
+  9.998983, 5.2725, 9,                    !- X,Y,Z Vertex 2 {m}
+  9.998983, 8, 9;                         !- X,Y,Z Vertex 3 {m}
+
+BuildingSurface:Detailed,
+  T-00_917-E-R-37,                        !- Name
+  Roof,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -6.299992, 2.557566, 15.9513,           !- X,Y,Z Vertex 1 {m}
+  5.748587, -3.581491, 15.9513,           !- X,Y,Z Vertex 2 {m}
+  11.70656, 4.325, 15.9513,               !- X,Y,Z Vertex 3 {m}
+  0.5920014, 10.4859, 15.9513;            !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  W-00_913-E-W-1,                         !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -6.742033, 0, 4.5,                      !- X,Y,Z Vertex 1 {m}
+  -6.742033, 0, 9,                        !- X,Y,Z Vertex 2 {m}
+  -6.742033, 4.325, 9,                    !- X,Y,Z Vertex 3 {m}
+  -6.742033, 4.325, 4.5;                  !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  W-00_914-E-W-13,                        !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  -6.742033, 4.325, 4.5,                  !- X,Y,Z Vertex 1 {m}
+  -6.742033, 4.325, 9,                    !- X,Y,Z Vertex 2 {m}
+  -6.742033, 8, 9,                        !- X,Y,Z Vertex 3 {m}
+  -6.742033, 8, 4.5;                      !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  W-00_915-E-W-22,                        !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  0, 4, 0,                                !- X,Y,Z Vertex 1 {m}
+  0, 4, 4.5,                              !- X,Y,Z Vertex 2 {m}
+  0, 8, 4.5,                              !- X,Y,Z Vertex 3 {m}
+  0, 8, 0;                                !- X,Y,Z Vertex 4 {m}
+
+BuildingSurface:Detailed,
+  W-00_916-E-W-26,                        !- Name
+  Wall,                                   !- Surface Type
+  ,                                       !- Construction Name
+  Default,                                !- Zone Name
+  Outdoors,                               !- Outside Boundary Condition
+  ,                                       !- Outside Boundary Condition Object
+  SunExposed,                             !- Sun Exposure
+  WindExposed,                            !- Wind Exposure
+  ,                                       !- View Factor to Ground
+  ,                                       !- Number of Vertices
+  0, 0, 0,                                !- X,Y,Z Vertex 1 {m}
+  0, 0, 4.5,                              !- X,Y,Z Vertex 2 {m}
+  0, 4, 4.5,                              !- X,Y,Z Vertex 3 {m}
+  0, 4, 0;                                !- X,Y,Z Vertex 4 {m}
+
+SimulationControl,
+  No,                                     !- Do Zone Sizing Calculation
+  No,                                     !- Do System Sizing Calculation
+  No,                                     !- Do Plant Sizing Calculation
+  Yes,                                    !- Run Simulation for Sizing Periods
+  Yes;                                    !- Run Simulation for Weather File Run Periods
+
+HeatBalanceAlgorithm,
+  ConductionTransferFunction,             !- Algorithm
+  200;                                    !- Surface Temperature Upper Limit {C}
+
+RunPeriod,
+  Run Period 1,                           !- Name
+  1,                                      !- Begin Month
+  1,                                      !- Begin Day of Month
+  2009,                                   !- Begin Year
+  12,                                     !- End Month
+  31,                                     !- End Day of Month
+  2009,                                   !- End Year
+  Thursday,                               !- Day of Week for Start Day
+  No,                                     !- Use Weather File Holidays and Special Days
+  No,                                     !- Use Weather File Daylight Saving Period
+  No,                                     !- Apply Weekend Holiday Rule
+  Yes,                                    !- Use Weather File Rain Indicators
+  Yes;                                    !- Use Weather File Snow Indicators
+
+ShadowCalculation,
+  AverageOverDaysInFrequency,             !- Calculation Method
+  20,                                     !- Calculation Frequency
+  15000,                                  !- Maximum Figures in Shadow Overlap Calculations
+  SutherlandHodgman,                      !- Polygon Clipping Algorithm
+  SimpleSkyDiffuseModeling;               !- Sky Diffuse Modeling Algorithm
+
+Sizing:Parameters,
+  1.25,                                   !- Heating Sizing Factor
+  1.15;                                   !- Cooling Sizing Factor
+
+GlobalGeometryRules,
+  UpperLeftCorner,                        !- Starting Vertex Position
+  Counterclockwise,                       !- Vertex Entry Direction
+  Relative,                               !- Coordinate System
+  Relative,                               !- Daylighting Reference Point Coordinate System
+  Relative;                               !- Rectangular Surface Coordinate System
+
+Schedule:Constant,
+  Always On Discrete,                     !- Name
+  ,                                       !- Schedule Type Limits Name
+  1;                                      !- Hourly Value
+
+Schedule:Constant,
+  Always Off Discrete,                    !- Name
+  ,                                       !- Schedule Type Limits Name
+  0;                                      !- Hourly Value
+
+Schedule:Constant,
+  Always On Continuous,                   !- Name
+  ,                                       !- Schedule Type Limits Name
+  1;                                      !- Hourly Value
+
+OutdoorAir:Node,
+  Model Outdoor Air Node;                 !- Name
+
+Site:Location,
+  Site 1,                                 !- Name
+  0,                                      !- Latitude {deg}
+  0,                                      !- Longitude {deg}
+  0,                                      !- Time Zone {hr}
+  0;                                      !- Elevation {m}
+
+OutputControl:Table:Style,
+  HTML;                                   !- Column Separator
+
+Output:Table:SummaryReports,
+  AllSummary;                             !- Report Name 1
+
+Output:VariableDictionary,
+  IDF,                                    !- Key Field
+  Unsorted;                               !- Sort Option
+
+Output:SQLite,
+  SimpleAndTabular;                       !- Option Type
+
+LifeCycleCost:NonrecurringCost,
+  Default Cost,                           !- Name
+  Construction,                           !- Category
+  0,                                      !- Cost
+  ServicePeriod;                          !- Start of Costs
+
