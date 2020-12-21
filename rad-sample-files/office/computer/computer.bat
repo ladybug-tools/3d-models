@@ -1,0 +1,1 @@
+C:\Radiance\bin\obj2rad -f c:\ladybug\computer\MSH2RADFiles\computer.obj > c:\ladybug\computer\MSH2RADFiles\computer.rad

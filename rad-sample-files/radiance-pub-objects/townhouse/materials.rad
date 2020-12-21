@@ -1,0 +1,239 @@
+# Outside basically
+void plastic Plastersmoothpeach
+0
+0
+5 0.89 0.82 0.67 0.001 0.001
+
+void plastic Paintflatlivinginterior
+0
+0
+5 0.90 0.76 0.64 0.0 0.02
+
+void plastic Ceramics
+0
+0
+5 1 0.95 0.88 0.0 0.02
+
+void plastic Ceramicsglazed
+0
+0
+5 0.96 0.99 1 0.02 0.01
+
+void plastic Plasterrough
+0
+0
+5 0.58 0.57 0.51 0.0 0.05
+
+void plastic Graniteshiny
+0
+0
+5 0.82 0.85 0.79 0.02 0.001
+
+void plastic GDLMATERIAL
+0
+0
+5 0 0 0 0.0 0.02
+
+# Legs of coffee table
+void plastic PaintBlackgloss
+0
+0
+5 0.01 0.01 0.01 0.2 0.01
+
+void brightfunc marble_veins
+2 marble marble.cal
+0
+1 1
+marble_veins plastic tuscan
+0
+0
+5 0.82 0.85 0.79 0.0 0.02
+
+void plastic Marbleshiny
+0
+0
+5 0.97 0.97 0.97 0.02 0.001
+
+void plastic Cinder
+0
+0
+5 0.50 0.12 0.07 0.0 0.02
+
+void plastic Paintflat
+0
+0
+5 0.57 0.058 0.025 0.0 0.02
+
+# Outside
+void plastic Asphalt
+0
+0
+5 0.18 0.18 0.18 0.0 0.02
+
+# All ceilings but top floor
+void plastic ceilingwhite
+0
+0
+5 0.96 1 0.97 0.0 0.02
+
+#-----------------------------------------------------------
+# Tiles
+void texfunc tile1
+4 x_pert y_pert z_pert tile.cal
+0
+3 0.01 0.2 0.2
+tile1 plastic Matakanatiles
+0
+0
+5 0.87 0.39 0.10 0.0 0.02
+
+void brightfunc tile2
+2 checker intensity.cal
+0
+2 .1 .1
+tile2 plastic Bathroomtiles
+0
+0
+5 0.97 0.97 0.97 0.02 0.01
+
+#-----------------------------------------------------------
+# Materials
+void brightfunc upholster
+2 upholster upholster.cal
+0
+0
+upholster plastic Textile
+0
+0
+5 0.09 0.36 0.19 0.0 0.02
+
+upholster plastic CarpetWRed
+0
+0
+5 0.506584 0.124727 0.178424 0.0 0.02
+
+void plastic Carpetgreen
+0
+0
+5 0.49 0.64 0.60 0.0 0.02
+
+void plastic pillow
+0
+0
+5 0.91 0.96 1 0.0 0.02
+
+void plastic bed
+0
+0
+5 0.50 0.12 0.17 0.0 0.02
+
+#-----------------------------------------------------------
+# Woods
+void colorpict wood_pict
+9 red green blue nwood.pic picture.cal
+  tile_u tile_v -ry 90
+0
+1 1
+wood_pict plastic pergola
+0
+0
+5 0.43 0.16 0.06 0.0 0.02
+
+void plastic stairs
+0
+0
+5 0.96 0.75 0.45 0.0 0.02
+
+void plastic Walnutceiling
+0
+0
+5 0.65 0.49 0.29 0.0 0.02
+
+void plastic Pineshiny
+0
+0
+5 0.96 0.75 0.45 0.02 0.001
+
+void plastic windowsash
+0
+0
+5 0.96 0.75 0.45 0.0 0.02
+
+void brightfunc pinegrain
+2 zgrain woodpat.cal
+0
+1 .5
+pinegrain plastic Pine
+0
+0
+5 0.96 0.75 0.45 0.0 0.02
+
+#-----------------------------------------------------------
+# Light parts
+void plastic lightbody
+0
+0
+5 0.01 0.01 0.01 0.0 0.02
+
+void plastic lightbulb
+0
+0
+5 1 1 1 0.0 0.02
+
+void plastic uplighter
+0
+0
+5 0.96 0.99 1 0.0 0.02
+
+void metal lightbracket
+0
+0
+5 1 1 1 0.9 0.02
+
+#-----------------------------------------------------------
+# Metals
+void metal Irondarkgreen
+0
+0
+5 0.01 0.17 0.13 0.7 0.02
+
+# For chairs
+void metal Chrome
+0
+0
+5 0.95 0.95 0.95 0.9 0.001
+
+# Desk, 1st floor. Table
+void metal Aluminium
+0
+0
+5 0.9 0.88 0.88 0.8 0.02
+
+# Kitchen
+void metal StainlessSteel
+0
+0
+5 0.54 0.54 0.55 0.96 0.02
+
+void metal Copperroof
+0
+0
+5 0.78 0.27 0.17 0.2 0.02
+
+#-----------------------------------------------------------
+# Glass
+void glass Glass
+0
+0
+3 0.58 0.75 0.67
+
+# Coffee table, ground floor
+void glass GlassDark
+0
+0
+3 0.01 0.01 0.01
+
+void trans Glassfrosty
+0
+0
+7 0.7 1 0.7 .2 0 0.9 0.2

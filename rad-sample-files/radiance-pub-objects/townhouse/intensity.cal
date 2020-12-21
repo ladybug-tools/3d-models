@@ -1,0 +1,17 @@
+ripple = ( 1 + sin(A1 * (Px * Px + Py * Py)) ) / 2;
+checker = ( 1 + sgn(sin(A1*Px)+sin(A2*Py)) ) / 2;
+spots = (1+sin(Px*A1)/3 + sin(Py*A2)/3 + sin(Pz*A3)/3)/2;
+marble = (1-A1) + A1*turbulence(Px,Py,Pz,.05);
+mesh = sq(sin(A1*Px)*sin(A1*Px)) + sq(sin(A2*Py)*sin(A2*Py));
+upholster=(1-.5*(1+noise3(Py,Pz/8,Px/8)/2)*(2/3+sin(Px*2*PI)/3)) *
+        (1-.5*(1+noise3(Px,Py/8,Pz/8)/2)*(2/3+sin(Py*2*PI)/3));
+rough = noise3((1+A1*Px)/2,(1+A1*Py)/2,(1+A1*Pz)/2);
+module = mod(A1*(Px + Py),100) / 100;
+fadel = 1 - mod(A1*sqrt(sq(Px-Tx) + sq(Py*Ty) + sq(Pz-Tz)),100) / 100;
+ring = if (inside(A1,sqrt(sq(Px)+sq(Py)),A2),0.8,0.2);
+lines = if (mod(10*A1*Px,10)-2,0.8,0.2);
+
+triangle = if ( frac(A1*Px)+frac(A1*Py)-1, 0.2, 0.8 );
+
+
+

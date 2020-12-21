@@ -1,0 +1,45 @@
+{
+tile.cal
+
+Mat September 1991.
+
+generates a texture that is applied to horizontal surfaces
+
+Use transformations to map this texture onto non horizontal surfaces
+
+use as follows
+
+    mod texfunc id
+
+    4+ x_pert y_pert z_pert [path]tile.cal [transformations]
+    0
+    3 A1 A2 A3
+
+A1 = mortar thickness
+A2 = x dimension of tile
+A3 = y dimension of tile
+
+Note that the tilesizes specified on the command line must be
+greater than or equal to A1
+}
+
+mort = if(A1/2-A1,.05,A1/2);
+
+xtile = if(mort-A2,10*mort,A2);
+ytile = if(mort-A3,10*mort,A3);
+
+gx = frac(Px/xtile)*xtile;
+hx = if(xtile/2-gx,gx,xtile-gx);
+
+gy = frac(Py/ytile)*ytile;
+hy = if(ytile/2-gy,gy,ytile-gy);
+
+x_pert = select(if(mort-hx,2,1),0,if(xtile/2-gx,-.9,.9));
+y_pert = select(if(mort-hy,2,1),0,if(ytile/2-gy,-.9,.9));
+z_pert = 0;
+
+{
+ends
+}
+
+

@@ -1,0 +1,14 @@
+void plastic generic_wall_0.50
+0
+0
+5 0.5 0.5 0.5 0.0 0.0
+
+void plastic generic_floor_0.20
+0
+0
+5 0.2 0.2 0.2 0.0 0.0
+
+void plastic generic_ceiling_0.80
+0
+0
+5 0.8 0.8 0.8 0.0 0.0

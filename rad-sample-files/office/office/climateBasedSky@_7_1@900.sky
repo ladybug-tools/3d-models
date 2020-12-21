@@ -1,0 +1,23 @@
+# start of sky definition for daylighting studies
+# location name: Orlando_Executive_Ap_FL_USA LAT: 28.55
+!gendaylit 7 1 9.0 -a 28.55 -o 81.33 -m 75.0 -W 344.0 229.0 -O 0 | xform -rz 0.0
+skyfunc glow sky_mat
+0
+0
+4
+1 1 1 0
+sky_mat source sky
+0
+0
+4
+0 0 1 180
+skyfunc glow ground_glow
+0
+0
+4
+1 .8 .5 0
+ground_glow source ground
+0
+0
+4
+0 0 -1 180

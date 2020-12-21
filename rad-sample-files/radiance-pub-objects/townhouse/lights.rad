@@ -1,0 +1,112 @@
+#-----------------------------------------------------------------------
+# A light source
+void illum lighting
+0
+0
+3 1000 1000 1000
+
+#-----------------------------------------------------------------------
+# Uplights
+lighting sphere uplight1
+0
+0
+4 5.12258     6.41292         1.8 0.015
+lighting sphere uplight2
+0
+0
+4 8.49046     8.35794         1.8 0.015
+lighting sphere uplight3
+0
+0
+4 11.3169     3.52907         1.8 0.015
+lighting sphere uplight4
+0
+0
+4 7.81282     1.50351         1.8 0.015
+lighting sphere uplight5
+0
+0
+4 2.1         0.851381        4.8 0.015
+lighting sphere uplight6
+0
+0
+4 5.8         0.848177        4.8 0.015
+lighting sphere uplight7
+0
+0
+4 0.2         5.41876         4.8 0.015
+lighting sphere uplight8
+0
+0
+4 0.2         0.587879        4.8 0.015
+lighting sphere uplight9
+0
+0
+4 0.2         5.41876         7.8 0.015
+lighting sphere uplight10
+0
+0
+4 0.2         0.587876        7.8 0.015
+
+#-----------------------------------------------------------------------
+# Spotlights
+lighting sphere spotlight1
+0
+0
+4 5.86395     5.25908     2.51136 0.015
+lighting sphere spotlight2
+0
+0
+4 5.99465     4.88977     2.51136 0.015
+lighting sphere spotlight3
+0
+0
+4 5.85906     4.39813     2.51136 0.015
+lighting sphere spotlight4
+0
+0
+4 5.86466     3.57559     2.51136 0.015
+lighting sphere spotlight5
+0
+0
+4 5.93628     5.37353     5.01136 0.015
+lighting sphere spotlight6
+0
+0
+4 5.92024     3.90207     5.01136 0.015
+
+#-----------------------------------------------------------------------
+# Added by Paul to light up some spaces
+lighting sphere additional1
+0
+0
+4 2.5 1.5 2 .02
+lighting sphere additional2
+0
+0
+4 2.5 3.5 2 .02
+lighting sphere additional3
+0
+0
+4 8.5 5 2 .02
+lighting sphere additional4
+0
+0
+4 4 1.5 5.0 .02
+lighting sphere additional5
+0
+0
+4 4 3.5 5.0 .02
+lighting sphere additional6
+0
+0
+4 6.5 4.5 5.0 .02
+lighting sphere additional7
+0
+0
+4 1 4.5 5.0 .02
+lighting sphere additional8
+0
+0
+4 3 3 7.5 .02
+

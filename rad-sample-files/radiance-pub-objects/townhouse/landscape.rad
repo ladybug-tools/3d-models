@@ -1,0 +1,29 @@
+# The landscape
+void plastic earth
+0
+0
+5 0.66 0.55 0.05 0.01 0.2
+earth polygon ground
+0
+0
+12 -100 -100 -0.01 -100 100 -0.01 100 100 -0.01 100 -100 -0.01
+
+# A tree
+#void instance tree.1
+#9 tree.oct -rz 0 -s 0.07 -t 14 8 0
+#0
+#0
+#void instance tree.2
+#9 tree.oct -rz 0 -s .06 -t 4 -3 0
+#0
+#0
+#void instance tree.3
+#9 tree.oct -rz 0 -s .05 -t 2.5 8.5 0
+#0
+#0
+#void instance tree.3
+#9 tree.oct -rz 45 -s .055 -t 9 0 0
+#0
+#0
+
+

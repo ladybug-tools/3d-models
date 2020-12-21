@@ -1,0 +1,1 @@
+C:\Radiance\bin\obj2rad -f c:\ladybug\facade\MSH2RADFiles\facade.obj > c:\ladybug\facade\MSH2RADFiles\facade.rad

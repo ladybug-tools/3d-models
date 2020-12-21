@@ -1,0 +1,10 @@
+
+rpict -av .1 .1 .1 \
+      -vu 0 0 1 \
+      -vh 90 -vv 90 \
+      -x 600 -y 600 \
+      -vp 4 3.5 1.2 \
+      -vd 1 .5 0 \
+      townhouse.oct > th00.pic
+
+ra2pict th00.pic th00.pict
