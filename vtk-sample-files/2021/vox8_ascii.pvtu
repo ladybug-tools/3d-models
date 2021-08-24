@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<VTKFile type="PUnstructuredGrid" version="0.1" byte_order="LittleEndian">
+  <PUnstructuredGrid GhostLevel="0">
+    <PPointData Scalars="scalars">
+      <PDataArray type="Float32" Name="scalars"/>
+      <PDataArray type="Float32" Name="mytest"/>
+      <PDataArray type="Float32" Name="xRamp"/>
+      <PDataArray type="Float32" Name="yRamp"/>
+      <PDataArray type="Float32" Name="zRamp"/>
+      <PDataArray type="Float32" Name="outVect" NumberOfComponents="3"/>
+      <PDataArray type="Float32" Name="vect2" NumberOfComponents="3"/>
+    </PPointData>
+    <PCellData Scalars="scalars">
+      <PDataArray type="Float32" Name="scalars"/>
+      <PDataArray type="Float32" Name="cRamp1"/>
+      <PDataArray type="Float32" Name="cRamp2"/>
+      <PDataArray type="Float32" Name="cVects" NumberOfComponents="3"/>
+      <PDataArray type="Float32" Name="cv2" NumberOfComponents="3"/>
+    </PCellData>
+    <PPoints>
+      <PDataArray type="Float32" NumberOfComponents="3"/>
+    </PPoints>
+    <Piece Source="vox8_ascii_0.vtu"/>
+    <Piece Source="vox8_ascii_1.vtu"/>
+    <Piece Source="vox8_ascii_2.vtu"/>
+    <Piece Source="vox8_ascii_3.vtu"/>
+    <Piece Source="vox8_ascii_4.vtu"/>
+    <Piece Source="vox8_ascii_5.vtu"/>
+    <Piece Source="vox8_ascii_6.vtu"/>
+    <Piece Source="vox8_ascii_7.vtu"/>
+  </PUnstructuredGrid>
+</VTKFile>

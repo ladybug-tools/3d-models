@@ -1,0 +1,62 @@
+{
+  "vtkClass": "vtkPolyData",
+  "points": {
+      "vtkClass": "vtkPoints",
+      "name": "points",
+      "numberOfComponents": 3,
+      "dataType": "Float32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Float32_2916-bef1970ff642cc3f50205f3ffcd662af"
+      },
+      "size": 2916
+    },
+  "polys": {
+      "vtkClass": "vtkCellArray",
+      "name": "polys",
+      "numberOfComponents": 1,
+      "dataType": "Int32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Int32_4420-a038a90a285c2adc950d9d1397226cc5"
+      },
+      "size": 4420
+    },
+  "cellData": {
+    "vtkClass": "vtkDataSetAttributes",
+    "arrays": [
+      { "data": {
+      "vtkClass": "vtkDataArray",
+      "name": "Daylight-Factor",
+      "numberOfComponents": 1,
+      "dataType": "Float32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Float32_884-df903765029f04daf88e61576a961d9d"
+      },
+      "size": 884
+    }},
+      { "data": {
+      "vtkClass": "vtkDataArray",
+      "name": "UDI",
+      "numberOfComponents": 1,
+      "dataType": "Float32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Float32_884-af3924561957b88fb52a1f9fcd06f1c9"
+      },
+      "size": 884
+    }}
+    ],
+    "activeTCoords": -1,
+    "activeScalars": 1,
+    "activeNormals": -1,
+    "activeGlobalIds": -1,
+    "activeTensors": -1,
+    "activePedigreeIds": -1,
+    "activeVectors": -1
+  }}
