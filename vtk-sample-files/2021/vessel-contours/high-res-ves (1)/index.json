@@ -1,0 +1,148 @@
+{
+    "centerOfRotation": [
+        -1649.1046142578125, 
+        -752.328125, 
+        1374.1217346191406
+    ], 
+    "camera": {
+        "position": [
+            15419.100733348649, 
+            8503.385147048011, 
+            7493.758423603515
+        ], 
+        "viewUp": [
+            -0.26815646034637436, 
+            0.8242399413508513, 
+            -0.49871899087206273
+        ], 
+        "clippingRange": [
+            8952.356312229886, 
+            34764.107629573766
+        ], 
+        "focalPoint": [
+            -1649.1046142578125, 
+            -752.328124999998, 
+            1374.121734619139
+        ]
+    }, 
+    "fetchGzip": false, 
+    "background": [
+        0.0, 
+        0.0, 
+        0.0
+    ], 
+    "scene": [
+        {
+            "mapper": {
+                "colorByArrayName": "", 
+                "colorMode": 1, 
+                "scalarMode": 0
+            }, 
+            "name": "high-res-vessel.vtk", 
+            "httpDataSetReader": {
+                "url": "high-res-vessel.vtk"
+            }, 
+            "actorRotation": [
+                0.0, 
+                0.0, 
+                0.0, 
+                1.0
+            ], 
+            "property": {
+                "opacity": 0.44, 
+                "representation": 2, 
+                "diffuseColor": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "pointSize": 2.0, 
+                "edgeVisibility": 0
+            }, 
+            "type": "httpDataSetReader", 
+            "actor": {
+                "origin": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "position": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "scale": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ]
+            }, 
+            "lookupTable": {
+                "tableRange": [
+                    0.0, 
+                    1.0
+                ], 
+                "hueRange": [
+                    0.0, 
+                    0.66667
+                ]
+            }
+        }, 
+        {
+            "mapper": {
+                "colorByArrayName": "__CustomRGBColorArray__", 
+                "colorMode": 0, 
+                "scalarMode": 3
+            }, 
+            "name": "Contour1", 
+            "httpDataSetReader": {
+                "url": "Contour1"
+            }, 
+            "actorRotation": [
+                0.0, 
+                0.0, 
+                0.0, 
+                1.0
+            ], 
+            "property": {
+                "opacity": 1.0, 
+                "representation": 2, 
+                "diffuseColor": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ], 
+                "pointSize": 2.0, 
+                "edgeVisibility": 0
+            }, 
+            "type": "httpDataSetReader", 
+            "actor": {
+                "origin": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "position": [
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "scale": [
+                    1.0, 
+                    1.0, 
+                    1.0
+                ]
+            }, 
+            "lookupTable": {
+                "tableRange": [
+                    -155790.0, 
+                    94474.79999999999
+                ], 
+                "hueRange": [
+                    0.5, 
+                    0
+                ]
+            }
+        }
+    ]
+}
