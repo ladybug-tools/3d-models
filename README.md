@@ -1,47 +1,46 @@
-<span style=display:none; >
-[You are now in a GitHub source code view - click this link to view the home page]
-( https://ladybug-tools.github.io/3d-models/ "View file as a web page." ) </span>
-<input type=button onclick=window.location.href='https://github.com/ladybug-tools/3d-models/';
-value='You are now in the home page view - Click this button to view the read me file and the source code' >
+# Ladybug Web 3D Models Read Me
 
-Ladybug Web 3D Models Read Me
-===
+Use this script to view and interact with the files in 3D:
 
-## [Ladybug Web 3D Models Viewer]( https://ladybug-tools.github.io/3d-models/ )
+## [Ladybug Tools / Spider Viewer]( https://www.ladybug.tools/spider-2021/spider-viewer )
 
-A collection of 3d models of buildings.
+This repository hosts a collection of 3d models that relate to architect, engineering and construction (AEC).
 
-See the home page for the details
+Currently the left menu set to recognize these file types:  "gif", "md", "jpg", "html", "license", "pdf", "png", "svg", "txt". Other file types may or may not be displayed as text.
 
-Everyone: create a readme.json file and add a thumbnail for each model. We will use later to make a visual web-based dashboard for your models.
+A future version of the left menu will enable to view files in 3D. In the meantime you can use the [Spider Viewer]( https://www.ladybug.tools/spider-2021/spider-viewer ).
 
 
 ## Licensing
 
 Currently the work herein is under the MIT license
 
-But consideration should be given to a dual license - either MIT or GPL
+But consideration should be given to a dual license - either MIT or GPL.
 
 And furthermore, the models here are content much more than code, therefore a Creative Commons license may be appropriate
 
 ## Issues
 
-* Talk to grasshopper json dev
-* Add a page on getting files to Three.js
-
 Probably a majority of the files that you can view here had issues the first time they were opened by one of the scripts.
+
 Each of these issues has been used to improve the process.
+
 The more models we can access, the more issues we will find and the better we will get
 
 
 ## Links of Interest
 
+* https://en.wikipedia.org/wiki/List_of_file_formats#3D_graphics
 * https://people.sc.fsu.edu/~jburkardt/data/data.html
 
 
 ## Change Log
 
-### 2016-05-14
+### 2021-08-28
+
+* Installed TooToo 2021 as the CMS
+
+### 2016-05-15
 
 * Continue updating to https
 
@@ -57,7 +56,6 @@ The more models we can access, the more issues we will find and the better we wi
 
 * Too many changes to record in the past few days
 * Looks like it's all beginning to settle down
-
 
 
 ### 2016-04-09
