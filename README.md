@@ -28,6 +28,13 @@ Each of these issues has been used to improve the process.
 The more models we can access, the more issues we will find and the better we will get
 
 
+## To-do
+
+* Add links to NASA files
+* Bring over Jaanga & FGX files
+
+
+
 ## Links of Interest
 
 * https://en.wikipedia.org/wiki/List_of_file_formats#3D_graphics
