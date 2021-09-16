@@ -6,72 +6,6 @@
   },
   "geometries": [
     {
-      "uuid": "8DE2D22B-E82F-40C9-89B5-F1270D28E6E9",
-      "type": "BufferGeometry",
-      "data": {
-        "attributes": {
-          "position": {
-            "itemSize": 3,
-            "type": "Float32Array",
-            "array": [
-              0,
-              0,
-              0,
-              100,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              100,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              100
-            ],
-            "normalized": false
-          },
-          "color": {
-            "itemSize": 3,
-            "type": "Float32Array",
-            "array": [
-              1,
-              0,
-              0,
-              1,
-              0.6000000238418579,
-              0,
-              0,
-              1,
-              0,
-              0.6000000238418579,
-              1,
-              0,
-              0,
-              0,
-              1,
-              0,
-              0.6000000238418579,
-              1
-            ],
-            "normalized": false
-          }
-        },
-        "boundingSphere": {
-          "center": [
-            50,
-            50,
-            50
-          ],
-          "radius": 86.60254037844386
-        }
-      }
-    },
-    {
       "uuid": "00859DB0-73A3-4F68-915D-543075B83763",
       "type": "PlaneGeometry",
       "width": 5000,
@@ -46465,25 +46399,6 @@
   ],
   "materials": [
     {
-      "uuid": "65DE4EFD-EB86-4362-A422-4ECDC8D99D4B",
-      "type": "LineBasicMaterial",
-      "color": 16777215,
-      "vertexColors": true,
-      "depthFunc": 3,
-      "depthTest": true,
-      "depthWrite": true,
-      "colorWrite": true,
-      "stencilWrite": false,
-      "stencilWriteMask": 255,
-      "stencilFunc": 519,
-      "stencilRef": 0,
-      "stencilFuncMask": 255,
-      "stencilFail": 7680,
-      "stencilZFail": 7680,
-      "stencilZPass": 7680,
-      "toneMapped": false
-    },
-    {
       "uuid": "9A450F9E-725D-4044-A09E-C1EA5988AA83",
       "type": "MeshPhongMaterial",
       "color": 11184810,
@@ -47987,22 +47902,22 @@
         "name": "THR.camera",
         "layers": 1,
         "matrix": [
--0.19975662127988048
--0.9798455451012913
--5.551115123125783e-17
-0
-0.5309316325615818
--0.10823859901322419
-0.8404736802715169
-0
--0.8235343913889328
-0.1678901826457047
-0.541852371749771
-0
--24.47027631848161
-5.908887946773563
-28.775959315645487
-1
+          0.34042250668008234,
+          -0.9402725758766175,
+          1.1102230246251565e-16,
+          0,
+          0.5893836305850113,
+          0.2133843505250601,
+          0.7791624060165052,
+          0,
+          -0.7326250425313621,
+          -0.2652444193670227,
+          0.6268221000017234,
+          0,
+          -19.518452019470153,
+          -7.297592853728641,
+          23.724545073652017,
+          1
         ],
         "children": [
           {
@@ -48060,7 +47975,7 @@
       },
       {
         "uuid": "0DD94600-437F-4DE9-8E2B-F02E8406A785",
-        "type": "AxesHelper",
+        "type": "Object3D",
         "name": "THR.axesHelper",
         "visible": false,
         "layers": 1,
@@ -48081,9 +47996,7 @@
           -4.5,
           9,
           1
-        ],
-        "geometry": "8DE2D22B-E82F-40C9-89B5-F1270D28E6E9",
-        "material": "65DE4EFD-EB86-4362-A422-4ECDC8D99D4B"
+        ]
       },
       {
         "uuid": "F5B01CD0-B255-418C-BFF8-0A1C894E3DD5",
