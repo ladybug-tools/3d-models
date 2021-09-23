@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0" />
+	<meta name="description"
+		content="Ladybug Tools / Spider Viewer is a 3D file viewer, composer and exporter designed to be forked, hacked and remixed with real-time interactive 3D graphics in your browser using the WebGL and the Three.js JavaScript library" />
+	<meta name="keywords" content="Three.js,WebGL,JavaScript,GitHub,FOSS,3D,STEM" />
+	<meta name="date" content="2021-09-23">
+	<title>3D Models</title>
+	<!-- Copyright 2021 Theo Armour. MIT license -->
+
+	<link id=CORstyle rel="stylesheet"
+		href="https://pushme-pullyou.github.io/tootoo-2021/lib/style/style-2021-07-12.css">
+
+	<style>
+		:root {
+			--main-hue: 125;
+			/* 0 to 360 0=red 120=green 240=blue */
+			--mnu-width: 23rem;
+		}
+
+		#DBDdivDashboard {
+			background-color: rgba(0, 0, 0, 0.05);
+			border-radius: 1rem;
+			bottom: 1ch;
+			left: 0;
+			margin: 0 auto;
+			opacity: 0.85;
+			position: fixed;
+			right: 0;
+			text-align: center;
+			max-width: 50%;
+			z-index: 1;
+		}
+
+		.THRbutChild {
+			border-radius: 0.5rem;
+			margin: 0.5rem 0;
+		}
+
+		.THRbutParent {
+			/* border: 1px solid red; */
+			background-color: var(--color-3-background);
+			border-radius: 0.5ch;
+			font-size: 2rem;
+			margin: 0 1rem;
+			vertical-align: bottom;
+			z-index: 2;
+		}
+
+		.THRdivButtonGroup {
+			display: inline-block;
+			position: relative;
+			z-index: 1;
+		}
+
+		.THRdivButtonGroup:hover>.THRdivChild {
+			display: block;
+		}
+
+		.THRdivChild,
+		.THRdivChildParent {
+			background-color: var(--color-3-background);
+			border-radius: 1rem;
+			bottom: 2.5rem;
+			display: none;
+			/* left: 5rem; */
+			padding: 0.5rem;
+			position: absolute;
+			text-align: left;
+			width: 8rem;
+			z-index: -1;
+		}
+
+		.THRdivChildChild {
+			background-color: #fafffa;
+			border-radius: 0.5ch;
+			bottom: 2.9rem;
+			left: 4rem;
+			padding: 1rem;
+			position: absolute;
+			text-align: left;
+			width: 18rem;
+		}
+
+
+		@media all and (max-width: 800px) {
+			#DBDdivDashboard {
+				/* background-color: red; */
+				max-width: 95%;
+			}
+		}
+
+		@media all and (max-height: 500px) {
+			#DBDdivDashboard {
+				width: 95%;
+			}
+		}
+
+	</style>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129035557"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push( arguments ); }
+		gtag( 'js', new Date() );
+
+		gtag( 'config', 'UA-129035557' );
+	</script>
+
+</head>
+
+<body>
+
+	<script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r132/build/three.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r132/examples/js/controls/OrbitControls.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r132/examples/js/utils/BufferGeometryUtils.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r132/examples/js/controls/DragControls.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r132/examples/js/loaders/DRACOLoader.js"></script>
+
+	<script src="https://pushme-pullyou.github.io/tootoo-2021/lib3d/thr-three/thr-threejs-2021-09-16.js"></script>
+	<script
+		src="https://pushme-pullyou.github.io/tootoo-2021/lib3d/thrc-three-set-colors/thrc-three-set-colors-2020-07-11.js"></script>
+	<script
+		src="https://pushme-pullyou.github.io/tootoo-2021/lib3d/thrr-three-raycaster/v-2021-09-15/thrr-three-raycaster-mousedown.js"></script>
+	<script
+		src="https://pushme-pullyou.github.io/tootoo-2021/lib3d/thru-three-utilities/thru-three-utilities-2021-09-17.js"></script>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/jszip@3.7.1/dist/jszip.min.js"></script>
+
+
+	<script src="../pushme-pullyou-tootoo-2021/lib09/mnu-menu/r-2021-09-23/mnu-menu.js"></script>
+
+	<script src="https://pushme-pullyou.github.io/tootoo-2021/lib09/ckeditor/v-2021-09-12/cke-ckeditor.js"></script>
+
+	<script
+		src="https://pushme-pullyou.github.io/tootoo-2021/lib09/frx-file-read-xhr/v-2021-09-18/frx-file-read-xhr.js"></script>
+
+	<script
+		src="https://pushme-pullyou.github.io/tootoo-2021/lib/gra-github-repo-access/v-2021-07-13/gra-github-repo-access.js"></script>
+
+	<script
+		src="https://pushme-pullyou.github.io/tootoo-2021/lib09/grv-github-repo-tree-view/v-2021-09-20/grv-github-repo-tree-view.js"></script>
+
+		<script src="https://ladybug.tools/spider-2021/lib-spider-09/3ah-3d-axes-helper/v-2021-09-23/a3h-axes-3d-helper.js"></script>
+
+		<script src="https://ladybug.tools/spider-2021/lib-spider-09/exp-exporter/v-2021-09-03/exp-exporter.js"></script>
+
+	<script
+		src="https://ladybug.tools/spider-2021/lib-spider-09/gff-github-folder-files/v-2021-09-23/gff-github-folder-files.js"></script>
+
+	<script
+		src="https://ladybug.tools/spider-2021/lib-spider-09/jtv-json-tree-view/v-2021-09-16/jti-json-tree-init.js"></script>
+
+	<script
+		src="https://ladybug.tools/spider-2021/lib-spider-09/sso-set-surface-opacity/v-2021-09-15/sso-set-surface-opacity.js"></script>
+
+
+	<!-- <script src="js/main.js"></script>
+
+	<script src="js/dashboard.js"></script>
+
+	<script src="js/txt-text.js"></script>
+
+	<script src="js/splash-screen.js"></script> -->
+
+
+
+	<details id=detNavMenu class="gmd-4">
+
+		<summary id=sumNavMenu class="summary-nav gmd-1">
+			☰ <span id=spnMenuHelp>show&darr; || hide&uarr; menu</span>
+		</summary>
+
+		<nav id="navMenu" class="">
+
+			<div id=MNUdivHeader></div>
+
+			<p>
+				<label title="Combine multiple models into one scene">
+					<input type="checkbox" id="chkNewFile" onchange=COR.addDragControls(); checked> Open new file
+				</label>
+			</p>
+
+			<div id=GORdivDetails></div>
+
+			<div id=CKEdivCkeditor></div>
+
+			<div id=GRVdivDetails></div>
+
+			<div id=FRXdivDetails></div>
+
+			<div id=GFFdivDetails></div>
+
+			<div id=JTVdivJsonTreeView></div>
+
+			<div id=SSOdivSetSurfaceOpacity></div>
+
+			<div id=whatever></div>
+
+			<div id=EXPdivMenuExporters></div>
+
+			<div id=TXTdivDetails></div>
+
+			<div id=THRdivStatistics></div>
+
+			<div id=MNUdivFooter></div>
+
+		</nav>
+
+	</details>
+
+	<main id=main>
+
+		<div id="divMainContent"></div>
+
+	</main>
+
+	<div id=DBDdivDashboard></div>
+
+	<div id=A3HdivAxes></div>
+
+	<script>
+
+
+
+	// This place is becoming very messy
+
+	const COR = {
+		user: "ladybug-tools",
+		repo: "3d-models",
+		branch: "master",
+		pathContent: "./",
+		//pathTooToo: "../../../pushme-pullyou-tootoo-2021/",
+		pathTooToo: "https://pushme-pullyou.github.io/tootoo-2021/",
+		defaultFile: "README.md",
+		defaultIgnoreFolders: [],
+		//ignoreFolders: ["archive", "lib", "lib3d", "lib-templates"],
+		filterFiles: [ "gif", "md", "jpg", "html", "license", "pdf", "png", "svg", "txt" ],
+		urlSource: "https://github.com/ladybug-tools/3d-models/",
+		urlAssets: "https://pushme-pullyou.github.io/tootoo-2021/",
+		iconRepo: `<img style=width:1.5rem; src="https://ladybug.tools/assets/svg/ladybug.svg">`,
+		iconGitHub: `<img src="https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/mark-github.svg">`,
+		iconInfo: `<img class=infoImg src="https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/noun_Information_585560.svg">`,
+		iconExternalFile: `<img class=infoImg  src="https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/icon-external-link.svg">`,
+		iconPencil: `<img class=infoImg  src="https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/icon-pencil-edit.svg">`,
+		title: document.title ? document.title : location.href.split( "/" ).pop().slice( 0, - 5 ).replace( /-/g, " " ),
+		version: document.head.querySelector( "[ name=date ]" ).content,
+		description: document.head.querySelector( "[ name=description ]" ).content,
+	};
+
+
+
+	COR.files = [
+		"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/gbxml-sample-files/revit-sample-files/2020_rac_advanced_sample_project.xml",
+		"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/gbxml-sample-files/files-open-fast/annapolis-md-single-family-residential-2016.xml",
+		"https://cdn.jsdelivr.net/gh/GreenBuildingXML/Sample-gbXML-Files@master/gbXML_TRK.xml",
+		"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/3dm-sample-files/heart_signet.3dm",
+		"https://cdn.jsdelivr.net/gh/ladybug-tools/honeybee-schema@master/samples/model_large/single_family_home.hbjson",
+		"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/hbjson-sample-files/2021/b10d47.hbjson",
+		"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/hbjson-sample-files/2021/2bo0tugx.rzj.hbjson",
+
+		"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/hbjson-sample-files/2021/tk/spider_DF.hbjson",
+		"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/gltf-sample-files/2021/Avocado.glb",
+		"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/idf-sample-files/2020/2020-06-08-michal.idf",
+		"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/obj/female02.obj",
+		"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/rad-sample-files/various-sources/DaylightingJSONTestBuilding.rad",
+		"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/stl-samples/Geometric_Knot.stl",
+		"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/hbjson-sample-files/Spider_Df_file.3dm"
+
+		//"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/gbxml-sample-files/files-open-fast/8-a.xml",
+		//"https://cdn.jsdelivr.net/gh/ladybug-tools/spider@master/gbxml-sample-files/zip/bilt-2019-template.zip",
+		// "https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/gbxml-sample-files/bristol-clifton-downs-fixed.xml",
+		// "https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/gbxml-sample-files/bristol-clifton-down-road-utf16.xml",
+		// "https://cdn.jsdelivr.net/gh/ladybug-tools/spider@master/gbxml-sample-files/zip/warwick-university-5k-surfaces.zip",
+		// "https://cdn.jsdelivr.net/gh/ladybug-tools/spider@master/gbxml-sample-files/annapolis-md-single-family-residential-2016.xml",
+		// "https://cdn.jsdelivr.net/gh/ladybug-tools/spider@master/gbxml-sample-files/zip/pittsburg-airport.zip",
+		//"https://www.ladybug.tools/spider/gbxml-sample-files/aspen-co-resort-retail.xml",
+		//"https://www.ladybug.tools/spider/gbxml-sample-files/samples-2/Berlin_Office_SAM2017.xml",
+		// "https://GreenBuildingXML.github.io/Sample_gbXML_Files/ChapelHillOffice.xml",
+		// "https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/gbxml-sample-files/samples-2/18141-M18.xml",
+		// "https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/idf-sample-files/2020/HospitalLowEnergy.idf",
+		// "../../lib-spider/idf-parser/HospitalLowEnergy.idf",
+		//"../../lib-spider/gltf-parser/Duck1.gltf",
+		//"https://cdn.jsdelivr.net/gh/ladybug-tools/3d-models@master/hbjson-sample-files/2021/Lab_Building.hbjson"
+
+	];
+
+
+
+	function init() {
+
+		// if running on server, keep address bar pointed to latest rev
+
+		if ( location.protocol === "https:" ) {
+
+			if ( COR.version !== "2021-09-23" ) { window.history.pushState( "", "", "../" + location.hash ); }
+
+		} else {
+
+			COR.pathContent = "";
+			//COR.pathTooToo = "./";
+
+			//THR.controls.autoRotate = false;
+
+		}
+
+		THR.init();
+
+		THR.animate();
+
+		THR.addLights();
+
+		THR.addGround();
+
+		THRU.resetScene();
+
+		//THR.group = THR.getGroupNew();
+		//THRU.addMeshes( 100 );
+		//THR.zoomObjectBoundingSphere();
+
+		// Items generally loaded in order of appearance on the menu
+
+		MNU.init();
+		sumNavMenu.hidden = false;
+
+		//CKE.init();
+
+		FRX.init();
+		//FRX.defaultFile = COR.files[ 7 ];
+
+		GRA.init();
+
+		//GFF.init();
+
+		//GFFdet.open = true;
+
+		//GRV.getFiles = GRV.getFilesAll;
+		GRV.getFiles = GRV.getFilesCurated;
+		GRV.init();
+		GRVdet.open = true;
+		// //GRVsumRepo.hidden = true;
+
+
+		//JTI.init(); // Json Tree View
+
+		//SSO.init(); // Set surface type opacity
+		//SSOdet.open = true;
+
+		EXP.init(); // Export
+
+		FRX.onHashChange();
+
+		FRX.onProgress( FRX.size || 0, "Load complete" );
+
+		//COR.pathContent = "";
+
+		THR.initStats();
+
+		//AMF.addFiles();
+
+		//SSL.init();  // Splash Screen Loader
+
+		//DBD.init();// dshboard
+
+		//let axes = new THREE.Group();
+		//console.log( "axes", axes );
+
+		//A3H.init();
+
+
+	};
+
+
+
+	COR.reset = function ( obj = [] ) {
+
+		if ( chkNewFile.checked ) { THR.group = THR.getGroupNew(); }
+
+
+		THR.group.name = "THR.groupsParent";
+
+		const objects = Array.isArray( obj ) ? obj : [ obj ];
+
+		const meshes = objects.filter( mesh => mesh.type === "Mesh" );
+
+		const groups = objects.filter( obj => obj.type === "Group" );
+
+		if ( groups.length ) {
+
+			THR.group.add( ...groups.children );
+			console.log( "groups", groups );
+		}
+
+		model = new THREE.Group();
+
+		model.name = FRX.fileName;
+		model.userData.extension = FRX.extension;
+		model.userData.url = FRX.url || "";
+
+		model.add( ...meshes );
+
+		THR.group.add( model );
+
+		scene.traverse( function ( object ) {
+
+			if ( object.isMesh ) {
+
+				object.geometry.computeVertexNormals();
+				object.receiveShadow = object.castShadow = true;
+				object.material.side = 2;
+				object.material.needsUpdate = true;
+
+			}
+
+		} );
+
+
+		THR.zoomObjectBoundingSphere();
+
+		THRR.init(); // Three Raycaster
+
+		//console.log( "model", model );
+
+		if ( chkNewFile.checked === false ) {
+
+			THR.dragControls = new THREE.DragControls( [ model ], THR.camera, THR.renderer.domElement );
+
+			THR.dragControls.transformGroup = true;
+			THR.dragControls.addEventListener( 'dragstart', function ( event ) { THR.controls.enabled = false; } );
+			THR.dragControls.addEventListener( 'dragend', function ( event ) { THR.controls.enabled = true; } );
+
+		}
+
+		//JTVdet.open = false;
+		//JTVdivJsonTree.innerHTML = "";
+
+	};
+
+
+
+	COR.addDragControls = function () {
+
+		THR.dragControls = new THREE.DragControls( [ model ], THR.camera, THR.renderer.domElement );
+
+		THR.dragControls.transformGroup = true;
+		THR.dragControls.addEventListener( 'dragstart', function ( event ) { THR.controls.enabled = false; } );
+		THR.dragControls.addEventListener( 'dragend', function ( event ) { THR.controls.enabled = true; } );
+
+	};
+
+
+			init(); // see ./js/main.js
+
+	</script>
+
+</body>
+
+</html>

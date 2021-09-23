@@ -79,5 +79,5 @@ The more models we can access, the more issues we will find and the better we wi
 
 
 <center title="dingbat" >
-# <a href=javascript:window.scrollTo(0,0); style=text-decoration:none; ><img src="http://ladybug-tools.github.io/images/ladybug_tools_logo.png" width=32 ></a>
+# <a href=javascript:window.scrollTo(0,0); style=text-decoration:none; ><img src="https://ladybug.tools/assets/svg/ladybug.svg" width=32 ></a>
 </center>
