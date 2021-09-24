@@ -1,14 +1,11 @@
 # [![](https://pushme-pullyou.github.io/tootoo-2021/lib/assets/icons/mark-github.svg )](https://github.com/ladybug-tools/3d-models/ "Source code on GitHub" )  [Ladybug Tools / 3D Models Read Me]( https://ladybug.tools/3d-models/#README.md)
 
-Use this script to view and interact with the files in 3D:
+Use this script to browse, view and interact with the files in 3D:
 
 ## [Ladybug Tools / Spider Viewer]( https://www.ladybug.tools/spider-2021/spider-viewer )
 
 This repository hosts a collection of 3d models that relate to architect, engineering and construction (AEC).
 
-Currently the left menu set to recognize these file types:  "gif", "md", "jpg", "html", "license", "pdf", "png", "svg", "txt". Other file types may or may not be displayed as text.
-
-A future version of the left menu will enable to view files in 3D. In the meantime you can use the [Spider Viewer]( https://www.ladybug.tools/spider-2021/spider-viewer ).
 
 
 ## Licensing
@@ -30,17 +27,105 @@ The more models we can access, the more issues we will find and the better we wi
 
 ## To-do
 
-* Add links to NASA files
+* Add links to NASA files and other large repos of 3D models
 * Bring over Jaanga & FGX files
 
 
 
 ## Links of Interest
 
+Looking at 3D models in your browser can be a lot of fun. And there are a lot of tools available for viewing files.
+
+Here is a look at different file types and viewers. Currently, we are mostly looking a free, online open source services that are not trying to sell you something.
+
+
+### 3D File Formats
+
 * https://en.wikipedia.org/wiki/List_of_file_formats#3D_graphics
 * https://people.sc.fsu.edu/~jburkardt/data/data.html
 
+glTF
 
+THREE.GLTFLoader: https://github.com/mrdoob/three.js/blob/dev/examples/js/loaders/GLTFLoader.js
+glTF 2.0 Specification: https://github.com/KhronosGroup/glTF/blob/main/specification/2.0/README.md
+glTF 2.0 Sample Models: https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/
+
+IFC
+* https://github.com/buildingSMART/Sample-Test-Files/
+
+
+## GitHub Topics
+
+* https://github.com/topics/3d-viewer
+* https://github.com/topics/3dviewer
+* https://github.com/topics/3dm
+* https://github.com/topics/aec
+* https://github.com/topics/gbxml
+
+
+## Online File Viewers
+
+3D file Viewer
+
+* https://rufus31415.github.io/sandbox/3d-viewer/
+* Unity 3D rendering engin
+
+
+Online 3D Viewer
+
+* https://3dviewer.net/
+* https://github.com/kovacsv/Online3DViewer
+* Also: https://dtudental.com/3Dviewer/online/
+* Many nice features ~ actively updated ~ 600+ stars
+
+3D Viewer Online
+
+* https://www.3dvieweronline.com/
+& $$$ ~ not open source
+
+3D Warehouse
+
+* https://3dwarehouse.sketchup.com/?hl=en
+
+
+Autodesk Viewer
+
+* https://viewer.autodesk.com/
+
+
+Creators 3D
+
+* https://www.creators3d.com/online-viewer
+* Ad supported
+* Drag files (*.glb, *.glTF, *.fbx, *.bin, *.obj, *.mtl, *.dae (collada), *.stl, *.3mf, *.amf, *.awd, *.assimp, *.bvh, *.babylon, *.gcode, *.kmz, *.mpd, *.vtk, *.vtp, *.pcd, *.ply, *.prwm, *.wrl, *.vrm, *.3ds (3ds Max), *.3dm (Rhino), *.lwo (LightWave), *.nrrd, *.pdb, *.vox, *.x, *.mmd, *.basis, *.md2, *.mmd, *.svg, *.zip and textures) and drop here.
+* Convert your current format to glTF (GLB) or USDZ online with one click!
+* Upload your model and get a direct link to easily share it!
+
+
+glTF Viewer
+
+* https://gltf-viewer.donmccurdy.com/
+* https://github.com/donmccurdy/three-gltf-viewer
+* https://github.com/mrdoob/three.js/blob/r131/examples/js/loaders/GLTFLoader.js
+
+PlayCanvas Viewer
+
+https://playcanvas.com/viewer
+
+ShareCAD
+
+* https://beta.sharecad.org/en/
+
+Sketchfab
+
+* https://sketchfab.com/
+
+
+
+xeokit
+
+* https://xeokit.io/
+* https://github.com/xeokit/xeokit-sdk
 
 <center title="dingbat" >
 # <a href=javascript:window.scrollTo(0,0); style=text-decoration:none; ><img src="https://ladybug.tools/assets/svg/ladybug.svg" width=32 ></a>
