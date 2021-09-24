@@ -2,10 +2,11 @@
 
 Use this script to browse, view and interact with the files in 3D:
 
+This repository hosts a collection of data files of 3D models that relate to Architecture, Engineering and Construction (AEC).
+
+The viewer available here is a fork of this repository
+
 ## [Ladybug Tools / Spider Viewer]( https://www.ladybug.tools/spider-2021/spider-viewer )
-
-This repository hosts a collection of 3d models that relate to architect, engineering and construction (AEC).
-
 
 
 ## Licensing
@@ -62,13 +63,17 @@ IFC
 * https://github.com/topics/aec
 * https://github.com/topics/gbxml
 
+## Lists
+
+* https://alternativeto.net/software/blender/
 
 ## Online File Viewers
 
-3D file Viewer
+3D File Viewer
 
 * https://rufus31415.github.io/sandbox/3d-viewer/
-* Unity 3D rendering engin
+* Unity 3D rendering engine
+* Great range of file types - with included demo files
 
 
 Online 3D Viewer
@@ -81,17 +86,20 @@ Online 3D Viewer
 3D Viewer Online
 
 * https://www.3dvieweronline.com/
-& $$$ ~ not open source
+* $$$ ~ not open source
 
 3D Warehouse
 
-* https://3dwarehouse.sketchup.com/?hl=en
+* https://3dwarehouse.sketchup.com
 
 
 Autodesk Viewer
 
 * https://viewer.autodesk.com/
 
+Clario
+
+* https://clara.io/
 
 Creators 3D
 
@@ -108,6 +116,7 @@ glTF Viewer
 * https://github.com/donmccurdy/three-gltf-viewer
 * https://github.com/mrdoob/three.js/blob/r131/examples/js/loaders/GLTFLoader.js
 
+
 PlayCanvas Viewer
 
 https://playcanvas.com/viewer
@@ -116,16 +125,27 @@ ShareCAD
 
 * https://beta.sharecad.org/en/
 
+
 Sketchfab
 
 * https://sketchfab.com/
 
+VTK
+
+* https://vtk.org/flavors/#web
+
+X3D
+
+* https://www.web3d.org/
 
 
 xeokit
 
 * https://xeokit.io/
 * https://github.com/xeokit/xeokit-sdk
+
+
+
 
 <center title="dingbat" >
 # <a href=javascript:window.scrollTo(0,0); style=text-decoration:none; ><img src="https://ladybug.tools/assets/svg/ladybug.svg" width=32 ></a>
