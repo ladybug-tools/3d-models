@@ -6,7 +6,12 @@ This repository hosts a collection of data files of 3D models that relate to Arc
 
 The viewer available here is a fork of this repository
 
-## [Ladybug Tools / Spider Viewer]( https://www.ladybug.tools/spider-2021/spider-viewer )
+<!--@@@
+<div class=iframe-resize ><iframe src=https://ladybug.tools/spider-2021/cookbook-threejs/iframe-carousel/ height=100% width=100% ></iframe></div>
+Spider Viewer 2021 Demo in a resizable window. One finger to rotate. Two to zoom._
+@@@-->
+
+## Full screen: [Ladybug Tools / Spider Viewer]( https://www.ladybug.tools/spider-2021/spider-viewer )
 
 
 ## Licensing

@@ -1,71 +1,148 @@
 ﻿<!doctype html>
-<html lang=en >
+<html lang="en">
+
 <head>
-<meta charset="utf-8" >
-<title>Open Index or Markdown</title>
+	<meta charset="utf-8">
+	<title>Open Index or Markdown</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=contain" >
-<meta name="description" content="File wrangler. Default index.html file. Opens HTML or Markdown files. Passes location.hash." >
-<meta name="keywords" content="ShowDown,Markdown,AJAX,JavaScript,HTML,CSS,GitHub,FOSS" >
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=contain">
+	<meta name="description"
+		content="File wrangler. Default index.html file. Opens HTML or Markdown files. Passes location.hash.">
+	<meta name="keywords" content="ShowDown,Markdown,AJAX,JavaScript,HTML,CSS,GitHub,FOSS">
+	<meta name="version" content="2021-07-05">
 
-<style>
+	<style>
+		/* Copyright 2021 Theo Armour. MIT License */
 
-:root { font: 100% monospace; }
-* { box-sizing: border-box; }
-body { margin: 0 auto; max-width: 80ch; }
-a { color: crimson; text-decoration: none; }
-a:hover, a:focus, a:active { text-decoration: underline; }
-aside { border: 1px solid lightgray; margin-top: 15px; padding: 2px; }
-button, input[type=button] { background-color: #eee; border: 2px #eee solid; color: #888; }
-blockquote { background-color: #ddd; padding: 1ch; }
-center { font-size: 2ch;}
-code { background-color: #eee; }
-pre { background-color: #eee; padding: 5px; }
-summary { cursor: pointer; font-size: 2.5ch; font-weight: bold; outline: none; }
+		:root {
+			font: 100% monospace;
+		}
 
-</style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0 auto;
+			max-width: 50rem;
+		}
+
+		a {
+			color: crimson;
+			text-decoration: none;
+		}
+
+		a:hover,
+		a:focus,
+		a:active {
+			text-decoration: underline;
+		}
+
+		aside {
+			border: 1px solid lightgray;
+			margin-top: 15px;
+			padding: 2px;
+		}
+
+		button,
+		input[type=button] {
+			background-color: #eee;
+			border: 2px #eee solid;
+			color: #888;
+		}
+
+		blockquote {
+			background-color: #ddd;
+			padding: 1rem;
+		}
+
+		code {
+			background-color: #eee;
+		}
+
+		pre {
+			background-color: #eee;
+			padding: 0.5rem;
+		}
+
+		summary {
+			cursor: pointer;
+			font-size: 2.5rem;
+			font-weight: bold;
+			outline: none;
+		}
+
+		::-webkit-scrollbar {
+			background: #333;
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: crimson;
+		}
+
+		.aDingbat {
+			text-decoration: none;
+			font-size: 2rem;
+		}
+
+		.iframe-resize {
+			height: 400px;
+			overflow: hidden;
+			resize: both;
+			width: 100%;
+		}
+	</style>
 
 </head>
+
 <body>
+	<!-- https://github.com/showdownjs/showdown -->
 
-	<div id=divContent ></div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" ></script>
-<script>
+	<div id=divContent></div>
 
-// https://github.com/showdownjs/showdown
-// Canonical version: https://github.com/pushme-pullyou/templates-01/tree/master/open-markdown-or-html
+	<script>
 
-	let defaultFile = "index.html";
-	//location.hash = "../../../pushme-pullyou/tootoo14/pages/markdown-help.md"
-	location.hash = "README.md";
 
-	let contents;
+		defaultFile = "README.md";
 
-	init();
+		//location.hash = "../assets/markdown-help.md"; // test
+		//location.hash = "../style/style-sample-tags.html"
 
-	function init() {
+		init();
 
-		showdown.setFlavor("github");
+		function init() {
 
-		location.hash.endsWith( ".md" ) ? onHashChange() : window.location.href = defaultFile + location.hash;
+			showdown.setFlavor( "github" );
 
-		window.addEventListener( "hashchange", onHashChange, false );
+			if ( !location.hash ) { location.hash = defaultFile; }
 
-	}
+			location.hash.endsWith( ".md" ) ? onHashChange() : window.location.href = location.hash.slice( 1 );
 
-	function onHashChange() {
+			window.addEventListener( "hashchange", onHashChange, false );
 
-		const url = location.hash.slice( 1 );
-		document.title = url.split( "/" ).pop();
+		}
 
-		const xhr = new XMLHttpRequest();
-		xhr.open( "get", url, true );
-		xhr.onload = () => divContent.innerHTML = new showdown.Converter().makeHtml( xhr.responseText );
-		xhr.send( null );
 
-	}
+		function onHashChange() {
 
-</script>
+			const url = location.hash.slice( 1 );
+			document.title = url.split( "/" ).pop();
+			const options = { openLinksInNewWindow: false, excludeTrailingPunctuationFromURLs: true, ghMention: true, simplifiedAutoLink: true, simpleLineBreaks: true, emoji: true };
+
+			const xhr = new XMLHttpRequest();
+			xhr.open( "get", url, true );
+			xhr.onload = () => {
+				const txt = xhr.responseText.replace( /\<!--@@@/, "" ).replace( /\@@@-->/, "" );
+				divContent.innerHTML = new showdown.Converter( options ).makeHtml( txt );
+				window.scrollTo( 0, 0 );
+			}
+			xhr.send( null );
+
+		}
+
+	</script>
 </body>
+
 </html>
