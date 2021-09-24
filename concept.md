@@ -1,10 +1,10 @@
 <span style=display:none; >[You are now in a GitHub source code view - click this link to view the home page]( http://ladybug-analysis-tools.github.io/3d-models/ "View file as a web page." ) </span>
-<input type=button onclick=window.location.href='https://github.com/ladybug-analysis-tools/3d-models/'; 
+<input type=button onclick=window.location.href='https://github.com/ladybug-analysis-tools/3d-models/';
 value='You are now in the home page view - Click this button to view the read me file and the source code' >
 
 
-[Ladybug Web 3D Models Concept / Manifesto]( ./index.html#concept.md )
-===
+# [Ladybug Web 3D Models Concept / Manifesto]( ./index.html#concept.md )
+
 
 
 _Ladybug Web is about helping you carry out a variety of analyses on your building projects_
@@ -14,15 +14,15 @@ _Real world patterns we see that require solutions_
 
 ### Issue / Pattern: 3D Models Readily Available Online
 
-There are many thousands of 3D models online already, but hardly any are accessible online. 
+There are many thousands of 3D models online already, but hardly any are accessible online.
 Sites such 3D Warehouse, Clario, SketchFab all require you to download models to your local hard disk.
 And having to download files is the enemy of online, timely, collaboration
 
 ### Mission / Solution
 
-In order to test and verify that our studies are valid and that you can submit projects for study, 
+In order to test and verify that our studies are valid and that you can submit projects for study,
 we need a good number of building models - a '[corpora]( https://en.wikipedia.org/wiki/Text_corpus )' of 3D data.
-The mission of this site is to make a large number of models available for our testing. 
+The mission of this site is to make a large number of models available for our testing.
 And since they are online and FOSS, you can use them too - for whatever purpose serves your needs.
 
 ***
@@ -36,7 +36,7 @@ If you just want to share a particular view with a friend or colleague, asking t
 Creating a 2D thumbnail is the usual answer, but that means not sharing the full 3D data
 
 The 3D model web sites such 3D Warehouse create their own views of the model. Adjusting for lighting and initial camera position is not possible.
-    
+
 ### Mission
 
 Provide online viewers anybody can use to view, edit and share 3D models online.
@@ -86,16 +86,16 @@ Open a script and everything you need to know is right there.
 
 ### Issue: Overwhelming complexities are avoided
 
-Models are in 3D worlds. User experience is on a 2D user interface. 
+Models are in 3D worlds. User experience is on a 2D user interface.
 Realtime updates requires attention sixty times every second. User interfaces are whenever event-driven.
- 
-### Mision
+
+### Mission
 
 Allow multiple separate 'walled gardens' but establish clear, viable communication between the gardens
 Use iframes as the vehicle. The provides extra layer of security, enables the use of multiple processes or threads per app.
 
-At some time, more external .js files will certainly be offered. 
-But at this early stage we have not yet decided what are the most likely candidates to be exported.   
+At some time, more external .js files will certainly be offered.
+But at this early stage we have not yet decided what are the most likely candidates to be exported.
 
 ***
 

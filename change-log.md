@@ -1,9 +1,13 @@
 # Change Log
 
+## 2021-09-24
+
+* Update Supported file formats  bring over text from Spider Viewer 2021 Read me.
+
 ## 2021-09-23
 
 * Switched main page over to Spider Viewer 2021 clone
-
+* Update Read me
 
 ## 2021-08-28
 
