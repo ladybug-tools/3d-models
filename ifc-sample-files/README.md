@@ -41,6 +41,7 @@ _all of the above needs confirming_
 
 * https://en.wikipedia.org/wiki/Industry_Foundation_Classes
 * http://buildingsmart.org/
+* http://ifc43-docs.standards.buildingsmart.org/
 * IFC4 reference: http://www.buildingsmart-tech.org/mvd/IFC4Add1/RV/1.0/html/
 
 ### Examples
